@@ -1,0 +1,423 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+body {
+    background: @grey1 !important;
+}
+
+button {
+    outline: none !important;
+    border: none;
+}
+
+.container {
+    @media (max-width: 576px) {
+        max-width: 350px;
+    }
+}
+
+.globalModalHJ {
+    .mat-dialog-container {
+        padding: 0px !important;
+    }
+}
+
+.customProgress .ui-progressbar .ui-progressbar-value {
+    background: @green1;
+}
+
+.customProgress .ui-progressbar-determinate .ui-progressbar-label {
+    line-height: 18px;
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+
+.classetable {
+    .ui-paginator .ui-dropdown {
+        margin: 0 10px 0 0 !important;
+        float: right;
+        width: 100px !important;
+    }
+    .ui-dropdown label.ui-dropdown-label {
+        padding: 0px !important;
+    }
+}
+
+.ui-organizationchart .ui-organizationchart-node-content {
+    padding: 0 !important;
+    display: inline-block !important;
+    position: relative !important;
+}
+
+.ui-organizationchart .ui-organizationchart-node-content .ui-node-toggler {
+    bottom: -19px !important;
+    margin-left: -10px !important;
+    z-index: 2 !important;
+    border-radius: 0px 0px 5px 5px !important;
+    padding: 0px 3px !important;
+    .pi-chevron-down {
+        color: @blue2 !important;
+        font-size: 14px !important;
+        font-weight: bold !important;
+    }
+    .pi-chevron-up {
+        font-family: 'primeicons' !important;
+        color: @blue2 !important;
+        font-weight: bold !important;
+        text-transform: none !important;
+        speak: none !important;
+        font-variant: normal !important;
+        font-style: normal !important;
+        line-height: 1 !important;
+        display: inline-block !important;
+        -webkit-font-smoothing: antialiased !important;
+    }
+}
+
+.mouse-pointer {
+    cursor: pointer;
+}
+
+// .loading {
+//     margin: 0 auto;
+//     color: @grey6;
+//     min-width: 150px;
+//     text-align: center;
+// }
+.spacing {
+    margin: 10px !important;
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eee;
+    .radius(5px);
+}
+
+::-webkit-scrollbar-thumb {
+    .radius(5px);
+    background: #999;
+    &:window-inactive {
+        background: #bbb;
+    }
+}
+
+.ui-chkbox-box.ui-state-active {
+    background: none !important;
+    border: 1px solid @blue2 !important;
+}
+
+.ui-radiobutton-box.ui-state-active {
+    background: none !important;
+    border: 1px solid @blue2 !important;
+}
+
+.ui-inputtext {
+    line-height: 30px !important;
+    border-radius: 5px !important;
+    padding: 5px 10px !important;
+    width: 100% !important;
+    // border-bottom: 2px solid #d6d6d6 !important;
+}
+
+.ui-inputtext:focus {
+    box-shadow: unset !important;
+    border-bottom: 2px solid @blue3 !important;
+}
+
+.ui-float-label {
+    display: block !important;
+    margin: 25px 5px 0;
+}
+
+.ui-dropdown {
+    width: 100% !important;
+}
+
+.ui-dropdown .ui-dropdown-label {
+    color: #a3898d !important;
+}
+
+.ui-float-label input:focus label, .ui-float-label input.ui-state-filled label, .ui-float-label .ui-inputwrapper-focus label, .ui-float-label .ui-inputwrapper-filled label {
+    left: 10px !important;
+}
+
+.ui-float-label label {
+    left: 10px !important;
+    display: inline !important;
+    color: @grey6;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.ui-chkbox-box.ui-state-active, .ui-radiobutton-box.ui-state-active {
+    color: @blue3 !important;
+}
+
+.ui-dropdown:not(.ui-state-disabled):hover {
+    border-color: #ccc !important;
+    background: #eeeeee !important;
+    color: #212121 !important;
+}
+
+.ui-dropdown-panel .ui-dropdown-item:not(.ui-state-highlight):hover {
+    border-color: #ccc !important;
+    background: inherit !important;
+    color: #212121 !important;
+}
+
+.ui-dropdown .ui-dropdown-trigger {
+    border: none !important;
+    border-radius: 7px !important;
+}
+
+.ui-corner-all {
+    border-radius: 7px !important;
+}
+
+.ui-shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+p-inputmask.ng-dirty.ng-invalid label, p-inputmask.ng-touched.ng-invalid label, .ui-float-label input.ng-dirty.ng-invalid label, .ui-float-label input.ng-touched.ng-invalid label {
+    color: @red1 !important;
+}
+
+.ui-inputtext.ng-dirty.ng-invalid, .ui-inputtext.ng-touched.ng-invalid, p-dropdown.ng-dirty.ng-invalid > .ui-dropdown, p-autocomplete.ng-dirty.ng-invalid > .ui-autocomplete > .ui-inputtext, p-calendar.ng-dirty.ng-invalid > .ui-calendar > .ui-inputtext, p-chips.ng-dirty.ng-invalid > .ui-inputtext, p-inputmask.ng-dirty.ng-invalid > .ui-inputtext, p-checkbox.ng-dirty.ng-invalid .ui-chkbox-box, p-radiobutton.ng-dirty.ng-invalid .ui-radiobutton-box, p-inputswitch.ng-dirty.ng-invalid .ui-inputswitch, p-listbox.ng-dirty.ng-invalid .ui-inputtext, p-multiselect.ng-dirty.ng-invalid > .ui-multiselect, p-spinner.ng-dirty.ng-invalid > .ui-inputtext, p-selectbutton.ng-dirty.ng-invalid .ui-button, p-togglebutton.ng-dirty.ng-invalid .ui-button {
+    border-bottom-color: @red1;
+    border-bottom-width: 2px;
+}
+
+.error {
+    font-size: 9px;
+    color: @red2;
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+}
+
+.cntInputFile {
+    label {
+        margin: 0 !important;
+    }
+}
+
+.btn {
+    border: 2px solid white !important;
+    padding: 5px 25px !important;
+    margin: 20px 0 !important;
+    border-radius: 20px !important;
+    outline: none !important;
+    .default {
+        color: white !important;
+        min-height: 35px !important;
+        font-size: 18px !important;
+        min-width: 100px !important;
+    }
+    &.max {
+        width: 95%;
+    }
+    &.blue {
+        .default;
+        background: @blue2;
+        &:hover {
+            .bgGradient(@blue2, @orange1, 90deg);
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px @blue2;
+        }
+    }
+    &.orange {
+        .default;
+        background: @orange1;
+        &:hover {
+            .bgGradient(@orange1, @blue2, 90deg);
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px @orange1;
+        }
+    }
+    &.grey {
+        .default;
+        background: @grey6;
+        &:hover {
+            background: @grey4;
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px @grey6;
+        }
+    }
+    &.green {
+        .default;
+        background: @green1;
+        &:hover {
+            //  background:@green3;
+            .bgGradient(@green3, @blue2, 90deg);
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px #508e00;
+        }
+    }
+    &.yellow {
+        .default;
+        background: #ffcc00;
+        color: #fff;
+        &:hover {
+            background: darken(#ffcc00, 5%);
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px darken(#ffcc00, 5%);
+        }
+    }
+    &.red {
+        .default;
+        background: #bb162e;
+        color: #fff;
+        &:hover {
+            background: lighten(#bb162e, 15%);
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px lighten(#bb162e, 15%);
+        }
+    }
+    &.darkBlue {
+        .default;
+        background: #0094d4;
+        &:hover {
+            background: #0c71b1;
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px #0c71b1;
+        }
+    }
+}
+
+.disabled {
+    opacity: 0.4 !important;
+    cursor: default !important;
+    pointer-events: none !important;
+    &.btn {
+        background: #ccc !important;
+        background-image: none !important;
+        cursor: not-allowed !important;
+        &:hover {
+            box-shadow: none !important;
+            background: #ccc !important;
+        }
+    } //btn
+}
+
+.ui-sidebar {
+    margin-top: 60px;
+}
+
+.ui-sidebar-left {
+    background: rgba(63, 67, 72, 0.95) !important;
+}
+
+.ui-sidebar-mask {
+    background: none !important;
+}
+
+.ui-sidebar .ui-sidebar-close {
+    color: white !important;
+}
+
+.ui-card-body {
+    padding: 0px !important;
+}
+
+.ui-card {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.formatMoney {
+    .moneySymbol {
+        font-weight: 600;
+        font-size: 70%;
+    }
+    .moneyValue {
+        font-weight: bold;
+        font-size: 100%;
+    }
+    .moneyDecimal {
+        font-weight: lighter;
+        font-size: 80%;
+    }
+}
+
+.fsize-14 {
+    font-size: 14px;
+}
+
+.fsize-16 {
+    font-size: 16px;
+}
+
+.fsize-18 {
+    font-size: 18px;
+}
+
+.fsize-20 {
+    font-size: 20px;
+}
+
+.fbold {
+    font-weight: bold;
+}
+
+.company {
+    .ui-widget-content {
+        border: none !important;
+        background: none !important;
+    }
+    .ui-state-highlight {
+        background: none !important;
+    }
+    .ui-organizationchart-table {
+        margin-top: 15px !important;
+    }
+}
+
+.measurements {
+    display: flex;
+    padding-left: 15px;
+    p {
+        margin: 0;
+    }
+}
+
+.divider {
+    padding-left: 5px;
+}
+
+.classelabel {
+    margin: 0;
+    cursor: pointer;
+}
+
+.custom-dialog-container .mat-dialog-container {
+    height: unset;
+    max-width: 100vw;
+}
+
+// ___________________
+app-back-office-info-rescue, app-back-office-navtop, app-back-office-choose-path-container {
+    .banner, .popup {
+        .ui-carousel {
+            padding: 0 !important;
+            margin: 0 !important;
+            border: 0 !important;
+        }
+        .ui-carousel-header {
+            display: none !important;
+        }
+        .ui-corner-all {
+            border-radius: 0 !important;
+        }
+    }
+}

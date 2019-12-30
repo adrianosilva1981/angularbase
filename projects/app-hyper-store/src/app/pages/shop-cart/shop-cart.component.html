@@ -1,0 +1,12 @@
+<div class="contenShopCart container">
+  <div>
+    <div class="contentItensShop">
+      <app-hyper-store-items-in-shop-cart [editable]="true" (onShopCartItems)="onShopCartItems($event)"></app-hyper-store-items-in-shop-cart>
+    </div>
+    <div class="contentShopCartShipping" *ngIf="shopCartItems && shopCartItems.length > 0">
+      <div class="contentBtnFinish">
+        <button class="btnFinish btn" routerLink="../checkout">Finalizar Compra</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="contentPage">
+  <div class="contentSearch">
+    <div class="cntInput">
+      <div class="form-group">
+        <input type="text" class="form-control" [(ngModel)]="subdomain" (keyup.enter)="gotoStore()" placeholder="Nome da loja">
+      </div>
+    </div>
+    <div class="cntBtn">
+      <button (click)="gotoStore()">
+        IR
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>

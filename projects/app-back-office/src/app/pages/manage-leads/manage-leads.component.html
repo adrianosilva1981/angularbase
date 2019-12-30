@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="managelead">
+
+    <div class="contentcard" *ngIf="contacts?.length > 0">
+      <p-card class="cardtable">
+        <div class="content">
+          <div class="contenttitle">Sua lista de contatos</div>
+        </div>
+        <div class="contentmain">
+
+          <button type="button" class="btn blue" (click)="goToRoute('/divulgation')" style="margin-bottom:20px;">Voltar</button>
+
+          <p-table [value]="contacts">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Celular</th>
+                <th style="width:5em"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-contact>
+              <tr>
+                <td>{{contact.name}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.cellphone}}</td>
+                <td class="text-center">
+                  <i class="material-icons mouse-pointer" (click)="removeLead(contact)">clear</i>
+                  <i class="material-icons mouse-pointer" (click)="editLead(contact)">edit</i>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>

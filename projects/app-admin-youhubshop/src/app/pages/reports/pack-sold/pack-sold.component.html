@@ -1,0 +1,230 @@
+<div class="container-fluid">
+    <div class="row my-0 text-center">
+        <div class="jumbotron col-12 pb-0 mb-0">
+            <h1>Vendas</h1>
+        </div>
+    </div>
+    <div class="row my-5 justify-content-center text-center">
+        <div class="col-12">
+            <p-calendar [(ngModel)]="dates" dateFormat="dd/mm/yy" selectionMode="range" (onSelect)="setOrders()"></p-calendar>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 item">
+            <div class="container">
+                <div class="col-12">
+                    Valor das Vendas
+                </div>
+                <div class="col-12">
+                    {{total_value_orders|conversion:'BRL':false}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 item">
+            <div class="container">
+                <div class="col-12">
+                    Quantidade de Vendas
+                </div>
+                <div class="col-12">
+                    {{qtd_orders || 0}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 item">
+            <div class="container">
+                <div class="col-12">
+                    Pontos
+                </div>
+                <div class="col-12">
+                    {{ total_points_orders || 0 }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+        <div class="col-12">
+
+            <p-table #dt [columns]="cols" [value]="orders" dataKey="bso_id" [responsive]="true" [rows]="20"
+                rowExpandMode="single" [paginator]="true">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            <input placeholder="{{col.header}}" pInputText type="date" (input)="dt.filter($event.target.value, col.field, 'contains');sumTotal();"
+                                *ngIf="col.field.includes('date')" style="max-width:100%">
+                            <input placeholder="{{col.header}}" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'equals');sumTotal();"
+                                *ngIf="col.field.includes('id')" style="max-width:100%">
+                            <input placeholder="{{col.header}}" pInputText type="{{col.header === 'Data do Pedido'?'date':'text'}}"
+                                (input)="dt.filter($event.target.value, col.field, 'contains');sumTotal();" *ngIf="!col.field.includes('id') && !col.field.includes('date') && !col.field.includes('status')"
+                                style="max-width:100%">
+                            <p-multiSelect [options]="status_order_label" [(ngModel)]="selectedStatus" defaultLabel="Status"
+                                (onChange)="dt.filter($event.value, col.field, 'in');sumTotal();sumTotal();" *ngIf="col.field === 'status'"
+                                [style]="{'width':'100%'}"></p-multiSelect>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-order let-columns="columns" let-expanded="expanded">
+                    <tr [pRowToggler]="order" (click)="getOrderDetails(order)">
+                        <td *ngFor="let col of columns" class="link">
+                            <span class="ui-column-title">{{col.header}}</span>
+                            {{
+                            col.field.includes('value')&&!col.field.includes('points')
+                            ?(order[col.field]|conversion:'BRL':false)
+                            :(col.field.includes('date'))? (order[col.field]|date:'dd/MM/yyyy')
+                            :(col.field.includes('status'))? (returnLabelStatus(order.status))
+                            :(order[col.field])
+                            }}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-order let-columns="columns">
+
+                    <tr>
+                        <td [ngClass]="{'backgroundTable': true}" [attr.colspan]="columns.length">
+                            <p-table [value]="order.orderItems" [responsive]="true" [rows]="10" [paginator]="true"
+                                dataKey="id" rowExpandMode="single">
+
+                                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            Código
+                        </th>
+                        <th>
+                            Fornecedor
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Frete
+                        </th>
+                        <th>
+                            Repasse ao Fornecedor
+                        </th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-supplier let-rowIndex="rowIndex" let-expanded="expanded">
+                    <tr [ngClass]="{'background': rowIndex%2 === 0}" class="link" [pRowToggler]="supplier">
+                        <td>
+                            <span class="ui-column-title">Código</span>
+                            {{supplier.id}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Fornecedor</span>
+                            {{supplier.fantasyname}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Status</span>
+                            {{supplier.status}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Frete</span>
+                            {{supplier.frete|currency:'R$'}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Repasse ao Fornecedor</span>
+                            {{(supplier.frete + supplier.supplier_value)|currency:'R$'}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-supplier>
+                    <tr>
+                        <td [ngClass]="{'backgroundTable': true}" [attr.colspan]="5">
+                            <p-table [value]="supplier.items" [responsive]="true" [rows]="10" [paginator]="true"
+                                rowExpandMode="single">
+                                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            Quantidade
+                        </th>
+                        <th>
+                            Título
+                        </th>
+                        <th>
+                            Cliente
+                        </th>
+                        <th>
+                            Prime
+                        </th>
+                        <th>
+                            Associado
+                        </th>
+                        <th>
+                            Fornecedor
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Tipo
+                        </th>
+                    </tr>
+                </ng-template>
+
+
+                <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+                    <tr [ngClass]="{'background': rowIndex%2 === 0}">
+                        <td>
+                            <span class="ui-column-title">Quantidade</span>
+                            {{item.qtd}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Título</span>
+                            {{item.title}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Cliente</span>
+                            {{item.client|currency:'R$'}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Prime</span>
+                            {{item.prime|currency:'R$'}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Associado</span>
+                            {{item.associate|currency:'R$'}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Fornecedor</span>
+                            {{item.supplier|currency:'R$'}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Fornecedor</span>
+                            {{item.status}}
+                        </td>
+                        <td>
+                            <span class="ui-column-title">Fornecedor</span>
+                            {{item.type_item}}
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+            </td>
+            </tr>
+
+            </ng-template>
+
+            </p-table>
+            </td>
+            </tr>
+            </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col text-center">
+            <button type="button" pButton icon="fas fa-file-export" iconPos="left" label="Exportar Tabela" (click)="export(dt)"></button>
+        </div>
+    </div>
+</div>

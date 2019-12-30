@@ -1,0 +1,72 @@
+<div class="subNav">
+  <div class="container">
+    <div class="iconsContent">
+      <div class="mobile d-xl-none d-lg-none d-md-none" (click)="sidebarView = true">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="link" routerLink="/">
+        <i class="fa fa-dashboard"></i>
+        <span>Dashboard</span>
+      </div>
+      <div class="link">
+        <span *ngIf="consultantObj?.subDomain">
+          <a [href]="'//partner.youhub.com.br/store/' + consultantObj?.subDomain" target="_blank">
+            <i class="fa fa-globe"></i>
+            <span>Minha Loja</span>
+          </a>
+        </span>
+        <span *ngIf="!consultantObj?.subDomain">
+          <a (click)="showMessage()">
+            <i class="fa fa-globe"></i>
+            <span>Minha Loja</span>
+          </a>
+        </span>
+
+      </div>
+      <div class="link">
+        <a href="assets/pdf/consultor-treinamento.pdf" target="_blank">
+          <i class="fa fa-line-chart"></i>
+          <span>Treinamento</span>
+        </a>
+      </div>
+      <div class="link">
+        <a href="assets/pdf/MANUALDOFORNECEDOR.pdf" target="_blank">
+          <i class="fas fa-book"></i>
+          <span>Manual do fornecedor</span>
+        </a>
+      </div>
+
+      <!-- <div class="link">
+        <a href="mailto:suporte@youhub.com.br">
+          <i class="far fa-envelope"></i>
+          <span>suporte@youhub.com.br</span>
+        </a>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+<p-sidebar [(visible)]="sidebarView" position="left" [baseZIndex]="10000">
+  <div class="menu-mobile ">
+    <div class="link" routerLink="">
+      <img src="global/img/logo_text.png" alt="">
+    </div>
+    <div class="link" routerLink="/p">
+      <i class="fa fa-dashboard"></i>
+      <span>Dashboard</span>
+    </div>
+    <div class="link">
+      <a [href]="'//partner.youhub.com.br/store/' + consultantObj?.subDomain" target="_blank">
+        <i class="fa fa-globe"></i>
+        <span>Minha Loja</span>
+      </a>
+    </div>
+    <div class="link disabled">
+      <a href="assets/pdf/consultor-treinamento.pdf" target="_blank">
+        <i class="fa fa-line-chart"></i>
+        <span>Treinamento</span>
+      </a>
+    </div>
+  </div>
+</p-sidebar>

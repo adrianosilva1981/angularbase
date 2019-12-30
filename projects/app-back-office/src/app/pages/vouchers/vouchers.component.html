@@ -1,0 +1,45 @@
+<div class="vouchers">
+  <div class="content">
+
+    <div class="contentTable">
+
+      <div class="card">
+        <div class="content">
+          <p>Meus Vouchers {{title}}</p>
+
+          <div *ngIf="!voucherOk">Nenhum Voucher Encontrado!</div>
+
+          <div *ngIf="voucherOk">
+            <p-table styleClass="classetable" [responsive]="true" [value]="vouchers">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width:5em"></th>
+                  <th style="text-align: center; width:15em">Voucher</th>
+                  <th style="text-align: center; width:8em">Valor</th>
+                  <th style="text-align: center; width:8em">Status</th>
+                  <th style="text-align: center; width:15em">Data de expiração</th>
+                  <th style="text-align: center; width:15em">Data de Ativação</th>
+                  <th style="text-align: center;">Email de ativação</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-val>
+                <tr>
+                  <td style="text-align: center;">{{val.cont}}</td>
+                  <td style="text-align: center;">{{val.serial}}</td>
+                  <td style="text-align: center;" [innerHtml]="val.value | conversion : 'BRL'"></td>
+                  <td style="text-align: center;">{{status[val.status]}}</td>
+                  <td style="text-align: center;">{{val.expiration_date}}</td>
+                  <td style="text-align: center;">{{val.activation_date}}</td>
+                  <td style="text-align: center;">{{val.mail}}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

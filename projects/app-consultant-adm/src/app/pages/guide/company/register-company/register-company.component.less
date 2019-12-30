@@ -1,0 +1,460 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.contentPage {
+    .form-group {
+        padding: 10px;
+    }
+    .mainBox {
+        margin: 30px 0px;
+        border: 1px solid @grey3;
+        background: #efefef;
+        overflow: hidden;
+        .radius(10px);
+        &.invalid {
+            border: 1px solid @red1;
+            .titleBox {
+                background: @red1;
+                color: #fff;
+            }
+        }
+        .titleBox {
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            background: @grey3;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .collumm {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        .form-group, .group {
+            min-width: 150px;
+            flex: 1;
+        }
+        .type-desc {
+            flex: 1;
+            padding: 10px;
+        }
+    }
+    .serviceForm {
+        .cntProductDetails {
+            padding: 10px;
+        }
+    } // .serviceForm
+    .mediasForm {
+        .cntImages {
+            flex: 1;
+            padding: 10px;
+            min-width: 220px;
+            .cntButtonAdd {
+                padding: 10px;
+            }
+            .listImages {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                min-height: 100px;
+                background: @grey2;
+                border: 1px solid @grey3;
+                .radius(5px);
+                .empty {
+                    padding: 10px;
+                    color: @grey5;
+                }
+                .cntImg {
+                    padding: 10px;
+                    position: relative;
+                    img {
+                        border: 1px solid @grey5;
+                        width: 80px;
+                        height: 80px;
+                        object-fit: cover;
+                        object-position: top;
+                        .radius(5px);
+                    }
+                    .btnRemove {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: 0;
+                        right: 0;
+                        .radius(50%);
+                        width: 30px;
+                        height: 30px;
+                        background: @red1;
+                        border: 1px solid #fff;
+                        cursor: pointer;
+                        .fas {
+                            color: #fff;
+                        }
+                        &:hover {
+                            .fas {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } // .mediasForm
+    .priceForm {
+        .cntPrices {
+            padding: 10px;
+            .collumm {
+                margin: 10px 0;
+                .form-group, .group {
+                    min-width: auto;
+                    max-width: 200px;
+                    flex: unset;
+                    position: relative;
+                    &.full {
+                        max-width: auto;
+                    }
+                    @media screen and (max-width: 768px) {
+                        margin: 0;
+                    }
+                    .percent-symbol {
+                        position: absolute;
+                        bottom: 18px;
+                        right: 25px;
+                    }
+                    .percentage {
+                        width: 55px;
+                    }
+                    .percent-error {
+                        font-size: 10px;
+                        position: absolute;
+                        width: 100%;
+                        color: red;
+                    }
+                }
+                .check-off {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 10px
+                }
+                .off {
+                    transition: all 0.2s ease-in-out;
+                    height: 0;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    overflow: hidden;
+                    &.view {
+                        height: auto !important;
+                    }
+                }
+                .type-desc {
+                    &.full {
+                        width: 100%;
+                        flex: unset;
+                    }
+                    @media screen and (max-width: 768px) {
+                        flex: unset;
+                    }
+                }
+            }
+        }
+    } // .priceForm
+    .categoryForm {
+        .cntCategory {
+            padding: 10px;
+            i {
+                position: absolute;
+                right: 20px;
+                top: 50px;
+                color: gray;
+            }
+            .tmplListCategory {
+                display: flex;
+                align-items: center;
+                .cntLineCat {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        .radius(50%);
+                        margin-right: 5px;
+                    }
+                    .lineCategory {
+                        flex: 1;
+                    }
+                }
+            }
+        }
+    } // .categoryForm
+    .metaInfoForm {
+        .cntMeta {
+            padding: 10px;
+        }
+    } // .metaInfoForm
+    .detailsForm {
+        .cntDetails {
+            padding: 10px;
+            .cntInputs {
+                display: flex;
+                flex-wrap: wrap;
+                .key {
+                    flex: 2;
+                }
+                .value {
+                    flex: 4;
+                }
+                .cntBtn {
+                    width: 150px;
+                    .btnAdd {
+                        border: none;
+                        .radius(5px);
+                        padding: 5px;
+                        text-align: center;
+                        background: @green1;
+                        color: #fff !important;
+                        &:disabled {
+                            background: @grey4;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+            .cntList {
+                padding: 10px;
+                .line {
+                    border: 1px solid @grey3;
+                    background: #fff;
+                    .radius(5px);
+                    display: flex;
+                    align-items: center;
+                    margin-top: 5px;
+                    .cntKey {
+                        flex: 2;
+                        padding: 10px;
+                        border-right: 1px solid @grey3;
+                    }
+                    .cntVal {
+                        flex: 4;
+                        padding: 10px;
+                    }
+                    .cntBtnDel {
+                        width: 150px;
+                        padding: 0px 10px;
+                        .btnDel {
+                            border: none;
+                            width: 100%;
+                            .radius(5px);
+                            padding: 5px;
+                            text-align: center;
+                            background: @red1;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    } // .detailsForm
+    .shippingForm {
+        .cntShipping {
+            padding: 10px;
+            b {
+                margin-left: 3px;
+                color: red;
+                font-size: 10px;
+            }
+            .group {
+                padding: 0px 10px;
+                background: @grey2;
+                min-width: 260px;
+                .radius(5px);
+                display: flex;
+                .cntRadio {
+                    flex: 1;
+                    min-width: 100px;
+                    display: flex;
+                    align-items: center;
+                    .groupRadio {
+                        flex: 1;
+                        .radio {
+                            display: block;
+                            .label {
+                                margin: 0px !important;
+                            }
+                        }
+                    }
+                }
+                .cntInput {
+                    flex: 2;
+                    .form-group {
+                        min-width: unset;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    } // .shippingForm
+    .cntBtnSubmit {
+        margin-bottom: 30px;
+        text-align: right;
+        .btnSubmit {
+            border: none;
+            font-size: 20px;
+            text-transform: uppercase;
+            .radius(5px);
+            padding: 10px 60px;
+            text-align: center;
+            background: @green1;
+            color: #fff;
+            &:disabled {
+                background: @grey4;
+                cursor: not-allowed;
+            }
+        }
+        .btnAdd {
+            .btnSubmit;
+            padding: 4px 15px;
+        }
+    }
+    // .cntBtnSubmit
+}
+
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.contentPage {
+    .form-group {
+        margin: 5px;
+    }
+    .cntTypeList {
+        display: flex;
+        flex-wrap: wrap;
+        .cntCheck {
+            margin-right: 10px;
+            display: inline-block;
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+    .doubleGroup {
+        display: flex;
+        .form-group {
+            flex: 1;
+            min-width: 300px;
+        }
+    }
+    .contentImages {
+        .listImages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+            background: @grey2;
+            border: 1px solid @grey3;
+            .radius(5px);
+            .empty {
+                padding: 10px;
+                color: @grey5;
+            }
+            .cntImage {
+                padding: 10px;
+                position: relative;
+                img {
+                    border: 1px solid @grey5;
+                    width: 80px;
+                    height: 80px;
+                    object-fit: cover;
+                    object-position: top;
+                    .radius(5px);
+                }
+                .btnRemove {
+                    position: absolute;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    top: 0;
+                    right: 0;
+                    .radius(50%);
+                    width: 30px;
+                    height: 30px;
+                    background: @red1;
+                    border: 1px solid #fff;
+                    cursor: pointer;
+                    .fas {
+                        color: #fff;
+                    }
+                    &:hover {
+                        .fas {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .conditionsUse {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        .modalBtn {
+            color: @blue1;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 5px;
+        }
+    }
+    .contentBtnSubmit {
+        text-align: center;
+        margin: 10px 0px;
+        .btnSubmit {
+            padding: 10px 50px;
+            display: inline-block;
+            margin: 10px 0px;
+            cursor: pointer;
+            background: @green1;
+            color: #fff;
+            .radius(5px);
+            &:disabled {
+                background: @grey3;
+                cursor: not-allowed;
+            }
+        }
+    }
+    .cep-ok-button {
+        margin-top: 33px;
+        .btnCep {
+            background: @green1;
+            color: #fff !important;
+        }
+        .i-dont-know-my-cep {
+            margin-left: 15px;
+        }
+    }
+    .listCellPhone {
+        padding: 0 10px;
+        .number {
+            background-color: #007ad9;
+            color: #fff;
+            display: inline-block;
+            margin: 2px;
+            padding: 5px 14px;
+            border-radius: 6px;
+        }
+        .btnRemoveCellPhone {
+            cursor: pointer;
+            margin-left: 5px;
+        }
+    }
+}
+.notRegister {
+    text-align: center;
+    font-size: 22px;
+}

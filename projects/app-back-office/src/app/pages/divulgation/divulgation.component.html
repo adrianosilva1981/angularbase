@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="divulgue">
+    <div class="contemcards">
+      <p-card Class="card">
+        <div class="content">
+          <div class="title">Link para Divulgação</div>
+        </div>
+        <div class="contentmain">
+          <div class="link">{{link}}</div>
+        </div>
+      </p-card>
+
+      <div class="row py-3">
+        <div class="col center">
+          <button type="button" class="btn blue" (click)="goToRoute('/contacts/add')">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> Adicionar Contatos</button>
+          <button type="button" class="btn blue" (click)="goToRoute('/contacts')">
+            <i class="fa fa-address-book-o" aria-hidden="true"></i> Administrar Contatos</button>
+        </div>
+      </div>
+
+
+      <div *ngIf="!leadloading">
+
+        <p-card Class="card">
+          <div class="content">
+            <div class="title">Selecione seus contatos para receber um e-mail</div>
+          </div>
+          <div class="contentmain">
+
+            <div *ngIf="leadOK">
+              <p-pickList class="w-100" [source]="emails" [target]="selectedEmails" sourceHeader="Contatos com e-mail" targetHeader="Selecionados"
+                [responsive]="true" [dragdrop]="false" [showSourceControls]="false" [showTargetControls]="false">
+
+                <ng-template let-contact pTemplate="item">
+                  <div class="ui-helper-clearfix">
+                    <div>{{contact.name}}</div>
+                    <div>{{contact.email}}</div>
+                  </div>
+                </ng-template>
+
+              </p-pickList>
+            </div>
+
+            <div *ngIf="!leadOK">
+              Nenhum contato de e-mail encontrado!
+            </div>
+
+          </div>
+        </p-card>
+
+        <p-card Class="card" *ngIf="leadOK">
+          <div class="content">
+            <div class="title">Texto do e-mail para divulgação</div>
+          </div>
+          <div class="contentmain">
+
+            <p-editor [(ngModel)]="mailbody" [style]="{'height':'200px'}">
+              <p-header>
+                <span class="ql-formats">
+                  <select class="ql-size">
+                    <option value="small">Menor</option>
+                    <option selected></option>
+                    <option value="large">Subtítulo</option>
+                    <option value="huge">Título</option>
+                  </select>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-bold" aria-label="Bold"></button>
+                  <button class="ql-italic" aria-label="Italic"></button>
+                  <button class="ql-underline" aria-label="Underline"></button>
+                  <button class="ql-strike" aria-label="Strike"></button>
+                </span>
+                <span class="ql-formats">
+                  <select title="Text Color" class="ql-color" defaultValue="rgb(0, 0, 0)">
+                    <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"></option>
+                    <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)"></option>
+                    <option value="rgb(255, 0, 0)" label="rgb(255, 0, 0)"></option>
+                    <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>
+                    <option value="rgb(0, 255, 0)" label="rgb(0, 255, 0)"></option>
+                    <option value="rgb(0, 0, 255)" label="rgb(0, 0, 255)"></option>
+                    <option value="rgb(255, 0, 255)" label="rgb(255, 0, 255)"></option>
+                  </select>
+                  <span class="ql-format-separator"></span>
+                  <select title="Background Color" class="ql-background" defaultValue="rgb(255, 255, 255)">
+                    <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"></option>
+                    <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)"></option>
+                    <option value="rgb(255, 0, 0)" label="rgb(255, 0, 0)"></option>
+                    <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>
+                    <option value="rgb(0, 255, 0)" label="rgb(0, 255, 0)"></option>
+                    <option value="rgb(0, 0, 255)" label="rgb(0, 0, 255)"></option>
+                    <option value="rgb(255, 0, 255)" label="rgb(255, 0, 255)"></option>
+                  </select>
+                </span>
+                <span class="ql-formats">
+                  <button class="ql-list" value="ordered"></button>
+                  <button class="ql-list" value="bullet"></button>
+                  <select title="Text Alignment" class="ql-align">
+                    <option selected>Gauche</option>
+                    <option value="center" label="Center"></option>
+                    <option value="right" label="Right"></option>
+                    <option value="justify" label="Justify"></option>
+                  </select>
+                </span>
+              </p-header>
+            </p-editor>
+
+            <button type="button" class="btn green" [disabled]="selectedEmails.length <= 0 || mailbody.length<10" (click)="sendMail()">Enviar E-mail</button>
+
+          </div>
+
+        </p-card>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

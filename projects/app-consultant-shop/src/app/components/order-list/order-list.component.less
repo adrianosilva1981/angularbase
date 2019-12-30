@@ -1,0 +1,193 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentOrderList {
+    .allOrders {
+        .boxShadow(0px 0px 10px 0px @grey3);
+        margin: 0px;
+        min-height: 150px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        .box {
+            text-align: center;
+            padding: 10px;
+            margin: 0px;
+            min-width: 180px;
+            &:first-child {
+                .radius(5px 0px 0px 5px);
+            }
+            &:last-child {
+                .radius(0px 5px 5px 0px);
+            }
+        }
+        .status {
+            flex: 1;
+            .Otext {
+                width: 100%;
+                .text {
+                    display: block;
+                    color: @grey4;
+                    font-weight: 700;
+                    font-size: 16px;
+                }
+                .sts {
+                    display: block;
+                    font-weight: 700;
+                }
+            }
+            .Oicon {
+                margin: 0 auto;
+                .radius(50%);
+                width: 50px;
+                height: 50px;
+                padding: 8px;
+                border: 2px solid transparent;
+                color: @grey4;
+                .fa {
+                    font-size: 30px;
+                    font-family: FontAwesome;
+                    color: @grey4;
+                    &:before {
+                        content: "\f110"; //aguarde
+                    }
+                }
+            }
+            &.pendente {
+                color: @yellow1;
+                .Otext {
+                    .sts {
+                        color: @yellow1;
+                    }
+                }
+                .Oicon {
+                    border: 2px solid @yellow1;
+                    .fa {
+                        color: @yellow1;
+                        &:before {
+                            content: "\f12a";
+                        }
+                    }
+                }
+            }
+            &.concluido {
+                color: @green1;
+                .Otext {
+                    .sts {
+                        color: @green1;
+                    }
+                }
+                .Oicon {
+                    border: 2px solid @green1;
+                    .fa {
+                        color: @green1;
+                        &:before {
+                            content: "\f00c";
+                        }
+                    }
+                }
+            }
+            &.cancelado {
+                color: @red1;
+                .Otext {
+                    .sts {
+                        color: @red1;
+                    }
+                }
+                .Oicon {
+                    border: 2px solid @red1;
+                    .fa {
+                        color: @red1;
+                        &:before {
+                            content: "\f00d";
+                        }
+                    }
+                }
+            }
+        }
+        .date {
+            flex: 1;
+            .cntDate {
+                width: 100%;
+                .text {
+                    color: @grey4;
+                    font-weight: 700;
+                    font-size: 16px;
+                }
+                .day {
+                    color: @green1;
+                    font-size: 25px;
+                    font-weight: bold;
+                    line-height: 27px;
+                }
+                .month {
+                    color: @grey3;
+                    font-size: 16px;
+                }
+            }
+        }
+        .order {
+            flex: 3;
+            .cntOrder {
+                width: 100%;
+                .contentOrder {
+                    text-align: left;
+                    .textOrder {
+                        color: @grey4;
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                    .order {
+                        color: @grey4;
+                        font-weight: 700;
+                        font-size: 25px;
+                        color: @green1;
+                        word-wrap: break-word;
+                        line-height: 27px;
+                    }
+                }
+                .contentValue {
+                    text-align: left;
+                    .textValue {
+                        color: @grey4;
+                        font-weight: 700;
+                    }
+                    .value {
+                        color: @grey4;
+                        font-weight: 700;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        .options {
+            flex: 1;
+            .contentButton {
+                .buttonDetails {
+                    .radius(20px);
+                    display: inline-block;
+                    background: @green1;
+                    color: #fff;
+                    font-size: 18px;
+                    padding: 5px 30px;
+                }
+                .buttonDetailsDisabled{
+                    .radius(20px);
+                    display: inline-block;
+                    background: @grey4;
+                    color: #fff;
+                    font-size: 18px;
+                    padding: 5px 30px;
+                    cursor: default;
+                }
+                .buttonBillet{
+                    background: #6fb309;
+                    border-radius: 50px;
+                    color: white;
+                    margin: 10px;
+                    padding: 5px 15px;
+                }
+            }
+        }
+    }
+}

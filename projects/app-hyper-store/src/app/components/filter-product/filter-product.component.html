@@ -1,0 +1,15 @@
+<div class="filter">
+  <div class="contentBtn">
+    <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+  </div>
+  <div class="filter">
+    <div class="cntFilter">
+      <div class="loopType" *ngFor="let filter of filters">
+        <div class="cntFilt" [class.active]="filter.selected" (click)="attFilter(filter)">
+          <i class="fa fa-fw" *ngIf="queryParams.dep" aria-hidden="true"></i>
+          <span class="val">{{filter.value}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

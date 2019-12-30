@@ -1,0 +1,29 @@
+<div class="box" >
+    <div class="form-group content-row">
+      <label for="foto" class="content-col col-form-label" >Imagem</label>
+      <div class="content-col-4 text-center">
+  
+        <div *ngIf="showProfilePictureCropBox" class="crop-box">
+           <img-cropper #cropper [image]="profilePic" [settings]="cropperProfilePictureSettings"></img-cropper> 
+        </div>
+      </div>
+    </div>
+    <div class="form-group content-row" *ngIf="showProfilePicturePreview">
+      <label for="preview" class="content-col col-form-label" >Pré-visualização</label>
+      <div class="content-col-4 text-center">
+        <span class="result" *ngIf="profilePic.image">
+            <img [src]="profilePic.image" [width]="cropperProfilePictureSettings.croppedWidth" [height]="cropperProfilePictureSettings.croppedHeight" class="img-circle img-thumbnail img-result-shadow">
+          </span>
+      </div>
+    </div>
+  
+    <div mat-dialog-actions class="content-row btns">
+      <div class="content-col text-center">
+        <button [mat-dialog-close]="false" class="btn grey" >Voltar</button>
+      </div>
+      <div class="content-col text-center">
+        <button [mat-dialog-close]="profilePic" class="btn blue" >Confirmar</button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>

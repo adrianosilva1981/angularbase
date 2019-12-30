@@ -1,0 +1,90 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.content {
+    //width: 90%;
+    padding: 30px;
+    @media screen and (max-width: 600px) {
+        padding: 10px;
+    }
+    .bonus {
+        margin: 50px 0 0 0;
+
+    }
+.title{
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+.subtitle{
+    padding-bottom: 20px;
+    padding-left: 20px;
+    font-size: 14px;
+    //font-weight: bold;
+}
+    .contentline {
+        max-width: 800px;
+        margin: 0 auto;
+        .balance {
+            // background: @blue1;
+            background-image: linear-gradient(to bottom, @blue1 0%, @blue2 100%);
+            width: 100%;
+            //height: 150px;
+            border-radius: 0 0 10px 10px;
+            .text {
+                text-align: center;
+                color: white;
+                padding-top: 10px;
+                margin-bottom: -5px;
+            }
+            .value {
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+            }
+            .value-green {
+                .value;
+                color: @green1;
+            }
+            .value-red {
+                .value;
+                color: @red1;
+            }
+            .arrow-top {
+                background: url('/assets/img/icon_arrow_top.png') left top no-repeat;
+            }
+            .arrow-down {
+                background: url('/assets/img/icon_arrow_down.png') left top no-repeat;
+            }
+            .btns {
+                display: flex;
+                justify-content: center;
+                max-width: 500px;
+                margin: 12px auto;
+                border-top: 2px solid white;
+                position: relative;
+                flex-wrap: wrap;
+                .vazio {
+                    min-width: 150px;
+                    padding: 5px 30px;
+                    margin: 15px auto 5px;
+                }
+                .add, .rescue {
+                    border: 1px solid white;
+                    padding: 5px 30px;
+                    border-radius: 30px;
+                    color: white;
+                    margin: 15px auto 5px;
+                    cursor: pointer;
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                    }
+                }                
+            }
+        }
+        
+    }        
+        
+    
+}

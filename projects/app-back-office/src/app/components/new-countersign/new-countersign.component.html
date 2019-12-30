@@ -1,0 +1,51 @@
+<div class="reset-password">
+
+  <form [formGroup]="formGroup1" class="form-reset">
+
+    <div class="content-reset">
+
+     
+      <span class="text">Digite sua Senha e Contrasenha e confirme.</span>
+
+      <div class="ui-float-label inputform">
+        <input id="youpassword" formControlName="youPassControl" [type]="hide ? 'text' : 'password'" pInputText maxlength="20" autocomplete="off">
+        <i class="{{hide2 ? 'fa fa-eye eye' : 'fa fa-eye-slash eye'}}" aria-hidden="true" (click)="hide2 = !hide2"></i>
+        <label for="youpassword">Digite sua Senha</label>
+        <span class="error" *ngIf="formGroup1.get('youPassControl').touched && formGroup1.get('youPassControl').hasError('minlength')">Sua senha deve conter no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="formGroup1.get('youPassControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="password" formControlName="passControl" [type]="hide ? 'text' : 'password'" pInputText maxlength="4" autocomplete="off">
+        <i class="{{hide ? 'fa fa-eye eye' : 'fa fa-eye-slash eye'}}" aria-hidden="true" (click)="hide = !hide"></i>
+        <label for="password">Digite sua Contrasenha</label>
+        <span class="error" *ngIf="formGroup1.get('passControl').touched && formGroup1.get('passControl').hasError('minlength')">Sua Contrasenha deve conter no mínimo 4 digitos!</span>
+        <span class="error" *ngIf="formGroup1.get('passControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="confirmPass" formControlName="confirmPassControl" [type]="hide1 ? 'text' : 'password'" pInputText maxlength="4" autocomplete="off">
+        <i class="{{hide1 ? 'fa fa-eye eye' : 'fa fa-eye-slash eye'}}" aria-hidden="true" (click)="hide1 = !hide1"></i>
+        <label for="confirmPass">Confirme sua Contrasenha</label>
+        <span class="error" *ngIf="formGroup1.get('confirmPassControl').touched && formGroup1.get('confirmPassControl').hasError('minlength')">Sua Contrasenha deve conter no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="formGroup1.get('confirmPassControl').hasError('required')">Obrigatório!</span>
+        <span class="error" *ngIf="formGroup1.get('confirmPassControl').touched && formGroup1.controls.confirmPassControl.errors?.MatchPassword">A confimação da Contrasenha dever ser igual a senha!</span>
+      </div>
+
+      <div class="contentlink">       
+        <a (click)="goBack()" class="link" href="javascript:void(0);">Ir para login</a>        
+      </div>
+
+      <div class="contenButton">
+        <button [disabled]="!formGroup1.valid" (click)="newcountersign()" class="btn orange max" [ngClass]="{'disabled':!formGroup1.valid}">Enviar</button>      
+      </div>
+
+
+    </div>
+
+
+  </form>
+
+
+
+</div>

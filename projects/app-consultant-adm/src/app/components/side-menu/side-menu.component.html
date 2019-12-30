@@ -1,0 +1,8 @@
+<div class="side-menu">
+  <div class="item" *ngFor="let item of objMenu" (click)="redirect(item)" [routerLink]="item.link" routerLinkActive="active">
+    <div class="icon">
+      <i class="material-icons">{{item.icon}}</i>
+    </div>
+    <div class="name">{{item.name}}</div>
+  </div>
+</div>

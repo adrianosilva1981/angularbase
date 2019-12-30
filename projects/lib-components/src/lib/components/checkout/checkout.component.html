@@ -1,0 +1,236 @@
+<div class="contentPaymentCheckout">
+  <div class="contentAll">
+    <form class="formCheckout" [formGroup]="checkoutForm" novalidate (ngSubmit)="submitCheckout()">
+
+      <div class="groupData">
+        <div class="contentOptionsPayment">
+          <div class="cntBtn" *ngFor="let method of methodsPayment">
+            <button type="button" class="btnOpt" [disabled]="method.disabled" [class.active]="paymentMethodSelected === method.type"
+              (click)="selectPaymentMethod(method.type)">
+              <i class="fas" [ngClass]="method.icon"></i>
+              <span>{{method.text}}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="contentPaymentSelected" [ngSwitch]="paymentMethodSelected">
+          <div class=cntCreditCard *ngSwitchCase="'credit_card'">
+            <div class="contentFields">
+
+              <div class="cntCommon">
+                <div class="form-group">
+                  <label>Nº de Parcelas</label>
+                  <select class="form-control" required formControlName="plots">
+                    <option value="" disabled>Selecione as parcelas</option>
+                    <option *ngFor="let plot of objPlots; let idx = index" [value]="(idx+1)">
+                      <span>{{(idx+1)
+                        < 10 ? '0' : '' }}{{idx + 1}} x de {{plot | conversion : 'BRL' : false}} -
+                          {{ idx===0 ? 'Sem Juros': 'Com Juros'}} </span> </option> </select> </div> </div> <div class="cntCommon">
+                          <div class="form-group">
+                            <label>Nome no Cartão de Crédito</label>
+                            <input type="text" class="form-control" placeholder="EX.: Jose da Silva" required
+                              formControlName="card_name">
+                          </div>
+                </div>
+
+                <div class="cntCommon">
+                  <div class="form-group">
+                    <label>Nº do Cartão de Crédito</label>
+                    <input type="text" [textMask]="{mask: maskCardNumber}" placeholder="EX.: 4444.4444.4444.4444" class="form-control"
+                      required formControlName="card_number">
+                  </div>
+                </div>
+
+                <div class="cntValidDate">
+                  <div class="columm inputMonth">
+                    <div class="form-group">
+                      <label>Mês</label>
+                      <select class="form-control" required formControlName="card_month">
+                        <option *ngFor="let month of months" [value]="month.value">{{month.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="columm inputYear">
+                    <div class="form-group">
+                      <label>Ano</label>
+                      <select class="form-control" required formControlName="card_year">
+                        <option *ngFor="let year of listYears" [value]="year">{{year}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="columm inputCvv">
+                    <div class="form-group">
+                      <i class="help fa fa-question-circle" (mouseenter)="showTooltip = true" (mouseleave)="showTooltip = false"></i>
+                      <label>CVV</label>
+                      <input class="form-control" required formControlName="card_cvv" maxlength="4">
+                      <span class="errorFormField" *ngIf="checkoutForm.controls.card_cvv.hasError('pattern')">* Números</span>
+                      <div *ngIf="showTooltip" class="contentTooltip">
+                        <img src="global/img/cvv.png">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cntBillet" *ngSwitchCase="'billet'">
+              <div class="contentFields">
+                <div class="boxInfo">
+                  <div class="cntifn">
+                    <div class="contentInfo">
+                      <i class="fa fa-barcode" aria-hidden="true"></i>
+                      <div class="info1">
+                        <b>importante: </b>
+                        <span>caso você tenha um programa anti pop-up, você deverá desativá-lo para a impressão do
+                          boleto.</span>
+                      </div>
+                    </div>
+                    <div class="info2">
+                      Acrescente 3 dias úteis ao prazo de entrega informado no site. Esse é o prazo máximo estipulado
+                      pelo banco para disponibilizar
+                      a confirmação de pagamento do boleto.
+                    </div>
+                  </div>
+
+                  <div class="cntFormBillet">
+                    <div class="form-group">
+                      <label>CPF</label>
+                      <input type="text" class="form-control" [textMask]="{mask: maskCPF}" placeholder="EX.: 095.969.887-55"
+                        required formControlName="document">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Rua</label>
+                      <input type="text" class="form-control" placeholder="EX.: Rua Jaime Santos" required
+                        formControlName="street">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Bairro</label>
+                      <input type="text" class="form-control" placeholder="EX.: Jd. Aeroporto" required formControlName="neighborhood">
+                    </div>
+
+                    <div class="collumm">
+                      <div class="form-group">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control" placeholder="EX.: Alfenas" required formControlName="city">
+                      </div>
+
+                      <div class="form-group">
+                        <label>CEP</label>
+                        <input type="text" class="form-control" [textMask]="{mask: maskCEP}" placeholder="EX.: 37130-000"
+                          required formControlName="zipcode">
+                      </div>
+                    </div>
+
+                    <div class="collumm">
+                      <div class="form-group">
+                        <label>Número</label>
+                        <input type="text" class="form-control" placeholder="EX.: 20" required formControlName="number">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Estado</label>
+                        <input type="text" class="form-control" placeholder="EX.: MG" required formControlName="state"
+                          maxlength="2" style="text-transform: uppercase">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Pais</label>
+                        <input type="text" class="form-control" placeholder="EX.: BR" required formControlName="country"
+                          maxlength="2" style="text-transform: uppercase">
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="cntHjPay" *ngSwitchCase="'hjpay'">
+              <div class="contentSaldo">
+                <div class="titleResume">Seu Saldo</div>
+                <div class="contentItemResume">
+                  <div class="line">
+                    <div>
+                      <span class="titleText">Shop:</span>
+                      <span class="value" [innerHtml]="objUserBalance[0]?.value | conversion : objUserBalance[0]?.initials"></span>
+                    </div>
+                    <div>
+                      <span class="titleText">BackOffice:</span>
+                      <span class="value" [innerHtml]="objUserBalanceNetmarketing.balance | conversion : 'BRL'"></span>
+                    </div>
+                    <div class="total">
+                      <span class="titleText">Total:</span>
+                      <span class="value" [innerHtml]="objUserBalanceNetmarketing.balance*1 + objUserBalance[0]?.value*1 | conversion : 'BRL'"></span>
+                    </div>
+                    <!-- <div *ngFor="let item of objUserBalance">
+                    <span class="titleText">{{objTextSymbol[item?.initials]}}:</span>
+                    <span class="value" [innerHtml]="item?.value | conversion : item?.initials"></span>
+                  </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="default" *ngSwitchDefault>
+              Realize o
+              <b>login</b> ou
+              <b>registre-se</b> para poder selecionar uma forma de pagamento
+            </div>
+          </div>
+        </div>
+
+        <div class="contentResume" *ngIf="userLogged">
+          <div class="cntPadd">
+            <div class="textResume">Resumo do Pedido</div>
+
+            <div class="lineItem" *ngIf="objView.amount_price > 0">
+              <div class="cntText">SubTotal
+                <small>({{itensLenght}} item{{itensLenght> 1 ? 's' : ''}})</small>
+              </div>
+              <div class="cntValue" [innerHTML]="objView.amount_price | conversion : objView.coin"></div>
+            </div>
+
+            <div class="lineItem" *ngIf="objView.amount_price_virtual > 0">
+              <div class="cntText">Hypercoins</div>
+              <div class="cntValue" [innerHTML]="objView.amount_price_virtual | conversion : objView.coin"></div>
+            </div>
+
+            <div class="lineItem" *ngIf="objView.amount_discount > 0">
+              <div class="cntText">Desconto real</div>
+              <div class="cntValue" [innerHTML]="objView.amount_discount | conversion : objView.coin"></div>
+            </div>
+
+            <div class="lineItem" *ngIf="objView.amount_discount_virtual > 0">
+              <div class="cntText">Desconto virtual</div>
+              <div class="cntValue" [innerHTML]="objView.amount_discount_virtual | conversion : objView.coin"></div>
+            </div>
+
+            <div class="lineItem">
+              <div class="cntText">Frete</div>
+              <div class="cntValue" [innerHTML]="(objView.amount_shipping || 0) | conversion : objView.coin"></div>
+            </div>
+
+            <div class="amoutAll">
+              <div class="lineItemAll">
+                <div class="textTitle">Total</div>
+                <div class="textValue" [innerHTML]="objView.amount_pay | conversion : objView.coin"></div>
+              </div>
+              <div class="lineItemAll" *ngIf="objView.amount_pay_vitual > 0">
+                <div class="textTitle">Total HyperCoin</div>
+                <div class="textValue" [innerHTML]="objView.amount_pay_vitual | conversion : objView.coin"></div>
+              </div>
+            </div>
+            <div class="cntBtnFinish">
+              <button type="submit" [disabled]="!checkoutForm.valid && valid || loading" class="btnFinish">
+                <span *ngIf="loading">
+                  <i class="fas fa-sync fa-spin"></i> Pagando
+                </span>
+                <span *ngIf="!loading">
+                  Finalizar Pedido
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>

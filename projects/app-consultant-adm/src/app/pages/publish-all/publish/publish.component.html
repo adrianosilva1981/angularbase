@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="content-item-menu">
+    <div class="item-menu new">
+      <a [href]="urlStore" target="_blank">Nova Campanha</a>
+    </div>
+    <div class="item-menu" *ngFor="let item of publicities">
+      <div class="item-body {{ item?.progress }}">
+        <div class="plan"><b>{{ item?.title }}</b></div>
+        {{ item?.name }}
+        <span class="edit" (click)="editPublicity(item)"><i class="fas fa-pencil-alt"></i></span>
+        <div class="date">Início: {{ item?.startDate | date: 'dd/MM/yyyy' }} - Fim: {{ item?.endDate | date:
+          'dd/MM/yyyy' }}</div>
+        <div class="status">{{ item?.progressName }}</div>
+      </div>
+      <div class="item-footer">
+        <div class="link" (click)="onConfig(item)">Configuração</div>
+        <div class="link" (click)="onExtractt(item)">Extrato</div>
+      </div>
+    </div>
+    <div class="notPublicity" *ngIf="publicities.length === 0">Você não possui&nbsp;<b>Campanhas contratadas</b></div>
+  </div>
+</div>

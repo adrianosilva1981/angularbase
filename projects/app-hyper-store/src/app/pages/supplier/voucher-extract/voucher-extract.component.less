@@ -1,0 +1,66 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+
+.container-fluid{
+    border: 1px solid @grey3;
+    .title{
+        background: @grey3;
+        .titleBox{
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .cntResume {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        .resume {
+            flex: 1;
+            display: flex;
+            text-align: center;
+            height: 50px;
+            padding: 10px;
+            align-items: center;
+            color: #fff;
+            min-width: 275px;
+            border: 5px solid @grey1;
+            .txt {
+                flex: 1;
+                text-align: left;
+                font-size: 12px;
+                .fa, .fas {
+                    display: inline-block;
+                    font-size: 20px;
+                    margin-right: 5px;
+                }
+            }
+            .val {
+                flex: 1;
+                text-align: right;
+                font-weight: 700;
+                font-size: 20px;
+            }
+            &.PP {
+                background: @grey7;
+            }
+            &.PC {
+                background: @green1;
+            }
+            &.PE {
+                background: @yellow1;
+            }
+            &.PD {
+                background: @blue2;
+                cursor: pointer;
+
+            }
+        }
+    }
+    .detail{
+        border: 1px solid @grey7;
+        background: @grey1;
+        .radius(10px);
+    }
+}

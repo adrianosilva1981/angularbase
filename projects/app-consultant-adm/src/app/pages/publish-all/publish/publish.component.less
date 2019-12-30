@@ -1,0 +1,91 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.content-item-menu {
+    // margin: 8% 0;
+    display: flex;
+    flex-wrap: wrap;
+    .item-menu {
+        flex: 1;
+        background: #fff;
+        max-width: 257px;
+        min-width: 240px;
+        margin: 10px;
+        //cursor: pointer;
+        box-shadow: 0 0 10px 0 #ccc;
+        //transition: all .3s ease;
+        // &:hover {
+        //     transform: scale(1.03);
+        // }
+        &.new {
+            min-height: 130px;
+            cursor: pointer;
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 22px;
+                height: 100%;
+                width: 100%;
+                color: @blue1;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        }
+        .item-body {
+            font-size: 22px;
+            text-align: center;
+            padding: 20px;
+            .plan {
+                color: @blue1;
+                font-size: 13px;
+            }
+            &.ads-progress {
+                background-color: #C4FFD4;
+            }
+            &.ads-finish {
+                background-color: #FFD1D1;
+            }
+            .edit {
+                color: @blue1;
+                font-size: 18px;
+                margin-left: 5px;
+                cursor: pointer;
+            }
+            .date, .status {
+                font-size: 12px;
+            }
+            .status {
+                margin-top: 5px;
+                height: 18px;
+            }
+        }
+        .item-footer {
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 1px solid @blue1;
+            a:first {
+                border-right: 1px solid @blue1;
+            }
+            .link {
+                cursor: pointer;
+                padding: 10px;
+                color: @blue1;
+                font-weight: bold;
+                font-size: 13px;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                flex: 1;
+                &:hover {
+                    background-color: #faf7fc
+                }
+            }
+        }
+    }
+    .notPublicity {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20px;
+    }
+}

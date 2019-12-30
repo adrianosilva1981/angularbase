@@ -1,0 +1,292 @@
+        @import 'css/global-variables.less';
+        @import 'css/global-functions.less';
+        .home {
+            display: flex;
+            margin-top: 20px;
+            .content {
+                //width: 90%;
+                padding: 30px;
+                .banner {
+                    position: relative;
+                    display: block;
+                    visibility: hidden;
+                    margin: 0 auto;
+                    cursor: pointer;
+                    width: 0;
+                    height: 0;
+                    .fa-caret-left {
+                        z-index: 2;
+                        position: absolute;
+                        line-height: 0;
+                        align-items: center;
+                        color: white;
+                        padding-left: 10px;
+                        left: 0;
+                        top: 0;
+                    }
+                    .fa-caret-right {
+                        z-index: 2;
+                        position: absolute;
+                        line-height: 0;
+                        align-items: center;
+                        color: white;
+                        padding-right: 10px;
+                        right: 0;
+                        top: 0;
+                    }
+                }
+                @media screen and (max-width: 1396px) {
+                    .banner {
+                        visibility: visible;
+                        height: 133px;
+                        width: 388px;
+                        .fa-caret-left, .fa-caret-right {
+                            line-height: 133px;
+                        }
+                    }
+                }
+                @media screen and (max-width: 600px) {
+                    padding: 0;
+                }
+                .contemcards {
+                    display: flex;
+                    flex-wrap: wrap;
+                    .hover {
+                        &:hover {
+                            cursor: pointer;
+                            box-shadow: 0px 0px 10px 0px @blue2;
+                        }
+                    }
+                    .card {
+                        margin: 10px;
+                        min-height: 130px;
+                        flex: 1;
+                        padding: 15px;
+                        border: none;
+                        box-shadow: 0px 0px 10px 0px @grey2;
+                        flex-direction: inherit;
+                        min-width: 300px;
+                        &.big {
+                            flex: 3;
+                        }
+                        .pin {
+                            box-shadow: 0px 0px 10px 0px @grey4;
+                            .radius(50%);
+                        }   
+                        &.green{
+                            background: @green4;
+                        }   
+                        &.red{
+                            background: @red4;
+                        }                     
+                        .contentalert {
+                            display: flex;
+                            width: 100%;
+                            flex-wrap: wrap;
+                            .alert {
+                                flex: 3;
+                                padding: 15px;
+                                min-width: 280px;
+                                .caution {
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                    color: @red1;
+                                    margin-bottom: 15px;
+                                }
+                                .success{
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                    color: @green2;
+                                    margin-bottom: 15px;
+                                }
+                                .text {
+                                    color: @grey7;
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                }
+                                .msg {
+                                    color: @grey7;
+                                    font-size: 16px;
+                                    font-weight: 700;
+                                    color: @red1;
+                                }
+                            }
+                            .buttonPay {
+                                flex: 1;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-end;
+                                padding: 10px;
+                            }
+                        }
+                        .content {
+                            padding: 15px;
+                            justify-content: flex-start;
+                            width: 100%;
+                            .travel{
+                                color: @blue2;
+                                font-weight: bold;
+                                font-size:16px;
+                            }
+                            .comprar {
+                                position: absolute;
+                                top: 15px;
+                                right: 35px;
+                                font-size: 16px;
+                                font-weight: 500;
+                                color: @blue2;
+                            }
+                            .title {
+                                display: block;
+                                width: 100%;
+                                color: @grey4;
+                                padding: 0 0 10px 0;
+                            }
+                            .plan {
+                                font-size: 16px;
+                                font-weight: 500;
+                                color: @blue2;
+                                display: flex;
+                                .circle {
+                                    font-size: 14px;
+                                    margin: 5px 10px;
+                                    width: 15px;
+                                    height: 15px;
+                                    border-radius: 50%;
+                                    background-color: @grey6;
+                                    border: @grey6 2px solid;
+                                    &.ative {
+                                        background-color: @green1;
+                                        border: @green1 2px solid;
+                                    }
+                                    &.inative {
+                                        background-color: @red2;
+                                        border: @red2 2px solid;
+                                    }
+                                    &.hability {
+                                        background-color: @yellow1;
+                                        border: @yellow1 2px solid;
+                                    }
+                                    &.silver {
+                                        background-color: @grey3;
+                                        border: @grey3 2px solid;
+                                    }
+                                    &.gold {
+                                        background-color: @yellow1;
+                                        border: @yellow1 2px solid;
+                                    }
+                                    &.platinum {
+                                        background-color: @grey4;
+                                        border: @grey4 2px solid;
+                                    }
+                                    &.double_platinum {
+                                        background-color: @grey4;
+                                        border: @grey6 2px solid;
+                                    }
+                                    &.elite {
+                                        background-color: @blue4;                                     
+                                        border: @blue3 3px solid;
+                                    }
+                                    &.sapphire {
+                                        background-color: @sapphire2;
+                                        border: @sapphire1 2px solid;
+                                    }
+                                    &.ruby {
+                                        background-color: @red3;
+                                        border: red 2px solid;
+                                    }
+                                    &.emerald {
+                                        background-color: @green2;
+                                        border: @green1 2px solid;
+                                    }
+                                    &.diamond {
+                                        background-color: @grey3;
+                                        border: @black 2px solid;
+                                    }
+                                    &.blue_diamond {
+                                        background-color: @sapphire2;
+                                        border: @black 2px solid;
+                                    }
+                                    &.black_diamond {
+                                        background-color: @grey7;
+                                        border: @grey8 2px solid;
+                                    }
+                                    &.emperor {
+                                        background-color: @orange2;
+                                        border: @black 2px solid;
+                                    }
+                                    &.crown {
+                                        background-color: black;
+                                        border: @black 2px solid;
+                                    }
+                                    &.disabled {
+                                        background-color: @grey6;
+                                        border: @grey6 2px solid;
+                                    }
+                                }
+                            }
+                            .contentlink {
+                                display: flex;
+                                align-items: center;
+                                flex-wrap: wrap;
+                                .links {
+                                    cursor: pointer;
+                                    font-size: 12px;
+                                    color: @blue2;
+                                    word-break: break-all;
+                                    &:hover {
+                                        text-decoration: underline;
+                                    }
+                                }
+                                .btnlink {
+                                    margin: 0 0 0 20px !important;
+                                }
+                            }
+                            .info {
+                                .text {
+                                    color: @grey6;
+                                    font-size: 14px;
+                                    font-weight: 700;
+                                }
+                                .amount {
+                                    font-size: 20px;
+                                    font-weight: 800;
+                                    color: @grey8;
+                                    margin-right: 5px;
+                                }
+                            }                            
+                            .bar {
+                                width: 112px;
+                                height: 40px;
+                                position: absolute;
+                                right: 15px;
+                                top: 76px;
+                                &.red {
+                                    background: url('/assets/img/bar_red.png');
+                                }
+                                &.green {
+                                    background: url('/assets/img/bar_green.png');
+                                }
+                                &.blue {
+                                    background: url('/assets/img/bar_blue.png');
+                                }
+                                &.bitcoin {
+                                    background: url('/assets/img/bar_bitcoin.png');
+                                }
+                                &.ticket {
+                                    background: url('/assets/img/bar_ticket.png');
+                                }
+                                &.prepaidcard {
+                                    background: url('/assets/img/bar_card.png');
+                                }
+                                &.travel {
+                                    top: 10px;
+                                    height: 112px;
+                                    background: url('/assets/img/bar_travel.png');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }

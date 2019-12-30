@@ -1,0 +1,37 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentAll {
+    .default {
+        text-align: center;
+        display: inline-block;
+        transition: 0.3s all ease;
+        width: 180px;
+        padding: 4px;
+        .radius(20px);
+        .text {
+            font-size: 20px;
+        }
+        .fa {
+            font-size: 20px;
+        }
+    }
+    .addCart {
+        .default;
+        .flipInX(1.0s);
+        cursor: pointer;
+        background: @blue1;
+        color: #fff;
+    }
+    .waiting {
+        .default;
+        .flipInX(1.0s);
+        background: @grey2;
+        color: @grey3;
+    }
+    .success {
+        .default;
+        .flipInX(1.0s);
+        background: @grey2;
+        color: @blue1;
+    }
+}

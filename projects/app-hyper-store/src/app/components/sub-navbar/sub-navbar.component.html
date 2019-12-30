@@ -1,0 +1,128 @@
+<div class="contentPage">
+    <div class="contentSubNav">
+        <div class="container">
+            <div class="cntSubNav">
+                <div class="listMenu menu">
+                    <div class="btnMenu" (click)="openLeftSideNav('open')">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="listMenu menuLeft">
+                    <div class="action">
+                        <div class="btnAllServices" routerLink="/department/service">
+                            <span class="text">Serviços</span>
+                            <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="action">
+                        <div class="btnAllProducts" routerLink="/department/product">
+                            <span class="text">Produtos</span>
+                            <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="action">
+                        <div class="btnAllProducts" routerLink="/department/guide">
+                            <span class="text">Guia Smart</span>
+                            <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="action">
+                        <div class="btnBePrime" routerLink="/prime">
+                            <span class="text">
+                                <span class="white">SEJA</span>
+                                <span>PRIME</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="action">
+                        <div class="btnBuy cities" routerLink="/buy-city">
+                            <span class="text">Comprar por Cidade</span>
+                        </div>
+                    </div>
+                    <!-- <div class="action">
+                        <div class="btnBuy points" routerLink="/buy-city">
+                            <span class="text">Comprar por Pontos</span>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="listMenu contentSeach">
+                    <span> </span>
+                    <div class="searchComponent">
+                        <lib-components-select-input-search [objOptions]="objOptonsSearch">
+                        </lib-components-select-input-search>
+                    </div>
+                </div>
+                <div class="listMenu options">
+                    <div class="opts points" routerLink="/points" *ngIf="objUserLogged?.id_youhub != null">
+                        <img src="assets/img/95-pontos.png" alt="" srcset="">
+                    </div>
+                    <div class="opts gift-card" (authenticate)="openModalVoucher()">
+                        <i class="fa fa-unlock-alt"></i>
+                        <div class="text">Voucher</div>
+                    </div>
+                    <div class="opts shopCart" routerLink="/shop-cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <div class="number">{{shopCartNumOfProducts > 0 ? shopCartNumOfProducts: ''}}</div>
+                    </div>
+                    <div class="opts account" routerLink="/my-account" *ngIf="objUserLogged?.id">
+                        <i class="fa fa-user"></i>
+                        <div class="text">Minha Conta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-sidebar [(visible)]="displaySideNav" (onShow)="onShow()" (onHide)="onHide()" blockScroll="true">
+        <div class="contentSideNav">
+            <div class="cntAll">
+                <div class="menu">
+
+
+                    <div class="menuItem" routerLink="/my-account" (click)="displaySideNav = false"
+                        *ngIf="objUserLogged?.id">
+                        <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>
+                        <span>Minha Conta</span>
+                    </div>
+
+                    <div class="menuItem" routerLink="/favorites" (click)="displaySideNav = false">
+                        <i class="fa fa-heart fa-fw" aria-hidden="true"></i>
+                        <span>Favoritos</span>
+                    </div>
+                    <span (click)="displaySideNav = false">
+                        <div class="menuItem" (authenticate)="openModalVoucher()">
+                            <i class="fa fa-fw fa-unlock-alt"></i>
+                            <span>Voucher</span>
+                        </div>
+                    </span>
+                    <div class="menuItem" routerLink="/department/service" (click)="displaySideNav = false">
+                        <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+                        <span>Todos os Serviços</span>
+                    </div>
+
+                    <div class="menuItem" routerLink="/department/product" (click)="displaySideNav = false">
+                        <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+                        <span>Todos os Produtos</span>
+                    </div>
+                    <div class="menuItem" routerLink="/department/guide" (click)="displaySideNav = false">
+                        <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+                        <span>Todos os Guia Smart</span>
+                    </div>
+
+                    <div class="menuItem btnBuy cities" routerLink="/buy-city" (click)="displaySideNav = false">
+                        <span>Comprar por Cidade</span>
+                    </div>
+
+                    <div class="menuItem bePrime" routerLink="/prime" (click)="displaySideNav = false">
+                        <span class="text">
+                            <span class="white">SEJA</span>
+                            <span>PRIME</span>
+                        </span>
+                    </div>
+                    <div class="menuItem points" routerLink="/points" (click)="displaySideNav = false">
+                        <img src="assets/img/95-pontos.png" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-sidebar>
+</div>

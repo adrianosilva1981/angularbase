@@ -1,0 +1,230 @@
+<div *ngIf="show">
+  <div class="contentPage" *ngIf="registerForm">
+    <form class="formCheckout" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+
+      <!-- FORMULARIO -->
+      <div class="mainBox serviceForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('companyForm') >= 0" formGroupName="companyForm">
+        <div class="titleBox">
+          informaçoes Principais
+        </div>
+        <div class="cntProductDetails">
+          <!-- Nome -->
+          <div class="form-group">
+            <label>Nome da Empresa</label>
+            <input type="text" class="form-control" required formControlName="name">
+            <span class="errorFormField" *ngIf="registerForm?.get('companyForm.name').hasError('minlength')">*
+              Minimo
+              6 caracteres</span>
+          </div>
+
+          <div class="form-group">
+            <label>Tipo de serviço</label>
+            <select class="form-control" required formControlName="type">
+              <option value="physical">Físico</option>
+              <option value="digital">Digital</option>
+            </select>
+          </div>
+
+          <div class="collumm">
+            <div class="form-group">
+              <label>Telefones</label>
+              <input type="text" class="form-control" [textMask]="{mask: CELLPHONEMASK}" formControlName="tel" (keyup)="keyCellPhone($event.key)">
+              <span class="errorFormField" *ngIf="registerForm?.get('companyForm.tel').hasError('pattern')">Número
+                inválido</span>
+            </div>
+
+            <div class="form-group cep-ok-button">
+              <button type="button" class="btn btnCep" (click)="addCellPhone()">Adicionar</button>
+            </div>
+          </div>
+
+          <div class="listCellPhone">
+            <div class="number" *ngFor="let item of listCellPhone; let idx = index">{{ item }} <span class="fa fa-times btnRemoveCellPhone"
+                (click)="removeCellPhone(idx)"></span></div>
+          </div>
+
+          <!-- <div class="collumm">
+
+          <div class="form-group">
+            <label>Tipo de serviço</label>
+            <select class="form-control" required formControlName="type">
+              <option value="physical">Físico</option>
+              <option value="digital">Digital</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label>Categoria</label>
+            <select class="form-control" required formControlName="category">
+              <ng-container *ngFor="let item of objCategories">
+                <option [value]="item.id">{{ item.category }}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div> -->
+
+          <!-- Descrição -->
+          <div class="form-group">
+            <label>Descrição Completa</label>
+            <p-editor formControlName="description" styleClass="editorHtml">
+              <p-header>
+                <span class="ql-formats">
+                  <button class="ql-bold" aria-label="Bold"></button>
+                  <button class="ql-italic" aria-label="Italic"></button>
+                  <button class="ql-underline" aria-label="Underline"></button>
+                </span>
+              </p-header>
+            </p-editor>
+            <!-- <textarea rows="4" class="form-control" required formControlName="description"></textarea> -->
+            <span class="errorFormField" *ngIf="registerForm?.get('companyForm.description').hasError('minlength')">*
+              Minimo 20 caracteres</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMULARIO DE CATEGORIA-->
+      <div class="mainBox companyForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('categoryForm') >= 0"
+        formGroupName="categoryForm">
+        <div class="titleBox">
+          Categorias
+        </div>
+        <div class="cntCategory">
+          <p-pickList [source]="objCategories" [showSourceControls]="false" [showTargetControls]="false" filterBy="name"
+            [target]="selectedCategory" [responsive]="true" dragdrop="true" (onMoveToTarget)="setCategory()"
+            (onMoveToSource)="setCategory()">
+            <ng-template let-cat pTemplate="item">
+              <div class="ui-helper-clearfix">
+                <div style="font-size:14px; font-size: 14px; text-align: center;">{{cat.name}}</div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+      </div>
+
+      <!-- Endereço -->
+      <div class="mainBox categoryForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('addressForm') >= 0"
+        formGroupName="addressForm">
+        <div class="titleBox">
+          Endereço
+        </div>
+        <div class="cntProductDetails">
+          <div class="collumm">
+            <div class="form-group">
+              <label class="center-block">* CEP:</label>
+              <input class="form-control" formControlName="zipcode" (input)="clearSearch()">
+              <span class="errorFormField" *ngIf="registerForm.get('addressForm.zipcode').hasError('pattern')">* CEP
+                inválido</span>
+              <span class="errorFormField" *ngIf="registerForm.get('addressForm.zipcode').hasError('cepNotFound')">*
+                CEP
+                não
+                encontrado</span>
+            </div>
+            <div class="form-group cep-ok-button">
+              <button type="button" class="btn btnCep" (click)="getAddressByCep()">OK</button>
+              <span class="i-dont-know-my-cep">
+                <lib-components-open-find-cep (onSearchCep)="onSearchCep($event)"></lib-components-open-find-cep>
+              </span>
+            </div>
+          </div>
+          <div class="collumm">
+            <div class="form-group">
+              <label>Endereço</label>
+              <input type="text" class="form-control" [attr.readonly]="cepAdd?.logradouro !== '' ? true : null"
+                required formControlName="street">
+            </div>
+            <div class="form-group">
+              <label>Bairro</label>
+              <input type="text" class="form-control" [attr.readonly]="cepAdd?.bairro !== '' ? true : null"
+                formControlName="neighborhood">
+            </div>
+          </div>
+          <div class="collumm">
+            <div class="form-group">
+              <label>Estado</label>
+              <input type="text" class="form-control" readonly required formControlName="state">
+            </div>
+            <div class="form-group">
+              <label>Cidade</label>
+              <input type="text" class="form-control" readonly required formControlName="city">
+            </div>
+          </div>
+          <div class="collumm">
+            <div class="form-group">
+              <label>Número</label>
+              <input type="text" class="form-control" required formControlName="number">
+            </div>
+            <div class="form-group">
+              <label>Complemento</label>
+              <input type="text" class="form-control" required formControlName="complement">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="cntBtnSubmit">
+            <button type="button" class="btnAdd" (click)="addAddress()">Adicionar</button>
+          </div>
+
+          <div class="listAddress" *ngIf="listAddress.length > 0">
+            <p-table [columns]="colsAddress" [value]="listAddress">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns">
+                    {{col.header}}
+                  </th>
+                  <th>Ação</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                  <td><button type="button" (click)="removeAddress(rowData)">Remover</button></td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMULARIO DE MEDIAS-->
+      <div class="mainBox mediasForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('mediasForm') >= 0" formGroupName="mediasForm">
+        <div class="titleBox">
+          <span>Imagens</span>
+        </div>
+        <div class="cntImages">
+          <div class="cntButtonAdd">
+            <lib-components-upload-image [buttonText]="buttonTextUpload" [width]="'500'" [height]="'500'" [urlRequest]="urlRequest"
+              [pathBucket]="pathBucket" (onUpload)="onUpload($event)"></lib-components-upload-image>
+          </div>
+          <div class="listImages">
+            <div class="empty" *ngIf="registerForm?.get('mediasForm.images')?.value?.length <= 0">Adidione
+              imagens
+              para essa empresa
+              <small>
+                <div>*Recomendamos imagens superiores a 600x600px </div>
+              </small>
+            </div>
+            <div class="cntImg" *ngFor="let img of registerForm?.get('mediasForm.images')?.value; let idx = index">
+              <img [src]="img?.url">
+              <div class="btnRemove" (click)="deletePhoto(idx)">
+                <i class="fas fa-times"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  BOTAO DE SUBMIT-->
+      <div class="cntBtnSubmit">
+        <button class="btnSubmit" type="submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="center notRegister" *ngIf="!show">
+  Permitido cadastrar apenas um <strong>Estabelecimento</strong>
+</div>

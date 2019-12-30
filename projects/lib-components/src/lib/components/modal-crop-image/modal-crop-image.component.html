@@ -1,0 +1,17 @@
+<div class="contentComponent">
+  <div class="cntImage">
+    <div *ngIf="showProfilePictureCropBox" class="crop-box">
+      <img-cropper #cropper [image]="profilePic" [settings]="cropperProfilePictureSettings"></img-cropper>
+    </div>
+  </div>
+  <div class="cntPreview" *ngIf="showProfilePicturePreview">
+    <span class="result" *ngIf="profilePic.image">
+      <img [src]="profilePic.image" [width]="cropperProfilePictureSettings.croppedWidth" [height]="cropperProfilePictureSettings.croppedHeight"
+        class="img-circle img-thumbnail img-result-shadow">
+    </span>
+  </div>
+  <div class="contentBtns">
+    <button class="btnCancel" (click)="closeModal(false)">Cancelar</button>
+    <button class="btnConfirm" (click)="closeModal(profilePic)">Confirmar</button>
+  </div>
+</div>

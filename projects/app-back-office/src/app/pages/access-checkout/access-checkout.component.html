@@ -1,0 +1,449 @@
+﻿<div class="content">
+  <div class="checkout">
+
+    <div class="subtitle">
+      Estamos quase lá, escolha a sua forma de pagamento e dê o primeiro passo rumo a sua LIBERDADE.
+    </div>
+
+
+    <div *ngIf="plan">
+      <hr class="w-100">
+      <div class="Justifydiv">
+        <div style="flex: 1; padding: 0 0 20px 0; display: flex; justify-content: center;">
+          <div style="max-width: 340px;">
+            <h4 class="fsize-18 title-dblue">Plano: {{plan.name}}</h4>
+            <div *ngIf="plan.extra_info === '' || plan.extra_info === null">
+              <div class="fsize-14 py-2" [innerHTML]="plan.description"></div>
+              <div class="fsize-14 py-2" [innerHTML]="plan.benefits"></div>
+            </div>
+            <div *ngIf="plan.extra_info !== '' && plan.extra_info !== null">
+              <div class="fsize-14" [innerHTML]="plan.extra_info.pack.description"></div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="plan.extra_info !== '' && plan.extra_info !== null" style="flex: 1; display: flex; justify-content: center; flex-wrap: wrap">
+          <div style="max-width: 340px; align-items: center;">
+            <div class="min-height-28" *ngIf="plan.extra_info?.accession" style="display: flex;">
+              <div class="fsize-14 min-height-28" style="min-width: 280px; display: flex; align-items: center;">       {{plan.extra_info.accession.title}}</div>
+              <span class="price" style="min-width: 120px;" [innerHtml]="plan.start_value | conversion : plan.initials"></span>
+            </div>
+            <div class="min-height-28" *ngIf="plan.extra_info?.pack" style="display: flex;">
+              <div class="fsize-14 min-height-28" style="min-width: 280px; display: flex; align-items: center;">       {{plan.extra_info.pack.title}}</div>
+              <span class="price" style="min-width: 120px;" [innerHtml]="plan.extra_info.pack.value | conversion : plan.initials"></span>
+            </div>
+            <!-- <div class="min-height-28" *ngIf="plan.extra_info?.ticket" style="display: flex;">
+              <div class="fsize-14 min-height-28" style="min-width: 280px; display: flex; align-items: center;">
+                <p-checkbox labelStyleClass="classelabel" name="valueTicket" value="1" [(ngModel)]="ticketChecked"
+                  label=" {{plan.extra_info.ticket.title}}" (onChange)="addTicket()"></p-checkbox>
+              </div>
+              <span class="price" [ngClass]="{'disabled' : ticketChecked.length <= 0}" style="min-width: 120px;"
+                [innerHtml]="plan.extra_info.ticket.value | conversion : plan.initials"></span>
+            </div> 
+            <div class="min-height-28" *ngIf="plan.extra_info?.ticket" style="display: flex;">
+              <div class="fsize-14 min-height-28" style="min-width: 280px; display: flex; align-items: center;">
+                <p-checkbox labelStyleClass="classelabel" name="valueMaskoto" value="2" [(ngModel)]="maskotoChecked"
+                  label=" Pack de Produtos Pet Shop (opcional)" (onChange)="addMaskoto()"></p-checkbox>
+              </div>
+              <span class="price" [ngClass]="{'disabled' : maskotoChecked.length <= 0}" style="min-width: 120px;"
+                [innerHtml]="152.30 | conversion : plan.initials"></span>
+            </div>
+             <div class="min-height-28" *ngIf="plan.extra_info?.ticket" style="display: flex;">
+              <div class="fsize-14 min-height-28" style="min-width: 280px; display: flex; align-items: center;">
+                <p-checkbox labelStyleClass="classelabel" name="valueLivros" value="3" [(ngModel)]="livrosChecked"
+                  label=" Pack com  10 Livros Infantis (opcional)" (onChange)="addlivros()"></p-checkbox>
+              </div>
+              <span class="price" [ngClass]="{'disabled' : livrosChecked.length <= 0}" style="min-width: 120px;"
+                [innerHtml]="239.40 | conversion : plan.initials"></span>
+            </div> -->
+            <!-- <div class="min-height-28" *ngIf="plan.extra_info?.ticket" style="display: flex;">
+              <div class="fsize-14 min-height-28" style="min-width: 280px; display: flex; align-items: center;">
+                <p-checkbox labelStyleClass="classelabel" name="value18K" value="6" [(ngModel)]="k18Checked" label=" Pack 18K Ronaldinho (opcional)"
+                  (onChange)="add18k()"></p-checkbox>
+              </div>
+              <span class="price" [ngClass]="{'disabled' : k18Checked.length <= 0}" style="min-width: 120px;"
+                [innerHtml]="751.50 | conversion : plan.initials"></span>
+            </div> -->
+          </div>
+          <!-- <div style="width: 100%; justify-content: center; text-align: center; flex-wrap: wrap">              
+               <div style="margin-top: -20px; color: #999;">Ingresso temporariamente indisponível.</div>
+          </div> 
+          <div style="width: 100%; justify-content: center; text-align: center; flex-wrap: wrap">              
+              <div style="margin-top: -20px; color: #999;">Ingresso temporariamente indisponível.</div>
+          </div>   -->
+        </div>
+
+      </div>
+
+      <div class="payment">Escolha uma Forma de Pagamento</div>
+
+      <div class="credit Justifydiv" *ngIf="plan.value != 0 || plan.monthly_value != 0">
+        <div class="methodPayment">
+
+          <!-- Ted -->
+          <div *ngIf="paymentTed" style="display: flex; flex-direction: column; align-items: center;">
+            <hr class="w-100">
+            <div style="text-align: center;">
+              <div style="display:flex; justify-content: center; align-items: center;">
+                <div class="fsize-20 title-dblue center">Pagar com TED (transferência Bancária)</div>
+              </div>
+              <div class="button">
+                <div class="valor">Valor:
+                  <span class="price" [innerHtml]="amountPlan | conversion : 'BRL'"></span>
+                </div>
+                <a class="btn blue bit" (click)="sendPay('transfer_bank');">Comprar 1 Conexão via TED</a>
+              </div>
+            </div>
+
+            <div style=" flex: 1; max-width: 450px;">
+              <div class="title">Como Funciona?</div>
+              <div class="text">Ao clicar no botão sua solicitação é enviada.</div>
+              <div class="text">Você faz a solicitação dos dados bancários enviando um e-mail para<span class="mail">financeiro@youhub.com.br</span>.</div>
+              <div class="text">Você receberá as instruções em seu e-mail.</div>
+              <div class="text">Depois de confirmado o pagamento, seu acesso será liberado.</div>
+            </div>
+
+            <div *ngIf="transfer_bank?.length > 0">
+              Solicitações de Pagamento por TED
+              <p-table styleClass="classetable" [responsive]="true" [value]="transfer_bank">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width:7em">Data</th>
+                    <th style="width:6em">Valor</th>
+                    <th style="width:6em">Status</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-grad let-rowData>
+                  <tr>
+                    <td>{{grad.created}}</td>
+                    <td>{{grad.adesao}}</td>
+                    <td>{{stage[grad.stage]}}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+
+          <!-- Cartão de Crédito Link -->
+          <div *ngIf="paymentCreditCardLink">
+            <hr class="w-100">
+            <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+              <div style="min-width: 150px;" class="fsize-20 title-dblue center">Pagar com Cartão de Crédito</div>
+              <div style="min-width: 250px;">
+                <img src="assets/img/elo.png" style="padding-left: 10px;">
+                <img src="assets/img/hiper.png" style="padding-left: 10px;">
+                <img src="assets/img/master.png" style="padding-left: 10px;">
+                <img src="assets/img/visa.png" style="padding-left: 10px;">
+              </div>
+            </div>
+            <div class="button">
+              <div class="valor">Valor:
+                <span class="price" [innerHtml]="amountPlan | conversion : 'BRL'"></span>
+              </div>
+              <a class="btn green bit" href="https://store.youhub.com.br/department/product/1080" target="_blank">Pagar
+                com Cartão</a>
+            </div>
+          </div>
+
+           <!-- eduzz -->
+           <div *ngIf="paymentEduzz" style="display: flex; flex-direction: column; align-items: center;">
+              <hr class="w-100">
+              <div>
+                <div style="text-align: center;">
+                  <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+                    <div style="min-width: 172px; font-size: 20px" class="title-dblue center">Pagar com eduzz em até {{eduzz_plots}} vezes</div>
+                    <!-- <img src="assets/img/eduzz.png" style="height: 30px; border-radius: 5px; border: 1px solid #000;"> -->
+                  </div>
+                  <div class="button">
+                    <div class="valor">Valor:
+                      <span class="price" [innerHtml]="this.plan.value | conversion : 'BRL'"></span>
+                      <br>
+                      <small style="font-size: 13px">{{eduzz_plots}}x <span [innerHtml]="eduzz_plots_value | conversion : 'BRL'"></span> </small>
+                    </div>
+                    <a class="btn orange bit" [href]="eduzz_url">Comprar uma conexão via eduzz</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <!-- Cartão de Crédito -->
+          <div *ngIf="paymentCreditCard">
+            <hr class="w-100">
+            <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+              <div style="min-width: 170px;" class="fsize-20 title-dblue center">Pagar com Cartões de Crédito</div>
+              <div style="min-width: 250px;">
+                <img src="assets/img/elo.png" style="padding-left: 10px;">
+                <img src="assets/img/hiper.png" style="padding-left: 10px;">
+                <img src="assets/img/master.png" style="padding-left: 10px;">
+                <img src="assets/img/visa.png" style="padding-left: 10px;">
+              </div>
+            </div>
+            <div class="center">
+              <!-- <div *ngIf="myCardsOK">
+                        <span class="search">
+                          <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                          <span>Pesquisando Cartões...</span>
+                        </span>
+                      </div>
+                      <div *ngIf="myCards?.length > 0">
+                        <div *ngFor="let card of myCards ; let idx = index">
+                          <app-back-office-credit-card [card]="card" [position]="idx" (objCard)="sendCard($event)" (deleteId)="removeCard($event)"></app-back-office-credit-card>
+                        </div>
+                        <div class="fsize-16 title-dblue center">
+                          Usar outro Cartão de Crédito
+                        </div>
+                      </div> -->
+              <form [formGroup]="creditCardGroup" class="formcard">
+                <div class="ui-float-label">
+                  <input id="float-input" type="text" [textMask]="{mask: cardMask}" formControlName="cardNumber" size="30"
+                    pInputText>
+                  <label for="float-input">Número do Cartão de Crédito</label>
+                  <span class="error" *ngIf="creditCardGroup.get('cardNumber').hasError('pattern')">
+                    E-mail inválido
+                  </span>
+                  <span class="error" *ngIf="creditCardGroup.get('cardNumber').hasError('required')">
+                    Obrigatório
+                  </span>
+                </div>
+                <div class="ui-float-label">
+                  <input id="float-input" type="text" formControlName="cardName" size="30" pInputText>
+                  <label for="float-input">Nome como está no cartão</label>
+                  <span class="error" *ngIf="creditCardGroup.get('cardName').hasError('pattern')">
+                    E-mail inválido
+                  </span>
+                  <span class="error" *ngIf="creditCardGroup.get('cardName').hasError('required')">
+                    Obrigatório
+                  </span>
+                </div>
+                <div class="mt-4">
+                  <p-dropdown [options]="creditCardParcels" formControlName="numberOfParcels"></p-dropdown>
+                </div>
+                <div class="mt-4 display-flex">
+                  <div class="flex-1">
+                    <p-dropdown [options]="months" formControlName="cardMonth"></p-dropdown>
+                  </div>
+                  <div class="flex-1">
+                    <p-dropdown [options]="years" formControlName="cardYear"></p-dropdown>
+                  </div>
+                  <div class="ui-float-label input-cvv">
+                    <input id="float-input" maxlength="4" formControlName="cardCVV" pInputText>
+                    <label for="float-input">CVV</label>
+                    <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('required')"> Obrigatório </span>
+                    <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('pattern')">Somente Números</span>
+                    <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('minlength')">Mínimo 3</span>
+
+                  </div>
+                </div>
+                <button class="btn orange max" [disabled]="!creditCardGroup.valid || !sendpayOk" (click)="sendPay('credit_card')"
+                  [ngClass]="{'disabled':!creditCardGroup.valid || !sendpayOk}">Pagar</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- BitCoins -->
+          <div *ngIf="paymentBitcoin" style="display: flex; flex-direction: column; align-items: center;">
+            <hr class="w-100">
+            <div style="text-align: center;">
+              <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <div style="min-width: 180px;" class="fsize-20 title-dblue center">Pagar com BitCoins</div>
+                <img style="min-width: 120px;" src="assets/img/bar_bitcoin.png" style="padding-left: 10px;">
+              </div>
+              <div class="button">
+                <div class="valor">Valor:
+                  <span class="price" [innerHtml]="amountPlan | conversion : 'BRL'"></span>
+                </div>
+                <a class="btn orange bit" (click)="sendPay('crypto_coins');">Comprar 1 Conexão com BitCoins</a>
+              </div>
+            </div>
+
+            <div style="flex: 1; max-width: 450px;">
+              <div class="title">É importante que o bloqueador de popup esteja desativado em seu navegador.</div>
+              <br>
+              <div class="title">Como Funciona?</div>
+              <div class="text">Ao clicar no botão sua solicitação é enviada, e é aberto um *popup para fazer a
+                transação.</div>
+              <div class="text">Você usa seu e-mail cadastrado no YOUHUB para comprar sua conexão.</div>
+              <div class="text">Após a compra envie um email para <span class="mail">financeiro@youhub.com.br</span> e
+                confime seu pagamento da conexão.</div>
+              <div class="text">Depois de confirmado o pagamento, seu acesso será liberado.</div>
+            </div>
+
+            <div *ngIf="crypto_coins?.length > 0">
+              Solicitações de Pagamento por BitCoins
+              <p-table styleClass="classetable" [responsive]="true" [value]="crypto_coins">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width:7em">Data</th>
+                    <th style="width:6em">Valor</th>
+                    <th style="width:6em">Status</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-grad let-rowData>
+                  <tr>
+                    <td>{{grad.created}}</td>
+                    <td>{{grad.adesao}}</td>
+                    <td>{{stage[grad.stage]}}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+
+          </div>
+
+          <!-- Boleto -->
+          <div *ngIf="paymentTicket" class="box-ticket" style="background-color: #6629900d;">
+            <hr class="w-100">
+            <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+              <div style="min-width: 150px;" class="fsize-20 title-dblue center">Pagar à vista com Boleto Bancário</div>
+              <div style="min-width: 150px;">
+                <img src="assets/img/boleto.png" style="padding-left: 10px;">
+              </div>
+            </div>
+            <div class="w-100 mt-5 center">
+              <form [formGroup]="ticketGroup">
+                <div class="contentComplete">
+                  <div class="ui-float-label inputformflex" *ngIf="this.resellerObj.cnpj_cpf === ''">
+                    <input id="cpf" formControlName="cpfControl" size="30" [textMask]="{mask: CPFMASK}" pInputText>
+                    <label for="cpf">Digite seu CPF</label>
+                    <span class="error" *ngIf="ticketGroup.get('cpfControl').touched && ticketGroup.get('cpfControl').hasError('pattern')">CPF
+                      inválido!
+                    </span>
+                    <span class="error" *ngIf="ticketGroup.get('cpfControl').hasError('required')">Obrigatório!</span>
+                  </div>
+                  <div class="ui-float-label inputformflex">
+                    <input id="cep" formControlName="cepControl" size="30" [textMask]="{mask: CEPMASK}" (keyup)="getCEP()"
+                      pInputText>
+                    <label for="cep">Digite o CEP</label>
+                    <i *ngIf="resellerCheck" class="fa fa-check checktrue" aria-hidden="true"></i>
+                    <i *ngIf="resellerLoading" class="fa fa-spinner fa-pulse fa-fw checkload"></i>
+                    <i *ngIf="resellerCheckfalse" class="fa fa-times checkfalse" aria-hidden="true"></i>
+                    <span class="error" *ngIf="ticketGroup.get('cepControl').touched && ticketGroup.get('cepControl').hasError('pattern')">Formato
+                      de CEP inválido!</span>
+                    <span class="error" *ngIf="ticketGroup.get('cepControl').hasError('required')">Obrigatório!</span>
+                  </div>
+                  <button class="btn blue max" (click)="getCEP();">Buscar CEP</button>
+                  <div *ngIf="formAddress">
+                    <div class="ui-float-label inputform">
+                      <input id="street" formControlName="streetControl" size="30" pInputText>
+                      <label for="street">Digite a rua</label>
+                      <span class="error" *ngIf="ticketGroup.get('streetControl').hasError('required')">Obrigatório!</span>
+                    </div>
+                    <div class="ui-float-label inputform">
+                      <input id="number" formControlName="numberControl" size="30" pInputText>
+                      <label for="number">Digite o número</label>
+                      <span class="error" *ngIf="ticketGroup.get('numberControl').hasError('required')">Obrigatório!</span>
+                    </div>
+                    <div class="ui-float-label inputform">
+                      <input id="district" formControlName="districtControl" size="30" pInputText>
+                      <label for="district">Digite o bairro</label>
+                      <span class="error" *ngIf="ticketGroup.get('districtControl').hasError('required')">Obrigatório!</span>
+                    </div>
+                    <div class="ui-float-label inputform">
+                      <input id="city" formControlName="cityControl" size="30" pInputText>
+                      <label for="city">Digite a cidade</label>
+                      <span class="error" *ngIf="ticketGroup.get('cityControl').hasError('required')">Obrigatório!</span>
+                    </div>
+                    <div class="ui-float-label inputform">
+                      <p-dropdown [options]="states" formControlName="stateControl"></p-dropdown>
+                      <label for="city">Selecione o estado</label>
+                      <span class="error" *ngIf="ticketGroup.get('stateControl').hasError('required')">Obrigatório!</span>
+                    </div>
+                  </div>
+                  <button [disabled]="!ticketGroup.valid" (click)="sendPay('ticket')" class="btn orange max" [ngClass]="{'disabled':!ticketGroup.valid}">Gerar
+                    Boleto
+                  </button>
+                </div>
+              </form>
+
+            </div>
+            <div *ngIf="ticket?.length > 0">
+              Solicitações de Pagamento por Boleto
+              <p-table styleClass="classetable" [responsive]="true" [value]="ticket">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width:7em">Data</th>
+                    <th style="width:6em">Valor</th>
+                    <th style="width:6em">Boleto</th>
+                    <th style="width:6em">Status</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-grad let-rowData>
+                  <tr>
+                    <td>{{grad.created}}</td>
+                    <td>{{grad.adesao}}</td>
+                    <td *ngIf="grad.method=='ticket'"><a [href]="grad.ticket_url" target="_blank"><div class="btn orange" style="margin: 5px !important;">Imprimir Boleto</div></a></td>
+                    <td>{{stage[grad.stage]}}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+
+          </div>
+
+          <!-- Financiamento -->
+          <div *ngIf="paymentFinancing" style="display: flex; flex-direction: column; align-items: center; background-color: #6fb3090a;">
+            <hr class="w-100" style="margin: 0">
+            <div style="text-align: center;">
+              <div style="display:flex; justify-content: center; align-items: center; margin-top: 20px">
+                <div class="fsize-20 title-dblue center">Pagar com Financiamento</div>
+              </div>
+              <div class="button">
+                <div class="valor">Valor:
+                  <span class="price" [innerHtml]="amountPlan | conversion : 'BRL'"></span>
+                </div>
+                <a class="btn green bit" (click)="openModalFinancing();">Solicitar Financiamento</a>
+              </div>
+            </div>
+
+            <div style=" flex: 1; max-width: 450px;">
+              <div class="title">- É importante concluir seu cadastro com o endereço antes de efetuar a solicitação de
+                financiamento.</div>
+              <br>
+              <div class="title">- Ativação imediata após confirmação do pagamento da entrada.</div>
+              <br>
+              <div class="title">Como Funciona?</div>
+              <div class="text">Ao clicar no botão você escolhe o valor de entrada e também quantas parcelas pagará o
+                restante financiado.</div>
+              <div class="text">Você faz a solicitação e é enviado para tela de pagamento da entrada no valor escolhido
+                (via TED ou Boleto ).</div>
+              <div class="text">As parcelas a vencer serão debitadas do seu saldo de bônus a receber ou via boleto
+                bancário.</div>
+              <div class="text">Depois de confirmado o pagamento da entrada, seu acesso será liberado.</div>
+            </div>
+
+            <div *ngIf="finace?.length > 0">
+              Solicitações de Finaciamentos
+              <p-table styleClass="classetable" [responsive]="true" [value]="finace">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th style="width:7em">Data</th>
+                    <th style="width:6em">entrada</th>
+                    <th style="width:4em">Parcelas</th>
+                    <th style="width:6em">Financiado</th>
+                    <th style="width:6em">Status</th>
+                    <th style="width:6em"></th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-grad let-rowData>
+                  <tr>
+                    <td>{{grad.request_date}}</td>
+                    <td>{{grad.value_init}}</td>
+                    <td>{{grad.plots}}</td>
+                    <td>{{grad.value_financed}}</td>
+                    <td>{{stage[grad.status_request]}}</td>
+                    <td *ngIf="grad.method=='ticket'"><a [href]="grad.url_document" target="_blank">
+                        <div class="btn orange" style="margin: 5px !important;">Imprimir Boleto</div>
+                      </a></td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://commerce.coinbase.com/v1/checkout.js?version=201807"></script>

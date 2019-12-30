@@ -1,0 +1,109 @@
+<div class="content">
+  <!-- formulário para responder -->
+  <div class="allForm" *ngIf="!review && !edit">
+    <div class="question">
+      <b>{{position + 1}} - {{listQuestions[position]?.description}}</b>
+    </div>
+    <div class="answer">
+      <div *ngIf="listQuestions[position]?.typeItem === 'option' && options[position]">
+        <div *ngFor="let item of options[position]; let i = index;">
+          <p-radioButton name="options" [value]="item.id_quizItem" [(ngModel)]="answerValue" [inputId]="item.id_quizItem"></p-radioButton>
+          <label *ngIf="item.typeDescription === 'text'" [for]="item.id_quizItem">
+            {{ item.question }}
+          </label>
+          <label *ngIf="item.typeDescription === 'image'" [for]="item.id_quizItem">
+            <img class="imageOption" src="https://{{ item.question }}">
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="listQuestions[position]?.typeItem === 'selection' && options[position]">
+        <div *ngFor="let item of options[position]; let i = index;">
+          <p-checkbox name="answer" [label]="item.question" (onChange)="setAnswerCheckBox(item.id_quizItem, $event)"></p-checkbox>
+        </div>
+      </div>
+
+      <div *ngIf="listQuestions[position]?.typeItem === 'answer'">
+        <textarea pInputTextarea rows="4" placeholder="Resposta" [(ngModel)]="answerValue"></textarea>
+      </div>
+
+      <div *ngIf="listQuestions[position]?.typeItem === 'justifyOption' && options[position]">
+        <div *ngFor="let item of options[position]; let i = index;">
+          <p-radioButton name="options" [value]="item.id_quizItem" [(ngModel)]="answerValue" [label]="item.question"
+            [inputId]="item.id_quizItem"></p-radioButton>
+        </div>
+        <textarea pInputTextarea rows="2" placeholder="Qual o ramo de atividade?" [(ngModel)]="justifyAnswer"></textarea>
+      </div>
+
+      <div *ngIf="listQuestions[position]?.typeItem === 'justifySelection' && options[position]">
+        <div *ngFor="let item of options[position]; let i = index;">
+          <p-checkbox name="options" [label]="item.question" (onChange)="setAnswerCheckBox(item.id_quizItem, $event)"></p-checkbox>
+        </div>
+        <textarea pInputTextarea rows="2" placeholder="Qual?" [(ngModel)]="justifyAnswer"></textarea>
+      </div>
+    </div>
+    <button class="btn btnlink blue" (click)="answer()">Responder</button>
+  </div>
+
+  <!-- review das respostas do usuário -->
+  <div class="review" *ngIf="review && !edit">
+    <div class="question"><b>Você respondeu todas as questões.</b></div>
+    <br>
+    <button class="btn btnlink blue" (click)="sendAnswers()">Enviar Respostas</button>
+    <br>
+    <b>Minhas Respostas</b>
+    <br>
+    <div class="card-view" *ngFor="let item of listQuestions; let i = index;" (click)="showEdit(i)">
+      <b>{{i+1}}</b> - {{item.description}}
+      <br> R:
+      <span *ngIf="item.typeItem === 'answer'">{{ allAnswers[i].answer }}</span>
+      <span *ngIf="item.typeItem === 'selection'">{{ allAnswers[i].description }}</span>
+      <span *ngIf="item.typeItem === 'option'">
+        <span *ngIf="item.typeDescription == 'text'">{{ allAnswers[i].description }}</span>
+        <img class="imageOption" *ngIf="item.typeDescription == 'image'" src="https://{{ allAnswers[i].description }}">
+      </span>
+      <span *ngIf="item.typeItem === 'justifyOption'">{{ allAnswers[i].description }}</span>
+      <span *ngIf="item.typeItem === 'justifySelection'">{{ allAnswers[i].description }}</span>
+    </div>
+    <br>
+    <button class="btn btnlink blue" (click)="sendAnswers()">Enviar Respostas</button>
+  </div>
+
+  <!-- editar uma resposta -->
+  <div class="edit" *ngIf="edit">
+    <div class="question">
+      <b>{{ editIndex + 1 }} - {{ editQuestion?.description }}</b>
+    </div>
+    <div class="answer">
+      <div *ngIf="editQuestion?.typeItem === 'answer'">
+        <textarea pInputTextarea rows="4" placeholder="Resposta" [(ngModel)]="answerValue"></textarea>
+      </div>
+      <div *ngIf="editQuestion?.typeItem === 'selection'">
+        <div *ngFor="let item of editOptions; let i = index;">
+          <p-checkbox name="answer" [label]="item.question" [value]="item.id_quizItem" (onChange)="setAnswerCheckBox(item.id_quizItem, $event)"
+            [(ngModel)]="answerValue"></p-checkbox>
+        </div>
+      </div>
+      <div *ngIf="editQuestion?.typeItem === 'option'">
+
+        <div *ngFor="let item of editOptions; let i = index;">
+          <p-radioButton name="options" [value]="item.id_quizItem" [(ngModel)]="answerValue" [inputId]="item.id_quizItem"></p-radioButton>
+          <label *ngIf="item.typeDescription === 'text'" [for]="item.id_quizItem">
+            {{ item.question }}
+          </label>
+          <label *ngIf="item.typeDescription === 'image'" [for]="item.id_quizItem">
+            <img class="imageOption" src="https://{{ item.question }}">
+          </label>
+        </div>
+      </div>
+      <div *ngIf="editQuestion?.typeItem === 'justifyOption' || editQuestion?.typeItem === 'justifySelection'">
+        <div *ngFor="let item of editOptions; let i = index;">
+          <p-radioButton name="options" [value]="item.id_quizItem" [(ngModel)]="answerValue" [label]="item.question"
+            [inputId]="item.id_quizItem"></p-radioButton>
+        </div>
+        <textarea pInputTextarea rows="2" [(ngModel)]="justifyAnswer"></textarea>
+      </div>
+    </div>
+    <button class="btn btnlink blue" (click)="updateAnswer()">Alterar Resposta</button>
+  </div>
+</div>

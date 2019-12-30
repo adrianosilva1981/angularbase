@@ -1,0 +1,36 @@
+@import 'css/global-variables.less'; @import 'css/global-functions.less';
+.boxCard {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid @grey4;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 10px;
+  .contentCard {
+    display: flex;
+    flex-wrap: wrap;
+    .button {
+      min-width: 200px;      
+      .btncard{        
+        font-size: 14px;
+      }
+    }
+    .flag {
+      min-width: 80px;
+      margin-top: 15px;
+    }
+    .contentText {
+      margin-left: 10px;
+      flex: 1;
+      text-align: left;
+      .last, .exp, .text {
+        font-size: 12px;
+        span {
+          font-size: 10px;
+          color: @grey7;
+        }
+      }
+    }   
+    
+  }
+}

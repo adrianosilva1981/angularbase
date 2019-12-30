@@ -1,0 +1,13 @@
+<ng-container *ngIf="show">
+    <div class="cnt">
+        <lib-components-thumbnail-product *ngFor="let product of hyperProducts" [itemObject]="product" class="item"></lib-components-thumbnail-product>
+    </div>
+</ng-container>
+<div class="center" *ngIf="!show">
+    Não há produtos cadastrados
+</div>
+<p-confirmDialog key="delete" header="Atenção" icon="fas fa-exclamation-triangle" width="425" acceptButtonStyleClass="deleteDialog"
+    rejectButtonStyleClass="cancelDialog" acceptIcon="fas fa-trash-alt"></p-confirmDialog>
+<p-confirmDialog key="duplicate" header="Atenção" icon="fas fa-exclamation-triangle" width="425" acceptButtonStyleClass="duplicateDialog"
+    rejectButtonStyleClass="cancelDialog" acceptIcon="fas fa-copy"></p-confirmDialog>
+<p-paginator [rows]="15" [totalRecords]="totalProducts" [alwaysShow]="false" (onPageChange)="paginate($event)"></p-paginator>

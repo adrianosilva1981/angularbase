@@ -1,0 +1,50 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.breadCrumb {
+    display: flex;
+    align-items: center;
+    min-height: 45px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .icon {
+        padding-right: 10px;
+        .fas {
+            font-size: 30px;
+            color: @blue1;
+        }
+    }
+    .map {
+        border-bottom: 1px solid @blue1;
+        width: 100%;
+        padding: 5px 0px;
+        .loop {
+            .txt {
+                cursor: pointer;
+                font-size: 16px;
+                color: @grey5;
+                &:hover {
+                    color: @blue1;
+                }
+            }
+            .fas {
+                display: inline-block;
+                margin: 0px 10px;
+                font-size: 16px;
+                color: @grey5;
+            }
+            &:last-of-type {
+                .txt {
+                    cursor: default;
+                    font-size: 20px;
+                    pointer-events: none;
+                    &:hover {
+                        color: @grey5;
+                    }
+                }
+                .fas {
+                    display: none;
+                }
+            }
+        }
+    }
+}

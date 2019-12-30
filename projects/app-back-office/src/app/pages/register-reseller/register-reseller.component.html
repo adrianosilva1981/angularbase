@@ -1,0 +1,247 @@
+<div class="container complete-register">
+
+  <div class="contentStep">
+
+
+    <mat-horizontal-stepper [linear]="isLinear">
+
+      <!-- <mat-step [stepControl]="formGroup2">
+        <ng-template matStepLabel>Formulário de Pesquisa</ng-template>
+        <form [formGroup]="formGroup2">
+          <div class="contentQuestionaire">
+
+
+            <div class="ui-float-label">
+              <div class="title_questionaire">1 – Você tem algum tipo de empresa?</div>
+              <p-radioButton name="typeBusinnesControl" value="Y" label="Sim" formControlName="Businnes_Control"></p-radioButton>
+              <p-radioButton name="typeBusinnesControl" value="N" label="Não" formControlName="Businnes_Control"></p-radioButton>
+
+              <div *ngIf="formGroup2.get('Businnes_Control').value == 'Y'">
+                <div class="title_questionaire">Qual ramo de atividade?</div>
+                <p-checkbox labelStyleClass="classelabel" name="bussines_Types" label=" Industria" formControlName="type_Businnes_Control"></p-checkbox>
+                <p-checkbox labelStyleClass="classelabel" name="bussines_Types" label=" Comércio" formControlName="type_Businnes_Control"></p-checkbox>
+                <p-checkbox labelStyleClass="classelabel" name="bussines_Types" label=" Serviços" formControlName="type_Businnes_Control"></p-checkbox>
+                <p-checkbox labelStyleClass="classelabel" name="bussines_Types" label=" Proffisionao Liberal" formControlName="type_Businnes_Control"></p-checkbox>
+                <p-checkbox labelStyleClass="classelabel" name="bussines_Types" label=" Outro" formControlName="bussines_Types_other" (onChange)="type_Businnes_Control()"></p-checkbox>
+
+                <div class="ui-float-label inputform" *ngIf="type_Businnes_Other_Control_check">
+                  <input id="nameknow" formControlName="type_Businnes_Other_Control" size="30" pInputText>
+                  <label for="nameknow">Qual?</label>                  
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+        </form>
+      </mat-step> -->
+
+      <mat-step [stepControl]="formGroup3">
+        <ng-template matStepLabel>Dados de Cadastro</ng-template>
+        <form [formGroup]="formGroup3">
+          <div class="contentComplete">
+
+            <mat-form-field class="mat-container">
+              <div formGroupName="typeControl">
+                <mat-select placeholder="Tipo de revendedor" formControlName="type" (change)="changeType(formGroup3.get('typeControl.type').value)">
+                  <mat-option [value]="PERSON_TYPE.PF" selected>Pessoa Física</mat-option>
+                  <mat-option [value]="PERSON_TYPE.PJ">Pessoa Juridica</mat-option>
+                </mat-select>
+                <mat-error *ngIf="formGroup3.get('typeControl.type').hasError('required')">Selecione um tipo</mat-error>
+              </div>
+            </mat-form-field>
+
+
+            <div *ngIf="formGroup3.get('typeControl.type').value">
+
+
+              <div class="ui-float-label inputform">
+                <input id="nameknow" formControlName="nameknowControl" size="30" pInputText>
+                <label for="nameknow">Digite seu Nome de Identificação</label>
+                <span class="error" *ngIf="formGroup3.get('nameknowControl').touched && formGroup3.get('nameknowControl').hasError('minlength')">Campo
+                  nome de identificação deve conter no mínimo 6 digitos!</span>
+                <span class="error" *ngIf="formGroup3.get('nameknowControl').hasError('required')">Obrigatório!</span>
+              </div>
+
+              <div *ngIf="formGroup3.controls.typeControl.controls.type.value == PERSON_TYPE.PF" formGroupName="typeControl">
+                <div formGroupName="PF">
+
+                  <div class="ui-float-label inputform">
+                    <input id="cpf" formControlName="cpfControl" size="30" [textMask]="{mask: CPFMASK}" pInputText readonly class="readonly">
+                    <label for="cpf">Digite seu CPF</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.cpfControl.touched && formGroup3.controls.typeControl.controls.PF.controls.cpfControl.hasError('pattern')">CPF
+                      inválido!
+                    </span>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.cpfControl.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="date" formControlName="dateControl" size="30" [textMask]="{mask: DATEMASK}" pInputText>
+                    <label for="date">Digite sua Data de Nascimento</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.dateControl.touched && formGroup3.controls.typeControl.controls.PF.controls.dateControl.hasError('pattern')">Formato
+                      de data inválida!</span>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.dateControl.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="rg" formControlName="rgControl" size="30" pInputText>
+                    <label for="rg">Digite seu RG</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.rgControl.touched && formGroup3.controls.typeControl.controls.PF.controls.rgControl.hasError('minlength')">Campo
+                      RG deve conter no mínimo 6 digitos!</span>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.rgControl.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label">
+                    <span class="labelgender">Selecione o Sexo: </span>
+                    <p-radioButton name="genderControl" value="M" label="Masculino" formControlName="genderControl"></p-radioButton>
+                    <p-radioButton name="genderControl" value="F" label="Feminino" formControlName="genderControl"></p-radioButton>
+                  </div>
+
+                  <div class="ui-float-label">
+                    <span class="labelgender">Estado Civil: </span>
+                    <p-radioButton name="married1" value="N" label="Solteiro" formControlName="marriedControl" (click)="setMarried('N')"></p-radioButton>
+                    <p-radioButton name="married1" value="Y" label="Casado" formControlName="marriedControl" (click)="setMarried('Y')"></p-radioButton>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="name1" formControlName="name1Control" size="30" pInputText>
+                    <label for="name1">Digite o Nome do 2º Titular</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.name1Control.hasError('minlength')">Campo
+                      nome deve conter no mínimo 6 digitos!</span>
+                    <span class="error" *ngIf="married === 'Y' && formGroup3.controls.typeControl.controls.PF.controls.name1Control.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="cpf1" formControlName="cpf1Control" size="30" [textMask]="{mask: CPFMASK}" pInputText>
+                    <label for="cpf1">Digite o CPF do 2º Titular</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PF.controls.cpf1Control.hasError('pattern')">Formato
+                      de CPF inválido!</span>
+                    <span class="error" *ngIf="married === 'Y' && formGroup3.controls.typeControl.controls.PF.controls.cpf1Control.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                </div>
+              </div>
+
+              <div *ngIf="formGroup3.controls.typeControl.controls.type.value == PERSON_TYPE.PJ" formGroupName="typeControl">
+                <div formGroupName="PJ">
+
+                  <div class="ui-float-label inputform">
+                    <input id="nameSocial" formControlName="nameSocialControl" size="30" pInputText>
+                    <label for="nameSocial">Digite a Razão social</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PJ.controls.nameSocialControl.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="cnpj" formControlName="cnpjControl" size="30" [textMask]="{mask: CNPJMASK}" pInputText>
+                    <label for="cnpj">Digite o CNPJ</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PJ.controls.cnpjControl.touched && formGroup3.controls.typeControl.controls.PJ.controls.cnpjControl.hasError('pattern')">Formato
+                      CNPJ inválido!</span>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PJ.controls.cnpjControl.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="ie" formControlName="ieControl" size="30" pInputText>
+                    <label for="ie">Digite a Inscrição Estadual</label>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PJ.controls.ieControl.touched && formGroup3.controls.typeControl.controls.PJ.controls.ieControl.hasError('minlength')">Campo
+                      IE deve conter no mínimo 6 digitos!</span>
+                    <span class="error" *ngIf="formGroup3.controls.typeControl.controls.PJ.controls.ieControl.hasError('required')">Obrigatório!</span>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="fixo" formControlName="phoneControl" size="30" [textMask]="{mask: PHONEMASK}" pInputText>
+                <label for="fixo">Digite seu Telefone Fixo</label>
+                <span class="error" *ngIf="formGroup3.get('phoneControl').touched && formGroup3.get('phoneControl').hasError('pattern')">Formato
+                  Telefone inválido!</span>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="site" formControlName="websiteControl" size="30" pInputText>
+                <label for="site">Digite seu Web Site</label>
+              </div>
+
+            </div>
+
+            <div class="contenButton">
+              <button class="btn orange max" [disabled]="!formGroup3.valid" [ngClass]="{'disabled':!formGroup3.valid}" matStepperNext>Próximo</button>
+            </div>
+
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="formGroup5">
+        <ng-template matStepLabel>Endereço</ng-template>
+        <form [formGroup]="formGroup5">
+          <div class="contentComplete">
+
+            <div class="ui-float-label inputformflex">
+              <input id="cep" formControlName="cepControl" size="30" [textMask]="{mask: CEPMASK}" (keyup)="getCEP()" pInputText>
+              <label for="cep">Digite o CEP</label>
+              <i *ngIf="resellerCheck" class="fa fa-check checktrue" aria-hidden="true"></i>
+              <i *ngIf="resellerLoading" class="fa fa-spinner fa-pulse fa-fw checkload"></i>
+              <i *ngIf="resellerCheckfalse" class="fa fa-times checkfalse" aria-hidden="true"></i>
+              <span class="error" *ngIf="formGroup5.get('cepControl').touched && formGroup5.get('cepControl').hasError('pattern')">Formato
+                de CEP inválido!</span>
+              <span class="error" *ngIf="formGroup5.get('cepControl').hasError('required')">Obrigatório!</span>
+            </div>
+            <button class="btn orange max" (click)="getCEP();">Buscar CEP</button>
+
+            <div *ngIf="formAddress">
+
+              <div class="ui-float-label inputform">
+                <input id="street" formControlName="streetControl" size="30" [readonly]="cep.logradouro!=''" pInputText>
+                <label for="street">Digite a rua</label>
+                <span class="error" *ngIf="formGroup5.get('streetControl').hasError('required')">Obrigatório!</span>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="number" formControlName="numberControl" size="30" pInputText>
+                <label for="number">Digite o número</label>
+                <span class="error" *ngIf="formGroup5.get('numberControl').hasError('required')">Obrigatório!</span>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="complement" formControlName="complementControl" size="30" pInputText>
+                <label for="complement">Digite o complemento</label>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="district" formControlName="districtControl" size="30" [readonly]="cep.bairro!=''" pInputText>
+                <label for="district">Digite o bairro</label>
+                <span class="error" *ngIf="formGroup5.get('districtControl').hasError('required')">Obrigatório!</span>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="city" formControlName="cityControl" size="30" [readonly]="cep.localidade!=''" pInputText>
+                <label for="city">Digite a cidade</label>
+                <span class="error" *ngIf="formGroup5.get('cityControl').hasError('required')">Obrigatório!</span>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <p-dropdown [options]="states" formControlName="stateControl" [readonly]="cep.uf!=''"></p-dropdown>
+                <label for="city">Selecione o estado</label>
+                <span class="error" *ngIf="formGroup5.get('stateControl').hasError('required')">Obrigatório!</span>
+              </div>
+
+              <mat-select style="display:none;"></mat-select>
+
+            </div>
+
+            <button class="btn blue max" matStepperPrevious>Anterior</button>
+            <button class="btn orange max" [disabled]="!formGroup5.valid" (click)="saveForm()" [ngClass]="{'disabled':!formGroup5.valid}">Finalizar
+              Cadastro
+            </button>
+
+          </div>
+
+        </form>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+  </div>
+</div>

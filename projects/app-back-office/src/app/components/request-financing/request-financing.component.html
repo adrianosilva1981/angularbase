@@ -1,0 +1,52 @@
+<div class="box">
+  <div class="form-group content-row">
+    <div class="til">Solicitação de financiamento</div>
+
+    <div class="spaceBottom">
+      Conexão:
+      <span class="price" [innerHtml]="this.data.price | conversion : 'BRL'"></span>
+    </div>
+
+    <div class="spaceBottom">
+      Valor de entrada (Mínimo):
+      <!-- <b><span [innerHtml]="valueMin | conversion : 'BRL'"></span></b> -->
+      <input currencyMask [options]="maskMoney" type="text" size="30" [(ngModel)]="valueMin" (blur)="changeValueMin()"
+        pInputText>
+    </div>
+
+    <div class="value">
+      Valor à financiar:
+      <b><span class="price" [innerHtml]="valueFinancing | conversion : 'BRL'"></span></b>
+    </div>
+
+    <div class="spaceBottom" *ngIf="request">
+      Número de parcelas:
+      <p-dropdown id="parcels" [options]="parcels" [(ngModel)]="nrPlots" (onChange)="changePlots($event.value)"></p-dropdown>
+    </div>
+
+    <div class="plots">
+      <table class="table table-responsive text-center">
+        <tr>
+          <td></td>
+          <td *ngFor="let item of plotsObj">{{ item.plot }}</td>
+        </tr>
+        <tr>
+          <td class="text-left"><b>Data de Pagamento:</b></td>
+          <td class="border" *ngFor="let item of plotsObj">{{ item.paymentDate }}</td>
+        </tr>
+        <tr>
+          <td class="text-left"><b>Valor:</b></td>
+          <td class="border" *ngFor="let item of plotsObj" [innerHtml]="item.value | conversion : 'BRL'" ></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="button">
+      <a class="btn green bit" (click)="closeModal()" [ngClass]="{'disabled':!request}">Solicitar</a>
+    </div>
+    <div style="width: 100%; text-align: center">Ativação imediata após confirmação do pagamento da entrada.</div>
+    <!-- <div class="desc">
+      *Sujeito a análise de crédito (Ativação em 24h)
+    </div> -->
+  </div>
+</div>

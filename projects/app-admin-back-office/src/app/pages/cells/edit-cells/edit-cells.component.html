@@ -1,0 +1,27 @@
+
+  <div class="editcells">
+        <div *ngIf="!cellsok">Nenhuma Célula</div>
+      
+      <div *ngIf="cellsok" class="content_cell">
+            <div class="subtitle">
+              Células Existentes
+            </div>
+            <div class="content_cells">
+        
+              <div *ngFor="let cel of cells">
+                <div class="card">
+                  <div class="content">
+                    <div class="info">Nome da célula:<span class="titles"> {{cel.name}}</span>
+                    <div class="info">Número de Managers: <span class="number"> {{cel.numbercells}}</span></div>
+                    <hr>     
+                    <div class="content_button">
+                      <div class="btn edit"(click)="edit(cel.id)">Alterar</div>
+                      <div class="btn del" (click)="delete(cel.id)">Excluir</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+            </div>
+          </div>
+          </div>

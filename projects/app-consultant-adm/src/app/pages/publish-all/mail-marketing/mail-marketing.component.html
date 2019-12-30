@@ -1,0 +1,37 @@
+<app-consultant-adm-box-info [objInfo]="info"></app-consultant-adm-box-info>
+
+<form class="form" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>Título do e-mail</label>
+        <input type="text" class="form-control" required formControlName="title">
+        <span class="errorFormField" *ngIf="registerForm.controls.title.hasError('minlength')">* Mínimo 6 caracteres</span>
+    </div>
+
+    <div class="form-group">
+        <label>Descrição do e-mail</label>
+        <!-- <textarea rows="8" class="form-control" required formControlName="description"></textarea> -->
+        <p-editor [style]="{'height':'320px'}" formControlName="description" (onTextChange)="validText($event)"></p-editor>
+        <span class="errorFormField" *ngIf="textError">* Mínimo 20 caracteres</span>
+    </div>
+
+    <button class="btnRegister" type="submit">Salvar</button>
+</form>
+
+<!-- <div class="title">Histórico de Envio</div>
+<div class="listEmail">
+    <div class="head">
+        <div>Nome</div>
+        <div>Telefone</div>
+        <div>E-mail</div>
+    </div>
+    <div class="boxItem">
+        <div>Jeferson Reis</div>
+        <div>35 9 8888-8888</div>
+        <div>jeferson@hyper.jobs</div>
+    </div>
+    <div class="boxItem">
+        <div>Jeferson Reis</div>
+        <div>35 9 8888-8888</div>
+        <div>jeferson@hyper.jobs</div>
+    </div>
+</div> -->

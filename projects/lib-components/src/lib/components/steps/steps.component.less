@@ -1,0 +1,73 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.contentStatus {
+    flex: 1;
+    display: flex;
+    .itemShop {
+        flex: 1;
+        .graph {
+            display: flex;
+            align-items: center;
+            .trace {
+                flex: 1;
+                width: 100%;
+                height: 5px;
+                background: @grey5;
+                &.active {
+                    background: @green1;
+                }
+            }
+            .space {
+                width: 0px;
+                height: 25px;
+                display: flex;
+            }
+            .circle {
+                width: 25px;
+                height: 25px;
+                .radius(50%);
+                background: @grey5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                pointer-events: none;
+                .fas {
+                    color: #fff;
+                    font-size: 12px;
+                }
+                &.active {
+                    background: @green1;
+                    pointer-events: initial;
+                    .fas {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .text {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: 700;
+            @media screen and (max-width: 500px) {
+                font-size: 8px;
+            }
+        }
+        &:first-of-type {
+            .trace {
+                &:first-of-type {
+                    opacity: 0;
+                }
+            }
+        }
+        &:last-of-type {
+            .trace {
+                &:last-of-type {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}

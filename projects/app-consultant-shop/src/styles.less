@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+body {
+    background: #fff;
+}
+
+.btnClearFilter {
+    display: inline-block;
+    padding: 3px 15px;
+    background: @grey1;
+    border: 1px solid @grey3;
+    color: @grey5;
+    .radius(20px);
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+        background: @grey2;
+        color: @grey4;
+    }
+}
+
+
+.detail-product {
+    .ngucarousel .ngucarousel-inner .ngucarousel-items {
+        flex-wrap: wrap;
+    }
+    .ButtonNex {
+        display: none !important;
+    }
+    .thumb .grid .box {
+        border: 1px solid #f2f2f2;
+    }
+}

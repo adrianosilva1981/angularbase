@@ -1,0 +1,47 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentMyAccount {
+    margin-top: 20px;
+    .contentItensMenu {
+        display: flex;
+        flex-wrap: wrap;
+        .itemMenu {
+            flex: 1;
+            background: #fff;
+            min-width: 270px;
+            margin: 10px;
+            cursor: pointer;
+            .boxShadow(0px 0px 10px 0px @grey3);
+            transition: all 0.5s ease;
+            &:hover {
+                transform: scale(1.03);
+            }
+            .header {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                background: @grey2;
+                border: 2px solid #fff;
+                color: @blue1;
+                font-weight: 500;
+                font-size: 20px;
+                .fa {
+                    color: @blue1;
+                    display: inline-block;
+                    margin-right: 10px;
+                    font-size: 25px;
+                }
+            }
+            .body {
+                min-height: 80px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                font-size: 16px;
+                color: @grey3;
+                padding: 10px;
+            }
+        }
+    }
+}

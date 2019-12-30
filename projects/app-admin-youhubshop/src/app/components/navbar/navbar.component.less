@@ -1,0 +1,32 @@
+@import 'css/global-variables.less';
+.mobile {
+    background: @blue1 !important;
+    color: @grey1 !important;
+    display: none;
+    @media screen and (max-width: 768px) {
+        display: block;
+        z-index: 1;
+    }
+    position: relative;
+    top: -5px;
+}
+
+.web {
+    background: @blue1 !important;
+    color: @grey1 !important;
+    display: block;
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+
+.menu-class {
+    background: @blue1 !important;
+    color: @grey1 !important;
+    margin-top: 50px;
+}
+
+img{
+    position: absolute;
+    top: -45px;
+}

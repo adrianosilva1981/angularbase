@@ -1,0 +1,208 @@
+<div class="contentPage">
+
+  <div class="mainBox">
+    <div class="shipping" *ngIf="buyer">
+      <div class="til">
+        <b>Comprador</b>
+      </div>
+      <div class="name">
+        <b>Nome do comprador:</b> {{ buyer.name }}
+      </div>
+      <div>
+        <b>E-mail:</b> {{ buyer.name_buyer }}
+      </div>
+      <div>
+        <b>Telefone:</b> {{ buyer.phoneNumber }}
+      </div>
+      <div class="cpfBuyer">
+        <b>CPF:</b> {{ buyer.CPF_buyer}}
+      </div>
+      <div class="street">
+        <b>Endereço:</b> {{ buyer.street }}, {{ buyer.number }} - {{ buyer.neighborhood }} - {{ buyer.state }}/{{
+        buyer.city }}
+      </div>
+      <div>
+        <b>Complemento:</b> {{ buyer.complement }}
+      </div>
+      <div class="street">
+        <b>Cep:</b> {{buyer.zipcode}}
+      </div>
+      <br>
+      <div>
+        <b>Frete:</b> {{ buyer.freight_Company }} | <b>Valor: </b> {{ buyer.freight_value | conversion : 'BRL' : false }}
+      </div>
+      <br>
+      <div class="date-creation">
+        <b>Data do pedido:</b> {{ buyer.date_creation }}
+      </div>
+      <div class="date-payment">
+        <b>Data do pagamento:</b> {{ buyer.date_payment }}
+      </div>
+      <br>
+      <div>
+        <b>Status do pagamento:</b> {{ payment_status }}
+      </div>
+      <div>
+        <b>Status da entrega atual:</b> {{ status }}
+      </div>
+    </div>
+
+    <form class="formCheckout" [formGroup]="registerForm" novalidate>
+      <!-- FORMULARIO DE Fornecedor-->
+      <div class="supplierForm">
+        <!-- Código do pedido -->
+        <div class="form-group half">
+          <label>Código do pedido</label>
+          <input type="text" class="form-control" readonly [value]="codOrder">
+        </div>
+        <!-- Status -->
+        <div class="form-group half">
+          <label>Status da entrega</label>
+          <span [ngSwitch]="'statusPayment'">
+            <p-dropdown [disabled]="status == 'Entregue' || productInfo[0]?.STATUS != 'PC'" *ngSwitchCase="'statusPayment'"
+              formControlName="_status" [options]="statusPayment" [style]="{'width':'100%'}"></p-dropdown>
+          </span>
+          <!-- <span [ngSwitch]="status">
+            <ng-container *ngSwitchCase="'AP'">
+              <input type="text" class="form-control" readonly value="Aguardando Pagamento">
+            </ng-container>
+            <ng-container *ngSwitchCase="'PC'">
+              <input type="text" class="form-control" readonly value="Pagamento Confirmado">
+            </ng-container>
+            <ng-container *ngSwitchCase="'C'">
+              <input type="text" class="form-control" readonly value="Cancelado">
+            </ng-container>
+            <ng-container *ngSwitchCase="'G'">
+              <input type="text" class="form-control" readonly value="Gerado">
+            </ng-container>
+            <ng-container *ngSwitchCase="'PR'">
+              <input type="text" class="form-control" readonly value="Aguardando liberação">
+            </ng-container>
+            <ng-container *ngSwitchCase="'PE'">
+              <input type="text" class="form-control" readonly value="Pedido Efetuado">
+            </ng-container>
+            <ng-container *ngSwitchCase="'PA'">
+              <input type="text" class="form-control" readonly value="Pedido Autorizado">
+            </ng-container>
+            <ng-container *ngSwitchCase="'NF'">
+              <input type="text" class="form-control" readonly value="Nota Fiscal Emitida">
+            </ng-container>
+            <ng-container *ngSwitchCase="'ET'">
+              <input type="text" class="form-control" readonly value="Em Transito">
+            </ng-container>
+            <ng-container *ngSwitchCase="'FN'">
+              <input type="text" class="form-control" readonly value="Entregue">
+            </ng-container>
+            <ng-container *ngSwitchCase="'RT'">
+              <input type="text" class="form-control" readonly value="Retornado">
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <input type="text" class="form-control" readonly value="Aguardando">
+            </ng-container>
+          </span> -->
+        </div>
+
+        <!-- email -->
+        <div class="form-group">
+          <label>Código de rastreio</label>
+          <input placeholder="Insira o código de rastreio..." type="text" class="form-control" formControlName="trackingCode">
+        </div>
+
+        <!-- email -->
+        <div class="form-group">
+          <label>Nota Fiscal</label>
+          <!--<span><i class="fas fa-file-download"></i></span>-->
+          <input placeholder="Insira a url da nota fiscal ou faça o upload do arquivo..." type="text" class="form-control"
+            formControlName="nfXml">
+          <br>
+          <div>
+            <label>Upload do documento (PDF/XML)</label>
+            <br>
+            <p-fileUpload #arquivo [showUploadButton]="false" [accept]="'.xml,.pdf'" customUpload="true" (onSelect)="onUpload($event,arquivo)"
+              (onRemove)="onRemove()" (onClear)="onRemove()"></p-fileUpload>
+          </div>
+          <div *ngIf="document">
+            <label>Download do documento (PDF/XML)</label>
+            <br>
+            <i (click)="downloadFile()" style="cursor: pointer; font-size: 28px" class="fas fa-download"></i>
+          </div>
+        </div>
+
+      </div>
+      <!--  BOTAO DE SUBMIT-->
+      <div class="cntBtnSubmit">
+        <button class="btnSubmit" (click)="submit();">Salvar</button>
+      </div>
+    </form>
+  </div>
+
+  <ng-container *ngFor="let item of productInfo; let i = index">
+    <div class="cnt">
+      <div class="img">
+        <img src="{{item.url}}" alt="">
+      </div>
+      <div class="info">
+        <div class="product">
+          <div>
+            <b>
+              Cód.
+              <ng-container [ngSwitch]="item.type_item">
+                <ng-container *ngSwitchCase="product">
+                  Produto
+                </ng-container>
+                <ng-container *ngSwitchCase="service">
+                  Serviço
+                </ng-container>
+                <ng-container *ngSwitchCase="gift_code">
+                  Voucher
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  Item
+                </ng-container>
+              </ng-container>
+              produto:
+            </b> {{ item.id_product }}
+          </div>
+          <div class="name-product">
+            <b>Nome:</b> {{item.reference_name}}
+          </div>
+          <span class="qty">
+            <b>Quantidade:</b> {{item.quantity}}
+          </span>
+          <div class="options">
+            <div *ngFor="let opt of item.extraInfo">
+              <b>{{opt.split(':')[0]}}</b> :
+              {{opt.split(':')[1]}}
+            </div>
+          </div>
+          <div>
+            <b>EAN:</b> {{ item.ean }}
+          </div>
+          <div class="name-product">
+            <b>*Valor vendido:</b> {{item.main_value | conversion : 'BRL' : false}} | <b>*Valor a receber:</b>
+            {{item.value_Fornecedor | conversion : 'BRL' : false}}
+          </div>
+        </div>
+        <div *ngIf="item.type_item === 'gift_code'" class="checkedVoucher">
+          <div><b>Voucher: </b> <strong>{{ item.serial }}</strong></div>
+          <input id="idx_{{ i }}" type="checkbox" class="form-group" [checked]="item.activation_date !== null"
+            [disabled]="item.activation_date !== null" (change)="checkedVoucher(item, i)">
+          <label for="idx_{{ i }}">Voucher Utilizado</label>
+        </div>
+        <div class="street">
+          <small>*Valores mostrados não incluem o valor do frete</small>
+        </div>
+
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container>
+    <div class="cnt total">
+      <b>Valor total a receber:</b> &nbsp; {{ buyer.valueTotal  | conversion : 'BRL' : false }}
+    </div>
+  </ng-container>
+</div>
+
+<p-confirmDialog header="Atenção" icon="fas fa-exclamation-triangle" width="425" acceptButtonStyleClass="deleteDialog"
+  rejectButtonStyleClass="cancelDialog" acceptIcon="fas fa-trash-alt"></p-confirmDialog>

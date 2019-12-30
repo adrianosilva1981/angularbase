@@ -1,0 +1,130 @@
+<mat-dialog-actions style="justify-content: flex-end; margin: 0;">
+  <button mat-button mat-dialog-close> <i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
+</mat-dialog-actions>
+<mat-dialog-content>
+  <div class="info_points">
+    <div class="content">
+
+      <h3>Informações para Bonificações</h3>
+      <div class="contemcards">
+        <div class="card">
+          <div class="content">
+            O Ciclo é de 4 semanas, com referência na sua data de adesão.<br>
+            <div class="texto"><b>Data Inicial do meu Ciclo para Bonificação:</b>
+              {{data.unilevel.date_start_cycle_bonus}}</div>
+            <div class="texto"><b>Data final do meu Ciclo para Bonificação:</b> {{data.unilevel.date_end_cycle_bonus}}</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div class="title2">(VP) Volume de Consumo Pessoal no Ciclo</div>
+            <div class="info">
+              <div *ngIf="data.unilevel.vp_accession">Minha Adesão: <span class="text">{{data.unilevel.vp_accession ?
+                  data.unilevel.vp_accession : '0'}} pontos</span></div>
+              <div>Minha Mensalidade: <span class="text">{{data.unilevel.vp_monthly ? data.unilevel.vp_monthly : '0'}}
+                  pontos <!--<span [ngClass]="data.unilevel.vp_monthly >= 75 || data.unilevel.info == 'N' ? 'ative' : 'inative'">({{data.unilevel.vp_monthly>=
+                    75 || data.unilevel.info == 'N' ? 'Habilitado' : 'Não Habilitado'}})</span>--></span></div>
+              <div>Meu Consumo: <span class="text">{{data.unilevel.vp_total - data.unilevel.vp_monthly -
+                  data.unilevel.vp_accession }} pontos  <!--<span [ngClass]="data.unilevel.vp_total - data.unilevel.vp_accession >= 170 || (data.unilevel.vp_accession > 0) ? 'ative' : 'inative'">({{data.unilevel.vp_total
+                    - data.unilevel.vp_accession >= 170 || (data.unilevel.vp_accession > 0) ? 'Ativo' : 'Inativo'}})</span>--></span></div> 
+              <span class="amount">{{data.unilevel.vp_total ? data.unilevel.vp_total : '0'}}</span>
+              <span class="text">pontos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Informação para Graduação</h3>
+      <div class="contemcards">
+
+        <div class="card">
+          <div class="content">
+            O Ciclo é de 4 semanas com referência nas últimas 4.<br>
+            <div class="texto"><b>Data Inicial do meu Ciclo para Graduação:</b> {{data.unilevel.date_start_cycle}}</div>
+            <div class="texto"><b>Data final do meu Ciclo para Graduação:</b> {{data.unilevel.date_end_cycle}}</div>
+            <div class="texto"><b>Minha Próxima Graduação:</b>
+              {{data.unilevel.graduation_next}} ({{data.unilevel.value_required}})</div>
+            <div class="texto"><b>Minha Pontuação Necessária para próxima Graduação:</b>
+              {{(data.unilevel.value_required - data.unilevel.vq) <= 0 ? 0 : (data.unilevel.value_required -
+                data.unilevel.vq)}} pontos</div> </div> </div> <div class="card">
+                <div class="content">
+                  <div class="title">(VT) Volume Total</div>
+                  <div class="info">
+                    <span class="amount">{{data.unilevel.vt ? data.unilevel.vt : '0'}}</span>
+                    <span class="text">pontos</span>
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+              <div class="content">
+                <div class="title">(VQ) Volume de Qualificação no Ciclo</div>
+                <div class="info">
+                  <span class="amount">{{data.unilevel.vq ? data.unilevel.vq : '0'}}</span>
+                  <span class="text">pontos</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="contemcards">
+            <div class="card">
+              <div class="content">
+                <div class="title">(VQ-A) Volume de Qualificação Perna A</div>
+                <div class="info">
+                  <span class="amount">{{data.unilevel.vq_const_a ? data.unilevel.vq_const_a : '0'}}</span>
+                  <span class="text">pontos</span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="content">
+                <div class="title">(VQ-B) Volume de Qualificação Perna B</div>
+                <div class="info">
+                  <span class="amount">{{data.unilevel.vq_const_b ? data.unilevel.vq_const_b : '0'}}</span>
+                  <span class="text">pontos</span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="content">
+                <div class="title">(VQ-P) Volume de Qualificação Perna de Qualificação</div>
+                <div class="info">
+                  <span class="amount">{{data.unilevel.vq_qualif ? data.unilevel.vq_qualif : '0'}}</span>
+                  <span class="text">pontos</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contemcards">
+
+            <div class="card">
+              <div class="content">
+
+                <p-table styleClass="classetable" [responsive]="true" [value]="graduate">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th style="width:7em">Graduação</th>
+                      <th style="width:5em">Pontos Necessários</th>
+                      <th style="width:6em">VME %</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-grad let-rowData>
+                    <tr>
+                      <td>{{grad.name}}</td>
+                      <td>{{grad.point_team}}</td>
+                      <td>{{grad.vme}}</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+</mat-dialog-content>

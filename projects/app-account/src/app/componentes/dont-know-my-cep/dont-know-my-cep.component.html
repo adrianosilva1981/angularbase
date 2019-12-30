@@ -1,0 +1,39 @@
+<div class="contentFormSearch">
+  <form [formGroup]="searchForm" novalidate>
+    <div class="content-row">
+      <div class="form-group content-col">
+        <label class="center-block">* UF</label>
+        <input class="form-control" formControlName="uf" placeholder="ex.: MG">
+      </div>
+      <div class="form-group content-col">
+        <label class="center-block">* Cidade</label>
+        <input class="form-control" formControlName="city" placeholder="ex.: Alfenas">
+      </div>
+    </div>
+    <div class="content-row">
+      <div class="form-group content-col">
+        <label class="center-block">* Rua</label>
+          <input class="form-control" formControlName="street" placeholder="ex.: Jaime Santos">
+      </div>
+    </div>
+
+    <div class="form-group content-button">
+      <button type="button" (click)="searchCEP(searchForm)" class=" btn btn-success btn-lg">Buscar CEP</button>
+    </div>
+
+  </form>
+  <div class="contentAll">
+    <div class="contentResult" *ngIf="!cepNotFound">
+      <div class="textInfo" *ngIf="listAddress.length > 0">Selecione um endereço na lista abaixo</div>
+      <div class="contentList">
+        <div class="list" *ngFor="let item of listAddress" (click)="selectCEP(item)">
+          <b>{{item?.cep}}</b> - {{item?.logradouro}}, {{item?.bairro}}
+          <b>|</b> {{item?.localidade}} - {{item?.uf}}
+        </div>
+      </div>
+    </div>
+    <div class="notFound" *ngIf="cepNotFound">
+      Não foi encontrado nenhum cep para o endereço acima.
+    </div>
+  </div>
+</div>

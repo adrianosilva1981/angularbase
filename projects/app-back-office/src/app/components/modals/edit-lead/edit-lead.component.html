@@ -1,0 +1,39 @@
+<div class="modaleditlead">
+
+  <div *ngIf="updating" class="updating">
+    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+    <span>Atualizando...</span>
+  </div>
+
+  <form [formGroup]="editLeadForm" class="formedit">
+    <div class="contentedit">
+
+      <div class="ui-float-label inputform">
+        <input id="name" formControlName="name" size="30" pInputText>
+        <label for="name">Nome</label>
+        <span class="error" *ngIf="editLeadForm.get('name').touched && editLeadForm.get('name').hasError('minlength')">Campo nome deve conter no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="editLeadForm.get('name').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="cellphone" formControlName="cellphone" size="30" [textMask]="{mask: CELLPHONEMASK}" pInputText>
+        <label for="cellphone">Celular</label>
+        <span class="error" *ngIf="editLeadForm.get('cellphone').touched && editLeadForm.get('cellphone').hasError('pattern')">Formato celular inválido!</span>
+        <span class="error" *ngIf="editLeadForm.get('cellphone').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="email" type="email" formControlName="email" size="30" pInputText>
+        <label for="email">E-mail</label>
+        <span class="error" *ngIf="editLeadForm.get('email').touched && editLeadForm.get('email').hasError('pattern')">E-mail inválido!</span>
+        <span class="error" *ngIf="editLeadForm.get('email').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="contentbutton">
+        <button class="btn blue" (click)="onClose()">Cancelar</button>
+        <button class="btn green" [disabled]="!editLeadForm.valid" (click)="onSubmit()">Salvar</button>
+      </div>
+
+    </div>
+  </form>
+</div>

@@ -1,0 +1,45 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.content {
+    background-color: #fff;
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        .btn {
+            flex: 1;
+            display: block;
+            padding: 5px 0;
+            background: @blue2;
+            color: #fff;
+            text-transform: uppercase;
+            margin: 5px;
+            font-size: 12px;
+            min-width: 150px;
+            min-height: unset;
+            cursor: pointer;
+            .radius(15px);
+            &:hover {
+                background: @orange1;
+            }
+            &:disabled {
+                background: @grey3;
+                cursor: not-allowed;
+            }
+            &.active {
+                background: @orange1;
+            }
+        }
+    }
+    .info {
+        padding: 30px;
+        .title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+    }
+    .load {
+        text-align: center;
+        margin: 30px;
+    }
+}

@@ -1,0 +1,240 @@
+<div class="menu">
+
+  <div class="scroll">
+    <ul class="">
+      <li class="item" routerLinkActive="active" routerLink="home" (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon home"></div>
+        <div class="text">Home</div>
+      </li>
+      <li class="item" routerLinkActive="active" *ngIf="!userObj.zipcode" routerLink="register" (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon register"></div>
+        <div class="text">Concluir Cadastro</div>
+      </li>
+      <li class="item" routerLinkActive="active" routerLink="tree" (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon team"></div>
+        <div class="text">Equipe</div>
+      </li>
+
+      <li class="item" (click)="clickFinanceiro()" routerLinkActive="active">
+        <div class="collum"></div>
+        <div class="icon {{flagFinanceiro?'arrow-down':'arrow-right'}}"></div>
+        <div class="text">Financeiro</div>
+      </li>
+      <!-- sub menu financeiro-->
+      <ul *ngIf="flagFinanceiro && userObj.status==='A'">
+        <li class="item" routerLinkActive="active" routerLink="bonus" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon bonus" style="margin-left:40px"></div>
+          <div class="text">Bônus</div>
+        </li>
+        <li class="item" routerLinkActive="active" routerLink="extract" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon extract" style="margin-left:40px"></div>
+          <div class="text">Extrato</div>
+        </li>
+        <li class="item" routerLinkActive="active" routerLink="rescue" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon rescue" style="margin-left:40px"></div>
+          <div class="text">Saque</div>
+        </li>
+      </ul>
+      <li class="item" *ngIf="userObj.status==='A'">
+        <a href='https://hubbank.com.br' target="_blank" style="text-decoration: none;" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon bank"></div>
+          <div class="text">Minha Conta Digital</div>
+        </a>
+      </li>
+
+      <li class="item" *ngIf="userObj.status==='A'" (click)="clickLoja()" routerLinkActive="active">
+        <div class="collum"></div>
+        <div class="icon {{flagLoja?'arrow-down':'arrow-right'}}"></div>
+        <div class="text">Minha Loja</div>
+      </li>
+
+      <ul *ngIf="flagLoja && userObj.status==='A'">
+        <li class="item" routerLinkActive="active" *ngIf="userObj.has_monthly" routerLink="findersfee" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon money" style="margin-left:40px"></div>
+          <div class="text">Finders Fee</div>
+        </li>
+
+        <li class="item">
+          <a href='https://store.youhub.com.br' target="_blank" style="text-decoration: none;" (click)="oncloseSidebarMenu()">
+            <div class="collum"></div>
+            <div class="icon shop" style="margin-left:40px"></div>
+            <div class="text">Hub Mix</div>
+          </a>
+        </li>
+
+        <li class="item" *ngIf="userObj.has_monthly">
+          <a href='https://consultant.youhub.com.br/settings/data-shop' target="_blank" style="text-decoration: none;"
+            (click)="oncloseSidebarMenu()">
+            <div class="collum"></div>
+            <div class="icon setting" style="margin-left:40px"></div>
+            <div class="text">Minha Loja</div>
+          </a>
+        </li>
+      </ul>
+
+      <li class="item" *ngIf="userObj.status === 'A' && userObj.url_subdomain !== ''" (click)="oncloseSidebarMenu()">
+        <a [href]="userObj.url_subdomain" target="_blank" style="text-decoration: none;">
+          <div class="collum"></div>
+          <div class="icon setting"></div>
+          <div class="text">Consumo Smart</div>
+        </a>
+      </li>
+
+      <li class="item" *ngIf="userObj.status==='A'" (click)="clickKit()" routerLinkActive="active">
+        <div class="collum"></div>
+        <div class="icon {{flagKit?'arrow-down':'arrow-right'}}"></div>
+        <div class="text">Kits e Publicidade</div>
+      </li>
+
+      <ul *ngIf="flagKit && userObj.status==='A'">
+        <li class="item" routerLinkActive="active" routerLink="product-mypurchase" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon product" style="margin-left:40px"></div>
+          <div class="text">Meus kits</div>
+        </li>
+        <li class="item" routerLinkActive="active" routerLink="publicity" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon ads" style="margin-left:40px"></div>
+          <div class="text">Publicidade</div>
+        </li>
+        <li class="item" routerLinkActive="active" routerLink="spread" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon ads" style="margin-left:40px"></div>
+          <div class="text">Divulgar</div>
+        </li>
+      </ul>
+
+      <li class="item" routerLinkActive="active" routerLink="prepaidcard" *ngIf="userObj.status==='A' && userObj.type==='P'"
+        (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon cards"></div>
+        <div class="text">Cartão Pré-pago</div>
+      </li>
+
+      <li class="item" *ngIf="userObj.status==='A'" (click)="clickVourchers()" routerLinkActive="active">
+        <div class="collum"></div>
+        <div class="icon {{flagVouchers?'arrow-down':'arrow-right'}}"></div>
+        <div class="text">Vouchers</div>
+      </li>
+
+      <ul *ngIf="flagVouchers && userObj.status==='A'">
+        <li class="item" routerLinkActive="active" routerLink="vouchers/prime" *ngIf="userObj.status==='A'" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon voucher_prime" style="margin-left:40px"></div>
+          <div class="text">Prime</div>
+        </li>
+        <li class="item" routerLinkActive="active" routerLink="vouchers/smart" *ngIf="userObj.status==='A'" (click)="oncloseSidebarMenu()">
+          <div class="collum"></div>
+          <div class="icon voucher_smart" style="margin-left:40px"></div>
+          <div class="text">Smart</div>
+        </li>
+      </ul>
+
+      <li class="item" routerLinkActive="active" routerLink="ebooks" *ngIf="userObj.status==='A'" (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon ebooks"></div>
+        <div class="text">Meus eBooks</div>
+      </li>
+
+      <li class="item" (click)="clickDownloads()" *ngIf="userObj.status==='A'">
+        <div class="collum"></div>
+        <div class="icon {{flagDownloads?'arrow-down':'arrow-right'}}"></div>
+        <div class="text">Downloads</div>
+      </li>
+      <!-- deve estar errado assim , mas funcionou =T , queria ter tempo para entender melhor -->
+      <!-- submenu de downloads -->
+      <ul *ngIf="flagDownloads && userObj.status==='A'" (click)="oncloseSidebarMenu()">
+        <li class="item" routerLinkActive="active" routerLink="documents">
+          <div class="collum"></div>
+          <div class="icon documents" style="margin-left:40px"></div>
+          <div class="text">Documentos</div>
+        </li>
+
+        <li class="item" routerLinkActive="active" routerLink="marketing">
+          <div class="collum"></div>
+          <div class="icon marketing" style="margin-left:40px"></div>
+          <div class="text">Marketing</div>
+        </li>
+
+        <!-- <a href="http://youhub.grupooh.com.br/" target="_blank" style="text-decoration: none;"> -->
+        <li class="item" *ngIf="userObj.status==='A'" routerLink="APN">
+          <div class="collum"></div>
+          <div class="icon invitation" style="margin-left:40px"></div>
+          <div class="text">Apresentação de Négocios</div>
+        </li>
+        <!-- </a> -->
+        <!-- <a href="http://youhub.grupooh.com.br/b2b" target="_blank" style="text-decoration: none;">
+          <li class="item" *ngIf="userObj.status==='A'">
+            <div class="collum"></div>
+            <div class="icon invitation" style="margin-left:40px"></div>
+            <div class="text">B2B</div>
+          </li>
+        </a> -->
+
+        <!-- <li class="item" *ngIf="userObj.status==='A'" (click)="oncloseSidebarMenu()">
+          <a href='http://youhub.grupooh.com.br/reconhecimento' target="_blank" style="text-decoration: none;">
+            <div class="collum"></div>
+            <div class="icon recognition" style="margin-left:40px"></div>
+            <div class="text">Reconhecimento</div>
+          </a>
+        </li> -->
+      </ul>
+
+      <li class="item" routerLinkActive="active" routerLink="galaxia" *ngIf="userObj.status==='A' && userObj.has_monthly"
+        (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon ebooks"></div>
+        <div class="text">Funil de vendas</div>
+      </li>
+
+      <li class="item" routerLinkActive="active" routerLink="googleAuthenticator" (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon googleAuthenticator"></div>
+        <div class="text">Google Authenticator</div>
+      </li>
+
+      <li class="item" routerLinkActive="active" routerLink="monthly" (click)="oncloseSidebarMenu()" *ngIf="!userObj.has_monthly">
+        <div class="collum"></div>
+        <div class="icon monthly"></div>
+        <div class="text">Pagar Mensalidade</div>
+      </li>
+
+      <li class="item" (click)="suport()" (click)="oncloseSidebarMenu()">
+        <div class="collum"></div>
+        <div class="icon whatsapp"></div>
+        <div class="text">Suporte</div>
+      </li>
+
+      <li class="item" (click)="logout()">
+        <div class="collum"></div>
+        <div class="icon logout"></div>
+        <div class="text">Sair</div>
+      </li>
+    </ul>
+
+    <div class="app">
+      <div class="bar"></div>
+      <div class="contentTitle">
+        <div class="iconApp download"></div>
+        <div class="title">Baixe o App</div>
+      </div>
+      <div class="contentImage">
+        <a href="https://itunes.apple.com/us/app/youhub/id1261075344" target="_blank" style="text-decoration: none;">
+          <div class="app_apple"></div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=jobs.hyper.hyperjobs" target="_blank" style="text-decoration: none;">
+          <div class="app_android"></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,48 @@
+@import 'global/css/global-variables.less';
+.dash {
+    .container {
+        .content-dash {
+            .content-item-menu {
+                margin: 5% 0;
+                display: flex;
+                flex-wrap: wrap;
+                .item-menu {
+                    flex: 1;
+                    background: #fff;
+                    min-width: 270px;
+                    margin: 10px;
+                    cursor: pointer;
+                    box-shadow: 0 0 10px 0 #ccc;
+                    transition: all .3s ease;
+                    &:hover {
+                        transform: scale(1.03);
+                    }
+                    .header {
+                        display: flex;
+                        align-items: center;
+                        padding: 10px;
+                        background: #ededed;
+                        border: 2px solid #fff;
+                        color: @blue2;
+                        font-weight: 500;
+                        font-size: 20px;
+                        i {
+                            margin-right: 10px;
+                            font-size: 25px;
+                        }
+                    }
+                    .body {
+                        min-height: 80px;
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
+                        justify-content: center;
+                        font-size: 16px;
+                        color: #b4b7ba;
+                        padding: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,239 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.product {
+    display: flex;
+    margin-top: 20px;
+    .content {
+        //width: 90%;
+        padding: 30px;
+        @media screen and (max-width: 600px) {
+            padding: 0;
+        }
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        .contentCard {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            .card {
+                &.hover {
+                    &:hover {
+                        box-shadow: 0px 0px 10px 0px @blue2;
+                        cursor: pointer;
+                    }
+                }
+                height: 100px;
+                min-width: 290px;
+                padding: 15px;
+                margin-right: 20px;
+                border: none;
+                box-shadow: 0px 0px 10px 0px @grey2;
+                flex-direction: inherit;
+                @media screen and (max-width: 600px) {
+                    margin: 0 auto;
+                }
+                .icon {
+                    margin: 15px 15px 0 5px;
+                    width: 38px;
+                    height: 38px;
+                    background: url('/assets/img/icon_purchase.png');
+                }
+                .text {
+                    flex: 1;
+                    font-size: 16px;
+                    color: @grey6;
+                    align-items: center;
+                    display: flex;
+                }
+            }
+        }
+        .cntThumb {
+            flex: 1;
+            max-width: 310px;
+            min-width: 280px;
+            .thumb {
+                margin: 10px;
+                box-shadow: 0px 0px 5px 0px @grey3;
+                //cntImage
+                .cntImage {
+                    img {
+                        width: 100%;
+                        //height: 150px;
+                        // object-fit: cover;
+                        // object-position: top;
+                    }
+                }
+                //cntInfoPack
+                .cntInfoPack {
+                    min-height: 120px;
+                    background: #fff;
+                    position: relative;
+                    overflow: hidden;
+                    .cntLabel {
+                        position: absolute;
+                        top: -50px;
+                        left: -50px;
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: center;
+                        transform: rotate(-45deg);
+                        color: #fff;
+                        box-shadow: 0px 0px 5px 0px @grey3;
+                        font-size: 11px;
+                        font-weight: bold;
+                        padding: 5px 0px;
+                        text-align: center;
+                        &.alta {
+                            background: #FF6565;
+                        }
+                        &.breve {
+                            background: #4585d8;
+                        }
+                        &.destaque {
+                            background: #38832e;
+                        }
+                        &.lancamento {
+                            background: #FFD065;
+                            color: #43425D;
+                        }
+                    }
+                    .cntTitle {
+                        padding: 25px 45px 10px 45px;
+                        font-size: 16px;
+                        line-height: 18px;
+                        font-weight: 700;
+                        color: @grey7;
+                        text-align: center;
+                        min-height: 70px;
+                    }
+                    .cntPrice {
+                        text-align: center;
+                        font-weight: lighter;
+                        .tlt {
+                            text-align: center;
+                            font-size: 18px;
+                            color: @grey3;
+                            line-height: 0px;
+                            margin-top: 10px;
+                        }
+                        .money {
+                            color: @grey7;
+                            font-size: 40px;
+                            text-align: center;
+                        }
+                    }
+                    .packTitle {
+                        font-size: 25px;
+                        min-height: 80px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;                        
+                        &.blue {
+                            background: #3596c2;
+                            color: white;
+                        }
+                    }
+                    .packPrice {
+                        text-align: center;
+                        font-weight: lighter;
+                        min-height: 125px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+                        .money {
+                            color: @grey7;
+                            font-size: 40px;
+                            text-align: center;
+                        }
+                        .tlt {
+                            text-align: center;
+                            font-size: 18px;
+                            color: @grey3;
+                            line-height: 0px;
+                            margin-top: 10px;
+                        }
+                        .title {
+                            min-height: 125px;
+                            font-size: 24px;
+                            font-weight: bold;
+                            align-items: center;
+                            justify-content: center;
+                            display: flex;
+                        }
+                    }
+                    .actions {
+                        text-align: center;
+                        .txt {
+                            font-size: 14px;
+                            font-weight: bold;
+                            line-height: 40px;
+                        }
+                        .lines {
+                            width: 100%;
+                            height: 1px;
+                            background: @grey3;
+                        }
+                    }
+                }
+                //cntDiscount
+                .cntDiscount {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    font-weight: bold;
+                    font-size: 16px;
+                    line-height: 17px;
+                    min-height: 60px;
+                    background: #FFD065;
+                    color: @grey7;
+                    padding: 5px 65px;
+                }
+                //cntFooter
+                .cntFooter {
+                    background: #fff;
+                    .cntValues {
+                        min-height: 20px;
+                        padding: 10px 5px 0px 5px;
+                        .cntTxt {
+                            text-align: center;
+                            color: @grey7;
+                            padding: 3px 0px;
+                            &:last-child {
+                                padding-bottom: 0px;
+                            }
+                            .txt {
+                                margin-right: 5px;
+                                display: inline-block;
+                            }
+                            .val {
+                                display: inline-block;
+                                font-size: 30px;
+                                color: @green1;
+                            }
+                        }
+                    }
+                    .cntButton {
+                        text-align: center;
+                        padding: 5px 5px;
+                        .btnPack {
+                            display: inline-block;
+                            padding: 10px 30px;
+                            background: @orange1;
+                            color: #fff;
+                            .radius(5px);
+                            cursor: pointer;
+                            &:hover {
+                                background: @orange2;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentAll {
+    padding: 30px;
+    .titleForm {
+        text-align: center;
+        padding: 0px 0px 10px 0px;
+        font-size: 18px;
+        color: @grey5;
+    }
+    .contentFields {}
+    .contentBtnSend {
+        display: flex;
+        align-items: center;
+        .contentCaptcha {
+            float: left;
+            padding: 10px;
+        }
+        .btnSend {
+            float: right;
+            padding: 7px 30px;
+            background: @blue1;
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+            .radius(15px);
+            &:hover {
+                background: @blue2;
+            }
+            &:disabled {
+                background: @grey3;
+                cursor: not-allowed;
+            }
+        }
+    }
+}

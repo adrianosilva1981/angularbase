@@ -1,0 +1,12 @@
+<ng-container *ngIf="show">
+  <div class="cnt">
+    <app-consultant-adm-thumbnail-gift-card *ngFor="let company of companies" [itemObject]="company" class="item"></app-consultant-adm-thumbnail-gift-card>
+  </div>
+</ng-container>
+
+<div class="center" *ngIf="!show">
+  Não há "Estabelecimentos" cadastrados
+</div>
+
+<p-confirmDialog header="Atenção" icon="fas fa-exclamation-triangle" width="425" acceptButtonStyleClass="deleteDialog"
+  rejectButtonStyleClass="cancelDialog" acceptIcon="fas fa-trash-alt"></p-confirmDialog>

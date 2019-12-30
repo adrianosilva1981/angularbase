@@ -1,0 +1,224 @@
+<div class="content">
+  <div class="checkout">
+
+    <div class="subtitle">
+      Estamos quase lá, escolha a forma de pagamento.
+    </div>
+
+    <div *ngIf="rates?.length > 0">
+
+      <hr class="w-100">
+
+      <div class="Justifydiv">
+
+        <div style="flex: 1; padding: 0 0 20px 0; display: flex; justify-content: center;">
+          <div style="max-width: 340px;">
+            <h4 class="fsize-18 title-dblue">{{event.name}}</h4>
+            <div>
+              <div class="fsize-14" [innerHTML]="event.description"></div>
+            </div>
+            <div *ngIf="idEvent=='1'">(Ingresso Antecipado)<br>Data e Local do evento será informado posteriormente.
+            </div>
+            <div *ngIf="idEvent!=='1' && idEvent!=='7' && idEvent!=='8'">
+              <h4 class="fsize-18 title-dblue">Endereço para entrega:</h4>
+              <div>
+                <div class="fsize-14">Rua: {{resellerObj.street}}, nº {{resellerObj.number}} {{resellerObj.complement}}</div>
+                <div class="fsize-14">Bairro: {{resellerObj.neighborhood}}, {{resellerObj.city}} - {{resellerObj.state}}</div>
+                <div class="fsize-14">CEP: {{resellerObj.zipcode}}</div>
+              </div>
+              <a [routerLink]="['/office/myAcount']" routerLinkActive="router-link-active">Alterar Endereço</a>
+            </div>
+
+            <div class="msg">
+              <strong><em>Na compra de ingresso apresente seu RG no balcão de credenciamento e retire sua pulseira que dará acesso ao evento.</em></strong>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 1; display: flex; justify-content: center; flex-wrap: wrap">
+          <div class="min-height-28" style="display: flex; flex-wrap: wrap;">
+            <div class="fsize-14 min-height-28" style="  min-width: 280px; display: flex; align-items: center; flex: 1; justify-content: center;">{{event.name}}</div>
+            <span class="price" style="min-width: 120px; align-items: center; display: flex; flex: 1; justify-content: center;" [innerHtml]="event.value | conversion : 'BRL'"></span>
+            <div *ngIf="idEvent!=='1'" style="width: 100%; text-align: center;">
+              <div class="btn blue" (click)="modalPack(event.image)">Saiba Mais</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="w-100">
+
+      <div class="credit Justifydiv">
+
+        <div class="methodPayment" *ngIf="paymentCard">
+          <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+            <div style="min-width: 170px;" class="fsize-16 title-dblue center">Cartões de Crédito</div>
+            <div style="min-width: 250px;">
+              <img src="assets/img/elo.png" style="padding-left: 10px;">
+              <img src="assets/img/hiper.png" style="padding-left: 10px;">
+              <img src="assets/img/master.png" style="padding-left: 10px;">
+              <img src="assets/img/visa.png" style="padding-left: 10px;">
+            </div>
+          </div>
+          <div class="border-right-blue center">
+
+            <form [formGroup]="creditCardGroup" class="formcard">
+              <div class="ui-float-label">
+                <input id="float-input" type="text" [textMask]="{mask: cardMask}" formControlName="cardNumber" size="30" pInputText>
+                <label for="float-input">Número do Cartão de Crédito</label>
+                <span class="error" *ngIf="creditCardGroup.get('cardNumber').hasError('pattern')">
+                  E-mail inválido
+                </span>
+                <span class="error" *ngIf="creditCardGroup.get('cardNumber').hasError('required')">
+                  Obrigatório
+                </span>
+              </div>
+              <div class="ui-float-label">
+                <input id="float-input" type="text" formControlName="cardName" size="30" pInputText>
+                <label for="float-input">Nome como está no cartão</label>
+                <span class="error" *ngIf="creditCardGroup.get('cardName').hasError('pattern')">
+                  E-mail inválido
+                </span>
+                <span class="error" *ngIf="creditCardGroup.get('cardName').hasError('required')">
+                  Obrigatório
+                </span>
+              </div>
+              <div class="mt-4">
+                <p-dropdown [options]="creditCardParcels" formControlName="numberOfParcels"></p-dropdown>
+              </div>
+              <div class="mt-4 display-flex">
+                <div class="flex-1">
+                  <p-dropdown [options]="months" formControlName="cardMonth"></p-dropdown>
+                </div>
+                <div class="flex-1">
+                  <p-dropdown [options]="years" formControlName="cardYear"></p-dropdown>
+                </div>
+                <div class="ui-float-label input-cvv">
+                  <input id="float-input" maxlength="4" formControlName="cardCVV" pInputText>
+                  <label for="float-input">CVV</label>
+                  <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('required')"> Obrigatório </span>
+                  <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('pattern')">Somente Números</span>
+                  <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('minlength')">Mínimo 3</span>
+
+                </div>
+              </div>
+              <button class="btn orange max" [disabled]="!creditCardGroup.valid" (click)="sendPay('credit_card')" [ngClass]="{'disabled':!creditCardGroup.valid}">Pagar</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="methodPayment" *ngIf="paymentTicket">
+        <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+          <div style="min-width: 150px;" class="fsize-16 title-dblue center">Boleto Bancário</div>
+          <div style="min-width: 150px;">
+            <img src="assets/img/boleto.png" style="padding-left: 10px;">
+          </div>
+        </div>
+        <div class="w-100 mt-5 center">
+          <form [formGroup]="ticketGroup">
+            <div class="contentComplete">
+              <div class="ui-float-label inputformflex" *ngIf="this.resellerObj.cnpj_cpf === ''">
+                <input id="cpf" formControlName="cpfControl" size="30" [textMask]="{mask: CPFMASK}" pInputText>
+                <label for="cpf">Digite seu CPF</label>
+                <span class="error" *ngIf="ticketGroup.get('cpfControl').touched && ticketGroup.get('cpfControl').hasError('pattern')">CPF
+                  inválido!</span>
+                <span class="error" *ngIf="ticketGroup.get('cpfControl').hasError('required')">Obrigatório!</span>
+              </div>
+              <div class="ui-float-label inputformflex">
+                <input id="cep" formControlName="cepControl" size="30" [textMask]="{mask: CEPMASK}" (keyup)="getCEP()" pInputText>
+                <label for="cep">Digite o CEP</label>
+                <i *ngIf="resellerCheck" class="fa fa-check checktrue" aria-hidden="true"></i>
+                <i *ngIf="resellerLoading" class="fa fa-spinner fa-pulse fa-fw checkload"></i>
+                <i *ngIf="resellerCheckfalse" class="fa fa-times checkfalse" aria-hidden="true"></i>
+                <span class="error" *ngIf="ticketGroup.get('cepControl').touched && ticketGroup.get('cepControl').hasError('pattern')">Formato
+                  de CEP inválido!</span>
+                <span class="error" *ngIf="ticketGroup.get('cepControl').hasError('required')">Obrigatório!</span>
+              </div>
+              <button class="btn orange max" (click)="getCEP();">Buscar CEP</button>
+              <div *ngIf="formAddress">
+                <div class="ui-float-label inputform">
+                  <input id="street" formControlName="streetControl" size="30" pInputText>
+                  <label for="street">Digite a rua</label>
+                  <span class="error" *ngIf="ticketGroup.get('streetControl').hasError('required')">Obrigatório!</span>
+                </div>
+                <div class="ui-float-label inputform">
+                  <input id="number" formControlName="numberControl" size="30" pInputText>
+                  <label for="number">Digite o número</label>
+                  <span class="error" *ngIf="ticketGroup.get('numberControl').hasError('required')">Obrigatório!</span>
+                </div>
+                <div class="ui-float-label inputform">
+                  <input id="district" formControlName="districtControl" size="30" pInputText>
+                  <label for="district">Digite o bairro</label>
+                  <span class="error" *ngIf="ticketGroup.get('districtControl').hasError('required')">Obrigatório!</span>
+                </div>
+                <div class="ui-float-label inputform">
+                  <input id="city" formControlName="cityControl" size="30" pInputText>
+                  <label for="city">Digite a cidade</label>
+                  <span class="error" *ngIf="ticketGroup.get('cityControl').hasError('required')">Obrigatório!</span>
+                </div>
+                <div class="ui-float-label inputform">
+                  <p-dropdown [options]="states" formControlName="stateControl"></p-dropdown>
+                  <label for="city">Selecione o estado</label>
+                  <span class="error" *ngIf="ticketGroup.get('stateControl').hasError('required')">Obrigatório!</span>
+                </div>
+              </div>
+              <button [disabled]="!ticketGroup.valid" (click)="sendPay('ticket')" class="btn orange max" [ngClass]="{'disabled':!ticketGroup.valid}">Gerar
+                Boleto</button>
+            </div>
+          </form>
+        </div>
+      </div> -->
+
+        <!-- <div class="methodPayment" *ngIf="paymentBitcoin">
+          <div style="text-align: center;">
+            <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+              <div style="min-width: 180px;" class="fsize-16 title-dblue center">Pagar com BitCoins</div>
+              <img style="min-width: 120px;" src="assets/img/bar_bitcoin.png" style="padding-left: 10px;">
+            </div>
+            <div class="button">
+              <div class="valor">Valor:
+                <span class="price" [innerHtml]="eventValue | conversion : 'BRL'"></span>
+              </div>
+              <a class="btn orange bit" (click)="sendPay('crypto_coins');">Comprar 1 Conexão com BitCoins</a>
+            </div>
+          </div>
+
+          <div class="warn">Atenção! É importante que o bloqueador de popup esteja desativado em seu navegador.</div>
+
+          <div style="text-align: center; margin-top: 30px;">
+            <div style="display:flex; justify-content: center; align-items: center;">
+              <div class="fsize-16 title-dblue center">Pagar com TED (transferência Bancária)</div>
+            </div>
+            <div class="button">
+              <div class="valor">Valor:
+                <span class="price" [innerHtml]="eventValue | conversion : 'BRL'"></span>
+              </div>
+              <a class="btn blue bit" (click)="sendPay('transfer_bank');">Comprar 1 Conexão via TED</a>
+            </div>
+          </div>
+
+        </div> -->
+
+        <div class="methodPayment" *ngIf="paymentCredit">
+          <div style="text-align: center;">
+            <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+              <div style="min-width: 180px;" class="fsize-16 title-dblue center">Pagar com seu Saldo: </div>
+            </div>
+            <div class="contentSaldo" *ngIf="creditok">
+              <div class="text-card">Saldo Disponível <span class="text" [ngClass]="{'green' : credit > 0}" [innerHTML]="credit | conversion : 'BRL'"></span></div>
+            </div>
+            <div class="button">
+              <div class="valor">Valor:
+                <span class="price" [innerHtml]="eventValue | conversion : 'BRL'"></span>
+              </div>
+              <a class="btn green bit"  (click)="sendPay('platform_credit');">Comprar 1 Ingresso</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://commerce.coinbase.com/v1/checkout.js?version=201807"></script>

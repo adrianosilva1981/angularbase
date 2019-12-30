@@ -1,0 +1,21 @@
+<div>
+    <div style="position: sticky;top: 0;right: 0;width: 100%; z-index: 9;">
+        <lib-components-progress-interceptor></lib-components-progress-interceptor>
+    </div>
+    <app-back-office-navtop></app-back-office-navtop>
+    <div class="contentAll">
+
+        <div class="sidebarMobilli">
+            <p-sidebar [(visible)]="visibleSidebar" [baseZIndex]="10000" blockScroll="true">
+                <app-back-office-navbar></app-back-office-navbar>
+            </p-sidebar>
+        </div>
+
+        <div class="sidebarDescktop">
+            <app-back-office-navbar></app-back-office-navbar>
+        </div>
+        <div class="contentCenter">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="subNav">
+  <div class="container">
+    <div class="iconsContent">
+      <div class="mobile d-xl-none d-lg-none d-md-none" (click)="sidebarView = true">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <div class="link">
+        <div class="btnLInk subscript" routerLink="/online-work">
+          <i class="fa fa-plus-square"></i>
+          <div class="text">ASSINE</div>
+        </div>
+      </div>
+
+      <div class="link">
+        <div class="btnLInk" routerLink="/department/opportunity">
+          Todas Oportunidades
+        </div>
+      </div>
+
+      <div class="link opts">
+        <span class="btnAct" (click)="activateCode()">
+          <i class="fa fa-unlock"></i>
+          <div class="text">
+            Ativar Código
+          </div>
+        </span>
+      </div>
+
+      <div class="link opts" *ngIf="userData?.id">
+        <a class="btnAct" href="https://dash.hyper.jobs" target="_blank">
+          <i class="fa fa-user"></i>
+          <div class="text">
+            Minha Conta
+          </div>
+        </a>
+      </div>
+
+      <div class="link search">
+        <lib-components-select-input-search  style="width: 100%;" [objOptions]="objOptonsSearch"></lib-components-select-input-search>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-sidebar [(visible)]="sidebarView" position="left" [baseZIndex]="10000">
+  <div class="menu-mobile ">
+    <div class="link" routerLink="">
+      <img src="global/img/logo_text.png" alt="">
+    </div>
+
+    <div class="link">
+      <div class="btnLInk" (click)="sidebarView = false" routerLink="/online-work">
+        <i class="fas fa-fw fa-plus-square"></i>
+        <span>ASSINE</span>
+      </div>
+    </div>
+
+    <div class="link">
+      <div class="btnLInk" (click)="sidebarView = false" routerLink="/department/opportunity">
+        <i class="fas fa-briefcase"></i>
+        Todas Oportunidades
+      </div>
+    </div>
+
+    <div class="link">
+      <div class="btnLInk">
+        <i class="fa fa-user"></i>
+        <a (click)="sidebarView = false" href="https://dash.hyper.jobs" target="_blank" *ngIf="userData?.id">
+          Minha Conta
+        </a>
+      </div>
+    </div>
+
+    <div class="link gift">
+      <span class="btnGift" (click)="activateCode()">
+        <div class="text" (click)="sidebarView = false">
+          <i class="fa fa-fw fa-unlock"></i>
+          <span class="t1">Ativar</span>
+          <span class="t2">Código</span>
+        </div>
+      </span>
+    </div>
+  </div>
+</p-sidebar>

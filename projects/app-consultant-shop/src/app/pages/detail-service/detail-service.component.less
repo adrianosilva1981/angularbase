@@ -1,0 +1,135 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.detail-product {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    margin-bottom: 25px;
+    .left-side {
+        flex: 1;
+        min-width: 300px;
+        border-right: 1px solid #f2f2f2;
+        .img {
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            border-bottom: 1px solid #f2f2f2;
+            .cnt {
+                position: relative;
+            }
+            .garantia, .preorder {
+                position: absolute;
+                top: -25px;
+                left: -25px;
+                img {
+                    width: 75px;
+                    height: auto;
+                }
+            }
+        }
+        .sold {
+            .title {
+                font-weight: bold;
+                font-size: 16px;
+                padding: 15px 25px;
+            }
+        }
+    }
+    .right-side {
+        flex: 1;
+        min-width: 300px;
+        .info {
+            padding: 25px;
+            .name-pro {
+                font-size: 30px;
+                font-weight: bold;
+            }
+            .discount {
+                display: flex;
+                color: white;
+                flex-wrap: wrap;
+                .smart {
+                    padding: 3px 15px;
+                    background: @orange1;
+                    font-size: 13px;
+                    .color {
+                        color: @blue1;
+                        font-weight: bold;
+                        font-size: 11px;
+                    }
+                }
+                .prime {
+                    padding: 3px 15px;
+                    background: @blue1;
+                    margin-right: 10px;
+                    font-size: 13px;
+                    .color {
+                        margin-right: 5px;
+                        color: @orange1;
+                        font-weight: bold;
+                        font-size: 11px;
+                    }
+                }
+            }
+            .price {
+                font-size: 26px;
+                margin-top: 15px;
+            }
+            .bt {
+                .btn {
+                    padding: 7px;
+                    border-radius: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    background: @orange1;
+                    max-width: 175px;
+                    margin: 25px 0;
+                    &.success {
+                        .flipInX(1.0s);
+                        background: @grey2;
+                        color: @blue2;
+                    }
+                    &.off {
+                        .flipInX(1.0s);
+                    }
+                }
+            }
+        }
+        .intro {
+            padding: 25px;
+            .bold {
+                font-weight: bold;
+                margin-bottom: 15px;
+                font-size: 16px;
+            }
+            .text {}
+        }
+        .info-product {
+            padding: 25px;
+            .bold {
+                font-weight: bold;
+                margin-bottom: 15px;
+                font-size: 16px;
+            }
+            .item {
+                display: flex;
+                padding: 15px 0px;
+                align-items: center;
+                flex-wrap: wrap;
+                border-bottom: 1px solid #f2f2f2;
+                .name {
+                    width: 200px;
+                }
+                .desc {}
+            }
+        }
+        .social-medias {
+            .banner {}
+            .icons {
+                .fab {}
+            }
+        }
+    }
+}

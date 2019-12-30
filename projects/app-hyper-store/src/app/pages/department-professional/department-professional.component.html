@@ -1,0 +1,39 @@
+<div class="contentAllProfessional">
+  <div class="container">
+    <div class="header">      
+      <span class="btnFilter" (click)="display = true">
+        <i class="fa fa-sliders"></i>
+        <span class="text">Filtrar</span>
+      </span>
+      <div class="clearfix"></div>
+    </div>
+    
+    <div class="contentAll">
+
+      <div class="contentFilter">
+        <app-hyper-store-filter-professional></app-hyper-store-filter-professional>
+      </div>
+
+      <p-sidebar [(visible)]="display" position="right" blockScroll="true">
+        <app-hyper-store-filter-professional></app-hyper-store-filter-professional>
+      </p-sidebar>
+
+      <div class="contentResult">
+        <div class="contentCards grid">
+          <div *ngIf="objProfessional?.length === 0" class="noData">
+            <div class="text">Nenhum profissional encontrado para o filtro aplicado</div>
+            <div class="contentBtn">
+              <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+            </div>
+          </div>
+          <app-hyper-store-thumbnail-user *ngFor="let professional of objProfessional" [user]="professional"></app-hyper-store-thumbnail-user>
+        </div>
+
+        <div class="contentLoadMore" *ngIf="objProfessional?.length > 0">
+          <div class="btn btnLoadMore" (click)="loadMoreResults()">Ver Mais</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

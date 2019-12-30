@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="box">
+    <div class="text">
+      <div class="t1">Escolha o valor desejado. Valor mínimo de R$ 30.00. </div>
+      <div class="t1">A solicitação de resgate está disponível conforme o plano do assinante, e número de solicitações dentro do mesmo mês,
+        estando cabíveis à cobrança de tarifa de
+        <b>R$ 12.00</b>
+        por resgate.</div>
+      <div class="t1 warn">O resgate será processado em até 5 dias úteis após a solicitação.</div>
+      <div class="t1 warn">O resgate será processado apenas em conta vinculada ao CPF/CNPJ do usuário. Agradecemos a compreensão.</div>
+    </div>
+    <div class="balance">
+      <div class="value">
+        Saldo: {{userBalance?.symbol}} {{userBalance?.balance }}
+      </div>
+    </div>
+    <div class="value-info">
+      <div class="select-account">
+        <span class="input">
+          <i class="symbol-money">R$</i>
+          <input class="add-input" type="number" min="0.00" max="10000.00" step="0.01" placeholder="Ex.: 30.00" [(ngModel)]="withdrawValue"
+            pKeyFilter="money">
+          <i class="material-icons">
+            monetization_on
+          </i>
+        </span>
+      </div>
+      <ng-container *ngIf="withdrawValue != undefined ">
+        <div class="fee">Taxa administrativa: - R$ 12.00</div>
+        <div class="value-withdraw">Valor a ser resgatado:
+          <span innerHTML="{{withdrawValue - 12 | conversion : 'BRL'}}"></span>
+        </div>
+      </ng-container>
+    </div>
+    <div class="withdraw-info">
+      <p-dropdown [options]="userBank" styleClass="withdrawDrop" [(ngModel)]="selectedBank" placeholder="Banco"></p-dropdown>
+      <div class="info-acc" *ngIf="selectedBank != undefined">
+        <div class="account_number">Agência: {{selectedBank?.agency_number}}</div>
+        <div class="account_number">{{selectedBank?.operation}}: {{selectedBank?.account_number}}</div>
+      </div>
+    </div>
+    <div class="bt">
+      <div class="btn green" (click)="withdraw()">Resgatar</div>
+    </div>
+    <div class="tab">
+      <p-tabView styleClass="withdrawTab">
+        <p-tabPanel header="Resgates solicitados">
+          <ng-template pTemplate>
+            <p-table [columns]="cols" [value]="listWithdraw">
+              <ng-template pTemplate="header" let-columns>
+                <tr>
+                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                  <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel header="Cadastrar Conta">
+          <ng-template pTemplate>
+            <form [formGroup]="newBankAcc">
+              <p-dropdown [options]="listBank" styleClass="withdrawDrop" emptyFilterMessage="Banco inexistente" filter="true" formControlName="bank_number"
+                placeholder="Nome do Banco"></p-dropdown>
+              <p-dropdown [options]="typeAcc" styleClass="withdrawDrop" formControlName="operation" placeholder="Tipo de conta"></p-dropdown>
+              <div class="nr-group">
+                <div class="form-group">
+                  <label>Número da agência</label>
+                  <input class="form-control" type="text" pKeyFilter="pint" formControlName="agency_number">
+                </div>
+                <div class="form-group">
+                  <label>Dígito da agência</label>
+                  <input class="form-control digit" type="text" maxlength="1" pKeyFilter="pint" formControlName="digitAg">
+                </div>
+                <div class="form-group">
+                  <label>Número da conta</label>
+                  <input class="form-control" type="text" pKeyFilter="pint" formControlName="account_number">
+                </div>
+                <div class="form-group">
+                  <label>Dígito da agência</label>
+                  <input class="form-control digit" type="text" maxlength="1" pKeyFilter="pint" formControlName="digitAcc">
+                </div>
+              </div>
+              <div class="bt">
+                <div class="btn green" (click)="registerAcc()">
+                  Cadastrar
+                </div>
+              </div>
+            </form>
+          </ng-template>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,186 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.settings {
+    margin-top: 25px;
+    min-height: 385px;
+    .containerServices {
+        display: flex;
+        flex-wrap: wrap;
+        .cnt {
+            flex: 1;
+            @media screen and (max-width: 768px) {
+                margin: 0;
+            }
+            .breadcrumb {
+                border-bottom: 1px solid @blue1;
+                background: transparent;
+                display: flex;
+                align-items: center;
+                padding: 0px 5px 10px 5px;
+                .cntBread {
+                    &:last-of-type {
+                        .itemBread {
+                            pointer-events: none;
+                        }
+                    }
+                    .separate {
+                        margin: 0px 5px;
+                    }
+                    .itemBread {
+                        cursor: pointer;
+                        color: @grey8;
+                        &:hover {
+                            color: @blue1;
+                        }
+                    }
+                }
+            }
+            .title {
+                margin-bottom: 15px;
+            }
+            .content-services {
+                background: white;
+                box-shadow: 1px 1px 1px 1px #ccc;
+                // padding: 20px;
+                .headlight {
+                    background: @grey2;
+                    display: flex;
+                    padding: 10px 20px;
+                    align-items: center;
+                    @media screen and (max-width: 540px) {
+                        display: none;
+                    }
+                    .select-all, .comission {
+                        flex: 1;
+                        color: @blue2;
+                    }
+                    .comission {
+                        text-align: center;
+                        flex: 0.5;
+                    }
+                    .detail {
+                        text-align: center;
+                        min-width: 140px;
+                        color: @blue2;
+                    }
+                }
+                .service {
+                    .item-cont {
+                        font-size: 16px;
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        padding: 0px 20px;
+                        min-height: 51px;
+                        border-bottom: 1px solid @grey3;
+                        @media screen and (max-width: 565px) {
+                            text-align: center;
+                            justify-content: center;
+                        }
+                        .select {
+                            color: @grey8;
+                            flex: 1;
+                            min-width: 150px;
+                            display: flex;
+                            align-items: center;
+                            .labell {
+                                margin-top: 3px;
+                                cursor: pointer;
+                                &:hover {
+                                    color: @blue1;
+                                }
+                                &.disabled {
+                                    pointer-events: none;
+                                    cursor: text;
+                                    &:hover {
+                                        color: inherit;
+                                    }
+                                }
+                            }
+                        }
+                        .moreInfo {
+                            cursor: pointer;
+                            width: 35px;
+                            text-align: center;
+                            padding: 2px 0px;
+                            border: 1px solid @blue1;
+                            margin-left: 5px;
+                            .radius(5px);
+                            i {
+                                font-size: 20px;
+                                color: @blue1;
+                            }
+                        }
+                        .com-value {
+                            color: @yellow1;
+                            flex: 0.5;
+                            text-align: center;
+                            min-width: 150px;
+                        }
+                        .value {
+                            color: @green1;
+                            text-align: center;
+                            min-width: 140px;
+                        }
+                        .detail {
+                            min-width: 120px;
+                            margin: 10px;
+                            &.last {
+                                margin: 0;
+                            }
+                            .btn {
+                                background: @grey5;
+                                color: white;
+                                margin: 0;
+                                border: none;
+                                &:hover {
+                                    background: @blue1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .contentBtn {
+                margin: 20px 0px;
+                text-align: center;
+                .btnSend {
+                    background: @green1;
+                    display: inline-block;
+                    padding: 10px 40px;
+                    cursor: pointer;
+                    .radius(5px);
+                    color: #fff;
+                    &:hover {
+                        background: @green2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dialog-service {
+    max-width: 600px;
+    .img {
+        float: left;
+        margin: 5px 10px;
+        @media screen and (max-width: 600px) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+    .title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .desc {
+        text-align: justify;
+    }
+    .price {
+        text-align: right;
+        margin-top: 10px;
+        font-size: 30px;
+        color: #6FB309;
+    }
+}

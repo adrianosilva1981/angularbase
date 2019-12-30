@@ -1,0 +1,40 @@
+<div class="contentAllProducts">
+  <!-- <app-hyper-store-filter-guide (category)="category" (search)="search"></app-hyper-store-filter-guide> -->
+  <app-hyper-store-filter-guide (result)="filtered($event)"></app-hyper-store-filter-guide>
+  <div class="contentAll">
+    <div class="filter">
+      <div class="contentBtn">
+        <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+      </div>
+      <div class="filterIn">
+        <div class="cntFilter">
+          <div class="loopType" *ngFor="let filter of filters">
+            <div class="cntFilt" [class.active]="filter.selected" (click)="attFilter(filter)">
+              <i class="fa fa-fw" aria-hidden="true"></i>
+              <span class="val">{{filter.title}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentResult">
+      <div class="contentCards grid">
+        <div *ngIf="hyperGuide.length === 0" class="noData">
+          <div class="text">Nenhum guia encontrado para o filtro aplicado</div>
+          <!-- <div class="text">Cadastre ou indique um local</div> -->
+          <div class="contentBtn">
+            <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+          </div>
+        </div>
+        <app-hyper-store-thumbnail-guide *ngFor="let guides of hyperGuide" [itemObject]="guides">
+        </app-hyper-store-thumbnail-guide>
+      </div>
+
+      <div class="contentLoadMore" *ngIf="hyperGuide?.length > 0 && count > hyperGuide?.length">
+        <div class="btn btnLoadMore" (click)="loadMoreResults()">Ver Mais</div>
+      </div>
+    </div>
+
+  </div>
+</div>

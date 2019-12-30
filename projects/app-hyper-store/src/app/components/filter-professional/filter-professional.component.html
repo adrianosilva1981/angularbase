@@ -1,0 +1,42 @@
+<div class="filterProfessional">
+  <div class="contentBtn">
+    <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+  </div>
+  <div class="orderSelect form-group">
+    <label>Ordenar por:</label>
+    <select #order class="form-control" (change)="onOrderChange(order.value)">
+      <option [selected]="!queryParams?.order" disabled value="">Selecione</option>
+      <option [selected]="queryParams?.order==='recentDesc'" value="recentDesc">Mais Recentes</option>
+      <option [selected]="queryParams?.order==='nameAsc'" value="nameAsc">Nome [A-Z] </option>
+      <option [selected]="queryParams?.order==='nameDesc'" value="nameDesc">Nome [Z-A]</option>
+      <option [selected]="queryParams?.order==='popularDesc'" value="popularDesc">Mais Polulares</option>
+      <option [selected]="queryParams?.order==='popularAsc'" value="popularAsc">Menos Populares</option>
+      <option [selected]="queryParams?.order==='salaryDesc'" value="salaryDesc">Maior Salário</option>
+      <option [selected]="queryParams?.order==='salaryAsc'" value="salaryAsc">Menor Salário</option>
+    </select>
+  </div>
+  <div class="filter">
+    <div class="filterCity">
+      <div class="lbl">Cidade:</div>
+      <div class="search">
+        <div class="sContent">
+          <input [(ngModel)]="srcCity" type="search" class="sInput" (blur)="searchCity()" (keyup.enter)="searchCity()" placeholder="EX.: São Paulo">
+          <span class="sIcon" (click)="searchCity()">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="filterOcupations">
+      <div class="lbl">Profissão:</div>
+      <div class="search">
+        <div class="sContent">
+          <input [(ngModel)]="srcOcupation" type="search" class="sInput" (blur)="searchOcupation()" (keyup.enter)="searchOcupation()" placeholder="EX.: Analista">
+          <span class="sIcon" (click)="searchOcupation()">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

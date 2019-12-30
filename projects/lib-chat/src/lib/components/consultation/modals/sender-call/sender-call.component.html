@@ -1,0 +1,32 @@
+<div class="contentModal">
+  <div class="content center">
+    <div class="contentClose">
+      <button class="btnClose" tabindex="-1" [mat-dialog-close]="'refused'">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="photo">
+      <img class="imgCircle" [src]="params.user_receiver.photoUrl">
+    </div>
+    <div class="userMessage">Chamando...</div>
+    <div class="userName">{{params.user_receiver.name}}</div>    
+    <div class="contentButtons">
+      <div class="callButtons">
+        <div class="containerButtons">          
+          <div class="buttonCall">
+            <div class="outDecline">
+              <button class="buttonDecline" tabindex="-1" [mat-dialog-close]="'cancel'"><i class="fa fa-phone" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom center">
+    <div class="bottomTitle">
+      <h5>{{params.job.name}}</h5>
+      <p>{{params.job.category + ' / ' + params.job.subcategory}}</p>
+    </div>
+    <div class="textCall">{{params.job.description | words : 120 : '...'}}</div>
+  </div>
+</div>

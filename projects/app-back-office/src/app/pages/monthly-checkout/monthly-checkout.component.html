@@ -1,0 +1,351 @@
+<div class="content">
+  <div class="title">Faça sua habilitação</div>
+  <div class="checkoutnew">
+    <div class="data" *ngIf="plan">
+      <div class="box">
+        <div class="title">Plano Básico</div>
+        <div class="desc">Neste você terá que consumir produtos e adquirir {{plan.points_activation}} pontos</div>
+        <a href='https://store.youhub.com.br' target="_blank" style="text-decoration: none;">
+          <div class="btn btnlink blue btn_store">Ir para Loja</div>
+        </a>
+      </div>
+      <div class="box" style="margin-bottom:5px;">
+        <div class="title">*Plano {{plan.name}}</div>
+        <ul class="list">
+          <li class="item">Finders Fee</li>
+          <li class="item">Galáxia</li>
+          <li class="item">Loja para Revenda Digital</li>
+        </ul>
+        <div class="price">
+          <span class="text">Apenas</span>
+          <div class="value_text">
+            <span class="value" [innerHtml]="plan.monthly_value | conversion : 'BRL'"></span>
+            <span class="text">/ao mês</span>
+          </div>
+        </div>
+      </div>
+      <div class="button_plus green">+</div>
+      <div class="box">
+        <div class="points">
+          <span class="p1">Ganhe </span>
+          <span class="p2">{{plan.points}}</span>
+          <span class="p3"> pontos</span>
+        </div>
+        <!-- <div class="btn btn_premium">Quero PREMIUM</div> -->
+      </div>
+      <div class="info">*Com este plano fica faltando apenas {{plan.points_activation - plan.points}} pontos para sua
+        ativação</div>
+    </div>
+
+    <div class="payments">
+      <div class="checkout">
+        <div>
+          <div>Para se ativar e receber as bonificações do ciclo você tem que ter {{plan.points_activation}} pontos</div>
+          <div>Seu próximo pagamento deverá ser feito sempre dentro do ciclo de bonificação.</div>
+        </div>
+        <div class="line"></div>
+
+        <div *ngIf="plan">
+          <div class="details_plan">
+            <div class="data">
+              <div class="title">Plano {{plan.name}}</div>
+              <div class="desc">Com este Pack você ganhará {{plan.points}} pontos que ajudara você a ativar seu
+                cadastro. </div>
+            </div>
+            <div class="value">
+              <div class="details">
+                <div class="item">Valor</div>
+                <div class="item">Pontos</div>
+              </div>
+              <div class="values">
+                <div class="item" [innerHtml]="plan.monthly_value | conversion : plan.initials"></div>
+                <div class="item">{{plan.points}} pontos</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="Justifydiv" *ngIf="plan.value != 0 || plan.monthly_value != 0">
+            <div class="methodPayment">
+              <!-- Cartão de Crédito -->
+              <div *ngIf="paymentCreditCard">
+                <div class="line"></div>
+                <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+                  <div style="min-width: 170px;" class="fsize-16 title-dblue center">Cartões de Crédito</div>
+                  <div style="min-width: 250px;">
+                    <img src="assets/img/elo.png" style="padding-left: 10px;">
+                    <img src="assets/img/hiper.png" style="padding-left: 10px;">
+                    <img src="assets/img/master.png" style="padding-left: 10px;">
+                    <img src="assets/img/visa.png" style="padding-left: 10px;">
+                  </div>
+                </div>
+                <div class="center">
+                  <form [formGroup]="creditCardGroup" class="formcard">
+
+                    <!-- <div class="ui-float-label inputform center">
+                            <mat-checkbox class="example-margin" formControlName="autorized" name="autorized" color="warn"></mat-checkbox><span
+                              style="word-break: break-word">Autorizo o pagamento automático da mensalidade em meu cartão de
+                              crédito.</span>
+                          </div> -->
+
+                    <div class="ui-float-label">
+                      <input id="float-input" type="text" [textMask]="{mask: cardMask}" formControlName="cardNumber"
+                        size="30" pInputText>
+                      <label for="float-input">Número do Cartão de Crédito</label>
+                      <span class="error" *ngIf="creditCardGroup.get('cardNumber').hasError('pattern')">
+                        E-mail inválido
+                      </span>
+                      <span class="error" *ngIf="creditCardGroup.get('cardNumber').hasError('required')">
+                        Obrigatório
+                      </span>
+                    </div>
+                    <div class="ui-float-label">
+                      <input id="float-input" type="text" formControlName="cardName" size="30" pInputText>
+                      <label for="float-input">Nome como está no cartão</label>
+                      <span class="error" *ngIf="creditCardGroup.get('cardName').hasError('pattern')">
+                        E-mail inválido
+                      </span>
+                      <span class="error" *ngIf="creditCardGroup.get('cardName').hasError('required')">
+                        Obrigatório
+                      </span>
+                    </div>
+                    <div class="mt-4">
+                      <p-dropdown [options]="creditCardParcels" formControlName="numberOfParcels"></p-dropdown>
+                    </div>
+                    <div class="mt-4 display-flex">
+                      <div class="flex-1">
+                        <p-dropdown [options]="months" formControlName="cardMonth"></p-dropdown>
+                      </div>
+                      <div class="flex-1">
+                        <p-dropdown [options]="years" formControlName="cardYear"></p-dropdown>
+                      </div>
+                      <div class="ui-float-label input-cvv">
+                        <input id="float-input" maxlength="4" formControlName="cardCVV" pInputText>
+                        <label for="float-input">CVV</label>
+                        <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('required')"> Obrigatório
+                        </span>
+                        <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('pattern')">Somente Números</span>
+                        <span class="error" *ngIf="creditCardGroup.get('cardCVV').hasError('minlength')">Mínimo 3</span>
+
+                      </div>
+                    </div>
+                    <button class="btn orange max" [disabled]="!creditCardGroup.valid || !sendpayOk" (click)="sendPay('credit_card')"
+                      [ngClass]="{'disabled':!creditCardGroup.valid || !sendpayOk}">Pagar</button>
+                  </form>
+                </div>
+              </div>
+
+
+              <!-- Boleto -->
+              <div *ngIf="paymentTicket">
+                <div class="line"></div>
+                <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+                  <div style="min-width: 150px;" class="fsize-16 title-dblue center">Boleto Bancário</div>
+                  <div style="min-width: 150px;">
+                    <img src="assets/img/boleto.png" style="padding-left: 10px;">
+                  </div>
+                </div>
+                <div class="w-100 mt-5 center">
+                  <form [formGroup]="ticketGroup">
+                    <div class="contentComplete">
+                      <div class="ui-float-label inputformflex" *ngIf="this.resellerObj.cnpj_cpf === ''">
+                        <input id="cpf" formControlName="cpfControl" size="30" [textMask]="{mask: CPFMASK}" pInputText>
+                        <label for="cpf">Digite seu CPF</label>
+                        <span class="error" *ngIf="ticketGroup.get('cpfControl').touched && ticketGroup.get('cpfControl').hasError('pattern')">CPF
+                          inválido!
+                        </span>
+                        <span class="error" *ngIf="ticketGroup.get('cpfControl').hasError('required')">Obrigatório!</span>
+                      </div>
+                      <div class="ui-float-label inputformflex">
+                        <input id="cep" formControlName="cepControl" size="30" [textMask]="{mask: CEPMASK}" (keyup)="getCEP()"
+                          pInputText>
+                        <label for="cep">Digite o CEP</label>
+                        <i *ngIf="resellerCheck" class="fa fa-check checktrue" aria-hidden="true"></i>
+                        <i *ngIf="resellerLoading" class="fa fa-spinner fa-pulse fa-fw checkload"></i>
+                        <i *ngIf="resellerCheckfalse" class="fa fa-times checkfalse" aria-hidden="true"></i>
+                        <span class="error" *ngIf="ticketGroup.get('cepControl').touched && ticketGroup.get('cepControl').hasError('pattern')">Formato
+                          de CEP inválido!</span>
+                        <span class="error" *ngIf="ticketGroup.get('cepControl').hasError('required')">Obrigatório!</span>
+                      </div>
+                      <button class="btn orange max" (click)="getCEP();">Buscar CEP</button>
+                      <div *ngIf="formAddress">
+                        <div class="ui-float-label inputform">
+                          <input id="street" formControlName="streetControl" size="30" pInputText>
+                          <label for="street">Digite a rua</label>
+                          <span class="error" *ngIf="ticketGroup.get('streetControl').hasError('required')">Obrigatório!</span>
+                        </div>
+                        <div class="ui-float-label inputform">
+                          <input id="number" formControlName="numberControl" size="30" pInputText>
+                          <label for="number">Digite o número</label>
+                          <span class="error" *ngIf="ticketGroup.get('numberControl').hasError('required')">Obrigatório!</span>
+                        </div>
+                        <div class="ui-float-label inputform">
+                          <input id="district" formControlName="districtControl" size="30" pInputText>
+                          <label for="district">Digite o bairro</label>
+                          <span class="error" *ngIf="ticketGroup.get('districtControl').hasError('required')">Obrigatório!</span>
+                        </div>
+                        <div class="ui-float-label inputform">
+                          <input id="city" formControlName="cityControl" size="30" pInputText>
+                          <label for="city">Digite a cidade</label>
+                          <span class="error" *ngIf="ticketGroup.get('cityControl').hasError('required')">Obrigatório!</span>
+                        </div>
+                        <div class="ui-float-label inputform">
+                          <p-dropdown [options]="states" formControlName="stateControl"></p-dropdown>
+                          <label for="city">Selecione o estado</label>
+                          <span class="error" *ngIf="ticketGroup.get('stateControl').hasError('required')">Obrigatório!</span>
+                        </div>
+                      </div>
+                      <button [disabled]="!ticketGroup.valid" (click)="sendPay('ticket')" class="btn orange max"
+                        [ngClass]="{'disabled':!ticketGroup.valid}">Gerar
+                        Boleto
+                      </button>
+                    </div>
+                  </form>
+
+                  <div *ngIf="ticket?.length > 0">
+                    Solicitações de Pagamento por Boleto
+                    <p-table styleClass="classetable" [responsive]="true" [value]="ticket">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th style="width:7em">Data</th>
+                          <th style="width:6em">Valor</th>
+                          <th style="width:6em">link</th>
+                          <th style="width:6em">Status</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-grad let-rowData>
+                        <tr>
+                          <td>{{grad.created}}</td>
+                          <td>{{grad.mensalidade}}</td>
+                          <td><a [href]='grad.ticket_url' target="_blank">{{grad.ticket_url}}</a></td>
+                          <td>{{stage[grad.stage]}}</td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ted -->
+              <div *ngIf="paymentTed">
+                <div class="line"></div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="text-align: center; margin-top: 30px;">
+                    <div style="display:flex; justify-content: center; align-items: center;">
+                      <div class="fsize-16 title-dblue center">Pagar com TED (transferência Bancária)</div>
+                    </div>
+                    <div class="button">
+                      <div class="valor">Valor:
+                        <span class="price" [innerHtml]="amountPlan | conversion : 'BRL'"></span>
+                      </div>
+                      <a class="btn blue bit" (click)="sendPay('transfer_bank');">1 Renovação via TED</a>
+                    </div>
+                  </div>
+                  <div style=" flex: 1; max-width: 450px;">
+                    <div class="title">Como Funciona?</div>
+                    <div class="text">Ao clicar no botão sua solicitação é enviada.</div>
+                    <div class="text">Você faz a solicitação dos dados bancários enviando um e-mail para <span class="mail">financeiro@youhub.com.br</span>.</div>
+                    <div class="text">Você receberá as instruções em seu e-mail.</div>
+                    <div class="text">Depois de confirmado o pagamento, sua mensalidade será liberada.</div>
+                  </div>
+                  <div *ngIf="transfer_bank?.length > 0">
+                    Solicitações de Pagamento por TED
+                    <p-table styleClass="classetable" [responsive]="true" [value]="transfer_bank">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th style="width:7em">Data</th>
+                          <th style="width:6em">Valor</th>
+                          <th style="width:6em">Status</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-grad let-rowData>
+                        <tr>
+                          <td>{{grad.created}}</td>
+                          <td>{{grad.mensalidade}}</td>
+                          <td>{{stage[grad.stage]}}</td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </div>
+                </div>
+              </div>
+
+              <!--Bitcoin -->
+              <div *ngIf="paymentBitcoin">
+                <div class="line"></div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="text-align: center;">
+                    <div style="display:flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+                      <div style="min-width: 180px;" class="fsize-16 title-dblue center">Pagar com BitCoins</div>
+                      <img style="min-width: 120px;" src="assets/img/bar_bitcoin.png" style="padding-left: 10px;">
+                    </div>
+                    <div class="button">
+                      <div class="valor">Valor:
+                        <span class="price" [innerHtml]="amountPlan | conversion : 'BRL'"></span>
+                      </div>
+                      <a class="btn orange bit" (click)="sendPay('crypto_coins');">1 Renovação com BitCoins</a>
+                    </div>
+                  </div>
+                  <div style="  flex: 1; max-width: 450px;">
+                    <div class="title">Como Funciona?</div>
+                    <div class="text">Ao clicar no botão sua solicitação é enviada, e é aberto um *popup para fazer a
+                      transação.</div>
+                    <div class="text">Você usa seu e-mail cadastrado no YOUHUB para comprar sua conexão.</div>
+                    <div class="text">Após a compra envie um email para <span class="mail">financeiro@youhub.com.br</span>
+                      e
+                      confime seu pagamento da mensalidade.</div>
+                    <div class="text">Depois de confirmado o pagamento, sua mensalidade será liberada.</div>
+                  </div>
+                  <div class="warn">*Atenção! É importante que o bloqueador de popup esteja desativado em seu
+                    navegador.</div>
+                  <div *ngIf="crypto_coins?.length > 0">
+                    Solicitações de Pagamento por BitCoins
+                    <p-table styleClass="classetable" [responsive]="true" [value]="crypto_coins">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th style="width:7em">Data</th>
+                          <th style="width:6em">Valor</th>
+                          <th style="width:6em">Status</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-grad let-rowData>
+                        <tr>
+                          <td>{{grad.created}}</td>
+                          <td>{{grad.mensalidade}}</td>
+                          <td>{{stage[grad.stage]}}</td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- credito da plataforma -->
+              <div *ngIf="paymentCredit">
+                <div class="line"></div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div>
+                    <div>
+                      <div style="min-width: 180px;" class="fsize-16 title-dblue center">Pagar com seu Saldo: </div>
+                    </div>
+                    <div class="contentSaldo" *ngIf="creditok">
+                      <div class="text-card">Saldo Disponível:  <span class="text" [ngClass]="{'green' : credit > 0}"
+                          [innerHTML]="credit | conversion : 'BRL'"></span></div>
+                    </div>
+                    <div class="button">
+                      <div class="valor">Valor:
+                        <span class="price" [innerHtml]="amountPlan | conversion : 'BRL'"></span>
+                      </div>
+                      <a class="btn green bit" (click)="sendPay('platform_credit');">1 Renovação com Saldo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://commerce.coinbase.com/v1/checkout.js?version=201807"></script>

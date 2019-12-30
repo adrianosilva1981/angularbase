@@ -1,0 +1,24 @@
+<div class="mainLayout" [class.sideNav]="sideNavAction === 'open'">
+    <div class="contentNav">
+        <lib-navbar-nav-top></lib-navbar-nav-top>
+
+        <div class="menuItem">
+            <lib-components-select-input-search [objOptions]="objOptonsSearch"></lib-components-select-input-search>
+        </div>
+        <app-hyper-store-sub-navbar></app-hyper-store-sub-navbar>
+        <lib-components-progress-interceptor></lib-components-progress-interceptor>
+    </div>
+    <div class="contentPage">
+        <div [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-220px'}">
+            <div class="clearfix"></div>
+            <div class="container">
+                <div class="contentBreadCrumbs">
+                    <lib-components-breadcrumb></lib-components-breadcrumb>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+            <div [ngStyle]="{'height': '220px'}"></div>
+        </div>
+        <app-hyper-store-footer></app-hyper-store-footer>
+    </div>
+</div>

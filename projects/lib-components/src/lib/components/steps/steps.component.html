@@ -1,0 +1,12 @@
+<div class="contentStatus">
+  <div class="itemShop" *ngFor="let step of options; let idx = index">
+    <div class="graph">
+      <div class="trace" [class.active]="current >= (idx + 1)"></div>
+      <div class="circle" [class.active]="current >= (idx + 1) || idx === 0">
+        <i class="fas" [ngClass]="step?.icon"></i>
+      </div>
+      <div class="trace" [class.active]="current > (idx + 1)"></div>
+    </div>
+    <div class="text" translate>{{step?.text}}</div>
+  </div>
+</div>

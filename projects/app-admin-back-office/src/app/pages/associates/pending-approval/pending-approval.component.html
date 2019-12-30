@@ -1,0 +1,40 @@
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-12 jumbotron">
+      <h1>Associados pendentes de aprovação</h1>
+    </div>
+    <div class="col-12">
+      <p-table #dt autoLayout="true" [columns]="cols" [value]="users" [responsive]="true" class="table" [rows]="10" [paginator]="true">
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th>
+              <div class="header">
+                Ativar
+              </div>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{rowData[col.field]}}
+            </td>
+            <td>
+              <span (click)="updateUser(rowData)" class="link" title="Confirmar Pagamento">
+                <i class="fas fa-clipboard-check"></i>
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+</div>

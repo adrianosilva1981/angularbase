@@ -1,0 +1,138 @@
+<div class="container-fluid">
+  <div class="row mx-3 rowBreadCrumb">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>
+        Intervalo de {{interval[0]|date:'dd/MM/yyyy'}} até {{interval[1]|date:'dd/MM/yyyy'}}
+      </h4>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Loja
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{shop?.title}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Total de vendas
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{orders?.length}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Proprietário
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{shop?.name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Email
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{shop?.mail}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Valor total
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{total|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center py-5 mx-1">
+    <div class="col-12">
+      <p-table #dt [columns]="cols" [value]="orders" rowExpandMode="single"  [paginator]="true" dataKey="idOrder" [rows]="20" [responsive]="true"
+        [autoLayout]="true">
+
+        <ng-template pTemplate="caption">
+          <div class="row justify-content-center">
+            <!-- <div class="col">
+                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    style="width:auto">
+                </div> -->
+            <div class="col">
+              <button type="button" class="btn btn-primary btn-sm" (click)="exportExcel(dt)">Exportar</button>
+            </div>
+          </div>
+
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-expanded="expanded">
+          <tr [pRowToggler]="rowData">
+            <td *ngFor="let col of columns">
+              {{
+              (col.field.includes('payment'))? (rowData[col.field]|date:'dd/MM/yyyy')
+              :(col.field.includes('value'))? (rowData[col.field]|conversion:'BRL':false)
+              :(col.field.includes('method'))? (returnMethodLabel(rowData[col.field]))
+              :rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+          <tr>
+            <td [attr.colspan]="columns.length + 1">
+              <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-lg-4 my-3" *ngFor="let item of rowData?.items_sold">
+                  <div class="container-fluid card">
+                    Item: {{item?.name}} <br>
+                    Quantidade: {{item?.qtd}} <br>
+                    Valor unitário : {{item?.item_value|conversion:'BRL':false}} <br>
+                    Tipo do item: {{item?.type_item}}
+                  </div>
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+
+</div>

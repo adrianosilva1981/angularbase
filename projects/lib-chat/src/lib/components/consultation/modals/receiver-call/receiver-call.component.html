@@ -1,0 +1,37 @@
+<div class="contentModal">
+  <div class="content center">
+    <div class="contentClose">
+      <button class="btnClose" tabindex="-1" [mat-dialog-close]="'refused'">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="photo">
+      <img class="imgCircle" [src]="objInit.user_sender.photoUrl">
+    </div>
+    <div class="userName">{{objInit.user_sender.name}}</div>
+    <div class="userMessage"> {{objInit.service_type === 'buy' ? 'solicita uma consuta' : 'deseja prestar uma consultoria'}}</div>
+    <div class="contentButtons">
+      <div class="callButtons">
+        <div class="containerButtons">
+          <div class="buttonCall">
+            <div class="outAccept">
+              <button class="buttonAccept" tabindex="-1" [mat-dialog-close]="'accept'"><i class="fa fa-phone" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <div class="buttonCall">
+            <div class="outDecline">
+              <button class="buttonDecline" tabindex="-1" [mat-dialog-close]="'refused'"><i class="fa fa-phone" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom center">
+    <div class="bottomTitle">
+      <h5>{{objInit.job.name}}</h5>
+      <p>{{objInit.job.category + ' / ' + objInit.job.subcategory}}</p>
+    </div>
+    <div class="textCall">{{objInit.job.description | words : 120 : '...'}}</div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="content">
+
+  <div class="bonus">
+
+    <div class="contentline">
+
+      <div class="title">Selecione o Período</div>
+      <div class="form-group" style="display: flex;">
+        <div style="width: 150px; padding: 20px 10px 0 10px;">
+          <p-dropdown [options]="year" styleClass="extract" dropdownIcon="fas fa-caret-down" [(ngModel)]="periodYear"></p-dropdown>
+        </div>
+        <div style="width: 200px; padding: 20px 10px 0 10px;">
+          <p-dropdown [options]="month" styleClass="extract" dropdownIcon="fas fa-caret-down"  [(ngModel)]="period"></p-dropdown>
+        </div>
+        <div class="btn orange" (click)="filter()">Pesquisar</div>
+      </div>
+
+
+      <div class="balance">
+        <div style="display: flex; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
+          <div style="flex:1; min-width: 200px;">
+            <div class="text">Total de Bonificações Mensal</div>
+            <div style="margin-top: 30px;">
+              <div class="value" [innerHTML]="bonus.bonus_mensal | conversion : 'BRL'"></div>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div class="text">Total de Bonificações Geral</div>
+            <div style="padding: 2px;"></div>
+            <div style="cursor: pointer; display: flex; justify-content: center; margin-top: 5px;" (click)="view(flagView)">
+              <div style="width: 16px; height: 16px; margin-top: 3px;" class="{{flagView?'arrow-top':'arrow-down'}}"></div>
+              <div style="color: #AF5DE6; margin-left: 10px;">Ver Valor</div>
+            </div>
+            <div *ngIf="flagView" class="value" [innerHTML]="bonus.bonus_geral | conversion : 'BRL'"></div>
+
+          </div>
+        </div>
+        <div class="btns">
+          <div class="rescue" (click)="rescue()">Solicitar Saque</div>
+        </div>
+        <div style="padding: 2px;"></div>
+      </div>
+
+      <div *ngIf="table?.length > 0">
+
+        <div class="title">Bônus Pagos no Período</div>
+        <p-table styleClass="classetable" [value]="table" [responsive]="true" [paginator]="false" selectionMode="single">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Bônus</th>
+              <th style="width:18em">Valor</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-table>
+            <tr [pSelectableRow]="rowData" (click)="selectBonus(rowData);">
+              <td>{{table.bonus}}</td>
+              <td [innerHtml]="table.value | conversion : 'BRL'"></td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <div *ngIf="table_prevision?.length > 0">
+
+        <div class="title">Demonstrativo de Previsão de Pagamento de Bônus</div>
+        <div class="subtitle" style="color: red;"><b>Atenção! Os valores dos bônus podem variar para mais ou para menos de acordo com a graduação de sua rede até o fechamento do mês.</b></div>
+        <p-table styleClass="classetable" [value]="table_prevision" [responsive]="true" [paginator]="false">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Bônus</th>
+              <th style="width:18em">Valor</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-table>
+            <tr [pSelectableRow]="rowData">
+              <td>{{table.bonus}}</td>
+              <td [innerHtml]="table.value | conversion : 'BRL'"></td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+
+      </div>
+    </div>
+  </div>
+</div>

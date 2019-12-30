@@ -1,0 +1,179 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+@import url('global/css/global-components.less');
+.contentNav {
+    height: 60px;
+    // position: sticky;
+    // top: 0;
+    display: flex;
+    padding: 5px 10px;
+    background: #efefef;
+    z-index: 999;
+    .contentLogo {
+        width: 185px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        img {
+            width: 100%;
+            content: url("global/img/logo_text.png");
+        }
+    } // .contentLogo
+    .contentProject {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 0px 20px;
+        .cntComponents {
+            flex: 1
+        } // .cntComponents
+    } // .contentProject
+    .contentMenu {
+        display: flex;
+        justify-content: flex-end;
+        .separate {
+            display: flex;
+            align-items: center;
+        }
+        .menu {
+            display: flex;
+            align-items: center;
+            padding: 0px 10px;
+            .btnMenu {
+                text-align: center;
+                cursor: pointer;
+                .fas {
+                    display: none;
+                }
+                .text {
+                    display: block;
+                    font-size: 14px;
+                }
+                &:hover, &.active {
+                    color: @blue1;
+                }
+            }
+            &.tohire {
+                //background: pink;
+            }
+            &.towork {
+                //background: magenta;
+            }
+            &.consultant {
+                //background: green;
+            }
+            &.profile {
+                //background: aqua;
+                justify-content: flex-end;
+                padding-left: 20px;
+                outline: none;
+                .notLogged {
+                    cursor: pointer;
+                    font-size: 16px;
+                    .fas {
+                        display: inline-block;
+                        margin-left: 5px;
+                    }
+                    &:hover {
+                        color: @blue1;
+                    }
+                }
+                .logged {
+                    .drop-down-shop {
+                        cursor: pointer;
+                        font-size: 16px;
+                        .fas {
+                            font-size: 16px;
+                            margin-left: 5px;
+                            display: inline-block;
+                        }
+                        &:hover {
+                            color: @blue1;
+                            .fas {
+                                color: @blue1;
+                            }
+                        }
+                        .drop-down-content-shop {
+                            min-width: 170px;
+                            right: 0;
+                            top: 16px;
+                            .triangle {
+                                width: 0;
+                                height: 0;
+                                border-style: solid;
+                                border-width: 0 5px 7.9px 5px;
+                                border-color: transparent transparent @grey8 transparent;
+                                margin-left: 115px;
+                                margin-top: 13px;
+                            }
+                            .profileContent {
+                                padding: 10px;
+                                background: @grey8;
+                                font-weight: 400;
+                                border: 1px solid @grey6;
+                                border-top: none;
+                                text-align: left;
+                                .radius(0px 0px 5px 5px);
+                                .menuItem {
+                                    color: @grey2;
+                                    font-size: 14px;
+                                    margin-bottom: 10px;
+                                    outline: none;
+                                    &:last-of-type {
+                                        margin: 0px;
+                                    }
+                                    a {
+                                        text-decoration: none;
+                                        color: @grey2;
+                                        .fas {
+                                            color: @grey2;
+                                            font-size: 14px;
+                                            display: inline-block;
+                                            margin-right: 5px;
+                                        }
+                                        img {
+                                            width: 40px;
+                                            height: 40px;
+                                            .radius(50%);
+                                            margin-right: 10px;
+                                        }
+                                        &:hover {
+                                            color: @yellow1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } // .contentMenu
+    @media screen and (max-width: 768px) {
+        .contentProject {
+            padding: 0px;
+            .cntComponents {
+                display: none;
+            }
+        }
+        .contentMenu {
+            .separate {
+                display: none;
+            }
+            .menu {
+                &.tohire, &.consultant {
+                    display: none;
+                }
+                .btnMenu {
+                    .fas {
+                        display: block;
+                        font-size: 20px;
+                    }
+                    .text {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

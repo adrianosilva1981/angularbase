@@ -1,0 +1,99 @@
+@import 'css/global-variables.less';
+.data-shop {
+    .title {
+        font-size: 24px;
+        color: @grey7;
+    }
+    .title-desc {
+        margin-bottom: 20px;
+    }
+    .address-from {
+        display: flex;
+        flex-wrap: wrap;
+        .from, .map-address {
+            margin-bottom: 15px;
+            flex: 1;
+            min-width: 250px;
+            .from-desc, .map-desc {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .address_shop {
+        .cep {
+            width: 105px;
+        }
+        .number {
+            width: 75px;
+        }
+        .city {
+            width: 150px;
+        }
+        .federal {
+            margin: 7px 10px;
+        }
+        .drop {
+            margin: 5px;
+        }
+    }
+    .data_shop {
+        .title {
+            margin-top: 50px;
+        }
+        .shop-name, .shop-name-title {
+            width: 100%;
+        }
+        .shop-description {
+            width: 100%;
+            textarea {
+                resize: vertical;
+                min-height: 200px;
+            }
+            .desc-label {
+                font-weight: normal;
+                pointer-events: none;
+                margin: -0.5em 10px 5px;
+                transition: .3s ease all;
+                -moz-transition: .3s ease all;
+                -webkit-transition: .3s ease all;
+                color: #898989;
+                line-height: 1;
+                font-size: 12px;
+            }
+        }
+        .drop {
+            margin: 5px;
+        }
+        .officeHours {
+            width: 100%;
+        }
+    }
+    .error {
+        font-size: 9px;
+        color: @red2;
+        position: absolute;
+        right: 0;
+    }
+    .ex {
+        position: absolute;
+        font-size: 12px;
+        color: #999;
+        padding-left: 10px;
+        display: block;
+    }
+    .btn {
+        &.blue {
+            background: @blue1;
+            float: right;
+        }
+    }
+    .form-group {
+        display: inline-block;
+        margin: 10px;
+        font-size: initial !important;
+        .label {
+            font-size: 12px;
+        }
+    }
+}

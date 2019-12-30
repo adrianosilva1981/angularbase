@@ -1,0 +1,126 @@
+<div class="contentPage">
+  <div class="contentSubNav">
+    <div class="container">
+      <div class="contentSubNav">
+        <div class="menuLeft">
+          <div class="action">
+            <div class="itemMenu" *ngIf="hyperServices?.length">
+              <span class="text" routerLink="department/service">Serviços</span>
+              <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+            </div>
+            <div class="itemMenu">
+              <span class="text" routerLink="department/product">Produtos</span>
+              <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>
+            </div>
+            <div class="itemMenu">
+              <a [routerLink]="[ 'prime']">
+                <div class="btnBePrime">
+                  <span class="text">
+                    <span class="white">SEJA</span>
+                    <span>PRIME</span>
+                  </span>
+                </div>
+              </a>
+            </div>
+            <div class="itemMenu voucher" (authenticate)="openModalVoucher()">
+              <div class="cnt">
+                <i class="fa fa-unlock-alt"></i>
+                <span class="text">Voucher</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="login">
+          <div class="notLogged log" *ngIf="!objUserLogged" (click)="signIn()">
+            <span class="text">Entre</span>
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+          </div>
+          <div class="logged log" *ngIf="objUserLogged">
+            <div class="drop-down-shop">
+              <span class="text">Olá, {{objUserLogged?.name | words : 1 : ''}}</span>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+              <div class="drop-down-content-shop">
+                <div class="triangle"></div>
+                <div class="profileContent">
+                  <div class="menuItem" routerLink="my-account">
+                    <i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i>
+                    <span>Minha Conta</span>
+                  </div>
+                  <div class="menuItem" (click)="signOut()">
+                    <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+                    <span>Sair</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cntSearch">
+          <lib-components-select-input-search *ngIf="objOptonsSearch" [objOptions]="objOptonsSearch">
+          </lib-components-select-input-search>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p-sidebar [(visible)]="displaySideNav" (onShow)="onShow()" (onHide)="onHide()" blockScroll="true">
+    <div class="contentSideNav">
+      <div class="cnt">
+        <div class="login">
+          <div class="notLogged" *ngIf="!objUserLogged" (click)="signIn()">
+            <span class="text">Entre</span>
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+          </div>
+          <div class="logged" *ngIf="objUserLogged">
+            <div class="drop-down-shop">
+              <span class="text">Olá, {{objUserLogged?.name | words : 2 : ''}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu">
+          <div class="menuItem" (authenticate)="openRoute('/my-account')" (click)="displaySideNav = false">
+            <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+            <span>Minha Conta</span>
+          </div>
+
+          <div class="menuItem" routerLink="favorites" (click)="displaySideNav = false">
+            <i class="fa fa-heart fa-fw" aria-hidden="true"></i>
+            <span>Favoritos</span>
+          </div>
+
+          <div class="menuItem" (authenticate)="openModalVoucher()" (click)="displaySideNav = false">
+            <i class="fa fa-fw fa-unlock-alt"></i>
+            <span>Voucher</span>
+          </div>
+
+          <div class="menuItem" routerLink="department/service" (click)="displaySideNav = false">
+            <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+            <span>Todos os Serviços</span>
+          </div>
+
+          <div class="menuItem" routerLink="department/product" (click)="displaySideNav = false">
+            <i class="fa fa-list-ul fa-fw" aria-hidden="true"></i>
+            <span>Todos os Produtos</span>
+          </div>
+          <div class="menuItem bePrime" routerLink="/prime" (click)="displaySideNav = false">
+            <span class="text">
+              <span class="white">SEJA</span>
+              <span>PRIME</span>
+            </span>
+          </div>
+        </div>
+        <div class="social">
+          <a href="item?.url" target="_blank" class="lnkSocial" *ngFor="let item of objConsultant?.social_media">
+            <i class="fa" [ngClass]="item?.icon" [style.color]="objConsultant?.skin?.nav?.colorBar"></i>
+          </a>
+        </div>
+        <div class="phone">
+          Fone: {{objConsultant?.data_shop?.phoneTalk}}
+        </div>
+        <div class="signout" *ngIf="objUserLogged" (click)="signOut()">
+          <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+          <span class="txt">Sair</span>
+        </div>
+      </div>
+    </div>
+  </p-sidebar>
+</div>

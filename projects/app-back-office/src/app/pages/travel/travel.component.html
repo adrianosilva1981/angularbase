@@ -1,0 +1,25 @@
+<div class="travel">
+  <div class="content">
+
+    <h3>Travel Point</h3>
+
+    <div class="trip" *ngFor="let trip of travel">
+      <div class="title">{{trip.name}}</div>
+      <div class="img" safeHtml [ngStyle]="{'background': 'url(/assets/img/' + trip.slug + '.png) center center no-repeat', 'background-size': 'contain'}">
+        <div class="sub">Meta {{trip.meta}} Pontos</div>
+        <div class="stamp" *ngIf="trip.porc>=100"></div>
+      </div>
+      <div class="card">
+          <div class="content">
+              <div class="barra">
+                <p-progressBar [value]="trip.porc" class="customProgress" ></p-progressBar>
+                {{trip.value}} Pontos
+              </div>              
+          </div>
+          <span *ngIf="trip.porc>=100"><i class="fa fa-check-circle check" aria-hidden="true"></i></span>
+      </div>
+    </div>
+
+
+  </div>
+  </div>

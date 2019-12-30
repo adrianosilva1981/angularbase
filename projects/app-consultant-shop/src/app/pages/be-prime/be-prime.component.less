@@ -1,0 +1,58 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentCheckout {
+    .finish {
+        margin: 20px 0px;
+        font-size: 25px;
+        color: @blue3;
+        font-weight: 700;
+        text-align: center;
+    }
+    .cntCheckout {
+        .contentSteps {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 30px;
+            .step {
+                flex: 1;
+                min-width: 320px;
+                max-width: 400px;
+                padding: 10px;
+                .cmp {
+                    height: 100%;
+                    .radius(10px);
+                    overflow: hidden;
+                    position: relative;
+                    &.login {
+                        background: @grey1;
+                        border: 1px solid @grey3;
+                    }
+                    &.plan {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: @grey2;
+                        .cnt {
+                            text-align: center;
+                            line-height: 45px;
+                            .txt {
+                                font-size: 40px
+                            }
+                            .prime {
+                                font-size: 60px;
+                                color: @blue1;
+                                font-weight: bold;
+                                text-transform: uppercase;
+                            }
+                            .price {
+                                font-size: 30px
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

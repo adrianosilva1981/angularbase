@@ -1,0 +1,37 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.contentSearch {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid @grey4;
+    width: 100%;
+    .radius(20px);
+    .sSelect {
+        display: flex;
+        align-items: center;
+        height: 35px;
+        width: auto;
+        background: @blue1;
+        .radius(20px 0px 0px 20px);
+        padding-left: 10px;
+    }
+    .sContent {
+        flex: 1;
+        .cntSearch {
+            display: flex;
+            align-items: center;
+            min-height: 35px;
+            .sInput {
+                flex: 1;
+                border: none;
+                margin-left: 10px;
+                width: 100%;
+            }
+            .sIcon {
+                width: 40px;
+                text-align: center;
+            }
+        }
+    }
+}

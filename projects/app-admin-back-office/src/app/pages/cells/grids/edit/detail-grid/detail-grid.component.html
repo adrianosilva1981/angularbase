@@ -1,0 +1,60 @@
+<div class="editcells">
+  <div class="content_form">
+
+    <h3>Editar Grade</h3>
+
+    <form [formGroup]="gridsForm">
+
+      <div class="ui-float-label inputform">
+        <p-dropdown id="name" [options]="cells" formControlName="nameControl"></p-dropdown>
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('manager');">
+        <input id="manager" formControlName="managerControl" size="40" pInputText readonly>
+        <label for="manager">Nome do Manager</label>
+        <span class="error" *ngIf="gridsForm.get('managerControl').hasError('minlength')">Campo nome deve conter no mínimo
+          6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('managerControl').hasError('required')">Obrigatório!</span>        
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('director');">
+        <input id="director" formControlName="directorControl" size="40" pInputText readonly>
+        <label for="director">Nome do Diretor</label>
+        <span class="error" *ngIf="gridsForm.get('directorControl').hasError('minlength')">Campo nome deve conter no mínimo
+          6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('directorControl').hasError('required')">Obrigatório!</span>        
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('directorSenior');">
+        <input id="directorSenior" formControlName="directorSeniorControl" size="40" pInputText readonly>
+        <label for="directorSenior">Nome do Diretor Senior</label>
+        <span class="error" *ngIf="gridsForm.get('directorSeniorControl').hasError('minlength')">Campo nome deve conter
+          no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('directorSeniorControl').hasError('required')">Obrigatório!</span>        
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('directorNational');">
+        <input id="directorNational" formControlName="directorNationalControl" size="40" pInputText readonly>
+        <label for="directorNational">Nome do Diretor Nacional</label>
+        <span class="error" *ngIf="gridsForm.get('directorNationalControl').hasError('minlength')">Campo nome deve conter
+          no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('directorNationalControl').hasError('required')">Obrigatório!</span>        
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('presidente');">
+        <input id="presidente" formControlName="presidenteControl" size="40" pInputText readonly>
+        <label for="presidente">Nome do Presidente</label>
+        <span class="error" *ngIf="gridsForm.get('presidenteControl').hasError('minlength')">Campo nome deve conter no mínimo
+          6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('presidenteControl').hasError('required')">Obrigatório!</span>      
+      </div>
+
+      <div class="contenButton">
+        <button [disabled]="!gridsForm.valid" class="btn" (click)="saveForm()" [ngClass]="{'disabled':!gridsForm.valid}">Salvar
+          Grade
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

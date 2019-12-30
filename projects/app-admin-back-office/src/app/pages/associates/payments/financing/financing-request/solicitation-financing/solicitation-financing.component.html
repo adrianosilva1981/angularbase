@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <div class="row text-center justify-content-center">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Solicitação de Financiamento
+      </h1>
+    </div>
+  </div>
+  <div class="row justify-content-center mx-5">
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item" *ngIf="associate?.username">
+      <div class="container">
+        <div class="col-12">
+          Código
+        </div>
+        <div class="col-12">
+          {{associate?.username}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item" *ngIf="associate?.name">
+      <div class="container">
+        <div class="col-12">
+          Nome
+        </div>
+        <div class="col-12">
+          {{associate?.name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item" *ngIf="associate?.email">
+      <div class="container">
+        <div class="col-12">
+          Email
+        </div>
+        <div class="col-12">
+          {{associate?.email}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item" *ngIf="associate?.cellphone">
+      <div class="container">
+        <div class="col-12">
+          Celular
+        </div>
+        <div class="col-12">
+          {{associate?.cellphone}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item" *ngIf="(associate?.type === 'P')?associate?.cpf:associate?.cnpj">
+      <div class="container">
+        <div class="col-12">
+          CPF/CNPJ
+        </div>
+        <div class="col-12">
+          {{(associate?.type === 'P')?associate?.cpf:associte?.cnpj}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 text-center my-5 alingInputs">
+      <div class="col-12 col-sm-6 my-3">
+        <label class="w-100" for="conection">Valor Conexão:</label>
+        <input [(ngModel)]="connection" currencyMask [options]="currencyMask" type="text" style="width:100%">
+      </div>
+      <div class="col-12 col-sm-6 my-3">
+        <label class="w-100" for="init">Valor Entrada:</label>
+        <input [(ngModel)]="initValue" currencyMask [options]="currencyMask" type="text" style="width:100%">
+      </div>
+      <div class="col-12 col-sm-6 my-3">
+        <label class="w-100" for="financing">Valor Financiado:</label>
+        <input [(ngModel)]="finacing" currencyMask [options]="currencyMask" type="text" style="width:100%">
+      </div>
+      <div class="col-12 col-sm-6 my-3">
+        <label class="w-100" for="parcel">Qtd Parcelas:</label>
+        <input [(ngModel)]="parcel" currencyMask [options]="qtdMask" type="text" style="width:100%">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center">
+    <button type="button" class="btn btn-primary" (click)="paymentRequestSweet()">Solicitar</button>
+    <div class="mx-3 px-3"></div>
+    <button type="button" class="btn btn-danger" [routerLink]="'/associates/payments/financing-request'">Voltar</button>
+  </div>
+
+
+</div>

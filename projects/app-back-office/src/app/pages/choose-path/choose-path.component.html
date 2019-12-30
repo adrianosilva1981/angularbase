@@ -1,0 +1,281 @@
+<div class="home">
+
+  <div class="content">
+
+    <!-- <div class="banner" *ngIf="images.length">
+      <i class="fas fa-caret-left" (click)="carousel?.onPrevNav();carousel?.stopAutoplay();carousel?.startAutoplay()"
+        *ngIf="images.length > 1"></i>
+      <p-carousel #carousel [value]="images" circular="circular" autoplayInterval="4000" numVisible="1">
+        <ng-template let-image pTemplate="item">
+          <img class="img-fluid" [src]="image?.url_mobile" (click)="redirect(image?.link)" />
+        </ng-template>
+      </p-carousel>
+      <i class="fas fa-caret-right" (click)="carousel?.onNextNav();carousel?.stopAutoplay();carousel?.startAutoplay()"
+        *ngIf="images.length > 1"></i>
+    </div>  -->
+
+    <div *ngIf="viewinfo">
+
+      <div class="contemcards" *ngIf="(userObj?.status == 'AA' || userObj?.status == 'AP')">
+        <div class="card red">
+          <div class="contentalert">
+            <div class="alert">
+              <div class="caution"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> ATENÇÃO!</div>
+              <div class="text">Você ainda não efetuou o pagamento!</div>
+            </div>
+            <div class="buttonPay">
+              <div class="btn orange" (click)="pay()">Efetuar Pagamento</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contemcards" *ngIf="view_msg_matrix_professional">
+        <div class="card green">
+          <div class="contentalert">
+            <div class="alert">
+              <div class="success"><i class="fa fa-check-square" aria-hidden="true"></i> PARABÉNS!</div>
+              <div class="text">Você pulou de fase, agora já pode iniciar a criação de sua Matriz Profissional!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contemcards" *ngIf="!info.status_adept && userObj?.status == 'A'">
+        <div class="card red">
+          <div class="contentalert">
+            <div class="alert">
+              <div class="caution"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> ATENÇÃO!</div>
+              <div class="text">Você ainda não efetuou o pagamento da Habilitação Mensal!</div>
+            </div>
+            <div class="buttonPay">
+              <div class="btn orange" (click)="payMonthly()">Efetuar Pagamento</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contemcards">
+
+        <div class="card" *ngIf="userObj?.status == 'A'">
+          <div class="content">
+            <div class="title">Minha Conexão Mensal:</div>
+            <div style="display:flex; justify-content: center;">
+              <div class="plan">
+                <div class="circle" [ngClass]="info.status_adept && info.status_active ? 'ative' : (!info.status_adept && !info.status_active ? 'inative' : 'hability')"></div>
+                {{info.status_adept ? 'Habilitado' : 'Não Habilitado'}}
+              </div>
+
+              <div class="plan">
+                <div class="circle" [ngClass]="info.status_active ? 'ative' : 'inative'"></div>
+                {{info.status_active ? 'Ativo' : 'Inativo'}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card hover" style="background:darkorange;" *ngIf="!info.status_active && userObj?.status == 'A'">
+          <a href='https://store.youhub.com.br' target="_blank" style="text-decoration: none;">
+            <div class="content">
+              <div class="title" style="color: black;">Faça sua Ativação e não perca seu Travel Point.</div>
+              <div><span class="travel">Faltam {{170 - info.vp_total > 0 ? 170 - info.vp_total : 0 }} pontos</span> <span
+                  style="font-size:12px; color: white;"> <i class="fa fa-cart-plus" aria-hidden="true"></i> Comprar
+                  Agora</span></div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="card" *ngIf="userObj?.status == 'A'">
+          <div class="content">
+            <div class="title">Patrocinador:</div>
+            <div class="plan">{{info.sponsor}}</div>
+          </div>
+        </div>
+
+        <div class="card" *ngIf="userObj?.status == 'A'">
+          <div class="content" *ngIf="info.slug_graduation=='Indefinido'">
+            <div class="title">Graduação:</div>
+            <div class="plan">Nenhuma</div>
+          </div>
+          <div class="content" style="padding:5px;" *ngIf="info.slug_graduation!=='Indefinido'">
+            <div class="plan">
+              <div class="circle {{info.slug_graduation}}"></div>
+              {{info.name_graduation}}
+            </div>
+          </div>
+          <div *ngIf="info.slug_graduation!=='Indefinido'">
+            <img class="pin" src="assets/img/pin_{{info.slug_graduation}}.png" width="100" height="100">
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="contemcards" *ngIf="info.status_active && userObj.status=='A'">
+
+        <div class="card hover" (click)="paybitcoin()">
+          <div class="content">
+            <div class="title">COMPRAR ATIVAÇÃO DE CONEXÃO</div>
+            <div class="plan">Saiba Como</div>
+            <!--<div class="bar bitcoin"></div>-->
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div class="title">Ativações de Conexões Disponíveis</div>
+            <div class="info">
+              <span class="amount">{{info.associated}}</span>
+              <span class="text">{{info.associated > 1 ? 'Conexões' : 'Conexão'}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card hover" *ngIf="info.travel_point" (click)="travelpoint()">
+          <div class="content">
+            <div class="title">Travel Point</div>
+            <div class="plan">Ver seus pontos</div>
+            <div class="bar travel"></div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="contemcards" *ngIf="info.status_active && userObj.status=='A'">
+
+
+        <div class="card hover" (click)="viewtree()">
+          <div class="content">
+            <div class="title">Total de Conexões Diretas</div>
+            <div class="info">
+              <span class="amount">{{info.indications}}</span>
+              <span class="text">{{info.indications > 1 ? 'Conexões' : 'Conexão'}}</span>
+            </div>
+            <div class="bar blue"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div style="display: flex;">
+              <div style="flex:1; max-width: 150px;">
+                <div class="title">Conectados</div>
+                <div class="info">
+                  <span class="amount">{{info.active}}</span>
+                  <span class="text">{{info.active > 1 ? 'Conexões' : 'Conexão'}}</span>
+                </div>
+              </div>
+              <div style="flex:1; max-width: 150px; margin-left: 20px;">
+                <div class="title">Rede Ativa</div>
+                <div class="info">
+                  <span class="amount">{{info.active_resellers}}</span>
+                  <span class="text">{{info.active_resellers > 1 ? 'Conexões' : 'Conexão'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="content">
+            <div style="display: flex;">
+              <div style="flex:1; max-width: 150px; padding: 4px;" class="hover" (click)="viewPre()">
+                <div class="title">Pré-Cadastros</div>
+                <div class="info">
+                  <span class="amount">{{info.inactive}}</span>
+                  <span class="text">{{info.inactive > 1 ? 'Conexões' : 'Conexão'}}</span>
+                </div>
+              </div>
+              <div style="flex:1; max-width: 150px; margin-left: 20px; padding: 4px;" class="hover" (click)="viewInactive()">
+                <div class="title">Rede Inativa</div>
+                <div class="info">
+                  <span class="amount">{{info.inactive_resellers}}</span>
+                  <span class="text">{{info.inactive_resellers > 1 ? 'Conexões' : 'Conexão'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="contemcards" *ngIf="userObj.status=='A'">
+        <div class="card hover" *ngIf="info.status_active && userObj.type==='P'" (click)="prepaid()">
+          <div class="content">
+            <div class="title">Cartão Pré-pago</div>
+            <span class="plan">Solicite o seu cartão!</span>
+            <div class="bar prepaidcard"></div>
+          </div>
+        </div>
+
+        <!-- <div class="card hover" (click)="payTicket()">
+          <div class="content">
+            <div class="title">INGRESSO PARA CONVENÇÃO</div>
+            <div class="info">
+              <span class="amount" [innerHTML]="600 | conversion : 'BRL'"></span>
+            </div>
+            <div class="comprar">Compre Aqui</div>
+            <div class="bar ticket"></div>
+          </div>
+        </div> -->
+
+        <div class="card" *ngIf="voucherok">
+          <div class="content" style="width: 100%;">
+            <div class="title">YouHub Academy</div>
+            <div class="plan"><a href="https://youhub.academy" target="_blank">Use seu voucher aqui</a></div>
+            <div class="info">
+              <span class="text">{{this.voucher}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card hover" *ngIf="info.upgrade_plan" (click)="upgrade()">
+          <div class="content" style="width: 100%;">
+            <div class="title">Upgrade de plano</div>
+            <div class="plan">Faça um upgrade de seu plano atual</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="contemcards" *ngIf="userObj.status=='A'">
+
+        <div class="card big">
+          <div class="content">
+            <div class="title">Link para Divulgação</div>
+            <div class="contentlink">
+              <div class="links" (click)="preregister()">{{link}}</div>
+              <div class="btn btnlink blue" (click)="copyMessage(link)" alt="Clique para copiar">Copiar link</div>
+              <div class="btn btnlink blue" (click)="preregister()" alt="Clique para adicionar uma nova conexão">Fazer
+                uma
+                nova Conexão</div>
+            </div>
+          </div>
+      </div>
+
+
+
+      </div>
+      
+      <div class="contemcards" *ngIf="userObj.status=='A'">
+
+        <div class="card big">
+          <div class="content">
+            <div class="title">Convite para Afiliação - YouHub Empreendedor Premium + Bônus</div>
+            <div class="contentlink">
+              <a href="https://my.eduzz.com" target="_blank">https://my.eduzz.com</a>
+            </div>
+            <div class="btn btnlink blue" (click)="getLink('a')" >Crie sua conta na Eduzz aqui </div>
+            <div class="btn btnlink blue" (click)="getLink('b')" >Pegue seu link individual aqui</div>
+            <div class="btn btnlink blue" (click)="getLink('c')" >Link para o video</div>
+          </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>

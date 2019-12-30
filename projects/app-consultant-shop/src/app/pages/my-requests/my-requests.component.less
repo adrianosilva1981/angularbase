@@ -1,0 +1,52 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fa {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+        .pageOptions {
+            flex: 1;
+            text-align: right;
+            min-width: 265px;
+            .search {
+                display: flex;
+                align-items: center;
+                height: 35px;
+                padding-left: 10px;
+                background: #fff;
+                border: 1px solid @grey3;
+                .radius(25px);
+                input {
+                    flex: 15;
+                    margin-right: 5px;
+                    border: none;
+                }
+                .fa {
+                    flex: 1;
+                    font-size: 16px;
+                    color: @grey3;
+                    justify-self: flex-end;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    .cnt {}
+}

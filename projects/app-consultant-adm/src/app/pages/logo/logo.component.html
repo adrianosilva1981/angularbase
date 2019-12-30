@@ -1,0 +1,53 @@
+<div class="logo">
+  <div class="title">
+    Logo Desktop
+  </div>
+  <div class="desc">
+    A logo será mostrada no topo da sua loja, em todas as páginas. Todas as logos são redimensionadas para o tamanho
+    mínimo de
+    {{imageWidthDesktop}}X{{imageHeightDesktop}} (ou na proporção).
+  </div>
+  <div class="box">
+    <div class="top">
+      Envie sua logo
+    </div>
+    <div class="mid">
+      <div class="img">
+        <label for="avatar">
+          <img [src]="imgsDesktop">
+        </label>
+      </div>
+      <div class="logo-desc">
+        <lib-components-upload-image [buttonText]="buttonTextUpload" [width]="imageWidthDesktop"
+          [height]="imageHeightDesktop" [urlRequest]="urlRequest" [pathBucket]="pathBucket"
+          (onUpload)="onUpload($event,null)">
+        </lib-components-upload-image>
+      </div>
+    </div>
+  </div>
+  <div class="title">
+    Logo Mobile
+  </div>
+  <div class="desc">
+    A logo será mostrada no topo da sua loja, em todas as páginas. Todas as logos são redimensionadas para o tamanho
+    mínimo de
+    {{imageWidthMobile}}X{{imageHeightMobile}} (ou na proporção).
+  </div>
+  <div class="box">
+    <div class="top">
+      Envie sua logo
+    </div>
+    <div class="mid">
+      <div class="img">
+        <label for="avatar">
+          <img [src]="imgsMobile">
+        </label>
+      </div>
+      <div class="logo-desc">
+        <lib-components-upload-image [buttonText]="buttonTextUpload" [width]="imageWidthMobile" [height]="imageHeightMobile"
+          [urlRequest]="urlRequest" [pathBucket]="pathBucket" (onUpload)="onUpload(null,$event)">
+        </lib-components-upload-image>
+      </div>
+    </div>
+  </div>
+</div>

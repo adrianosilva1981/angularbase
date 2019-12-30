@@ -1,0 +1,29 @@
+<div class="dash">
+    <div class="container">
+      <div class="content-dash">
+        <div class="content-item-menu">
+          <ng-container *ngFor="let item of objMenu">
+            <div class="item-menu" [ngSwitch]="item.route.indexOf('assets') !== -1 || item.route.indexOf('http') !== -1 || item.route.indexOf('//') !== -1">
+
+              <span *ngSwitchCase="false" [routerLink]="item.route">
+                <div class="header">
+                  <i class="material-icons">{{item.icon}}</i> {{item.title}}
+                </div>
+                <div class="body" [innerHTML]="item.text">
+                </div>
+              </span>
+
+              <a *ngSwitchCase="true" [href]="item.route" target="_blank">
+                <div class="header">
+                  <i class="material-icons">{{item.icon}}</i> {{item.title}}
+                </div>
+                <div class="body" [innerHTML]="item.text">
+                </div>
+              </a>
+
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>

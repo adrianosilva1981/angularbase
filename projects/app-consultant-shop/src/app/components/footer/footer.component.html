@@ -1,0 +1,51 @@
+<section class="footer" [style.background]="objConsultant?.skin?.footer?.bgColor">
+  <div class="container">
+    <div class="contentAll">
+      <div class="contentCol">
+        <div class="my_coluna wrap">
+          <div class="tlt" [style.color]="objConsultant?.skin?.footer?.colorTitle">Podemos te AJUDAR?</div>
+          <div class="txt" [style.color]="objConsultant?.skin?.footer?.colorText">
+            <p>{{objConsultant?.data_shop?.responsibleMail}}</p>
+            <p *ngIf="objConsultant?.data_shop?.phoneTalk !== '(__) ____-____'">{{objConsultant?.data_shop?.phoneTalk}}</p>
+            <div>
+              <span>Horário de atendimento: </span>
+              <span [innerHTML]="objConsultant?.data_shop?.officeHours"></span>
+            </div>
+          </div>
+        </div>
+        <div class="my_coluna wrap">
+          <div class="tlt" [style.color]="objConsultant?.skin?.footer?.colorTitle">Localização</div>
+          <div class="txt" [style.color]="objConsultant?.skin?.footer?.colorText">
+            <div>
+              <span>Endereço: </span>
+              <span>{{objConsultant?.address_shop?.address}}, {{objConsultant?.address_shop?.number}}, {{objConsultant?.address_shop?.neighborhood}},
+                {{objConsultant?.address_shop?.city}}/{{objConsultant?.address_shop?.state}}
+              </span>
+            </div>
+            <div>
+              <span>CEP: </span>
+              <span>{{objConsultant?.address_shop?.zipCode}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="my_coluna" *ngIf="objConsultant?.address_shop?.showInMap">
+          <ngui-map *ngIf="markers.length > 0" zoom="18" [center]="markers[0]?.geometry?.location?.lat +', ' + markers[0]?.geometry?.location?.lng">
+            <marker *ngFor="let marker of markers" [position]="marker?.geometry?.location?.lat +', ' + marker?.geometry?.location?.lng"></marker>
+          </ngui-map>
+        </div>
+        <div class="my_coluna">
+          <div class="tlt" [style.color]="objConsultant?.skin?.footer?.colorTitle">Sobre Nós</div>
+          <div class="txt" [style.color]="objConsultant?.skin?.footer?.colorText">
+            <span [innerHTML]="objConsultant?.data_shop?.description"></span>
+          </div>
+        </div>
+      </div>
+      <div class="contentHyper">
+        <div class="copyright" [style.color]="objConsultant?.skin?.footer?.colorText">© Todos os direitos reservado YouHub - {{currentYear}}</div>
+        <div class="logo">
+          <img src="/global/img/Hyper-Jobs-gray.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

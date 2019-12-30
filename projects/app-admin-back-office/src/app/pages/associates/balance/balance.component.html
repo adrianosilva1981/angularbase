@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row text-center pb-5">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Saldo
+      </h1>
+      <span class="ui-float-label col-12">
+        <input #query type="text" size="30" (keydown.enter)="setAssociates(query.value)" pInputText />
+        <label for="float-input" class="col-12">Código, nome ou CNPJ/CPF</label>
+      </span>
+      <div class="w-100 py-3"></div>
+      <p-button class="col-12" label="Buscar" (onClick)="setAssociates(query.value)"></p-button>
+
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item" *ngIf="associates?.length">
+      <div class="container">
+        <div class="col-12">
+          Total Saldo Atual
+        </div>
+        <div class="col-12">
+          {{points|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item" *ngIf="associates?.length">
+      <div class="container">
+        <div class="col-12">
+          Total Saldo Disponível
+        </div>
+        <div class="col-12">
+          {{points_release|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 py-5">
+      <p-table #dt [columns]="cols" [value]="associates" [paginator]="true" [rows]="50" selectionMode="single" *ngIf="associates?.length"
+        [autoLayout]="true" [responsive]="true">
+
+        <ng-template pTemplate="caption">
+          <div class="row justify-content-around">
+
+            <div class="col-12 col-sm-5">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value,'contains')"
+                style="width:90%">
+            </div>
+
+            <div class="col-12 col-sm-5">
+              <button type="button" class="btn btn-primary" (click)="export(dt)">Exportar</button>
+            </div>
+
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-associate let-columns="columns">
+          <tr [pSelectableRow]="associate" (click)="selectAssociate(associate)">
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{ col.field.includes('points')?(associate[col.field]|currency:'R$'):associate[col.field] }}
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+</div>

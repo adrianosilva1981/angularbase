@@ -1,0 +1,123 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.form {
+    margin-top: 40px;
+    .uploadImage {
+        flex: 1;
+        margin: 40px 0;
+        .cntButtonAdd {
+            font-size: 18px;
+            color: #000;
+            line-height: 2;
+            text-align: center;
+            width: 120px;
+            .iconUpload {
+                width: 100px;
+                height: 100px;
+                background: #BFBFC6;
+                border-radius: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 105px;
+                overflow: hidden;
+                margin: 0 auto;
+                i {
+                    margin-top: 75px;
+                    color: #CECED3;
+                }
+            }
+        }
+        .image {
+            max-width: 600px;
+            max-height: 400px;
+            background-color: #fff;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            border: 1px solid @blue1;
+            border-radius: 10px;
+            overflow: hidden;
+            img {
+                height: 100%;
+            }
+        }
+    }
+    .btnRegister {
+        margin-top: 20px;
+        padding: 7px 30px;
+        background: @orange1;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        cursor: pointer;
+        .radius(15px);
+        &:hover {
+            background: @blue2;
+        }
+        &:disabled {
+            background: @grey3;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    .user-item {
+        cursor: pointer;
+        display: 1;
+        width: 150px;
+        text-align: center;
+        margin: 10px;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            transform: scale(1.02);
+        }
+        .check {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            right: 34px;
+            color: #fff;
+            font-size: 10px;
+            border-radius: 100%;
+            &.y {
+                background-color: #8BBF27;
+            }
+            &.n {
+                background-color: #F24E86;
+            }
+        }
+        .image {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            border: 1px solid;
+            margin: 0 auto;
+        }
+        .description {
+            font-size: 12px;
+            .name {
+                font-size: 20px;
+                color: #000;
+            }
+        }
+    }
+}
+
+th {
+    .error {
+        background-color: #ff00004f !important;
+    }
+}

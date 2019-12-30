@@ -1,0 +1,27 @@
+<div class="contentMailConfirm">
+    <div class="title">
+        Agora só falta confirmar seu e-mail!
+    </div>
+    <div class="info">
+        <div>
+            <span>Acesse o e-mail </span>
+            <span class="mail">{{email}}</span>
+        </div>
+        <div>e confirme o recebimento.</div>
+        <div class="obs">Caso não tenha recebido, solicite o reenvio abaixo.</div>
+    </div>
+    <div class="errorMessage" *ngIf="showErrors">
+        <small [innerHTML]="errorMessage"></small>
+    </div>
+
+    <div class="successMessage" *ngIf="showSuccess">
+        <small>Email enviado com sucesso</small>
+    </div>
+
+    <div class="contentNext" *ngIf="!showSuccess && !showErrors">
+        <button class="btn" [disabled]="email=='' || loading" type="button" (click)="saveAndResend()">
+            <span>REENVIAR</span>
+            <i *ngIf="loading" class="fas fa-spinner fa-spin"></i>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+body {
+    background: #f2f2f2;
+}
+
+.btnClearFilter {
+    display: inline-block;
+    padding: 3px 15px;
+    background: @grey1;
+    border: 1px solid @grey3;
+    color: @grey5;
+    .radius(20px);
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+        background: @grey2;
+        color: @grey4;
+    }
+}
+
+// Formatação da tablea de pedidos
+.order-table {
+    thead {
+        th {
+            padding: 1em .5em !important;
+        }
+    }
+}
+
+// Input cep seja prime
+.input-cep {
+    border-radius: 10px;
+    height: 38px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 5px;
+    text-align: center;
+}
+
+.detail-product {
+    .ngucarousel .ngucarousel-inner .ngucarousel-items {
+        flex-wrap: wrap;
+    }
+    .ButtonNex {
+        display: none !important;
+    }
+    .thumb .grid .box {
+        border: 1px solid #f2f2f2;
+    }
+}
+
+.editorHtml {
+    .ui-editor-content {
+        background: white;
+        height: 320px;
+    }
+}
+
+// Formatação do dropdown****************************************************
+.ui-dropdown-item.ui-state-highlight {
+    display: none;
+}
+
+.ui-dropdown-panel .ui-dropdown-item {
+    font-weight: 300 !important;
+}
+
+.ui-dropdown .ui-dropdown-trigger {
+    border: none !important;
+    border-radius: 4px;
+}
+
+.ui-dropdown label.ui-dropdown-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} //**************************************************************************

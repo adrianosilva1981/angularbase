@@ -1,0 +1,49 @@
+<div class="thumb">
+  <div *ngIf="viewType === 'grid'" class="gridView">
+    <div class="contentGrid">
+      <div class="contentHover">
+        <div class="contentClick">
+          <div class="name">{{_opportunity?.name}}</div>
+          <div class="info">
+            <div *ngIf="_opportunity.agree === 'Y'" class="salary">A Combinar</div>
+            <div *ngIf="_opportunity.agree !== 'Y'" class="salary" [innerHtml]="_opportunity?.salary | conversion : _opportunity?.coin || 'BRL'"></div>
+            <!-- <div class="type">({{_opportunity?.jobType ==='online' ? 'Home Office' : 'Presencial'}})</div> -->
+          </div>
+          <div class="contentCat">
+            <div class="cat">{{_opportunity?.category}}</div>
+            <div class="sep"> - </div>
+            <div class="subCat">{{_opportunity?.subcategory}}</div>
+          </div>
+
+          <div class="contentBtnGo">
+            <div class="btn btnGo" (authenticate)="viewDetails()">Mais Detalhes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="viewType === 'list'" class="listView">
+    <div class="contentList">
+      <div class="contentInfo">
+        <div class="name">{{_opportunity?.name}}</div>
+        <div class="info">
+          <div *ngIf="_opportunity.agree === 'Y'" class="salary">A Combinar</div>
+          <div *ngIf="_opportunity.agree !== 'Y'" class="salary" [innerHtml]="_opportunity?.salary | conversion : _opportunity?.coin || 'BRL'"></div>
+          <!-- <div class="type">({{_opportunity?.jobType ==='online' ? 'Home Office' : 'Presencial'}})</div> -->
+        </div>
+
+        <div class="contentCat">
+          <div class="cat">{{_opportunity?.category}}</div>
+          <div class="sep"> - </div>
+          <div class="subCat">{{_opportunity?.subcategory}}</div>
+        </div>
+
+        <div class="contentBtnGo">
+          <div class="btn btnGo" (authenticate)="viewDetails()">Mais Detalhes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

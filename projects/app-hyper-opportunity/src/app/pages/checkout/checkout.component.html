@@ -1,0 +1,22 @@
+<div class="contentCheckout container">
+  <div class="cntCheckout">
+    <div class="finish">
+      <p>Finalize seu Pedido</p>
+    </div>
+    <div class="contentSteps">
+
+      <div class="step">
+        <div class="cmp login">
+          <app-hyper-opportunity-box-login-register></app-hyper-opportunity-box-login-register>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="cmp">
+          <lib-components-checkout *ngIf="checkout_parameter" [checkout_parameter]="checkout_parameter" (onSubmitCheckout)="onSubmitCheckout($event)"></lib-components-checkout>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

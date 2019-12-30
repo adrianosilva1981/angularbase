@@ -1,0 +1,49 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.form {
+    margin-top: 40px;
+    .btnRegister {
+        padding: 7px 30px;
+        background: @orange1;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        cursor: pointer;
+        .radius(15px);
+        &:hover {
+            background: @blue2;
+        }
+        &:disabled {
+            background: @grey3;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 30px 0 10px 0;
+}
+
+.listEmail {
+    .head {
+        padding: 0px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        div {
+            flex: 1;
+        }
+    }
+    .boxItem {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #fff;
+        box-shadow: 0 0 10px 0 #ccc;
+        padding: 10px 40px;
+        margin: 5px 0;
+        div {
+            flex: 1;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<div class="content">
+  <div class="login">
+    <div class="logo">
+      <img src="assets/img/logo_youhub.png">
+    </div>
+    <div *ngIf="!varPreRegister && !varForgotPassword && !varResetPassword && !varNewCounterSign">
+      <app-back-office-login (preRegister)="checkPreRegister($event)" (forgotPassword)="checkForgotPassword($event)"></app-back-office-login>
+    </div>
+
+    <div *ngIf="varPreRegister">
+      <app-back-office-pre-register *ngIf="(userNameReseller!='' &&  idParent) || userNameReseller==''" [idParent]="idParent"
+        [idParentName]="idParentName" [resellerRequired]="1" [idHost]="idHost"></app-back-office-pre-register>
+    </div>
+
+    <div *ngIf="varForgotPassword">
+      <app-back-office-forgot-password></app-back-office-forgot-password>
+    </div>
+
+    <div *ngIf="varResetPassword">
+      <app-back-office-reset-password></app-back-office-reset-password>
+    </div>
+
+    <div *ngIf="varNewCounterSign">
+      <app-back-office-new-countersign></app-back-office-new-countersign>
+    </div>
+  </div>
+</div>

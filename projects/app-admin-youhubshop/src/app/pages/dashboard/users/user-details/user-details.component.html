@@ -1,0 +1,274 @@
+<div class="container-fluid">
+  <div class="row mx-3" *ngIf="items.length > 1">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4 class="jumbotron">
+        {{user?.name}}
+      </h4>
+    </div>
+  </div>
+  <!-- user -->
+  <div class="row justify-content-center m-5">
+    <div class="col-12 text-center">
+      <img src="http://{{user?.photoUrl}}" alt="" class="img-fluid">
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Nome
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{user?.name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Email
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{user?.mail}}
+        </div>
+      </div>
+    </div>
+
+    <div class="w-100"></div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Recebido
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{extract?.paid|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          A receber
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{extract?.not_paid|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Estornado
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{extract?.reversal|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- shopping -->
+  <div class="row justify-content-center m-5" *ngIf="shopping.itemsOrder.length">
+    <div class="col-12">
+      <p-table #dtSphopping [columns]="shopping.cols" [value]="shopping.itemsOrder" [paginator]="true" [rows]="5"
+        dataKey="id" [responsive]="true">
+
+        <ng-template pTemplate="caption">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              Compras <br>
+              <input type="text" pInputText placeholder="Pesquisar..." (input)="dtSphopping.filterGlobal($event.target.value, 'contains')">
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pRowToggler]="rowData" style="cursor:pointer">
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{
+              col.field.includes('value') || col.field.includes('amount')?
+              (rowData[col.field]|conversion:rowData.main_coin:false):rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+          <tr>
+            <td [attr.colspan]="columns.length">
+              <div class="container-fluid">
+                <div class="row justify-content-center m-5">
+                  <div class="col-12 col-sm-4" *ngFor="let item of rowData.details">
+
+                    <div class="container detail-item m-3">
+                      Tipo:{{item.type}} <br>
+                      Nome:{{item.title}} <br>
+                      Pago:{{item.value|conversion:item.coin_type:false}} <br>
+                      Quantidade:{{item.quantity}} <br>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="footer" let-columns>
+          <tr>
+            <td colspan="4">
+              <strong>
+                Total pontos
+              </strong>
+            </td>
+            <td>
+              {{shopping.points|conversion:'BRL':false}}
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+  <!-- sales products -->
+  <div class="row justify-content-center m-5" *ngIf="sales.products.length">
+    <div class="col-12">
+      <p-table #dtProducts [columns]="sales.colsProducts" [value]="sales.products" [paginator]="true" [rows]="5"
+        [responsive]="true">
+
+        <ng-template pTemplate="caption">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              Vendas de Produtos <br>
+              <input type="text" pInputText placeholder="Pesquisar..." (input)="dtProducts.filterGlobal($event.target.value, 'contains')">
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{
+              col.field.includes('value')?
+              (rowData[col.field]|conversion:rowData.main_coin:false):rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+  <!-- sales services -->
+  <div class="row justify-content-center m-5" *ngIf="sales.services.length">
+    <div class="col-12">
+      <p-table #dtServices [columns]="sales.colsServices" [value]="sales.services" [paginator]="true" [rows]="5"
+        [responsive]="true">
+
+        <ng-template pTemplate="caption">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              Vendas de Serviços <br>
+              <input type="text" pInputText placeholder="Pesquisar..." (input)="dtServices.filterGlobal($event.target.value, 'contains')">
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{
+              col.field.includes('value')?
+              (rowData[col.field]|conversion:rowData.main_coin:false):rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+  <!-- sales gift cards -->
+  <div class="row justify-content-center m-5" *ngIf="sales.giftCards.length">
+    <div class="col-12">
+      <p-table #dtGiftCards [columns]="sales.colsGiftCards" [value]="sales.giftCards" [paginator]="true" [rows]="5"
+        [responsive]="true">
+
+
+        <ng-template pTemplate="caption">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+              Vendas de Guias Smart <br>
+              <input type="text" pInputText placeholder="Pesquisar..." (input)="dtGiftCards.filterGlobal($event.target.value, 'contains')">
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{
+              col.field.includes('value')?
+              (rowData[col.field]|conversion:rowData.main_coin:false):rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+
+</div>

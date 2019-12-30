@@ -1,0 +1,34 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentCheckout {
+    .finish {
+        margin: 20px 0px;
+        font-size: 25px;
+        color: @blue3;
+        font-weight: 700;
+        text-align: center;
+    }
+    .cntCheckout {
+        .contentSteps {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 30px;
+            .step {
+                flex: 1;
+                min-width: 320px;
+                max-width: 400px;
+                .cmp {
+                    height: 100%;
+                    .radius(10px);
+                    overflow: hidden;
+                    &.login {
+                        background: @grey1;
+                        border: 1px solid @grey3;
+                    }
+                }
+            }
+        }
+    }
+}

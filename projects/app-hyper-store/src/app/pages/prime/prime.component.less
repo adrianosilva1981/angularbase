@@ -1,0 +1,166 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.prime {
+    .container {
+        .rotated {
+            background: @yellow2;
+            padding: 3px 10px;
+            display: inline-block;
+            color: @blue3;
+            font-weight: bold;
+            font-size: 28px;
+            -webkit-transform: rotate(10deg);
+            transform: rotate(-2deg);
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+        .banner {
+            background: url(/assets/img/banner.jpg) left top no-repeat;
+            background-size: cover;
+            margin-top: 50px;
+            min-height: 305px;
+            margin-bottom: 50px;
+            .text {
+                color: white;
+                padding: 15px 10%;
+                .desc {}
+                .t-cnt {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    .list {
+                        margin: 0 5px;
+                        .item {
+                            display: flex;
+                            align-items: center;
+                            margin: 5px 0;
+                            .icon {
+                                margin-right: 5px;
+                            }
+                            .txt {}
+                        }
+                    }
+                    .rotated {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+        .verify-cep {
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .center {}
+            .group-cep {
+                max-width: 750px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                .btn {
+                    height: 38px;
+                    background: @blue2;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    min-width: 100px;
+                    justify-content: center;
+                    color: white;
+                    margin: 10px 5px;
+                }
+            }
+        }
+        .over-million, .fast-shipping {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            @media screen and (max-width: 600px) {
+                flex-direction: column-reverse;
+            }
+            .group-text {
+                flex: 1;
+                min-width: 280px;
+                .prime-tag {
+                    background: @blue2;
+                    color: white;
+                    padding: 3px;
+                    .prime-color {
+                        color: @orange1;
+                        font-weight: bold;
+                    }
+                }
+            }
+            .img {
+                flex: 1;
+                min-width: 280px;
+                text-align: center;
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+        .fast-shipping {
+            @media screen and (max-width: 600px) {
+                flex-direction: row;
+            }
+        }
+        .be-prime {
+            max-width: 550px;
+            margin: 0 auto;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .btn {
+                font-size: 24px;
+                color: white;
+                background: @blue2;
+                min-height: 75px;
+                min-width: 250px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .desc {
+                margin: 10px 0;
+            }
+        }
+        .faq {
+            margin-bottom: 50px;
+            .cnt {
+                .rotated {
+                    margin: 25px 0;
+                }
+                .what-is {
+                    margin: 15px 0;
+                    max-width: 750px;
+                    .w-title {
+                        color: @blue2;
+                        font-weight: bold;
+                        font-size: 24px;
+                        margin: 5px 0;
+                    }
+                    .desc {}
+                }
+            }
+        }
+        footer {
+            .newsletter {}
+            .f-cnt {
+                .help {
+                    .f-title {}
+                    .mail {}
+                    .hour {}
+                    .celphone {}
+                }
+                .help2 {}
+            }
+            .f-bot {
+                .copy {}
+                .logo {}
+            }
+        }
+    }
+}

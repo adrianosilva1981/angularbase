@@ -1,0 +1,13 @@
+<app-admin-navbar></app-admin-navbar>
+<lib-components-progress-interceptor></lib-components-progress-interceptor>
+<div class="container">
+    <lib-components-breadcrumb></lib-components-breadcrumb>
+    <div class="cntPage">
+        <div class="sideNav" *ngIf="false">
+            <app-admin-sidenav></app-admin-sidenav>
+        </div>
+        <div class="body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

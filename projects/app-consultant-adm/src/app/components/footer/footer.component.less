@@ -1,0 +1,192 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.footer {
+    margin-top: 38px;
+    a {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .contentFooter {
+        height: 120px;
+        background: @blue1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        .fTitle {
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .fReceiveMail {
+            text-align: center;
+            .fContent {
+                position: relative;
+                border: 1px solid @grey6;
+                .radius(20px);
+                padding: 6px 40px 6px 10px;
+                max-width: 420px;
+                background: #fff;
+                margin: 0 auto;
+                .fInput {
+                    width: 100%;
+                    position: relative;
+                    border: none;
+                    outline: none;
+                }
+                .fIcon {
+                    position: absolute;
+                    right: 1px;
+                    top: 1px;
+                    color: #fff;
+                    font-weight: bold;
+                    cursor: pointer;
+                    .btnSend {
+                        background: @blue1;
+                        padding: 5px 15px;
+                        font-size: 14px;
+                        font-weight: 400;
+                        border: 1px solid #fff;
+                        .radius(20px);
+                        color: #fff;
+                    }
+                    text-transform: uppercase
+                }
+            }
+        }
+        img {
+            width: 200px;
+        }
+    }
+    .contentMenu {
+        color: #fff;
+        background: @blue1;
+        .contentLinks {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 15px 0px;
+            .colLink {
+                min-width: 300px;
+                flex: 1;
+                padding: 0px 10px;
+            }
+            .col1 {
+                .help {
+                    margin-bottom: 25px;
+                    .tlt {
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 14px;
+                        margin-bottom: 10px;
+                    }
+                    .txt {
+                        color: #fff;
+                        font-size: 12px;
+                    }
+                }
+                .faq {
+                    .tlt {
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 14px;
+                        margin-bottom: 10px;
+                    }
+                    .txt {
+                        color: #fff;
+                        font-size: 12px;
+                        padding-left: 15px;
+                    }
+                }
+            }
+            .col2 {
+                .signature {
+                    margin-bottom: 25px;
+                    .tlt {
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 14px;
+                        margin-bottom: 10px;
+                    }
+                    .txt {
+                        color: #fff;
+                        font-size: 12px;
+                    }
+                }
+                .questions {
+                    margin-bottom: 25px;
+                    .tlt {
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 14px;
+                        margin-bottom: 10px;
+                    }
+                    .txt {
+                        color: #fff;
+                        font-size: 12px;
+                    }
+                }
+                .revendedor {
+                    .tlt {
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 14px;
+                        margin-bottom: 10px;
+                    }
+                    .txt {
+                        color: #fff;
+                        font-size: 12px;
+                    }
+                }
+            }
+            .col3 {
+                text-align: right;
+                .text {
+                    color: #fff;
+                    font-weight: bold;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+                .icon {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    .radius(50%);
+                    text-align: center;
+                    background: #fff;
+                    width: 40px;
+                    height: 40px;
+                    margin: 10px 15px;
+                    .fab, a {
+                        color: @grey8;
+                        font-size: 20px;
+                        text-decoration: none;
+                    }
+                    &:hover {
+                        .fab {
+                            color: @grey8;
+                        }
+                    }
+                }
+            }
+        }
+        .contentHyper {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            border-top: 2px solid #fff;
+            height: 60px;
+            .copyright {
+                font-size: 12px;
+            }
+            .logo {
+                margin: 0 0 0 auto;
+                width: 150px;
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+@import 'css/global-variables.less';
+.home {
+    .contentBanner {
+        margin-top: 0px;
+    }
+    .featuredServices {
+        margin: 20px 0px;
+        .fsTitle {
+            color: @blue1;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid @blue1;
+        }
+        .listServices {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .contentLoadMore {
+            text-align: center;
+            .btnLoadMore {
+                background: #f2f2f2;
+                border: 1px solid #b4b7ba;
+                border-radius: 30px;
+                color: #82878c;
+                text-transform: uppercase;
+                padding: 8px 50px;
+                display: inline-block;
+                font-size: 18px;
+            }
+        }
+    }
+}

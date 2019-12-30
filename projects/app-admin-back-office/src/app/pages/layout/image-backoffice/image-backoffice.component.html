@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Configuração Imagens BackOffice
+      </h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center pb-5">
+    <div class="col-12 m-0 p-0">
+
+      <p-table #dt [columns]="cols" [value]="images" (onRowReorder)="onRowReorder(dt)" [responsive]="true" *ngIf="images?.length">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width:2.5em"></th>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+          <tr>
+            <th style="width:2.5em"></th>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+              <p-dropdown *ngSwitchCase="'type'" [options]="typeImages" [ngStyle]="{'width': '100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')" ></p-dropdown>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+          <tr [pReorderableRow]="index">
+            <td>
+              <i class="fa fa-bars" pReorderableRowHandle></i>
+            </td>
+            <td *ngFor="let col of columns" [ngSwitch]="col.field">
+              <p-button icon="far fa-image" *ngSwitchCase="'url_desktop'" (click)="click(rowData.url_desktop)"></p-button>
+              <p-button icon="far fa-image" *ngSwitchCase="'url_mobile'" (click)="click(rowData.url_mobile)"></p-button>
+              <a href="{{rowData.link}}" *ngSwitchCase="'link'" target="_blank">Link</a>
+              <span *ngSwitchCase="'position'">
+                {{rowData[col.field] !== null && rowData.status?((rowData[col.field]+1)+'º'):'-'}}
+              </span>
+              <p-inputSwitch *ngSwitchCase="'status'" [(ngModel)]="rowData.status" (onChange)="onRowReorder(dt)"
+                onLabel="Ativado" offLabel="Desativado"></p-inputSwitch>
+              <span *ngSwitchDefault>
+                {{rowData[col.field]}}
+              </span>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </div>
+  </div>
+
+
+</div>
+
+<p-dialog [(visible)]="display" [modal]="true" class="ui-rtl" dir="rtl">
+  <p-header>
+    <div class="row justify-content-center">
+      Imagem
+    </div>
+  </p-header>
+  <img src="{{urlImg}}" class="img-fluid">
+  <p-footer>
+    <div class="row justify-content-center">
+      <button type="button" pButton icon="fas fa-times" (click)="display=false" label="Fechar"></button>
+    </div>
+  </p-footer>
+</p-dialog>

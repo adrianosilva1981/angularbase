@@ -1,0 +1,43 @@
+<div class="contentModal">
+    <div class="content">
+      <div class="contentHeader">
+        <div class="textHeader">Adicionar Contato</div>
+        <button class="btnClose" tabindex="-1" [mat-dialog-close]="'refused'">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="contentBody">
+        <div class="contentInfo">
+          <!-- Digite o <b>email</b> ou <b>nome de usuário</b> do contato desejado. -->
+          Digite o <b>email</b> do contato desejado
+        </div>
+        <div class="contentInput">
+          <input type="text" [(ngModel)]="user" class="inputPatternAddUser custom1" (keyup.enter)="addNewContact()" (ngModelChange)="validate()"
+            placeholder="example@mail.com ou josesilva" autocomplete="off">
+          <button class="btnAdd" (click)="addNewContact()" [disabled]="!valid">+</button>
+        </div>
+        <div class="contentStatus" *ngIf="errorMessage !== ''" [innerHTML]="'*' + errorMessage"></div>
+        <div class="contentInfoAdd">Contatos Adicionados</div>
+        <div class="emptyAdd" *ngIf="listContact.length <= 0">Nenhum contato adicionado</div>
+        <div class="contentItens">
+          <div class="lineItem" [@animationAddRemove]="animationInitialized.toString()" (@animationAddRemove.done)="animationInitialized = true"
+            *ngFor="let item of listContact; let idx = index">
+            <div class="image">
+              <img [src]="item.photo">
+            </div>
+            <div class="user">{{item.name}} | <small>{{item.user}}</small></div>
+            <div class="delete">
+              <button class="times" tabindex="-1"><i class="fa fa-trash-o" (click)=deleteContact(idx)></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="contentMessage">
+          <div class="text">Envie uma mensagem para este contatos</div>
+          <textarea [(ngModel)]="message" class="inputPatternAddUser" [disabled]="listContact.length <= 0" placeholder="Digite aqui"> </textarea>
+        </div>
+        <div class="contenBtnConfirm">
+          <button class="btnConfirm" (click)='confirmAdd()' [disabled]="listContact.length <= 0 || message.length < 5">Adicionar a contatos</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,20 @@
+<div class="mainLayout">
+  <div class="contentNav">
+    <lib-navbar-nav-top></lib-navbar-nav-top>
+    <app-hyper-opportunity-sub-navbar></app-hyper-opportunity-sub-navbar>
+    <lib-components-progress-interceptor></lib-components-progress-interceptor>
+  </div>
+  <div class="contentPage">
+    <div [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-220px'}">
+      <div class="clearfix"></div>
+      <div class="container">
+        <div class="contentBreadCrumbs">
+          <lib-components-breadcrumb></lib-components-breadcrumb>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+      <div [ngStyle]="{'height': '220px'}"></div>
+    </div>
+    <app-hyper-opportunity-footer></app-hyper-opportunity-footer>
+  </div>
+</div>

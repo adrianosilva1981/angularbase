@@ -1,0 +1,55 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fas {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+    }
+    .content {
+        .profileProgress {
+            position: relative;
+            width: 195px;
+            margin: 0 auto;
+            .imgProfile {
+                text-align: center;
+                img {
+                    .radius(50%);
+                    width: 160px;
+                    height: 160px;
+                    border: 10px solid white;
+                    .boxShadow(4px 3px 15px 1px #ccc);
+                }
+            } //imgProfile
+        } //profileProgress
+        .sendImage {
+            text-align: center;
+            margin: 15px 0px;
+            .btnEdit {
+                padding: 5px 50px;
+                .radius(10px);
+                background: @blue1;
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
+                display: inline-block;
+            }
+        }
+    }
+}

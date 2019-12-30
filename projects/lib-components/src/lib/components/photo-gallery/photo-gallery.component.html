@@ -1,0 +1,25 @@
+<div class="photoGallery">
+  <div class="contentImage">
+    <!-- <img [src]="imageSelected ? imageSelected : '/global/img/image_default.png'"> -->
+    <video [poster]="imageSelected" [src]="imageSelected" playsinline autoplay width="300px" preload="none" onclick="this.error == null ? this.paused?this.play():this.pause() : this;">
+    </video>
+  </div>
+  <div class="galeryOptions">
+    <div class="contentPhotoGallery" [class.unique]="_listPhotos?.length == 1">
+      <ngu-carousel [inputs]="carouselTile">
+        <ngu-tile NguCarouselItem *ngFor="let item of _listPhotos">
+          <div class="tumb" [class.selected]="imageSelected === item" (click)="selectPhoto(item)">
+            <img [src]="item ? item : '/assets/img/image_default.png'" onerror="this.src='/assets/img/video_default.png'">
+          </div>
+        </ngu-tile>
+ 
+        <button NguCarouselPrev class='buttonPrev'>
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <button NguCarouselNext class='ButtonNex'>
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>
+      </ngu-carousel>
+    </div>
+  </div>
+</div>

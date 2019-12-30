@@ -1,0 +1,62 @@
+<div class="contentNav">
+  <div class="contentMenuSide">
+    <div (click)="showSideMenu = true">
+      <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+  </div>
+  <!-- .contentMenuSide-->
+
+  <div class="contentLogo" [routerLink]="['/']">
+    <img src="">
+  </div>
+  <!-- .contentLogo-->
+
+  <div class="contentProject">
+    <div class="cntMenus">
+      <div class="menu">Dashboard</div>
+      <div class="menu" routerLink="/product/register">Produtos</div>
+      <div class="menu" routerLink="/supplier/register">Fornecedores</div>
+      <div class="menu">Serviços</div>
+      <div class="menu">Relatórios</div>
+    </div>
+  </div>
+  <!-- .contentProject-->
+
+  <div class="contentProfile">
+    <div class="profile">
+      <div class="notLogged" *ngIf="!objUserLogged" (click)="signIn()">
+        <span class="text">Entre</span>
+        <i class="fas fa-sign-in-alt"></i>
+      </div>
+      <div class="logged" *ngIf="objUserLogged">
+        <div class="drop-down-shop">
+          <span class="text">Olá,
+            <b>{{objUserLogged?.name | words : 1 : ''}}</b>!</span>
+          <i class="fas fa-chevron-down"></i>
+          <div class="drop-down-content-shop">
+            <div class="triangle"></div>
+            <div class="profileContent">
+              <div class="menuItem">
+                <a [href]="'//account' + domain">
+                  <img [src]="objUserLogged?.photoUrl" width="50px" height="50px">
+                  <span>{{objUserLogged?.name | truncate : 12 : '...'}}</span>
+                </a>
+              </div>
+              <div class="menuItem">
+                <a (click)="signOut()">
+                  <i class="fas fa-sign-out-alt fa-fw"></i>
+                  <span>Sair</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- .contentMenu-->
+</div>
+
+<p-sidebar [(visible)]="showSideMenu">
+  Content
+</p-sidebar>

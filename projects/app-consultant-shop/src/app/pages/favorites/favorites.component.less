@@ -1,0 +1,127 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fa {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+        .pageOptions {
+            flex: 1;
+            text-align: right;
+            min-width: 265px;
+            color: @grey3;
+            font-size: 18px;
+        }
+    }
+    .cnt {
+        margin-bottom: 20px;
+        .boxItens {
+            min-height: 200px;
+            height: 100%;
+            .contentItem {
+                min-height: 50px;
+                height: auto;
+                border: 1px solid @grey2;
+                border-radius: 10px;
+                @media only screen and (max-width: 499px) {
+                    margin: 20px 5px;
+                }
+                display: flex;
+                flex-wrap: wrap;
+                .details {
+                    flex: 2;
+                    padding: 10px;
+                    min-height: 150px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    .cntImage {
+                        flex: 1;
+                        justify-content: center;
+                        text-align: center;
+                        img {
+                            max-width: 300px;
+                            margin-top: 15px;
+                            max-height: 100px;
+                        }
+                    }
+                    .cntText {
+                        flex: 2;
+                        min-width: 180px;
+                        .name {
+                            margin-top: 25px;
+                            font-size: 18px;
+                            color: @blue3;
+                            .added {
+                                font-size: 12px;
+                                color: @grey3;
+                            }
+                            @media screen and (max-width: 961px) {
+                                text-align: center;
+                            }
+                        }
+                        .price {
+                            font-size: 20px;
+                            color: @green1;
+                            .cents {
+                                font-size: 15px;
+                            }
+                            .plus {
+                                font-size: 16px;
+                                color: @red1;
+                            }
+                            @media screen and (max-width: 961px) {
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+                .actions {
+                    flex: 1;
+                    padding: 10px;
+                    min-height: 150px;
+                    width: 100%;
+                    border-left: 1px solid @grey2;
+                    @media screen and (max-width: 961px) {
+                        border-left: none;
+                    }
+                    .contentBtnAdd {
+                        margin: 0 auto;
+                        text-align: center;
+                        margin-top: 30px;
+                    }
+                    .remove {
+                        margin: 0 auto;
+                        text-align: center;
+                        margin-top: 15px;
+                        color: @red1;
+                        font-size: 14px;
+                        width: 100px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .center {
+        text-align: center;
+    }
+}

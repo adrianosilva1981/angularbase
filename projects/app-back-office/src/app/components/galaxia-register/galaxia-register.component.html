@@ -1,0 +1,34 @@
+<div class="cntAll">
+
+  <form [formGroup]="registerForm" novalidate (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label class="center-block">* E-mail</label>
+      <input class="form-control" [attr.readonly]="!objuser?.email" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label class="center-block">* Senha</label>
+      <input type="password" class="form-control" formControlName="password">
+      <span class="errorFormField" *ngIf="registerForm.get('password').hasError('mismatch')">
+        * Senha e Confirmação de senha não conferem
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="center-block">* Confirmação Senha</label>
+      <input type="password" class="form-control" formControlName="conf_password">
+      <span class="errorFormField" *ngIf="registerForm.get('conf_password').hasError('mismatch')">
+        * Senha e Confirmação de senha não conferem
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="center-block">* Nome</label>
+      <input class="form-control" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label class="center-block">* Sobrenome</label>
+      <input class="form-control" formControlName="last_name">
+    </div>
+    <div class="form-group center">
+      <button class="btnRegister" [disabled]="!registerForm.valid" type="submit">Cadastrar novo endereço</button>
+    </div>
+  </form>
+</div>

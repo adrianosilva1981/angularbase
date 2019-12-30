@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="contentPage">    
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fa fa-cubes" aria-hidden="true"></i>
+        <span class="text">Meus Pedidos</span>
+      </div>
+      <div class="pageOptions">
+        <!-- <div class="search">
+          <input type="text" placeholder="Buscar por número do pedido" [(ngModel)]="filterSearch" (ngModelChange)="filterChanged($event)">
+          <i class="fa fa-search"></i>
+          <div class="clearfix"></div>
+        </div> -->
+      </div>
+    </div>
+    <div class="cnt">
+      <app-hyper-store-order-list *ngIf="listOrders?.length > 0" [orderList]="listOrders"></app-hyper-store-order-list>
+      <span *ngIf="listOrders?.length <= 0">Não ha pedidos</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<!-- quando for em mobile -->
+<div class="menu-class">
+  <button type="text" class="mobile" (click)="display = !display" pButton icon="fas fa-bars"></button>
+  <p-sidebar [(visible)]="display">   
+    <p-panelMenu [model]="items" [style]="{'width':'250px'}" [multiple]="false"></p-panelMenu>
+  </p-sidebar>
+
+  <!-- quando for web -->
+  <div class="container-fluid row col web">  
+    <p-panelMenu [model]="items" [style]="{'width':'250px'}" [multiple]="false"></p-panelMenu>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="contentAll" [class.first]="first">
+    <div class="cntCard" (click)="loadChilds()">
+        <div class="lineCard">
+            <div class="headerCard">
+                <div class="cntPhoto">
+                    <img [src]="nodes.photo" onError="src='assets/img/user-photo-default.png'">
+                </div>
+                <div class="cntName">{{nodes.name | truncate : 25 : '...'}}</div>
+                <div class="cntPin" *ngIf="nodes.slug_graduation !== 'Indefinido'">
+                        <img class="pin" [src]="'assets/img/pin_' + nodes.slug_graduation + '.png'">
+                </div>
+                <!--<span *ngIf="nodes.leg">  ({{nodes.leg}})</span>-->
+            </div>
+
+            <div class="subHeader">
+                
+                <div class="cntUsername">Código: {{nodes.username}}</div>
+                <div class="cntEnable">
+                    <i class="fas fa-circle" [ngClass]="nodes.enabled && nodes.activated ? 'active' : (!nodes.enabled && !nodes.activated ? 'inactive' : 'hability')"></i>
+                    <span>{{nodes.enabled ? 'Habilitado' : 'Não Habilitado'}}</span>
+                </div>
+                <div class="cntActive">
+                    <i class="fas fa-circle" [class.active]="nodes.activated"></i>
+                    <span>{{nodes.activated ? 'Ativo' : 'Inativo'}}</span>
+                </div>
+                <div class="cntUsername">
+                <div class="cntPin">
+                    Graduação no mês: <span *ngIf="nodes.slug_graduation_current !== 'Indefinido' && nodes.slug_graduation_current !== ''"><img class="pin" [src]="'assets/img/pin_' + nodes.slug_graduation_current + '.png'"></span> <span *ngIf="nodes.slug_graduation_current == 'Indefinido' || nodes.slug_graduation_current == ''"> Critério ME não alcançado</span>
+                </div>
+                </div>
+            </div>
+
+            <div class="cntCounters">
+                <div class="cntItm">
+                    <div class="itm">
+                        <span class="key">Total Cadastrados: </span>
+                        <span class="value">{{nodes.quantity_total}}</span>
+                    </div>
+                    <div class="itm">
+                        <span class="key">Total por Ciclo: </span>
+                        <span class="value">{{nodes.quantity_cycle}}</span>
+                    </div>
+                    <div class="itm">
+                        <span class="key">Total Ativados: </span>
+                        <span class="value">{{nodes.quantity_active}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cntSlugs">
+                <div class="slug" *ngFor="let itm of nodes.slugs">
+                    <span class="tlt" [pTooltip]="itm.title">{{itm.slug}}: </span>
+                    <span class="val">{{itm.value}}</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cntLevel">
+            Nível: {{nodes.level}}
+        </div>
+
+        <div class="cntArrow" [ngClass]="nodes.children?.length > 0 ? 'opened' : 'closed'" *ngIf="nodes.view_more">
+            <i class="fas "></i>
+        </div>
+
+    </div>
+    <app-back-office-card-tean-table *ngFor="let item of nodes.children" [nodes]="item"></app-back-office-card-tean-table>
+</div>

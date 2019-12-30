@@ -1,0 +1,40 @@
+
+  <div class="editcells">
+  <div *ngIf="!cellsok">Nenhuma Grade</div>
+
+<div *ngIf="cellsok" class="content_cell">
+      <div class="subtitle">
+        Grades Existentes
+      </div>
+      <div class="content_cells">
+  
+        <div *ngFor="let cel of cells">
+          <div class="card">
+            <div class="content">
+              Nome da célula:<span class="titles"> {{cel.name}}</span><hr>
+              <div class="info">
+                  Manager: <span class="name">{{ cel?.manager?.username }} - {{ cel?.manager?.name }}</span>
+              </div>
+              <div class="info">
+                Diretor: <span class="name">{{ cel?.director?.username }} - {{ cel?.director?.name }}</span>
+              </div>
+              <div class="info">
+                  Diretor Senior: <span class="name">{{ cel?.senior_director?.username }} - {{ cel?.senior_director?.name }}</span>
+                </div>
+              <div class="info">
+                Diretor Nacional: <span class="name">{{ cel?.national_director?.username }} - {{ cel?.national_director?.name }}</span>
+              </div>              
+              <div class="info">
+                Presidente: <span class="name">{{ cel?.president?.username }} - {{ cel?.president?.name }}</span>
+              </div>
+              <div class="content_button">
+                <div class="btn edit"(click)="edit(cel.id)">Alterar</div>
+                <div class="btn del" (click)="delete(cel.id)">Excluir</div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+    </div>

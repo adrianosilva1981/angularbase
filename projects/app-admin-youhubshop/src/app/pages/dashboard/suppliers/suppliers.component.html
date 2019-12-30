@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="row mx-3">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>
+        Fornecedores
+      </h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <p-calendar #interval selectionMode="range" (onSelect)="changeDate(interval.value)"></p-calendar>
+    </div>
+  </div>
+
+  <div class="row justify-content-center py-5 mx-1">
+
+    <div class="col-12 text-center" *ngIf="!suppliers.length">
+      <h6>
+        Por favor escolha um intervalo...
+      </h6>
+    </div>
+
+    <div class="col-12 text-center" *ngIf="suppliers.length">
+      <div class="col">
+        <input type="text" [(ngModel)]="query" pInputText placeholder="Pesquisar...">
+        <button pButton type="button" icon="fas fa-search"></button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <div class="row justify-content-center py-5 mx-1" *ngFor="let supplier of returnSuppliersSearch()">
+    <div class="col-12 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect(interval.value,null,'suppliers','details',supplier.id)">
+        <div class="col-12">
+          {{supplier.fantasyname}}
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{supplier.sold}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect(interval.value,'product','suppliers','details',supplier.id)">
+        <div class="col-12">
+          Produtos
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{supplier.sold_products}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect(interval.value,'service','suppliers','details',supplier.id)">
+        <div class="col-12">
+          Serviços
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{supplier.sold_services}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect(interval.value,'gift_code','suppliers','details',supplier.id)">
+        <div class="col-12">
+          Gift Cards
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{supplier.sold_gift_card}}
+        </div>
+      </div>
+    </div>-->
+
+  <p-table [columns]="cols" [value]="returnSuppliersSearch()">
+
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr style="cursor:pointer" (click)="redirect(interval.value, null, 'suppliers', 'details', rowData.id)">
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <tr>
+        <td colspan="2">
+          <b>Totais</b>
+        </td>
+        <td>
+          {{products}}
+        </td>
+        <td>
+          {{services}}
+        </td>
+        <td>
+          {{giftCards}}
+        </td>
+        <td>
+          {{total}}
+        </td>
+      </tr>
+    </ng-template>
+
+  </p-table>
+
+  <!-- </div> -->
+</div>

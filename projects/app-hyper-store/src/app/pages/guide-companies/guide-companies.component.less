@@ -1,0 +1,138 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+@import 'css/global-components.less';
+.contentAllProducts {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+    .contentAll {
+        display: flex;
+        flex-wrap: wrap;
+        .contentResult {
+            flex: 4;
+            min-width: 280px;
+            .contentCards {
+                &.grid {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                &.list {
+                    display: block;
+                }
+                .noData {
+                    text-align: center;
+                    .text {
+                        color: @grey4;
+                        text-align: center;
+                    }
+                    .contentBtn {
+                        margin-top: 15px;
+                        text-align: center;
+                    }
+                }
+            }
+            .contentLoadMore {
+                text-align: center;
+                width: 100%;
+                margin: 20px 0px 30px 0px;
+                .btnLoadMore {
+                    background: @grey1;
+                    border: 1px solid @grey3;
+                    .radius(30px);
+                    color: @grey5;
+                    text-transform: uppercase;
+                    padding: 8px 50px;
+                    display: inline-block;
+                    font-size: 18px;
+                    &:hover {
+                        background: @grey2;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .header {
+            .text {
+                font-size: 14px;
+            }
+            .typeView {
+                display: none;
+            }
+            .btnFilter {
+                display: block;
+            }
+        }
+        .contentAll {
+            .contentFilter {
+                display: none;
+            }
+        }
+    }
+}
+
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.filter {
+    padding: 10px;
+    width: 250px;
+    background: white;
+    margin-bottom: 25px;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    .contentBtn {
+        text-align: right;
+        padding: 10px 0px;
+        margin-bottom: 15px;
+    }
+    .filterIn {
+        .cntFilter {
+            .loopType {
+                .cntFilt {
+                    color: @grey5;
+                    cursor: pointer;
+                    .val {
+                        font-weight: 400;
+                        margin-bottom: 5px;
+                        font-size: 14px;
+                    }
+                    .fa {
+                        display: inline-block;
+                        color: @grey5;
+                        font-family: FontAwesome;
+                        margin-top: 2px;
+                        &:before {
+                            content: "\f096"; //content: "□";
+                        }
+                    }
+                    &:hover {
+                        color: @blue1;
+                    }
+                    &.active {
+                        .fa {
+                            color: @blue1;
+                            &:before {
+                                content: "\f0c8"; //content: "■";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .btnClearFilter {
+        display: inline-block;
+        padding: 3px 15px;
+        background: @grey1;
+        border: 1px solid @grey3;
+        color: @grey5;
+        .radius(20px);
+        font-size: 12px;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            background: @grey2;
+            color: @grey4;
+        }
+    }
+}

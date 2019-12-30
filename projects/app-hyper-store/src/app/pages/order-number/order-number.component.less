@@ -1,0 +1,60 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentOrder {
+    width: 320px;
+    margin: 0 auto;
+    .contentIcon {
+        margin: 50px 0px 20px 0px;
+        .circle {
+            margin: 0 auto;
+            .radius(50%);
+            width: 70px;
+            height: 70px;
+            border: 2px solid @green1;
+            padding: 19px;
+            .fa {
+                color: @green1;
+                font-size: 30px;
+            }
+        }
+    }
+    .contentTitle {
+        text-align: center;
+        font-size: 20px;
+        color: @blue3;
+        font-weight: lighter;
+    }
+    .contentSubTitle {
+        text-align: center;
+        font-size: 22px;
+        color: @blue3;
+        font-weight: bold;
+    }
+    .contentTitle2 {
+        text-align: center;
+        font-size: 20px;
+        color: @blue3;
+        font-weight: lighter;
+        margin-bottom: 30px;
+    }
+    .contentNumber {
+        text-align: center;
+        margin-bottom: 10px;
+        .text {
+            color: @grey4;
+        }
+        .number {
+            font-size: 18px;
+            color: @red1;
+            font-weight: bold;
+        }
+    }
+    .contentBtn {
+        text-align: center;
+        .btnGotoOrder {
+            background: @green1;
+            color: #fff;
+            padding: 5px 40px;
+        }
+    }
+}

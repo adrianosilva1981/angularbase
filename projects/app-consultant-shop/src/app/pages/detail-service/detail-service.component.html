@@ -1,0 +1,76 @@
+<div class="container detail-product">
+  <div class="left-side">
+    <div class="img">
+      <div class="cnt">
+        <lib-components-photo-gallery [listPhotos]="listPhotos"></lib-components-photo-gallery>
+        <div class="garantia" *ngIf="objService?.hyper_service === 'Y'">
+          <img src="assets/img/selo-qualidade-detalhes.svg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="sold" *ngIf="show">
+      <div class="title">
+        Itens relacionados
+      </div>
+      <app-consultant-shop-slider-items [itemList]="objProduct?.related" [type]="'service'"></app-consultant-shop-slider-items>
+
+    </div>
+  </div>
+  <div class="right-side">
+    <div class="info">
+      <div class="name-pro">
+        {{objService.title}}
+      </div>
+      <div class="discount" *ngIf="objService?.value_associate > 0">
+        <div class="prime">{{objService?.value_prime | conversion : 'BRL' : false}} <span class="color">Prime</span></div>
+        <ng-container *ngIf="userLogged == 'smart'">
+
+          <div class="smart">{{objService?.value_associate | conversion : 'BRL' : false}} <span class="color">Smart</span></div>
+
+        </ng-container>
+      </div>
+      <div class="price" [innerHTML]="objService?.value  | conversion : 'BRL'"></div>
+      <div class="value points" *ngIf="objService?.points_value > 0 && userLogged == 'smart'">
+        <b><em class="val">Ganhe {{objService?.points_value}} pontos</em></b>
+      </div>
+      <div class="bt">
+        <div class="btn" [ngClass]="{'success': animate}" (click)="addToCart()">
+          <ng-container *ngIf="!animate">
+            <span class="text">Adicionar</span>
+            <i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>
+          </ng-container>
+
+          <ng-container *ngIf="animate">
+            <span class="text">Adicionado</span>
+            <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+    <div class="intro">
+      <div class="bold">
+        Introdução
+      </div>
+      <div class="text" [innerHTML]="objService?.description">
+      </div>
+    </div>
+    <!-- <div class="info-product">
+        <div class="bold">
+          Informações do Produto
+        </div>
+        <div class="item" *ngFor="let item of objService?.details">
+          <div class="name"><b>{{item.key}}</b></div>
+          <div class="desc">{{item.value}}</div>
+        </div>
+      </div> -->
+    <!-- <div class="social-medias">
+        <div class="banner"></div>
+        <div class="icons">
+          <i class="fab fa-facebook-square"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+        </div>
+      </div> -->
+  </div>
+</div>

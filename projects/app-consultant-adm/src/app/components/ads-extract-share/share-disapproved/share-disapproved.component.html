@@ -1,0 +1,12 @@
+<div class="content">
+  <form class="form" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea rows="8" class="form-control" required formControlName="description"></textarea>
+      <span class="errorFormField" *ngIf="registerForm.controls.description.hasError('minlength')">* Mínimo 20
+        caracteres</span>
+    </div>
+
+    <button class="btnRegister" type="submit">Reprovar</button>
+  </form>
+</div>

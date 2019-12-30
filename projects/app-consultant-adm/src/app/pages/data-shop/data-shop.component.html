@@ -1,0 +1,192 @@
+<div class="data-shop">
+  <div class="title">Endereço da loja</div>
+  <div class="title-desc">Este endereço será usado na impressão do pedido e no formulário de contato.</div>
+  <div class="address-from">
+    <div class="from">
+      <div class="from-desc">No momento em que for imprimir o seu pedido o endereço cadastrado aparecerá na etiqueta do remetente.</div>
+      <div class="from-img">
+        <img src="assets/img/remetente.jpg" alt="image">
+      </div>
+    </div>
+    <div class="map-address">
+      <div class="map-desc">Dentro da loja o menu "Fale Conosco" conterá o endereço cadastrado e o mapa do google com a localização.</div>
+      <div class="map-img">
+        <img src="assets/img/google.jpg" alt="image">
+      </div>
+    </div>
+  </div>
+  <div class="form">
+    <form [formGroup]="dataShopForm" class="form-group" *ngIf="dataShopForm">
+      <div class="address_shop" formGroupName="address_shop">
+        <div class="form-group cep">
+          <div class="label">
+            CEP
+          </div>
+          <p-inputMask formControlName="zipCode" autoClear="false" (onBlur)="getCep()" styleClass="form-control" mask="99999-999"></p-inputMask>
+          <!-- <input id="float-input1" formControlName="zipCode" type="text" size="30" > -->
+          <span class="errorFormField" *ngIf="dataShopForm.get('address_shop.zipCode').hasError('required') && this.dataShopForm.get('address_shop.zipCode').touched">
+            Campo obrigatório
+          </span>
+        </div>
+
+        <div class="form-group number">
+          <div class="label">
+            Número
+          </div>
+          <input class="form-control" type="text" formControlName="number" size="30">
+          <span class="errorFormField" *ngIf="dataShopForm.get('address_shop.number').hasError('required') && this.dataShopForm.get('address_shop.number').touched">
+            Campo obrigatório
+          </span>
+          <span class="errorFormField" *ngIf="dataShopForm.get('address_shop.number').hasError('pattern')">
+            Somente números
+          </span>
+        </div>
+
+        <div class="form-group city">
+          <div class="label">
+            Cidade
+          </div>
+          <input class="form-control" type="text" formControlName="city" size="30">
+          <span class="errorFormField" *ngIf="dataShopForm.get('address_shop.city').hasError('required') && this.dataShopForm.get('address_shop.city').touched">
+            Campo obrigatório
+          </span>
+        </div>
+
+        <div class="form-group complement">
+          <div class="label">
+            Complemento
+          </div>
+          <input class="form-control" type="text" formControlName="complement" size="30">
+        </div>
+
+        <div class="form-group neighborhood">
+          <div class="label">
+            Bairro
+          </div>
+          <input class="form-control" type="text" formControlName="neighborhood" size="30">
+          <span class="errorFormField" *ngIf="dataShopForm.get('address_shop.neighborhood').hasError('required') && this.dataShopForm.get('address_shop.neighborhood').touched">
+            Campo obrigatório
+          </span>
+        </div>
+
+        <div class="form-group address">
+          <div class="label">Endereço</div>
+          <input class="form-control" type="text" formControlName="address" size="30">
+          <span class="errorFormField" *ngIf="dataShopForm.get('address_shop.address').hasError('required') && this.dataShopForm.get('address_shop.address').touched">
+            Campo obrigatório
+          </span>
+        </div>
+
+        <div class="form-group federal">
+          <small>
+            *Os dados serão monstrados no site devido ao
+            <b>Decreto Federal 7962/13</b>
+          </small>
+        </div>
+
+        <div class="drop">
+          <p-dropdown [options]="showInMap" dropdownIcon="fas fa-caret-down" formControlName="showInMap"></p-dropdown>
+
+          <span class="drop">Exibir este endereço no mapa</span>
+        </div>
+      </div>
+      <div class="data_shop" formGroupName="data_shop">
+
+        <div class="title">
+          Dados da loja
+        </div>
+        <span class="form-group shop-name">
+          <div class="label">
+            Nome da sua loja
+          </div>
+          <input class="form-control" type="text" formControlName="name" size="30">
+          <span class="errorFormField" *ngIf="dataShopForm.get('data_shop.name').hasError('required') && this.dataShopForm.get('data_shop.name').touched">
+            Campo obrigatório
+          </span>
+        </span>
+
+        <span class="form-group shop-name-title">
+          <div class="label">
+            Titulo da loja
+          </div>
+          <input class="form-control" type="text" formControlName="nameTitle" size="30">
+          <span class="errorFormField" *ngIf="dataShopForm.get('data_shop.nameTitle').hasError('required') && this.dataShopForm.get('data_shop.nameTitle').touched">
+            Campo obrigatório
+          </span>
+        </span>
+
+        <span class="form-group shop-description">
+          <div class="desc-label">Descrição da loja</div>
+          <textarea class="form-control" placeholder="Preencha o campo com uma breve descrição sobre sua loja. Esta informação ficará disponível na página principal e para o Google."
+            area autoResize="autoResize" formControlName="description"></textarea>
+          <span class="errorFormField" *ngIf="dataShopForm.get('data_shop.description').hasError('required') && this.dataShopForm.get('data_shop.description').touched">
+            Campo obrigatório
+          </span>
+        </span>
+
+        <span class="drop">
+          <div class="form-group">
+
+            <select class="form-control" required formControlName="typeShop">
+              <option [value]="typeShop[0].value" [selected]="dataShopForm.get('data_shop.typeShop').value == typeShop[0].value">{{typeShop[0].label}}
+              </option>
+              <option [value]="typeShop[1].value" [selected]="dataShopForm.get('data_shop.typeShop').value == typeShop[1].value">{{typeShop[1].label}}</option>
+            </select>
+          </div>
+        </span>
+
+        <span class="form-group shop-responsibleName">
+          <div class="label">
+            Nome do responsável
+          </div>
+          <input class="form-control" type="text" formControlName="responsibleName" size="30">
+        </span>
+
+        <span class="form-group shop-blogUrl">
+          <div class="label">Endereço do Blog</div>
+          <input class="form-control" type="text" formControlName="blogUrl" size="30">
+        </span>
+
+        <span class="form-group socialSecurity">
+          <div class="label">CPF</div>
+          <p-inputMask formControlName="socialSecurity" styleClass="form-control" autoClear="false" mask="999.999.999-99"></p-inputMask>
+          <span class="errorFormField" *ngIf="dataShopForm.get('data_shop.socialSecurity').hasError('required') && this.dataShopForm.get('data_shop.socialSecurity').touched">
+            Campo obrigatório
+          </span>
+        </span>
+
+        <span class="form-group phoneTalk">
+          <div class="label">Telefone fixo</div>
+          <p-inputMask formControlName="phoneTalk" styleClass="form-control" autoClear="false" mask="(99) 9999-9999"></p-inputMask>
+        </span>
+
+        <span class="form-group phoneWhats">
+          <div class="label">Telefone celular</div>
+          <p-inputMask formControlName="phoneWhats" styleClass="form-control" autoClear="false" mask="(99) 99999-9999"></p-inputMask>
+          <!-- <input id="float-input1" formControlName="zipCode" type="text" size="30" > -->
+          <span class="errorFormField" *ngIf="dataShopForm.get('data_shop.phoneWhats').hasError('required') && this.dataShopForm.get('data_shop.phoneWhats').touched">
+            Campo obrigatório
+          </span>
+        </span>
+        <span class="form-group responsibleMail">
+          <div class="label"> Email de contato</div>
+          <input class="form-control" type="text" formControlName="responsibleMail" size="30">
+          <!-- <input id="float-input1" formControlName="zipCode" type="text" size="30" > -->
+          <span class="errorFormField" *ngIf="dataShopForm.get('data_shop.responsibleMail').hasError('email') && dataShopForm.get('data_shop.responsibleMail').dirty">
+            Email inválido
+          </span>
+        </span>
+        <span class="form-group officeHours">
+          <div class="label">Horário de funcionamento </div>
+          <input class="form-control" type="text" formControlName="officeHours" size="30">
+          <!-- <input id="float-input1" formControlName="zipCode" type="text" size="30" > -->
+          <span class="errorFormField" *ngIf="dataShopForm.get('data_shop.officeHours').hasError('required') && dataShopForm.get('data_shop.officeHours').touched">
+            Campo obrigatório
+          </span>
+          <span class="ex">(Ex: Segunda à Sexta: 8:00 às 12:00 e das 13:00 às 18:00h – exceto feriados.)</span>
+        </span>
+      </div>
+      <div class="btn blue" (click)="sendForm()">Criar / Salvar</div>
+    </form>
+  </div>
+</div>

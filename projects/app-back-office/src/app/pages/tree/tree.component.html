@@ -1,0 +1,30 @@
+<div class="cntAll">
+
+  <div class="cntCard">
+    <div class="card" (click)="card(item)" *ngFor="let item of menu; let idx = index" [ngClass]="{'active': idx === menuSelect}">
+      <div class="cntBtn">
+        <div class="icon" [ngClass]="item.icon"></div>
+        <div class="text">{{item.text}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cntComp" [ngSwitch]="menuSelect">
+    <div *ngSwitchCase="0">
+      <app-back-office-team-tree></app-back-office-team-tree>
+    </div>
+    <div *ngSwitchCase="1">
+      <app-back-office-tean-table></app-back-office-tean-table>
+    </div>
+    <div *ngSwitchCase="2">
+      <app-back-office-tean-pre-register></app-back-office-tean-pre-register>
+    </div>
+    <div *ngSwitchCase="3">
+        <app-back-office-team-inactive></app-back-office-team-inactive>
+    </div>
+    <div *ngSwitchCase="4">
+          <app-back-office-team-manager [typeManager] = typeManager></app-back-office-team-manager>
+    </div> 
+  </div>
+
+</div>

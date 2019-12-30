@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="contentPage">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        <span class="text">Pedidos da Loja</span>
+      </div>
+    </div>
+
+    <div class="cnt">
+
+      <p-table #dt class="cntTable ng2SmartTableShopOrders" [columns]="cols" [value]="dataSource" [resizableColumns]="true" [paginator]="true"
+        [rows]="20" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+
+        <ng-template pTemplate="caption">
+          <div class="cntSearch">
+            <input type="text" class="sInput" size="50" placeholder="Buscar" (input)="dt.filterGlobal($event.target.value, 'contains')"
+              style="width:auto">
+            <span class="sIcon">
+              <i class="fa fa-search"></i>
+            </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <!-- COMPRADOR -->
+            <td>{{rowData.buyer_name}}</td>
+            <!-- PAGAMENTO -->
+            <td>
+              <i class="fas" [ngClass]="{
+                  'fa-credit-card': rowData.payment_method=='Cartão de Crédito', 
+                  'fa-barcode': rowData.payment_method=='Boleto Bancário',   
+                  'fa-dollar-sign': rowData.payment_method!=='Cartão de Crédito' && rowData.status!=='Boleto Bancário'
+                }"></i>
+              <span> {{rowData.payment_method}}</span>
+            </td>
+            <!-- VALOR -->
+            <td>
+              <span *ngIf="rowData.amount=='0' || rowData.amount=='0.00'">-</span>
+              <span *ngIf="rowData.amount!=='0' && rowData.amount!=='0.00'" class="amount" [innerHtml]="rowData.amount | conversion : 'BRL'"></span>
+            </td>
+            <!-- COMISSÃO -->
+            <td>
+              <span *ngIf="rowData.amount_comission=='0' || rowData.amount_comission=='0.00'">-</span>
+              <span *ngIf="rowData.amount_comission!=='0' && rowData.amount_comission!=='0.00'" class="amount" [innerHtml]="rowData.amount_comission | conversion : 'BRL'"></span>
+            </td>
+            <!-- DATA -->
+            <td>{{rowData.date}}</td>
+            <!-- STATUS -->
+            <td>
+              <i class="fa" [ngClass]="{
+                'fa-check': rowData.status=='Confirmado', 
+                'fa-exclamation-circle': rowData.status=='Aguardando', 
+                'fa-ban': rowData.status=='Recusado',
+                'fa-times': rowData.status=='Cancelado', 
+                'fa-times': rowData.status!=='Confirmado' && rowData.status!=='Aguardando' && rowData.status!=='Recusado' && rowData.status!=='Cancelado'
+              }"></i>
+              <span> {{rowData.status}}</span>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+          <div class="cntResume">
+            <div class="resume">
+              <span class="text">Total de Pedidos: </span>
+              <span class="value" [innerHtml]="amountAll | conversion : 'BRL'"></span>
+            </div>
+            <div class="resume">
+              <span class="text">Total de Comissões: </span>
+              <span class="value" [innerHtml]="comissionAll | conversion : 'BRL'"></span>
+            </div>
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

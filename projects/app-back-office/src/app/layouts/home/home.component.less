@@ -1,0 +1,30 @@
+.contentAll {
+    display: flex;
+    .contentCenter {
+        margin-top: 70px;
+        flex: 1;
+        margin-left: 260px;
+        @media screen and (max-width: 600px) {
+            margin-left: 0;
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .sidebarDescktop {
+            display: none;
+        }
+    }
+    @media screen and (min-width: 600px) {
+        .sidebarMobilli {
+            display: none;
+        }
+    }
+}
+
+:host /deep/ .ui-sidebar {
+    margin-top: 72px;
+    border: 0;
+}
+
+:host /deep/ .ui-sidebar-left {
+    width: 263px;
+}

@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row mx-3">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>
+        Intervalo de {{interval[0]|date:'dd/MM/yyyy'}} até {{interval[1]|date:'dd/MM/yyyy'}}
+      </h4>
+    </div>
+  </div>
+
+  
+  <div class="content_disp">
+    <div class="card hover" [routerLink]="['/admin','connections','details-connections']" [queryParams]="{interval:interval}">
+      <div class="content">
+        <div class="titles">Conexões</div>
+        <div class="line"></div>
+        <div class="info">
+          <div style="text-align:center; width: 100%;">
+              {{ connections === -2 ?('Escolha um intervalo'):(connections===-1)?(0):(connections || 'Carregando') }}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content_disp">
+    <div class="card hover" *ngFor="let item of connectionsByMethod" [routerLink]="['/admin','connections','details-connections']"
+      [queryParams]="{interval:interval,paymentMethod:item.label}">
+      <div class="content">
+        <div class="titles">{{returnHeader(item.label)}}</div>
+        <div class="line"></div>
+        <div class="info">
+          <div style="text-align:center; width: 100%;">
+              {{item.value}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+</div>

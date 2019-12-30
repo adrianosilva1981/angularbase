@@ -1,0 +1,35 @@
+<div class="mytree" *ngIf="mytree">
+  <div class="contentSearch">
+    <div class="top" (click)="down(resseler.id);">
+      <i class="fa fa-chevron-circle-up down"></i>  Ir para o Topo</div>
+    <div class="hand">
+      <i class="fa fa-hand-paper-o"></i>  Arraste com o mouse</div>
+    <div class="search">
+      <i class="fa fa-search searchLupa"></i>
+      <input [(ngModel)]="search" (keyup.enter)="username(resseler.id,search);" type="text" placeholder="Pesquisar"
+        pinputtext class="ui-inputtext ui-corner-all ui-state-default ui-widget searchInput">
+    </div>
+  </div>
+  <div #arvore class="contentTree">
+    <div class="move" (mousedown)="mouseDown($event);" (mouseup)="mouseUp($event);" (mousemove)="mouseMove($event);"
+      (mouseleave)="mouseLeave($event);">
+      <p-organizationChart [value]="tree" styleClass="company">
+        <ng-template let-node pTemplate="person">
+          <i class="" *ngIf="resseler.id !== node.id && node.children.length > 0" class="fa ui-node-toggler-icon fa-chevron-up down"
+            (click)="down(node.id_parent);"></i>
+          <div class="{{node.styleClass.join(' ')}} circle" (click)="viewinfo(node)">
+            <div class="back {{node.gender ? node.gender : 'M'}}">
+              <div class="inative2">
+                <div class="ui-corner-top" style="padding: 15px 10px; font-size: 11px;">{{node.label}}</div>
+                <div>{{node.textLeg}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="username">{{node.data.username}}</div>
+          <i class="" *ngIf="node.view_more && node.children.length <= 0" class="fa ui-node-toggler-icon fa-chevron-down down"
+            (click)="down(node.id);"></i>
+        </ng-template>
+      </p-organizationChart>
+    </div>
+  </div>
+</div>

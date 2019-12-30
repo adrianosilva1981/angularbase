@@ -1,0 +1,25 @@
+<div class="filter">
+  <div class="contentBtn">
+    <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+  </div>
+  <div class="orderSelect form-group">
+    <label>Ordenar por:</label>
+    <select #order class="form-control" (change)="onOrderChange(order.value)">
+      <option [selected]="!queryParams?.order" disabled value="">Selecione</option>
+      <option [selected]="queryParams?.order==='major'" value="major">Maior Preço</option>
+      <option [selected]="queryParams?.order==='minor'" value="minor">Menor Preço</option>
+      <option [selected]="queryParams?.order==='asc'" value="asc">A-Z</option>
+      <option [selected]="queryParams?.order==='desc'" value="desc">Z-A</option>
+    </select>
+  </div>
+  <div class="filter">
+    <div class="cntFilter">
+      <div class="loopType" *ngFor="let filter of filters">
+        <div class="cntFilt" [class.active]="filter.selected" (click)="attFilter(filter)">
+          <i class="fa fa-fw" *ngIf="queryParams.dep" aria-hidden="true"></i>
+          <span class="val">{{filter.value}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

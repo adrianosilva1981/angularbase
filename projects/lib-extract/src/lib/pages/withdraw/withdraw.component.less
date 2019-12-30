@@ -1,0 +1,113 @@
+@import 'global/css/global-variables.less';
+.container {
+    .box {
+        //background: white;
+        border-radius: 5px;
+        max-width: 750px;
+        margin: 0 auto;
+        padding: 25px;
+        .text {
+            .t1 {
+                margin: 10px 0;
+                &.warn {
+                    font-weight: bold;
+                }
+            }
+        }
+        .balance {
+            text-align: center;
+            .value {
+                max-width: 175px;
+                padding: 10px 20px;
+                border-radius: 5px;
+                background-image: linear-gradient(to bottom, @blue1 0%, @blue2 100%);
+                color: white;
+                font-weight: bold;
+                margin: 0 auto;
+            }
+        }
+        .value-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            .select-account {
+                .input {
+                    transition: all 0.2s ease-in-out;
+                    position: relative;
+                    .add-input {
+                        border: 1px solid #ccc;
+                        padding: 5px 30px 5px 25px;
+                        border-radius: 30px;
+                        margin: 15px auto;
+                        width: 130px;
+                    }
+                    i {
+                        position: absolute;
+                    }
+                    .symbol-money {
+                        position: absolute;
+                        top: -1px;
+                        z-index: 1;
+                        font-style: normal;
+                        left: 8px;
+                    }
+                    .material-icons {
+                        color: @green1;
+                        left: 102px;
+                        top: -2px;
+                    }
+                    &.show {
+                        transform: scale(1);
+                        top: 0;
+                        left: 0px;
+                    }
+                }
+            }
+            .select-account, .fee, .value-withdraw {
+                flex: 1;
+                text-align: center;
+                margin: 0 5px;
+                min-width: 200px;
+            }
+        }
+        .withdraw-info {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            justify-content: center;
+            .info-acc {
+                margin: 0 auto;
+            }
+        }
+        .tab {
+            .nr-group {
+                display: flex;
+                flex-wrap: wrap;
+                .form-group {
+                    position: relative;
+                    margin-bottom: 20px;
+                    margin: 10px;
+                    min-width: 140px;
+                    flex: 1;
+                    .digit {
+                        width: 50px;
+                    }
+                }
+            }
+            p-tabview {
+                p-tabpanel {
+                    ng-template {}
+                }
+            }
+        }
+        .bt {
+            text-align: center;
+            .green {
+                padding: 5px 30px;
+                color: white;
+                background: @green1;
+            }
+        }
+    }
+}

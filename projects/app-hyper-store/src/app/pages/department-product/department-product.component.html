@@ -1,0 +1,39 @@
+<div class="contentAllProducts">
+  <div class="container">
+    <div class="header">
+      <span class="btnFilter" (click)="display = true">
+        <i class="fa fa-sliders"></i>
+        <span class="text">Filtrar</span>
+      </span>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="contentAll">
+
+      <div class="contentFilter">
+        <app-hyper-store-filter-product></app-hyper-store-filter-product>
+      </div>
+
+      <p-sidebar [(visible)]="display" position="right" blockScroll="true">
+        <app-hyper-store-filter-product></app-hyper-store-filter-product>
+      </p-sidebar>
+
+      <div class="contentResult">
+        <div class="contentCards grid">
+          <div *ngIf="hyperProducts?.length === 0" class="noData">
+            <div class="text">Nenhum produto encontrado para o filtro aplicado</div>
+            <div class="contentBtn">
+              <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+            </div>
+          </div>
+          <app-hyper-store-thumbnail-product id="{{product.id}}" *ngFor="let product of hyperProducts" [itemObject]="product"></app-hyper-store-thumbnail-product>
+        </div>
+
+        <div class="contentLoadMore" *ngIf="hyperProducts?.length > 0 && count > hyperProducts?.length">
+          <div class="btn btnLoadMore" (click)="loadMoreResults()">Ver Mais</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

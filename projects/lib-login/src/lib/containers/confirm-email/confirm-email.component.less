@@ -1,0 +1,48 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.contentPage {
+    background: #fff;
+    max-width: 445px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    .boxShadow(0 1px 1px 0 @grey3);
+    .boxInfo {
+        width: 100%;
+        min-height: 350px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        .fas {
+            font-size: 100px;
+            color: @green1;
+            width: 100%;
+            display: block;
+            text-align: center;
+            &.fa-spinner {
+                color: @blue2;
+            }
+            &.fa-check {
+                color: @green1;
+            }
+            &.fa-times {
+                color: @red1;
+            }
+        }
+        .text {
+            width: 100%;
+            font-size: 35px;
+            color: @grey5;
+            font-weight: bold;
+            text-align: center;
+            padding: 0px 30px;
+            line-height: 35px;
+            text-transform: uppercase;
+        }
+    }
+}

@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Detalhes do Saldo do Associado
+      </h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Código
+        </div>
+        <div class="col-12">
+          {{associate?.username}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Nome
+        </div>
+        <div class="col-12">
+          {{associate?.name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Total Crédito
+        </div>
+        <div class="col-12">
+          {{credit|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Total Débito
+        </div>
+        <div class="col-12">
+          {{debit|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Saldo Atual
+        </div>
+        <div class="col-12">
+          {{balance|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Saldo Disponível
+        </div>
+        <div class="col-12">
+          {{associate?.available_points|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Conexão
+        </div>
+        <div class="col-12">
+          {{associate?.activation|date:'dd/MM/yyyy'}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Forma de Pagamento
+        </div>
+        <div class="col-12">
+          {{associate?.method}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <p-table #dt [columns]="cols" [value]="points" [paginator]="true" [rows]="50" *ngIf="points?.length">
+        <ng-template pTemplate="caption">
+          <div style="text-align: left">
+            <i class="fa fa-arrow-left" (click)="navigate()" style="font-size: 20px; cursor: pointer; margin:4px 4px 0 0"></i>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th>Informações Extras</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-associate let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{col.field.includes('value')?(associate[col.field]|currency:'R$')
+              :col.field.includes('date')?(associate[col.field]|date:'dd/MM/yyyy')
+              :col.field.includes('created')?(associate[col.field]|date:'dd/MM/yyyy')
+              :associate[col.field]}}
+            </td>
+            <td>
+              <i *ngIf='associate?.extra_info' class="fas fa-search-plus" (click)="showDialog(associate.extra_info)"
+                style="cursor: pointer;"></i>
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+</div>

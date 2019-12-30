@@ -1,0 +1,26 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Exclusão
+      </h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <img src="{{reseller?.photo_profile}}" class="img-fluid" alt="Profile Photo">
+    </div>
+    <div class="col-12 col-sm-6 my-3">
+      <label class="w-100" for="email">Nome</label>
+      <input type="text" class="col-12" pInputText value="{{reseller?.name}}" [readonly]="true">
+    </div>
+    <div class="col-12 col-sm-6 my-3">
+      <label class="w-100" for="email">Email</label>
+      <input type="text" class="col-12" pInputText value="{{reseller?.email}}" [readonly]="true">
+    </div>
+  </div>
+  <div class="row my-5 justify-content-center">
+    <button pButton type="button" label="Deletar" (click)="actionDelete()" class="mx-4 ui-button-danger"></button>
+    <button pButton type="button" label="Voltar" class="mx-4" [routerLink]="['/associates/associate-edit']"></button>
+  </div>
+</div>

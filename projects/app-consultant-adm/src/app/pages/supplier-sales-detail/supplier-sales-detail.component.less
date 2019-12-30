@@ -1,0 +1,110 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.contentPage {
+    .cnt {
+        background: white;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 5px;
+        .img {
+            margin: 10px;
+            max-width: 130px;
+            @media screen and (max-width: 767px) {
+                margin: 0 auto;
+            }
+            img {
+                max-width: 100%;
+            }
+        }
+        .info {
+            min-width: 280px;
+            b {
+                color: @blue1;
+            }
+            // .product {
+            //     .name-product {}
+            //     .qty {}
+            //     .date-creation {}
+            //     .date-payment {}
+            // }
+            // .shipping {
+            //     .name {}
+            //     .street {}
+            // }
+        }
+        &.total {
+            padding: 10px;
+            font-size: 20px;
+            b {
+                color: @blue1;
+            }
+        }
+    }
+    .form-group {
+        padding: 10px;
+    }
+    .mainBox {
+        margin: 30px 0px;
+        border: 1px solid @grey3;
+        background: #efefef;
+        overflow: hidden;
+        .radius(10px);
+        .shipping {
+            .til {
+                font-size: 18px;
+            }
+            padding: 10px;
+        }
+        .half {
+            width: 50%;
+            display: inline-block;
+            @media screen and (max-width: 768px) {
+                width: 100%;
+            }
+        }
+    }
+    .collumm {
+        display: flex;
+        flex-wrap: wrap;
+        .form-group, .group {
+            min-width: 150px;
+            flex: 1;
+        }
+    }
+    .supplierForm {
+        .cntProductDetails {
+            padding: 10px;
+        }
+    } // .productForm
+    .cntBtnSubmit {
+        margin-bottom: 30px;
+        text-align: right;
+        .btnSubmit {
+            border: none;
+            font-size: 20px;
+            text-transform: uppercase;
+            .radius(5px);
+            padding: 10px 60px;
+            text-align: center;
+            background: @green1;
+            color: #fff;
+            &:disabled {
+                background: @grey4;
+                cursor: not-allowed;
+            }
+        }
+    }
+    // .cntBtnSubmit
+    .checkedVoucher {
+        input {
+            margin-right: 10px;
+        }
+        input, label {
+            cursor: pointer;
+            margin-bottom: 0px;
+        }
+    }
+}

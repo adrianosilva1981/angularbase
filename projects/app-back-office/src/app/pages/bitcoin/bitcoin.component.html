@@ -1,0 +1,136 @@
+<div class="bit">
+  <div class="content">
+
+    <h3>ADQUIRIR ATIVAÇÃO DE CONEXÕES.</h3>
+
+    <div class="contemcards">
+      <div class="card">
+        <div class="content">
+
+          <div class="title">Como Funciona?</div>
+          <div class="text">Você pode usar as ativações para dar velocidade ao seu negócio, e ativar associados de sua equipe diretamente na
+            sua árvore de equipe.</div>
+          <div class="text">Basta clicar em equipe, e escolher o associado que está INATIVO, clicar em ativar e pronto.</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="contemcards">
+      <div class="card">
+        <div class="content">
+
+          <div class="title">Com BitCoin</div>
+          <div class="text">É muito simples, você escolhe a opção desejada, e usa seu e-mail cadastrado na YOUHUB para adquirir as ativações.</div>
+          <div class="text">Depois de confirmado o pagamento, suas ativações aparecerão no seu BackOffice.</div>
+          <div class="text">Você também poderá acompanhar as solicitações de pagamento via BitCoin no demonstrativo de solicitações, logo abaixo,
+            nesta página.</div>
+
+          <div class="contentbutton">
+
+            <div *ngFor="let item of package">
+              <div class="button">
+                <div class="valor">Valor:
+                  <span class="price" [innerHtml]="item.value | conversion : 'BRL'"></span>
+                </div>
+                <a class="btn orange" (click)="solicite(item.id, item.url,'crypto_coins')">{{item.name}}</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="warn">Atenção! É importante que o bloqueador de popup esteja desativado em seu navegador.</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="contemcards">
+      <div class="card">
+        <div class="content">
+
+          <div class="title">Com TED ou TEV</div>
+          <div class="text">É muito simples, você faz a solicitação da quantidade de ativações de conexão que você quer adquirir através do
+            e-mail:
+            <span style="color: blue;">
+              <b>financeiro@youhub.com.br</b>
+            </span>.</div>
+          <div class="text">Você receberá as instruções via e-mail, após confirmações, as ativações serão incluídas no seu BackOffice.</div>
+
+          <div class="contentbutton">
+            <div *ngFor="let item2 of package">
+              <div class="button">
+                <div class="valor">Valor:
+                  <span class="price" [innerHtml]="item2.value | conversion : 'BRL'"></span>
+                </div>
+                <a class="btn blue" (click)="solicite(item2.id, item2.url,'transfer_bank');">{{item2.name}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contemcards">
+      <div class="card">
+        <div class="content">
+
+          <div class="title">Com meu Saldo</div>
+
+          <div class="contentSaldo" *ngIf="creditok">
+            <div class="text-card">Saldo Disponível</div>
+            <div Class="text" [ngClass]="{'green' : totalcredit > 0}" [innerHTML]="totalcredit | conversion : 'BRL'"></div>
+          </div>
+          <div class="warn">Atenção! Você pode usar seu saldo total para comprar o pack mesmo que ele esteja bloqueado.</div>
+
+          <div class="text">Você pode adquirir ativações com seu saldo, e ativar suas conexões automaticamente através do seu BackOffice.</div>
+
+          <div class="contentbutton">
+            <div *ngFor="let item3 of package">
+              <div class="button">
+                <div class="valor">Valor:
+                  <span class="price" [innerHtml]="item3.value | conversion : 'BRL'"></span>
+                </div>
+                <a class="btn green" (click)="solicite(item3.id, item3.url,'platform_credit');">{{item3.name}}</a>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="contemcards" *ngIf="associationok">
+      <div class="card">
+        <div class="content">
+          <p>Solicitações de Pagamento:</p>
+          <p-table #dt styleClass="classetable" [value]="association" [responsive]="true" [paginator]="true" [rows]="10" [rowsPerPageOptions]="rowsperpage">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:5em">Código</th>
+                <th>Data</th>
+                <th style="width:7em">Quantidade</th>
+                <th style="width:15em">Método</th>
+                <th style="width:7em">Status</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-line>
+              <tr>
+                <td>{{line.id}}</td>
+                <td>{{line.creation_date}}</td>
+                <td>{{line.quantity}}</td>
+                <td>{{methodPay[line.method]}}</td>
+                <td>{{line.status}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<script src="https://commerce.coinbase.com/v1/checkout.js?version=201807"></script>

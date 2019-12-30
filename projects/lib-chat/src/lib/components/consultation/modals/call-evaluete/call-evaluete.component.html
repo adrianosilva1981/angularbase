@@ -1,0 +1,51 @@
+<div class="contentModal">
+
+  <div class="content center">
+    <div class="contentClose">
+      <button class="btnClose" tabindex="-1" [mat-dialog-close]="objReturn">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="photo">
+      <img class="imgCircle" [src]="params.photoUrl">
+    </div>
+    <div class="userName">{{params.name}}</div>
+    <div class="userMessage">Você irá pagar</div>
+    <div class="contentResume">
+      <span class="resume">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
+        </span>
+        <span class="money">
+          <input #inputResume type="hidden" currencyMask [(ngModel)]="valueResume" [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left'}">
+          <span>{{inputResume.value}}</span>
+        </span>
+      </span>
+    </div>
+    <div *ngIf="messageErrorMedia !== ''" class="errorMedia"><b>Consulta encerrada:</b> {{messageErrorMedia}}</div>
+  </div>
+
+  <div class="bottom center">
+    <div class="bottomTitle">
+      <h5>Gostou da consulta? Avalie</h5>
+    </div>
+    <div class="contentRating">
+      <rating class="stars" [(ngModel)]="objReturn.rating" [max]="5" fullIcon="★" emptyIcon="☆" [readonly]="false" [disabled]="false"
+        [required]="true" [float]="true"></rating>
+      <div class="comment">
+        <textarea class="inputPatternCall" required ngModel name="description" [(ngModel)]="objReturn.comment" placeholder="Deixe seu comentário"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="contentButtons">
+    <div class="callButtons">
+      <div class="containerButtons">
+        <div class="buttonCall">
+          <button class="buttonAccept" [disabled]="objReturn.comment == '' || objReturn.rating <= 0" tabindex="-1" [mat-dialog-close]="objReturn">Concluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

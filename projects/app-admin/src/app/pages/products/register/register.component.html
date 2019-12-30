@@ -1,0 +1,320 @@
+<div class="contentPage">
+    <form class="formCheckout" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+
+        <!-- FORMULARIO DE PRODUTO-->
+        <div class="mainBox productForm" formGroupName="productForm">
+            <div class="titleBox">
+                informaçoes Principais
+            </div>
+            <div class="cntProductDetails">
+                <!-- Nome do produto -->
+                <div class="form-group">
+                    <label>Nome do produto</label>
+                    <input type="text" class="form-control" required formControlName="title">
+                    <span class="errorFormField" *ngIf="registerForm.get('productForm.slug').hasError('minlength')">* Minimo 6 caracteres</span>
+                </div>
+
+                <div class="collumm">
+                    <!-- Slug -->
+                    <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" class="form-control" required formControlName="slug">
+                        <span class="errorFormField" *ngIf="registerForm.get('productForm.ean').hasError('minlength')">* Minimo 10 caracteres</span>
+                    </div>
+
+                    <!-- EAN -->
+                    <div class="form-group">
+                        <label>EAN</label>
+                        <input type="text" class="form-control" required formControlName="ean">
+                        <span class="errorFormField" *ngIf="registerForm.get('productForm.title').hasError('minlength')">* Minimo 6 caracteres</span>
+                    </div>
+
+                    <!-- Quantidade maxima por usuário -->
+                    <div class="form-group">
+                        <label>Maximo por carrinho</label>
+                        <input type="number" class="form-control" pKeyFilter="int" min="0" required formControlName="maximum_quantity_per_user">
+                    </div>
+                </div>
+
+                <div class="collumm">
+                    <!-- Status -->
+                    <div class="form-group">
+                        <label>Produto Ativado?</label>
+                        <select class="form-control" required formControlName="status">
+                            <option value="A">SIM</option>
+                            <option value="I">NÃO</option>
+                        </select>
+                    </div>
+
+                    <!-- Tipo de produto -->
+                    <div class="form-group">
+                        <label>Tipo de produto</label>
+                        <select class="form-control" required formControlName="type">
+                            <option value="physical">Físico</option>
+                            <option value="digital">Digital</option>
+                        </select>
+                    </div>
+
+                    <!-- Quantidade em estoque -->
+                    <div class="form-group">
+                        <label>Em estoque</label>
+                        <input type="number" class="form-control" pKeyFilter="int" min="0" required formControlName="quantity">
+                    </div>
+
+                    <!-- Data de Validade -->
+                    <div class="form-group">
+                        <label>Data de Validade</label>
+                        <input type="date" class="form-control" required formControlName="valid_thru">
+                        <span class="errorFormField" *ngIf="registerForm.get('productForm.valid_thru').hasError('minlength')">* Minimo 6 caracteres</span>
+                    </div>
+                </div>
+
+                <!-- Descrição -->
+                <div class="form-group">
+                    <label>Descrição Completa</label>
+                    <textarea rows="4" class="form-control" required formControlName="description"></textarea>
+                    <span class="errorFormField" *ngIf="registerForm.get('productForm.description').hasError('minlength')">* Minimo 20 caracteres</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE MEDIAS-->
+        <div class="mainBox mediasForm" formGroupName="mediasForm">
+            <div class="titleBox">
+                <span>Imagens</span>
+            </div>
+            <div class="cntImages">
+                <div class="cntButtonAdd">
+                    
+                </div>
+                <div class="listImages">
+                    <div class="empty" *ngIf="registerForm.get('mediasForm.images')?.value?.length <= 0">Adidione imagens para este produto</div>
+                    <div class="cntImg" *ngFor="let img of registerForm.get('mediasForm.images')?.value; let idx = index">
+                        <img [src]="img?.url">
+                        <div class="btnRemove" (click)="deletePhoto(idx)">
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE PRECO-->
+        <div class="mainBox priceForm" formGroupName="priceForm">
+            <div class="titleBox">
+                Informações de preço
+            </div>
+            <div class="cntPrices">
+                <div class="collumm">
+                    <!-- Preço de mercado -->
+                    <div class="form-group">
+                        <label>Preço de mercado</label>
+                        <input type="text" class="form-control" currencyMask [options]="maskMoney" required formControlName="market_value">
+                    </div>
+
+                    <!-- Preço de venda -->
+                    <div class="form-group">
+                        <label>Preço de venda</label>
+                        <input type="text" class="form-control" currencyMask [options]="maskMoney" required formControlName="value_cash">
+                    </div>
+
+                    <!-- Moeda -->
+                    <div class="form-group">
+                        <label>Moeda</label>
+                        <select class="form-control" required formControlName="idCurrency">
+                            <option *ngFor="let currency of listCurrencies" [value]="currency.id">{{currency.symbol}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="collumm">
+                    <!-- Parcelas -->
+                    <div class="form-group">
+                        <label>Parcelado</label>
+                        <input type="number" class="form-control" pKeyFilter="int" min="0" required formControlName="plots">
+
+                    </div>
+                    <!-- Desconto associado -->
+                    <div class="form-group">
+                        <label>Desconto associado</label>
+                        <input type="text" class="form-control" currencyMask [options]="maskMoney" required formControlName="discount_associate">
+                    </div>
+
+                    <!-- Tipo de Desconto -->
+                    <div class="form-group">
+                        <label>Tipo de desconto</label>
+                        <select class="form-control" required formControlName="type_discount">
+                            <option value="value">Valor</option>
+                            <option value="percentage">Porcentagem</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE CATEGORIAS-->
+        <div class="mainBox categoryForm" formGroupName="categoryForm">
+            <div class="titleBox">
+                Categorias
+            </div>
+            <div class="cntCategory">
+                <p-pickList [source]="listCategoriesSource" [target]="listCategoriesTarget" [responsive]="true" [showSourceControls]="false"
+                    [showTargetControls]="false" (onMoveToSource)="addNewCategory()" (onMoveToTarget)="addNewCategory()" sourceHeader="Categorias disponíveis"
+                    targetHeader="Categorias selecionadas" filterBy="name" dragdrop="true">
+                    <ng-template let-categ pTemplate="item">
+                        <div class="tmplListCategory">
+                            <div class="cntLineCat">
+                                <img [src]="categ.urlimage ? categ.urlimage : 'global/img/image_default.png'">
+                                <div class="lineCategory">{{categ.name}}</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE META TAGS-->
+        <div class="mainBox metaInfoForm" formGroupName="metaInfoForm">
+            <div class="titleBox">
+                Otimização para buscadores (SEO)
+            </div>
+            <div class="cntMeta">
+                <!-- Title -->
+                <div class="form-group">
+                    <label>Tag Title</label>
+                    <input type="text" class="form-control" required formControlName="title">
+                    <span class="errorFormField" *ngIf="registerForm.get('metaInfoForm.title').hasError('minlength')">* Minimo 10 caracteres</span>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label>Meta Tag Description</label>
+                    <textarea rows="4" class="form-control" required formControlName="description"></textarea>
+                    <span class="errorFormField" *ngIf="registerForm.get('metaInfoForm.description').hasError('minlength')">* Minimo 20 caracteres</span>
+                </div>
+
+                <!-- Meta Tags -->
+                <div class="form-group">
+                    <label>Meta tags</label>
+                    <p-chips formControlName="metainfo"></p-chips>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE DETALHES-->
+        <div class="mainBox detailsForm" formGroupName="detailsForm">
+            <div class="titleBox">
+                <span>Ficha do produto </span>
+            </div>
+            <div class="cntDetails">
+                <div class="cntInputs">
+                    <!-- Key -->
+                    <div class="form-group key">
+                        <label>Tipo</label>
+                        <input type="text" class="form-control" formControlName="key">
+                        <span class="errorFormField" *ngIf="registerForm.get('detailsForm.key').hasError('maxlength')">* Máximo 30 caracteres</span>
+                    </div>
+
+                    <!-- Value -->
+                    <div class="form-group value">
+                        <label>Descrição</label>
+                        <input type="text" class="form-control" formControlName="val">
+                        <span class="errorFormField" *ngIf="registerForm.get('detailsForm.val').hasError('maxlength')">* Máximo 50 caracteres</span>
+                    </div>
+
+                    <!-- List Details -->
+                    <div class="form-group cntBtn">
+                        <label>&nbsp;</label>
+                        <button type="button" [disabled]="!registerForm.get('detailsForm.key')?.value || !registerForm.get('detailsForm.val')?.value"
+                            class="form-control btnAdd" (click)="pushDetails()">Adicionar</button>
+                    </div>
+                </div>
+                <div class="cntList">
+                    <div class="line" *ngFor="let detail of registerForm.get('detailsForm.details_list')?.value; let idx = index">
+                        <div class="cntKey">{{detail.key}}</div>
+                        <div class="cntVal">{{detail.value}}</div>
+                        <div class="cntBtnDel">
+                            <button type="button" class="btnDel" (click)="registerForm.get('detailsForm.details_list')?.value.splice(idx, 1)">Remover</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FORMULARIO DE FRETE-->
+        <div class="mainBox shippingForm" formGroupName="shippingForm">
+            <div class="titleBox">
+                <span>Peso e dimensões </span>
+                <small>(Para cálculos de frete)</small>
+            </div>
+            <div class="cntShipping">
+
+                <div class="collumm">
+
+                    <!-- Peso -->
+                    <div class="form-group">
+                        <label>
+                            <span>Peso</span>
+                            <b>(KG)</b>
+                        </label>
+                        <input type="text" class="form-control" pKeyFilter="num" required formControlName="weight">
+                    </div>
+
+                    <!-- Altura -->
+                    <div class="form-group">
+                        <label>
+                            <span>Altura</span>
+                            <b>(cm)</b>
+                        </label>
+                        <input type="text" class="form-control" pKeyFilter="num" required formControlName="height">
+                    </div>
+
+                    <!-- largura -->
+                    <div class="form-group">
+                        <label>
+                            <span>Largura</span>
+                            <b>(cm)</b>
+                        </label>
+                        <input type="text" class="form-control" pKeyFilter="num" required formControlName="width">
+                    </div>
+
+                    <!-- Profundidade/Raio -->
+                    <div class="group">
+                        <div class="cntRadio">
+                            <div class="groupRadio">
+                                <p-radioButton class="radio" name="typeMeasure" formControlName="type_measure" value="depth" label="Pacote" (click)="changeTypeMeasure()"></p-radioButton>
+                                <p-radioButton class="radio" name="typeMeasure" formControlName="type_measure" value="diameter" label="Cilindrico" (click)="changeTypeMeasure()"></p-radioButton>
+                            </div>
+                        </div>
+                        <div class="cntInput">
+                            <div class="form-group">
+                                <span *ngIf="registerForm.get('shippingForm.type_measure').value ==='depth'">
+                                    <label>
+                                        <span>Profundidade</span>
+                                        <b>(cm)</b>
+                                    </label>
+                                    <input type="text" class="form-control" pKeyFilter="num" required formControlName="depth">
+                                </span>
+                                <span *ngIf="registerForm.get('shippingForm.type_measure').value ==='diameter'">
+                                    <label>
+                                        <span>Diametro</span>
+                                        <b>(cm)</b>
+                                    </label>
+                                    <input type="text" class="form-control" pKeyFilter="num" required formControlName="diameter">
+                                </span>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  BOTAO DE SUBMIT-->
+        <div class="cntBtnSubmit">
+            <button class="btnSubmit" type="submit">Salvar</button>
+        </div>
+
+    </form>
+</div>

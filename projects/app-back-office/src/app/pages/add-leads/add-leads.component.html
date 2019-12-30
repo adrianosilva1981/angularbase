@@ -1,0 +1,96 @@
+<div class="container">
+
+  <div class="title">
+    <h1>Cadastrar novo Contato</h1>
+  </div>
+
+  <div class="addlead">
+
+    <form [formGroup]="newContactForm" class="form-addlead">
+      <div class="content-addlead">
+        <h4 class="text-center">Adicionar Manualmente</h4>
+
+        <div class="ui-float-label inputform">
+          <input id="name" formControlName="name" size="30" pInputText>
+          <label for="name">Nome</label>
+          <span class="error" *ngIf="newContactForm.get('name').touched && newContactForm.get('name').hasError('minlength')">Campo nome deve conter no mínimo 6 digitos!</span>
+          <span class="error" *ngIf="newContactForm.get('name').hasError('required')">Obrigatório!</span>
+        </div>
+
+        <div class="ui-float-label inputform">
+          <input id="cellphone" formControlName="cellphone" size="30" [textMask]="{mask: CELLPHONEMASK}" pInputText>
+          <label for="cellphone">Celular</label>
+          <span class="error" *ngIf="newContactForm.get('cellphone').touched && newContactForm.get('cellphone').hasError('pattern')">Formato celular inválido!</span>
+          <span class="error" *ngIf="newContactForm.get('cellphone').hasError('required')">Obrigatório!</span>
+        </div>
+
+        <div class="ui-float-label inputform">
+          <input id="email" type="email" formControlName="email" size="30" pInputText>
+          <label for="email">E-mail</label>
+          <span class="error" *ngIf="newContactForm.get('email').touched && newContactForm.get('email').hasError('pattern')">E-mail inválido!</span>
+          <span class="error" *ngIf="newContactForm.get('email').hasError('required')">Obrigatório!</span>
+        </div>
+
+        <div>
+          <button class="btn blue" (click)="goToRoute('/divulgation')">Voltar</button>
+          <button class="btn blue" [disabled]="!newContactForm.valid" (click)="addContact()">Adicionar à lista</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="contentArchive">
+
+      <h4 class="text-center">Adicionar por arquivo .CSV</h4>
+
+      <p-card class="card">
+        <div class="content">
+          <div class="text">Selecione o arquivo com extensão (.CSV) para importação dos seus contatos.</div>
+          <div class="input">
+            <label for="selectbutton" class="btn blue">Selecione o Arquivo</label>
+            <input id="selectbutton" type="file" (change)="changeListener($event.target.files)">
+          </div>
+        </div>
+
+      </p-card>
+
+    </div>
+
+  </div>
+
+  <div class="contentalllead" *ngIf="newContacts?.length > 0">
+
+    <p-card class="cardtable">
+      <div class="content">
+        <div class="contenttitle">Lista de contatos</div>
+      </div>
+      <div class="contentmain">
+          
+        <button class="btn green" (click)="saveContacts()" style="margin-bottom:20px;">Adicionar aos contatos</button>
+
+        <p-table [value]="newContacts">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Celular</th>
+              <th style="width:3em"></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-contact>
+            <tr>
+              <td>{{contact.name}}</td>
+              <td>{{contact.email}}</td>
+              <td>{{contact.cellphone}}</td>
+              <td>
+                <i class="material-icons mouse-pointer" (click)="removeNewContact(contact)">clear</i>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>       
+
+      </div>
+    </p-card>
+
+  </div>
+
+</div>

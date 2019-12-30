@@ -1,0 +1,85 @@
+<div class="content">
+  <div class="contentForm">
+    <div class="box-social">
+      <p-dropdown class="mat-container social" [options]="networks" [(ngModel)]="socialSelect"></p-dropdown>
+      <!-- <mat-form-field class="mat-container social">
+        <div formGroupName="typeControl">
+          <mat-select placeholder="Rede social" [(ngModel)]="socialSelect">
+            <mat-option value="facebook">Facebook</mat-option>
+            <mat-option value="instagram">Instagram</mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field> -->
+      <!-- <p-multiSelect class="mat-container" [options]="network" formControlName="socialNet" [defaultLabel]="'Selecionar'"></p-multiSelect>
+    <span class="error" *ngIf="registerForm.controls.socialNet.hasError('required')">* Obrigatório!</span> -->
+      <div class="social-qtd">
+        <div class="ui-float-label inputform">
+          <input id="nameknow" size="30" pInputText [(ngModel)]="quantitySelect">
+          <label for="nameknow">Número de seguidores</label>
+          <!-- <span class="error" *ngIf="registerForm.controls.follower.hasError('required')">* Obrigatório!</span> -->
+        </div>
+      </div>
+      <div class="brn-add">
+        <a (click)="addSocialNet()"><i class="fas fa-plus"></i></a>
+      </div>
+    </div>
+    <div class="error" style="position: unset" *ngIf="showError">* Dados obrigatório!</div>
+    
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+
+
+      <div class="table-social">
+        <p-table [value]="listSocialNetUser">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Rede social</th>
+              <th>Número de seguidores</th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+            <tr>
+              <td>{{ item.socialNet | uppercase }}</td>
+              <td>{{ item.quantity }}</td>
+              <td class="text-center"><span class="removeSocial" (click)="revomeSocialNet(rowIndex)"><i class="far fa-trash-alt"></i></span></td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+
+      <mat-form-field class="mat-container">
+        <mat-select placeholder="Sexo" formControlName="gender">
+          <mat-option value="female">Feminino</mat-option>
+          <mat-option value="male">Masculino</mat-option>
+        </mat-select>
+        <span class="error" *ngIf="registerForm.controls.gender.hasError('required')">* Obrigatório!</span>
+      </mat-form-field>
+
+      <div class="ui-float-label inputform">
+        <input id="nameknow" formControlName="cep" [textMask]="{mask: CEPMASK}" (keyup)="getCEP()" size="30" pInputText>
+        <label for="nameknow">CEP</label>
+        <span class="error" *ngIf="registerForm.controls.cep.hasError('required')">* Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="nameknow" formControlName="state" size="30" readonly="true" pInputText>
+        <label for="nameknow">Estado</label>
+        <span class="error" *ngIf="registerForm.controls.state.hasError('required')">* Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="nameknow" formControlName="city" size="30" readonly="true" pInputText>
+        <label for="nameknow">Cidade</label>
+        <span class="error" *ngIf="registerForm.controls.city.hasError('required')">* Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="nameknow" formControlName="urlPerfil" size="30" pInputText>
+        <label for="nameknow">Url do Perfil</label>
+        <span class="error" *ngIf="registerForm.controls.urlPerfil.hasError('required')">* Obrigatório!</span>
+      </div>
+
+      <button class="btn orange max" type="submit">Cadastrar</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contenPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fa {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+        .pageOptions {
+            flex: 1;
+            text-align: right;
+            min-width: 265px;
+        }
+    }
+    .all {
+        .titlePage {
+            margin-bottom: 40px;
+            color: @grey7;
+            font-size: 14px;
+            //text-align: center;
+        }
+        .creditCard {
+            display: flex;
+            text-align: left;
+            .contentAddCC {
+                max-width: 400px;
+                width: 100%;
+            }
+        }
+    }
+    .contentCreditCard {
+        .cep-ok-button {
+            margin-top: 20px;
+        }
+        .i-dont-know-my-cep {
+            text-decoration: underline;
+            cursor: pointer;
+            &:hover {
+                color: @blue2;
+                text-decoration: underline;
+            }
+        }
+        .content-row {
+            display: flex;
+            .content-col {
+                flex: 1;
+                margin: 5px;
+            }
+            .content-col-2 {
+                flex: 2;
+                margin: 5px;
+            }
+        }
+        .content-button {
+            margin: 10px;
+            text-align: center;
+            width: 100%;
+        }
+    }
+}

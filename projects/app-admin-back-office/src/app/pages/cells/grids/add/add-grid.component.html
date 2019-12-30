@@ -1,0 +1,94 @@
+<div class="addcells">
+  <div class="content_form">
+
+    <h3>Cadastro de Grades de Managers</h3>
+
+    <form [formGroup]="gridsForm">
+
+      <div class="ui-float-label inputform">
+        <p-dropdown id="name" [options]="cells" formControlName="nameControl"></p-dropdown>      
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('manager');">
+        <input id="manager" formControlName="managerControl" size="40" pInputText readonly>
+        <label for="manager">Nome do Manager</label>
+        <span class="error" *ngIf="gridsForm.get('managerControl').hasError('minlength')">Campo nome deve conter no mínimo
+          6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('managerControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('director');">
+        <input id="director" formControlName="directorControl" size="40" pInputText readonly>
+        <label for="director">Nome do Diretor</label>
+        <span class="error" *ngIf="gridsForm.get('directorControl').hasError('minlength')">Campo nome deve conter no mínimo
+          6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('directorControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('directorSenior');">
+        <input id="directorSenior" formControlName="directorSeniorControl" size="40" pInputText readonly>
+        <label for="directorSenior">Nome do Diretor Senior</label>
+        <span class="error" *ngIf="gridsForm.get('directorSeniorControl').hasError('minlength')">Campo nome deve conter
+          no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('directorSeniorControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform" (click)="modalReseller('directorNational');">
+        <input id="directorNational" formControlName="directorNationalControl" size="40" pInputText readonly>
+        <label for="directorNational">Nome do Diretor Nacional</label>
+        <span class="error" *ngIf="gridsForm.get('directorNationalControl').hasError('minlength')">Campo nome deve conter
+          no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('directorNationalControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="presidente" formControlName="presidenteControl" size="40" pInputText readonly (click)="modalReseller('presidente');">
+        <label for="presidente">Nome do Presidente</label>
+        <span class="error" *ngIf="gridsForm.get('presidenteControl').hasError('minlength')">Campo nome deve conter no mínimo
+          6 digitos!</span>
+        <span class="error" *ngIf="gridsForm.get('presidenteControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="contenButton">
+        <button [disabled]="!gridsForm.valid" class="btn" (click)="saveForm()" [ngClass]="{'disabled':!gridsForm.valid}">Criar
+          Grade de Manager</button>
+      </div>
+
+    </form>
+  </div>
+
+  <div *ngIf="gridsok" class="content_cell">
+    <div class="subtitle">
+      Grades Existentes
+    </div>
+    <p-table [value]="grids">
+  
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width:5em">ID</th>
+            <th>Célula</th>
+            <th>Manager</th>
+            <th>Diretor</th>
+            <th>Diretor Sênior</th>
+            <th>Diretor Nacional</th>            
+            <th>Presidente</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-grid>
+          <tr (click)="selectAssociate(grid.id)">
+              <td>{{ grid.id}} </td>
+            <td>{{ grid.name}} </td>
+            <td>{{ grid.manager.name}} </td>
+            <td>{{ grid.director.name}} </td>           
+            <td>{{ grid.senior_director.name}} </td>
+            <td>{{ grid.national_director.name}} </td>
+            <td>{{ grid.president.name}} </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+  </div>
+
+
+</div>

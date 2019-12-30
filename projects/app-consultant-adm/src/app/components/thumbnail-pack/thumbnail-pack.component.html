@@ -1,0 +1,37 @@
+<div class="cntThumb">
+    <div class="thumb">
+        <div class="cntImage">
+            <img [src]="dataPack?.image">
+        </div>
+        <div class="cntInfoPack">
+            <div class="cntLabel" *ngIf="dataPack?.label" [ngClass]="dataPack?.label" [innerHTML]="dataPack?.label_text"></div>
+            <div class="cntTitle">{{dataPack?.title | truncate : 40 : '...'}}</div>
+            <div class="cntPrice overrideFormatPrice">
+                <div class="tlt">Apenas</div>
+                <div class="money" [innerHtml]="dataPack?.value_sale || 0 | conversion : dataPack?.currency || 'BRL'"></div>
+            </div>
+        </div>
+        <div class="cntDiscount">
+            Aumente seu capital em {{dataPack?.capital}}%
+        </div>
+        <div class="cntFooter">
+            <div class="cntValues">
+                <div class="cntTxt">
+                    <span class="txt">Invista</span>
+                    <span class="val" [innerHtml]="dataPack?.value_sale || 0 | conversion : dataPack?.currency || 'BRL'"></span>
+                </div>
+                <div class="cntTxt">
+                    <span class="txt">Revenda por</span>
+                    <span class="val" [innerHtml]="dataPack?.value_resale || 0 | conversion : dataPack?.currency || 'BRL'"></span>
+                </div>
+                <div class="cntTxt">
+                    <span class="txt">Ganhe</span>
+                    <span class="val" [innerHtml]="dataPack?.lucro || 0 | conversion : dataPack?.currency || 'BRL'"></span>
+                </div>
+            </div>
+            <div class="cntButton">
+                <div class="btnPack">Conheça o Pack</div>
+            </div>
+        </div>
+    </div>
+</div>

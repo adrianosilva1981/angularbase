@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="row mx-3">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>
+        Produtos
+      </h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <p-calendar #interval selectionMode="range" (onSelect)="changeDate(interval.value)"></p-calendar>
+    </div>
+  </div>
+
+  <div class="row justify-content-center py-5 mx-1">
+    <div class="col-12 text-center" *ngIf="!products.length">
+      <h6>
+        Por favor escolha um intervalo...
+      </h6>
+    </div>
+    <div class="col-12" *ngIf="products.length" >
+      <p-table [columns]="cols" [value]="products" dataKey="id" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width: 3em"></th>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+          <tr>
+            <td>
+              <a href="#" [pRowToggler]="rowData">
+                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+              </a>
+            </td>
+            <td *ngFor="let col of columns" [pRowToggler]="rowData" style="cursor: pointer">
+              {{
+              col.header.includes('Validade')?
+              (rowData[col.field]|date:'dd/MM/yy'):
+              rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+          <tr>
+            <td [attr.colspan]="columns.length + 1">
+              <div class="table-users">
+                <p-table [columns]="colsBuyers" [value]="rowData.buyers" [paginator]="true" [rows]="10">
+                  <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="background-color: #848080; color: #fff" *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{
+              col.field.includes('value')?
+              (rowData[col.field]|conversion:rowData.main_coin:false):
+              rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    </td>
+    </tr>
+    </ng-template>
+    </p-table>
+  </div>
+</div>
+</div>

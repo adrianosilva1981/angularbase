@@ -1,0 +1,49 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.slideItem {
+    .contentSlide {
+        height: 300px;
+        color: #fff;
+        background: @blue2;
+        overflow: hidden;
+        text-align: center;
+    }
+    .buttonPrev {
+        outline: none;
+        position: absolute;
+        top: 45%;
+        left: 0px;
+        border: none;
+        background: transparent;
+        .fa {
+            font-size: 30px;
+            color: @blue1;
+            opacity: 0.8;
+        }
+        &:hover {
+            .fa {
+                font-size: 33px;
+                opacity: 1;
+            }
+        }
+    }
+    .ButtonNex {
+        outline: none;
+        position: absolute;
+        top: 45%;
+        right: 0px;
+        border: none;
+        background: transparent;
+        .fa {
+            font-size: 30px;
+            color: @blue1;
+            opacity: 0.8;
+        }
+        &:hover {
+            .fa {
+                font-size: 33px;
+                opacity: 1;
+            }
+        }
+    }
+}

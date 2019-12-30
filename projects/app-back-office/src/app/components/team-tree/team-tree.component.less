@@ -1,0 +1,190 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.mytree {
+    background-color: white;
+    padding: 10px;
+    max-width: 1010px;
+    .contentSearch {
+        display: flex;
+        flex-wrap: wrap;
+        .top {
+            width: 110px;
+            margin-bottom: 10px;
+            color: @blue2;
+            cursor: pointer;
+        }
+        .hand {
+            margin-left: 20px;
+            min-width: 150px;
+            margin-bottom: 10px;
+        }
+        .search {
+            margin-left: auto;
+            display: flex;
+            margin-bottom: 10px;
+            .searchLupa {
+                margin-top: 8px;
+                margin-right: 8px;
+            }
+            .searchInput {
+                max-width: 200px !important;
+                padding: 0 0 0 3px !important;
+                margin: 0!important;
+            }
+        }
+    }
+    .contentTree {
+        background-color: #efefef;
+        //box-shadow: 0px 0px 10px 0px @grey2;
+        border: 1px solid @grey2;
+        //margin-top: 50px;
+        cursor: move;
+        //cursor:-webkit-grab; 
+        cursor: -moz-grab;
+        cursor: grab;
+        overflow-x: scroll;
+        //width: 100%;
+        max-width: 990px;
+        height: 350px;
+        @media screen and (max-width: 600px) {
+            max-width: 370px;
+        }
+        .move {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+            // min-height: 500px;   
+            .default {
+                background-color: white;
+                color: @black;
+            }
+            .inative {
+                background-color: @grey2;
+                color: @black;
+                border: @grey3 1px solid;
+                .back .inative2 {
+                    background: url('/assets/img/user-photo-inative.png');
+                    height: 80px;
+                    margin: 1px 0 0 1px;
+                }
+            }
+            .delete {
+                background-color: @grey2;
+                color: @black;
+                border: @grey3 1px solid;
+                .back .inative2 {
+                    background: url('/assets/img/user-photo-delete.png');
+                    height: 80px;
+                    margin: 1px 0 0 1px;
+                }
+            }
+            .sponsor {
+                border: @blue2 3px solid !important;
+                .node-content, .back {
+                    margin-left: -3px;
+                }
+            }
+            .silver {
+                background-color: @grey3;
+                color: @black;
+                border: @grey3 1px solid;
+            }
+            .gold {
+                background-color: @yellow1;
+                color: @black;
+                border: @yellow1 1px solid;
+            }
+            .platinum {
+                background-color: @grey4;
+                color: @black;
+                border: @grey4 1px solid;
+            }
+            .double_platinum {
+                background-color: @grey6;
+                color: @grey3;
+                border: @grey6 3px solid;
+            }
+            .elite {
+                background-color: @blue4;
+                color: @grey1;
+                border: @blue3 3px solid;
+            }
+            .sapphire {
+                background-color: @sapphire2;
+                color: @black;
+                border: @sapphire1 1px solid;
+            }
+            .ruby {
+                background-color: @red3;
+                color: @grey2;
+                border: red 1px solid;
+            }
+            .emerald {
+                background-color: @green2;
+                color: silver;
+                border: @green1 1px solid;
+            }
+            .diamond {
+                background-color: @grey3;
+                color: @black;
+                border: @black 3px solid;
+            }
+            .blue_diamond {
+                background-color: @sapphire2;
+                color: @black;
+                border: @black 3px solid;
+            }
+            .black_diamond {
+                background-color: @grey7;
+                color: silver;
+                border: @grey8 3px solid;
+            }
+            .emperor {
+                background-color: @orange2;
+                color: @black;
+                border: @black 3px solid;
+            }
+            .crown {
+                background-color: @black;
+                color: white;
+                border: @black 3px solid;
+            }
+            .node-content {
+                text-align: center;
+            }
+            .node-content img {
+                border-radius: 50%;
+            }
+            .circle {
+                border-radius: 50%;
+                width: 84px;
+                height: 84px;
+                overflow: hidden;
+                cursor: pointer;
+            }
+            .back {
+                width: 84px;
+                height: 84px;
+                overflow: hidden;
+                &.M {
+                    background: url('/assets/img/user_tree.png') left top no-repeat;
+                }
+                &.F {
+                    background: url('/assets/img/user_tree_w.png') left top no-repeat;
+                }
+            }
+            .down {
+                color: @blue2;
+                cursor: pointer;
+            }
+            .username {
+                font-size: 11px;
+                color: @grey6;
+                margin-top: 5px;
+                margin-bottom: -5px;
+            }
+        }
+    }
+}

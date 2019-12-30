@@ -1,0 +1,65 @@
+<div class="contentModal">
+
+  <div class="content center">
+    <div class="contentClose">
+      <button class="btnClose" tabindex="-1" [mat-dialog-close]="objReturn">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="photo">
+      <img class="imgCircle" [src]="params.photoUrl">
+    </div>
+    <div class="userName">{{params.name}}</div>
+    <div class="userMessage">Você irá receber</div>
+    <div class="contentResume">
+      <span class="resume">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-usd fa-stack-1x fa-inverse"></i>
+        </span>
+        <span class="money">
+          <input #inputResume type="hidden" currencyMask [(ngModel)]="valueResume" [options]="{prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left'}">
+          {{inputResume.value}}
+        </span>
+      </span>
+    </div>
+    <div *ngIf="messageErrorMedia !== ''" class="errorMedia"><b>Consulta encerrada:</b> {{messageErrorMedia}}</div>
+  </div>
+
+  <div class="bottom center">
+    <div class="bottomTitle">
+      <h5>Definir Desconto</h5>
+      <p>(Opcional)</p>
+    </div>
+    <div class="textCall">Caso queira, você pode dar um desconto para<br><b>{{params.contactName}}</b><br>Basta escolher como será este desconto.</div>
+  </div>
+
+  <div class="containerDiscount">
+    <div class="contentRadioButtons radio">
+      <label>
+        <input class="typeDiscount" checked="checked" value='value' name="discountType" (change)="selectType()" [(ngModel)]="objReturn.type" type="radio" id="radioValue" />
+        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+        <span class="fontNormal">Valor</span>
+      </label>
+      <label>
+          <input class="typeDiscount" name="discountType" value='percent' (change)="selectType()" [(ngModel)]="objReturn.type" type="radio" id="radioPercent" />
+          <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+          <span class="fontNormal">Porcentagem</span>
+      </label>
+    </div>
+    <div class="contentFieldText">
+      <input class="valueDiscountConsultation inputPatternCall" [(ngModel)]="objReturn.discount" (keyup)="verifyValues()" currencyMask
+        [options]="maskOptions" type="text" autocomplete="off">
+    </div>
+  </div>
+
+  <div class="contentButtons">
+    <div class="callButtons">
+      <div class="containerButtons">
+        <div class="buttonCall">
+          <button class="buttonAccept" [disabled]="objReturn.discount <= 0" tabindex="-1" [mat-dialog-close]="objReturn">Concluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

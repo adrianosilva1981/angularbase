@@ -1,0 +1,123 @@
+@import 'global/css/global-variables.less';
+.subNav {
+    min-height: 60px;
+    background: @grey2;
+    .mobileMenu {
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    .iconsContent {
+        display: flex;
+        align-items: center;
+        min-height: 60px;
+        // justify-content: center;
+        overflow: auto;
+        .mobile {
+            i {
+                font-size: 20px;
+                color: @blue2;
+                cursor: pointer;
+            }
+        }
+        .link {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            .btnLInk {
+                cursor: pointer;
+                &:hover {
+                    color: @blue1;
+                }
+                &.subscript {
+                    text-align: center;
+                    .fa {
+                        color: @green1;
+                    }
+                    .text {
+                        font-weight: 700;
+                    }
+                }
+            }
+            .fa {
+                font-size: 20px;
+                margin-right: 5px;
+            }
+            &.opts {
+                flex: unset;
+                width: 100px;
+                justify-content: flex-end;
+                .btnAct {
+                    display: inline-block;
+                    text-align: center;
+                    line-height: 0px;
+                    font-size: 14px;
+                    outline: none;
+                    cursor: pointer;
+                    .fa {
+                        font-size: 20px;
+                        color: @orange1;
+                        transition: all 0.2s ease;
+                        &.fa-user {
+                            color: @grey5;
+                        }
+                    }
+                    .text {
+                        color: @grey5;
+                        line-height: 16px;
+                    }
+                    &:hover {
+                        .text {
+                            color: @blue1;
+                        }
+                    }
+                }
+            }
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+            @media screen and (min-width: 767px) {
+                &.search {
+                    display: none;
+                }
+            }
+            @media screen and (max-width: 767px) {
+                &:not(.search) {
+                    display: none;
+                }
+                &.search {
+                    margin: 0px 10px;
+                }
+            }
+        }
+    }
+}
+
+.menu-mobile {
+    .link {
+        color: #95989a;
+        font-size: 16px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        &:first-child {
+            padding: 15px 0;
+        }
+        &:hover {
+            color: @blue1;
+        }
+        i {
+            color: @yellow1;
+            font-size: 16px;
+            margin-right: 5px;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img {
+            max-width: 75%;
+        }
+    }
+}

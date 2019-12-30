@@ -1,0 +1,169 @@
+@import 'global/css/global-variables.less';
+.warn {
+    margin: 25px;
+}
+
+.acc, .resume {
+    text-align: center;
+    .banks {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        text-align: left;
+        .bank-card {
+            .detail-layout {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                background: @blue2;
+                top: -65px;
+                right: -65px;
+                transform: rotate(45deg);
+            }
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 4px;
+            background: white;
+            min-width: 300px;
+            min-height: 100px;
+            margin: 5px auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0.5;
+            transform: scale(0.9);
+            transition: all 0.2s ease-in-out;
+            &.start {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 1px 7px rgba(0, 0, 0, .05);
+            }
+            &.selected {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 1px 7px rgba(0, 0, 0, .05);
+                .detail-layout {
+                    background: @green1;
+                }
+            }
+            .bo-title {
+                font-weight: bold;
+                text-align: center;
+                font-size: 16px;
+            }
+            .bo-txt {
+                max-width: 250px;
+                text-align: center;
+                margin: 20px 15px;
+            }
+        }
+    }
+    .register-acc {
+        text-align: center;
+        a {
+            color: @blue1;
+        }
+    }
+}
+
+.resume {
+    background: #fffbf2;
+    margin: 15px auto;
+    max-width: 500px;
+    padding: 50px 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, .05);
+    text-align: center;
+    .text-title {
+        font-weight: bold;
+        text-align: center;
+        font-size: 16px;
+        &.mt20 {
+            margin-top: 20px;
+        }
+    }
+    .icon {
+        text-align: center;
+        font-size: 40px;
+        color: @green1;
+        margin-bottom: 25px;
+    }
+    .rowSelected {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .banks {
+        text-align: initial;
+        .bank-card {
+            cursor: initial;
+            &.selected {
+                box-shadow: 0 1px 7px rgba(0, 0, 0, .10);
+            }
+        }
+    }
+    .btn {
+        &.green {
+            float: initial;
+        }
+    }
+}
+.orders{
+    text-align: center;
+}
+.steps {
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 25px;
+}
+
+.txt {
+    text-align: center;
+    margin: 25px 5px;
+    width: 100%;
+}
+
+.btn {
+    &.green {
+        margin: 15px 0;
+        // float: right;
+        background: @green1;
+        color: white;
+    }
+}
+
+.marked {
+    background: #ebedf0 !important;
+}
+
+:host::ng-deep .ui-table .ui-table-tbody > tr.ui-state-highlight {
+    background-color: #522075;
+    color: #FFFFFF;
+}
+
+:host::ng-deep .ui-table .ui-sortable-column.ui-state-highlight {
+    background-color: #522075;
+    color: #FFFFFF;
+}
+
+:host::ng-deep .ui-table .ui-table-thead > tr > th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+}
+
+:host::ng-deep .ui-table {
+    text-align: left;
+}
+:host::ng-deep .ui-messages{
+    a{
+        color: inherit;
+        text-decoration: unset;
+    }
+}
+@media screen and (max-width: 64em) {
+    :host::ng-deep .ui-table .ui-table-thead > tr > th {
+        top: 120px;
+    }
+}

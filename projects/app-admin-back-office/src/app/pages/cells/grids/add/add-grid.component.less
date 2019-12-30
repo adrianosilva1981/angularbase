@@ -1,0 +1,55 @@
+@import 'css/global-variables.less';
+.addcells {
+    .content_form {
+        max-width: 360px;
+        margin: 50px;
+        .search {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .contenButton {
+            width: 100%;
+            padding: 25px;
+            margin-top: 20px;
+            .btn{
+                padding: 10px 20px;
+                background: @blue1;
+                color: white;
+            }
+        }
+    }
+    .content_cell {
+        padding: 15px;
+        .content_cells {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 15px;
+            .card {
+                margin: 10px;
+                flex: 1;
+                padding: 5px 15px 15px 15px;
+                border: none;
+                box-shadow: 0px 0px 10px 0px @grey2;
+                flex-direction: inherit;
+                min-width: 280px;
+                justify-content: center;
+                .content {
+                    padding: 5px;
+                    width: 100%;
+                    .titles {
+                        font-size: 15px;
+                        font-weight: 700;
+                        color: @blue1;
+                        padding: 0 0 10px 0;
+                    }
+                    .info {
+                        padding-top: 10px;
+                        color: @grey6;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

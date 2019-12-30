@@ -1,0 +1,12 @@
+<div class="contentAll">
+    <div class="cntHeader">
+        <div class="btnExport" (click)="exportToExcel()">
+            <i class="fas fa-file-excel"></i>
+            <span>Exportar para Excel</span>
+        </div>
+        <div class="more" (click)="points()"><i class="fa fa-plus-circle" aria-hidden="true"></i> Mais Informações</div>
+    </div>
+    <div class="cntTable" *ngIf="objTable?.id">
+        <app-back-office-card-tean-table [first]="true" [nodes]="objTable"></app-back-office-card-tean-table>
+    </div>
+</div>

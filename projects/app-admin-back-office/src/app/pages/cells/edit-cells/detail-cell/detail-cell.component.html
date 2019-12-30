@@ -1,0 +1,22 @@
+<div class="addcells">
+    <div class="content_form">
+  
+      <h3>Editar Célula</h3>
+  
+      <form [formGroup]="cellsForm">
+  
+        <div class="ui-float-label inputform">
+          <input id="name" formControlName="nameControl" size="40" pInputText autocomplete="off">
+          <label for="name">Digite o nome da Célula</label>
+          <span class="error" *ngIf="cellsForm.get('nameControl').hasError('minlength')">Campo
+            nome deve conter no mínimo 6 digitos!</span>
+          <span class="error" *ngIf="cellsForm.get('nameControl').hasError('required')">Obrigatório!</span>
+        </div>
+  
+        <div class="contenButton">
+            <button [disabled]="!cellsForm.valid" class="btn" (click)="saveForm()" [ngClass]="{'disabled':!cellsForm.valid}">Salvar Célula</button>
+        </div>
+  
+      </form>
+    </div>
+  </div>

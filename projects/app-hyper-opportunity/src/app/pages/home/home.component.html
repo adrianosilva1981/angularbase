@@ -1,0 +1,13 @@
+<div class="home container">
+
+  <div class="featuredServices">
+    <div class="fsTitle">Oportunidades</div>
+    <div class="listServices">
+      <app-hyper-opportunity-thumbnail *ngFor="let opportunity of objOpportunity" [opportunity]="opportunity" [viewType]="'grid'"></app-hyper-opportunity-thumbnail>
+    </div>
+    <div class="contentLoadMore" *ngIf="objOpportunity?.length > 0">
+      <div class="btn btnLoadMore" (click)="loadMoreResults()">Ver Mais</div>
+    </div>
+  </div>
+
+</div>

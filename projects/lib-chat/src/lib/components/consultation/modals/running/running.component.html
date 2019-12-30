@@ -1,0 +1,56 @@
+<div class="contentModal">
+  <div class="content center">
+    <button tabindex="-1" class="buttonFinish" (click)="clickFinish()">
+      <i class="fa fa-phone" aria-hidden="true"></i>
+    </button>
+    <div class="menuHeader">
+      <span class="Info">
+        <div class="icon">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+        </div>
+        <div class="contentValues">
+          <div class="txt">Tempo de consulta</div>
+          <div class="value">{{resumeTimer}}</div>
+        </div>
+      </span>
+      <span class="Info">
+        <div class="icon">
+          <i class="fa fa-usd" aria-hidden="true"></i>
+        </div>
+        <div class="contentValues">
+          <div class="txt">{{textMoneyConsulte}}</div>
+          <div class="value">R$ {{resumeValueConsumed}}</div>
+        </div>
+      </span>
+      <span class="Info">
+        <div class="icon">
+          <i class="fa fa-usd" aria-hidden="true"></i>
+        </div>
+        <div class="contentValues">
+          <div class="txt">Saldo disponível</div>
+          <div class="value">R$ {{resumeAmountDisponible}}</div>
+        </div>
+      </span>
+    </div>
+
+    <video class="localVideo" [class.hidden]="!localeVideo" id="localVideo" autoplay muted></video>
+    <img class='localPhoto' [class.hidden]="localeVideo" [src]="photoLocal" />
+
+    <video class="remoteVideo" [class.hidden]="!remoteVideo" id="remoteVideo" autoplay></video>
+    <img class='remotePhoto' [class.hidden]="remoteVideo" [src]="photoRemote" />
+
+    <div class="menuFooter">
+      <span class="contentActionButtons" *ngIf="showActionButtons">
+        <button tabindex="-1" class="buttonsOptions" [class.active]="audioActive" (click)="toogleAudio()" *ngIf="HJVideoCall.getAudioActive()">
+          <i class="fa fa-microphone" aria-hidden="true"></i>
+        </button>
+        <button tabindex="-1" class="buttonsOptions" [class.active]="videoActive" (click)="toogleVideo()" *ngIf="HJVideoCall.getVideoActive()">
+          <i class="fa fa-video-camera" aria-hidden="true"></i>
+        </button>
+      </span>
+      <span class="contentMessageInfo" *ngIf="messageInfo!==''">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> {{messageInfo}}
+      </span>
+    </div>
+  </div>
+</div>

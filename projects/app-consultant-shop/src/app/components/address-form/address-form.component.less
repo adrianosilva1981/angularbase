@@ -1,0 +1,38 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentAddAddress {
+    .center{
+        text-align: center;
+    }
+    .form-group {
+        padding: 10px;
+        margin-bottom: 0px;
+    }
+    .collumm {
+        display: flex;
+        flex-wrap: wrap;
+        .form-group {
+            flex: 1;
+        }
+    }
+    .cep-ok-button {
+        margin-top: 29px;
+    }
+    .btnAdd{
+        padding: 10px 20px;
+        color: #fff;
+        background: @green1;
+        &:disabled{
+            background: @grey2;
+            cursor: not-allowed;
+        }
+    }
+    .i-dont-know-my-cep {
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            color: @blue2;
+            text-decoration: underline;
+        }
+    }
+}

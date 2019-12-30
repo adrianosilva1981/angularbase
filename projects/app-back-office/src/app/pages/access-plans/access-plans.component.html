@@ -1,0 +1,143 @@
+<div class="plans">
+
+  <div class="container">
+    <div class="choosePlan">Escolha seu plano</div>
+
+    <div class="boxPlans">
+
+      <div class="colplan" *ngFor="let item of plans;">
+
+        <div class="colBg">
+          <div class="block adesao" [ngClass]="{'promo' : item.promotional == 'Y', 'normal' : item.promotional=='N'}">
+            <div class="recomend" *ngIf="item.promotional == 'Y'">Recomendado</div>
+
+            <div *ngIf="item.extra_info === '' || item.extra_info === null" style="text-align: center; margin: 0 auto;">
+              <div class="priceTitle">Adesão</div>
+              <div class="valor">
+                <div *ngIf="item.value != 0">
+                  <div class="menor">Apenas</div>
+                  <span [innerHtml]="item.value | conversion : item.initials"></span>
+                </div>
+                <div *ngIf="item.value == 0">
+                  <span>GRÁTIS</span>
+                </div>
+                <div class="menor" *ngIf="item.credit_card_max_plots > 1 && item.value != 0" style="text-align:center;">
+                  Em até {{item.credit_card_max_plots}}x
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="item.extra_info !== '' && item.extra_info !== null" style="text-align: center; margin: 0 auto;">
+              <div class="priceTitle">{{item.extra_info.accession.title}}</div>
+              <div class="valor">
+                <div *ngIf="item.start_value != 0">
+                  <div class="menor">Apenas</div>
+                  <span [innerHtml]="item.start_value | conversion : item.initials"></span>
+                </div>
+                <div *ngIf="item.start_value == 0">
+                  <span>GRÁTIS</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="equal green">+</div>
+
+        <div class="colBg">
+
+          <div class="block plan" *ngIf="item.extra_info === '' || item.extra_info === null">
+            <div class="priceTitle">Pack Mensal</div>
+            <div class="valor">
+              <div *ngIf="item.monthly_value != 0">
+                <div class="menor">Apenas</div>
+                <span [innerHtml]="item.monthly_value | conversion : item.initials"></span>
+                <span class="menor">/mês</span>
+              </div>
+              <div *ngIf="item.monthly_value == 0">
+                <span>GRÁTIS</span>
+              </div>
+            </div>
+            <div class="blockDesc" [innerHTML]="item.description"></div>
+            <div class="divider"></div>
+            <div class="blockDesc" [innerHTML]="item.benefits"></div>
+          </div>
+
+          <div class="block plan" *ngIf="item.extra_info !== '' && item.extra_info !== null">
+            <div class="priceTitle">{{item.extra_info.pack.title}}</div>
+            <div class="valor">
+              <div *ngIf="item.extra_info.pack.value != 0">
+                <div class="menor">Apenas</div>
+                <span [innerHtml]="item.extra_info.pack.value | conversion : item.initials"></span>
+              </div>
+              <div *ngIf="item.extra_info.pack.value == 0">
+                <span>GRÁTIS</span>
+              </div>
+            </div>
+            <div *ngIf="item.extra_info.pack.description" class="blockDesc" [innerHTML]="item.extra_info.pack.description"></div>
+          </div>
+
+        </div>
+
+        <!-- <div class="equal green" *ngIf="item.extra_info.ticket">+</div>
+
+        <div class="colBg" *ngIf="item.extra_info.ticket" style="background: #f2f2f2;">
+          <div class="block adesao normal">
+            <div style="text-align: center; margin: 0 auto;">
+              <div class="priceTitle">{{item.extra_info.ticket.title}}</div>
+              <div class="valor">
+                <div class="menor">Desconto Especial de Ativação, pague somente 50%.</div>
+                <span [innerHtml]="item.extra_info.ticket.value | conversion : item.initials"></span>
+              </div>
+              <div *ngIf="item.extra_info.ticket.description" class="blockDesc" [innerHTML]="item.extra_info.ticket.description"></div>
+            </div>
+          </div>
+        </div> -->
+
+        <div *ngFor="let dataPack of pacotes">
+          <div class="equal green">+</div>
+
+          <div class="colBg" style="background: #f2f2f2; cursor: pointer;" (click)="modalPack(dataPack?.detalhe)">
+            <div class="block adesao normal">
+              <div style="text-align: center; margin: 0 auto;">
+                <div class="priceTitle">{{dataPack?.title}} (Opcional)</div>
+                <div class="valor">
+                  <div *ngIf="dataPack?.label_text" class="menor" style="color: red;"><img src="assets/img/arrow.png"> {{dataPack?.label_text}}.</div>
+                  <div class="menor">Aumente seu capital em {{dataPack?.capital}}%</div>
+                  <div class="cntTxt">
+                      <span class="txt">Preço de mercado</span>
+                      <span class="val" [innerHtml]="dataPack?.value_resale || 0 | conversion : dataPack?.currency || 'BRL'"></span>
+                  </div>
+                  Apenas
+                  <span [innerHtml]="dataPack?.value_sale | conversion : dataPack?.currency || 'BRL'"></span>
+                </div>
+
+                <div class="cntValues">
+                  <div class="cntTxt">
+                    <span class="txt">Lucre</span>
+                    <span class="val" [innerHtml]="dataPack?.lucro || 0 | conversion : dataPack?.currency || 'BRL'"></span>
+                  </div>
+                </div>
+                <div class="blockDesc"><span class="linkmaskoto">Conheça o Pack</span></div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="colBg">
+          <div class="block button" [ngClass]="{'promo' : item.promotional == 'Y', 'normal' : item.promotional=='N'}">
+            <div class="semiesfera"></div>
+            <div class="btn acess" (click)="selectPlan(item.id, voucherForm.controls.voucherControl.value)">Quero me conectar
+              a {{item.name}}</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

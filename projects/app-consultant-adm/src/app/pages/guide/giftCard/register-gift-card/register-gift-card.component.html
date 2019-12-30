@@ -1,0 +1,179 @@
+<div class="contentPage" *ngIf="registerForm">
+  <form class="formCheckout" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+
+    <!-- FORMULARIO -->
+    <div class="mainBox serviceForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('giftForm') >= 0" formGroupName="giftForm">
+      <div class="titleBox">
+        informaçoes Principais
+      </div>
+      <div class="cntProductDetails">
+        <!-- Nome -->
+        <div class="form-group">
+          <label>Nome do Cupom Smart</label>
+          <input type="text" class="form-control" required formControlName="title">
+          <span class="errorFormField" *ngIf="registerForm?.get('giftForm.title').hasError('minlength')">*
+            Minimo
+            6 caracteres</span>
+        </div>
+
+
+        <div class="collumm">
+          <!-- Quantidade maxima por usuário -->
+          <div class="form-group">
+            <label>Maximo por carrinho</label>
+            <input type="text" class="form-control" pKeyFilter="int" maxlength="9" required formControlName="maximum_quantity_per_user">
+          </div>
+
+          <!-- Status -->
+          <div class="form-group">
+            <label>Cupom Smart Ativado?</label>
+            <select class="form-control" required formControlName="status">
+              <option value="A">SIM</option>
+              <option value="I">NÃO</option>
+            </select>
+          </div>
+
+          <!-- Data de Validade -->
+          <div class="form-group">
+            <label>Data de Validade</label>
+            <input type="date" class="form-control" required formControlName="valid_thru">
+            <span class="errorFormField" *ngIf="registerForm?.get('giftForm.valid_thru').hasError('minlength')">*
+              Minimo 6 caracteres</span>
+          </div>
+        </div>
+
+        <div class="collumm">
+          <!-- Tipo de produto -->
+          <div class="form-group">
+            <label>Controlar estoque</label>
+            <select class="form-control" required formControlName="inventory_control">
+              <option value="Y">Sim</option>
+              <option value="N">Não</option>
+            </select>
+          </div>
+
+          <!-- Quantidade em estoque -->
+          <div class="form-group">
+            <label>Em estoque</label>
+            <input type="text" class="form-control" pKeyFilter="int" maxlength="9" required formControlName="quantity">
+          </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="form-group">
+          <label>Descrição Completa</label>
+          <p-editor formControlName="description" styleClass="editorHtml">
+            <p-header>
+              <span class="ql-formats">
+                <button class="ql-bold" aria-label="Bold"></button>
+                <button class="ql-italic" aria-label="Italic"></button>
+                <button class="ql-underline" aria-label="Underline"></button>
+              </span>
+            </p-header>
+          </p-editor>
+          <!-- <textarea rows="4" class="form-control" required formControlName="description"></textarea> -->
+          <span class="errorFormField" *ngIf="registerForm?.get('giftForm.description').hasError('minlength')">*
+            Minimo 20 caracteres</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE COMPANIA-->
+    <div class="mainBox companyForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('companyForm') >= 0" formGroupName="companyForm">
+      <div class="titleBox">
+        Estabelecimento
+      </div>
+      <div class="cntCategory">
+        <p-pickList [source]="objCompany" [showSourceControls]="false" [showTargetControls]="false" filterBy="name"
+          [target]="selectedCompany" [responsive]="true" dragdrop="true" (onMoveToTarget)="setCompany()"
+          (onMoveToSource)="setCompany()">
+          <ng-template let-cat pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <div style="font-size:14px; font-size: 14px; text-align: center;">{{cat.name}}</div>
+            </div>
+          </ng-template>
+        </p-pickList>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE MEDIAS-->
+    <div class="mainBox mediasForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('mediasForm') >= 0" formGroupName="mediasForm">
+      <div class="titleBox">
+        <span>Imagens</span>
+      </div>
+      <div class="cntImages">
+        <div class="cntButtonAdd">
+          <lib-components-upload-image [buttonText]="buttonTextUpload" [width]="'500'" [height]="'500'" [urlRequest]="urlRequest"
+            [pathBucket]="pathBucket" (onUpload)="onUpload($event)"></lib-components-upload-image>
+        </div>
+        <div class="listImages">
+          <div class="empty" *ngIf="registerForm?.get('mediasForm.images')?.value?.length <= 0">Adidione
+            imagens
+            para essa empresa
+            <small>
+              <div>*Recomendamos imagens superiores a 600x600px </div>
+            </small>
+          </div>
+          <div class="cntImg" *ngFor="let img of registerForm?.get('mediasForm.images')?.value; let idx = index">
+            <img [src]="img?.url">
+            <div class="btnRemove" (click)="deletePhoto(idx)">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE PRECO-->
+    <div class="mainBox priceForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('priceForm') >= 0" formGroupName="priceForm">
+      <div class="titleBox">
+        Informações de preço
+      </div>
+
+      <div class="form-group">
+        <label>Tipo do valor</label>
+        <select class="form-control" required formControlName="type_value" (change)="changeTypeValue()">
+          <option value="F">Fixo</option>
+          <option value="V">Variável</option>
+        </select>
+      </div>
+
+      <div class="cntPrices">
+        <div class="collumm">
+          <div class="form-group percent" *ngIf="inventoryControl === 'V'">
+            <label>Desconto</label>
+            <div class="ui-inputgroup">
+              <input type="text" class="form-control" required formControlName="value_percent" maxlength="3" (blur)="validValuePercent()">
+              <span class="ui-inputgroup-addon">%</span>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="inventoryControl !== 'V'">
+            <label>Valor</label>
+            <input type="text" class="form-control" (keyup)="calcOff(registerForm?.get('priceForm.value_cash_sale').value)"
+              currencyMask [options]="maskMoney" required formControlName="value_cash_sale">
+          </div>
+          <div class="form-group" *ngIf="inventoryControl !== 'V'">
+            <label>Valor que você irá receber </label>
+            <input type="text" class="form-control" readonly value="{{receive_value_cash_sale | conversion : 'BRL' : false}}">
+          </div>
+
+          <div class="type-desc" *ngIf="inventoryControl === 'V'">
+            Nesta opção o comprador irá colocar o valor desejado, desse valor, {{100 - registerForm?.get('priceForm.value_percent').value }}% será repassado a você.
+          </div>
+
+          <div class="type-desc" *ngIf="inventoryControl !== 'V'">
+            - Nosso sistema já fornece todos os meios de pagamentos integrado para nosso lojista, {{ valuePercentMin
+            }}% é a taxa única
+            atual para todos os recebimentos ( cartões e boleto) e remuneração do marketplace
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  BOTAO DE SUBMIT-->
+    <div class="cntBtnSubmit" *ngIf="!edit">
+      <button class="btnSubmit" type="submit">Cadastrar</button>
+    </div>
+  </form>
+</div>

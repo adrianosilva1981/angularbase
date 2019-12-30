@@ -1,0 +1,58 @@
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Performance
+      </h1>
+    </div>
+    <div class="col-12 my-3">
+      <p-calendar [(ngModel)]="dates" dateFormat="dd/mm/yy" selectionMode="range" (onSelect)="setPerformance()"
+        (onInput)="setPerformance()"></p-calendar>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 item">
+      <div class="container">
+        <div class="col-12">
+          Pagamento Confirmado
+        </div>
+        <div class="col-12">
+          {{ performance?.finalized_payment| currency:'BRL' }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 item">
+      <div class="container">
+        <div class="col-12">
+          Aguardando Pagamento
+        </div>
+        <div class="col-12">
+          {{ performance?.awaiting_payment| currency:'BRL' }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 item" [routerLink]="['/reports/performance/hubmix-details']"
+      [queryParams]="{startDate: this.dates[0]?.toJSON().split('T')[0],
+  endDate: this.dates[1]?.toJSON().split('T')[0]}"
+      style="cursor:pointer">
+      <div class="container">
+        <div class="col-12">
+          Total de Pontos Confirmados
+        </div>
+        <div class="col-12">
+          {{ performance?.points }}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 item">
+      <div class="container">
+        <div class="col-12">
+          Itens Vendidos
+        </div>
+        <div class="col-12">
+          {{ performance?.qtd}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

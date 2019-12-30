@@ -1,0 +1,177 @@
+.center {
+  text-align: center;
+}
+button {
+  border: none;
+  background: transparent;
+  outline: 0;
+}
+.hidden {
+  display: none !important;
+}
+.contentModal {
+  background-color: #333;
+  -webkit-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+.contentModal .content {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.contentModal .content .buttonFinish {
+  top: 100px;
+  right: 30px;
+  position: absolute;
+  font-size: 20px;
+  z-index: 110;
+  padding: 13px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 0, 0, 0.5);
+  text-align: center;
+}
+.contentModal .content .buttonFinish .fa {
+  color: #ccc;
+  font-size: 25px;
+  -webkit-transform: rotate(140deg);
+  -moz-transform: rotate(140deg);
+  -ms-transform: rotate(140deg);
+  -o-transform: rotate(140deg);
+}
+.contentModal .content .buttonFinish:hover {
+  background: rgba(255, 0, 0, 0.8);
+}
+.contentModal .content .menuHeader {
+  z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: left;
+  display: table;
+  padding: 0px 20px;
+}
+.contentModal .content .menuHeader .Info {
+  width: 250px;
+  display: inline-block;
+  margin-top: 10px;
+}
+.contentModal .content .menuHeader .Info .icon {
+  display: inline-block;
+  padding-left: 10px;
+}
+.contentModal .content .menuHeader .Info .icon .fa {
+  font-size: 42px;
+  color: #00c3ff;
+}
+.contentModal .content .menuHeader .Info .contentValues {
+  display: inline-block;
+  padding-left: 10px;
+}
+.contentModal .content .menuHeader .Info .contentValues .txt {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+}
+.contentModal .content .menuHeader .Info .contentValues .value {
+  font-size: 16px;
+  color: #fff;
+}
+.contentModal .content .menuFooter {
+  z-index: 100;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: left;
+  padding: 12px 20px;
+}
+.contentModal .content .menuFooter .contentActionButtons {
+  display: inline-block;
+}
+.contentModal .content .menuFooter .contentActionButtons .buttonsOptions {
+  display: inline-block;
+  padding: 17px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.contentModal .content .menuFooter .contentActionButtons .buttonsOptions .fa {
+  color: #ccc;
+  font-size: 18px;
+}
+.contentModal .content .menuFooter .contentActionButtons .buttonsOptions:hover {
+  background: rgba(255, 0, 0, 0.3);
+}
+.contentModal .content .menuFooter .contentActionButtons .buttonsOptions.active {
+  background: rgba(255, 0, 0, 0.3);
+}
+.contentModal .content .menuFooter .contentMessageInfo {
+  display: inline-block;
+  color: #fff;
+  padding: 13px;
+  height: 50px;
+  font-size: 16px;
+}
+.contentModal .content .menuFooter .contentMessageInfo .fa {
+  color: #ccc;
+  font-size: 16px;
+}
+.contentModal .content .localVideo {
+  z-index: 95;
+  position: absolute;
+  bottom: 125px;
+  left: 20px;
+  height: 150px;
+  -webkit-box-shadow: 1px 1px 1px #666;
+  -moz-box-shadow: 1px 1px 1px #666;
+  -ms-box-shadow: 1px 1px 1px #666;
+  -o-box-shadow: 1px 1px 1px #666;
+  box-shadow: 1px 1px 1px #666;
+  border: 3px solid #fff;
+}
+.contentModal .content .remoteVideo {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+.contentModal .content .localPhoto {
+  z-index: 95;
+  position: absolute;
+  bottom: 125px;
+  left: 20px;
+  height: 150px;
+  -webkit-box-shadow: 1px 1px 1px #666;
+  -moz-box-shadow: 1px 1px 1px #666;
+  -ms-box-shadow: 1px 1px 1px #666;
+  -o-box-shadow: 1px 1px 1px #666;
+  box-shadow: 1px 1px 1px #666;
+  border: 3px solid #fff;
+  background: transparent;
+  text-align: center;
+}
+.contentModal .content .remotePhoto {
+  text-align: center;
+  width: 100vw !important;
+  height: 100vh !important;
+}

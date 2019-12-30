@@ -1,0 +1,71 @@
+<div class="content">
+  <!-- <div class="plan">
+    <div class="circle ative" [ngClass]="{'disabled' : data.status!=='A'}"></div>
+    <span [ngClass]="{'ativo': data.status==='A', 'inativo' : data.status!=='A'}">{{status[data.status]}}</span>
+  </div> -->
+  <div class="img">
+    <img [src]="data.img ? data.img : 'assets/img/user-photo-default.png'">
+  </div>
+  <div class="info">
+    <div class="title">
+      <span>Código:</span> {{data.username}}</div>
+    <div class="title">
+      <span>Nome:</span> {{data.name}}
+    </div>
+    <div class="title">
+      <span>Data de Conexão:</span> {{data.activation}}
+    </div>
+    <div class="title" *ngIf="data.cellphone !== '0' && (data.managerial == 'manager' || data.managerial == 'director')">
+      <span>Celular:</span> {{data.cellphone}}
+    </div>
+  </div>
+  <div class="plan" *ngIf="data.graduation">
+    <div class="circle {{data.slug_graduation}}"></div>
+    {{data.graduation}}
+  </div>
+  <!-- ADICIONAR USUÁRIO ABAIXO -->
+  <div class="cntGroupNew" *ngIf="showAdd">
+    <div class="groupNew">
+      <div class="tlt">Novo associado</div>
+      <div class="info">
+        <span><b>Atenção:</b> O novo usuário será inserido abaixo do associado <em><b>{{data.name}}</b></em></span>
+      </div>
+      <div class="cntAll">
+        <div class="cnt">
+          <div class="btnAdd" (click)="closeModal()" routerLink="office/preregister" [queryParams]="{ reseller: objUser.username, host: data.id }">
+            <span>Adicionar</span>
+          </div>
+        </div>
+        <div class="cnt">
+          <div class="btnAdd" (click)="copyToClipboard(env.host + 'office/preregister?reseller=' + objUser.username + '&host=' + data.id)">
+            <span>Copiar link</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MOVER USUÁRIO -->
+  <div class="cntGroupMove" *ngIf="showMove">
+    <div class="groupMove">
+      <div class="tlt">Ações</div>
+      <div class="info">
+        <span>
+          <b>Atenção:</b>
+          Selecione qual ação dejeja fazer para este associado
+        </span>
+      </div>
+      <div class="cntAll">
+        <div class="cnt">
+          <div class="btnAction" (click)="openModalMove('move')">
+            <span>Mover</span>
+          </div>
+        </div>
+        <div class="cnt">
+          <div class="btnAction" (click)="openModalMove('change')">
+            <span>Trocar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

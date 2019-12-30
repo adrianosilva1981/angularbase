@@ -1,0 +1,50 @@
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-12 jumbotron">
+      <h1>Aprovação de Pacotes</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12 text-center">
+      <p-table [columns]="cols" #dt [value]="associates" [responsive]="true" class="table" [paginator]="true" [rows]="10"
+        [globalFilterFields]="colsQuery">
+        <ng-template pTemplate="caption">
+          <div style="text-align: left">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value, 'contains')"
+              style="width:auto">
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th>
+              Autorizar
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-associate let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{ (col.field==='value')?(associate[col.field]|currency:'R$'): (col.field ===
+              'creation_date')?(associate[col.field]|date:'dd/MM/yyyy'):associate[col.field]}}
+            </td>
+            <td>
+              <span class="ui-column-title">Autorizar</span>
+              <div class="row justify-content-around">
+                <button pButton type="button" icon="fas fa-check-circle" (click)="validate(associate)"></button>
+                <button pButton type="button" icon="fas fa-times-circle" class="ui-button-danger" (click)="denied(associate)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

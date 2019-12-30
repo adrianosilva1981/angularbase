@@ -1,0 +1,20 @@
+
+<div class="boxCard">
+  <div class="contentCard">
+      <div class="flag">
+        <img src="assets/img/{{card.company != 'visa' &&  card.company != 'master' && card.company != 'elo' ? 'card' : card.company}}.png">
+      </div>
+      <div class="contentText">
+        <div class="last">
+          <span>Final:</span> {{card.last_numbers}}</div>
+        <div class="exp">
+          <span>Expiração:</span> {{card.expiration}}</div>
+        <div class="text">
+          <span>Nome:</span> {{card.name}}</div>
+      </div>     
+      <div class="button">
+          <button class="btn green btncard" name="selectCard" (click)="selectCard(card.id);">Usar este</button>
+          <button class="btn red btncard" name="removeCard" (click)="removeCard(card.id);">Remover</button>
+      </div>
+  </div>
+</div>

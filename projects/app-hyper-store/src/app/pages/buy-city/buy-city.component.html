@@ -1,0 +1,68 @@
+<div class="bg-search">
+  <img class="bg" src="global/img/bg-search.jpg">
+  <div class="container">
+    <div class="til">Pesquise os lugares que vendem em sua cidade
+      e <span class="rotatedMin">economize no frete</span> e receba seu produto em um dia.</div>
+
+    <div class="filter">
+      <div class="form-group input">
+        <label class="center-block">Estado</label>
+        <select class="form-control selectState" (change)="onSelectState($event.target.value)">
+          <option selected disabled value="0">Selecione</option>
+          <option *ngFor="let item of states" [value]="item.id">{{ item.state }}</option>
+        </select>
+      </div>
+      <div class="form-group input">
+        <label class="center-block">Cidade</label>
+        <select class="form-control selectCity" (change)="onSelectedCity($event.target.value)">
+          <option selected value="0">Todas</option>
+          <option *ngFor="let item of cities" [value]="item.id">{{ item.city }}</option>
+        </select>
+      </div>
+      <button class="btn" (click)="onSearch()">Pesquisar</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div *ngIf="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando!</div>
+  <p *ngIf="!loading" class="desc">Foi encontrado <span>{{ shops.length }} lojas cadastradas</span> em sua região</p>
+
+  <div *ngIf="shops.length && !loading">
+    <p class="rotated">Lojas credenciadas</p>
+    <div *ngFor="let shop of shops; let i = index">
+      <div class="title" *ngIf="shops[i].state != shop.state || i === 0">{{ shop.state }}</div>
+      <div class="box-store">
+        <div class="img">
+          <div>
+            <img [src]="shop.logoURL" />
+          </div>
+        </div>
+        <div class="name">
+          {{ shop.title }}
+        </div>
+        <div *ngIf="showCity" class="city">
+          <b>{{ shop.city }}</b>
+        </div>
+        <a class="link" href="https://partner.youhub.com.br/store/{{ shop.subdomain }}" target="_blank">Ir para loja</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showFormContact  && !loading">
+    <app-hyper-store-contact-provider></app-hyper-store-contact-provider>
+  </div>
+
+  <div class="faq">
+    <p class="rotated">Ficou com dúvidas? Veja as principais perguntas ou acesse nossa FAQ completa.</p>
+
+    <div class="help">
+      <p class="title">Como funciona o frete grátis? </p>
+      <p>O frete grátis só é valido para compra efetuada na cidade que você mora.</p>
+    </div>
+
+    <div class="help">
+      <p class="title">Não sendo associado eu posso comprar ?</p>
+      <p>Sim, todos podem fazer compras em nossa loja virtual.</p>
+    </div>
+  </div>
+</div>

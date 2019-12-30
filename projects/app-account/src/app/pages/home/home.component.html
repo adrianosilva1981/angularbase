@@ -1,0 +1,18 @@
+<div class="dash">
+    <div class="container">
+      <div class="content-dash">
+        <div class="content-item-menu">
+          <ng-container *ngFor="let item of objMenu">
+            <div class="item-menu" (click)="onRedirect(item.route)">
+              <div class="header">
+                <i class="material-icons">{{item.icon}}</i> {{item.title}}
+              </div>
+              <div class="body">
+                {{item.text}}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>

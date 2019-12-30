@@ -1,0 +1,53 @@
+<div class="title">Alterando as cores</div>
+<div class="title-desc">Aqui você pode alterar a cor dos componentes de sua loja, apenas selecionadno o campo correspondente</div>
+
+<form [formGroup]="skinForm">
+  <span formGroupName="skin">
+    <span formGroupName="nav">
+      <span class="form-group">
+        <div class="label">Cor navbar</div>
+        <input type="text" class="hexadicimal form-control" [style.background]="skinForm.get('skin.nav.colorBar').value" (colorPickerChange)="skinForm.get('skin.nav.colorBar').setValue($event)"
+          [colorPicker]="skinForm.get('skin.nav.colorBar').value" formControlName="colorBar" />
+      </span>
+      <span class="form-group">
+        <div class="label">Cor do texto</div>
+        <input type="text" class="hexadicimal form-control" [style.background]="skinForm.get('skin.nav.colorText').value" (colorPickerChange)="skinForm.get('skin.nav.colorText').setValue($event)"
+          [colorPicker]="skinForm.get('skin.nav.colorText').value" formControlName="colorText" />
+      </span>
+      <span class="form-group">
+        <div class="label">Cor do carrinho</div>
+        <input type="text" class="hexadicimal form-control" [style.background]="skinForm.get('skin.nav.colorCart').value" (colorPickerChange)="skinForm.get('skin.nav.colorCart').setValue($event)"
+          [colorPicker]="skinForm.get('skin.nav.colorCart').value" formControlName="colorCart" />
+      </span>
+      <!-- <span class="form-group">
+        <input id="float-input" type="text" class="hexadicimal" [style.background]="skinForm.get('skin.nav.colorTextCart').value"
+          pInputText (colorPickerChange)="skinForm.get('skin.nav.colorTextCart').setValue($event)" [colorPicker]="skinForm.get('skin.nav.colorTextCart').value"
+          formControlName="colorTextCart" />
+        <label for="float-input">Cor do texto do carrinho</label>
+      </span> -->
+      <span class="form-group">
+        <div class="label">Cor do favorito</div>
+        <input type="text" class="hexadicimal form-control" [style.background]="skinForm.get('skin.nav.colorFav').value" (colorPickerChange)="skinForm.get('skin.nav.colorFav').setValue($event)"
+          [colorPicker]="skinForm.get('skin.nav.colorFav').value" formControlName="colorFav" />
+      </span>
+    </span>
+    <span formGroupName="footer">
+      <span class="form-group">
+        <div class="label">Cor de texto do rodapé</div>
+        <input type="text" class="hexadicimal form-control" [style.background]="skinForm.get('skin.footer.colorText').value" (colorPickerChange)="skinForm.get('skin.footer.colorText').setValue($event)"
+          [colorPicker]="skinForm.get('skin.footer.colorText').value" formControlName="colorText" />
+      </span>
+      <span class="form-group">
+        <div class="label">Cor de destaque do rodapé</div>
+        <input type="text" class="hexadicimal form-control" [style.background]="skinForm.get('skin.footer.colorTitle').value" (colorPickerChange)="skinForm.get('skin.footer.colorTitle').setValue($event)"
+          [colorPicker]="skinForm.get('skin.footer.colorTitle').value" formControlName="colorTitle" />
+      </span>
+      <span class="form-group">
+        <div class="label">Cor de fundo do rodapé</div>
+        <input type="text" class="hexadicimal form-control" [style.background]="skinForm.get('skin.footer.bgColor').value" (colorPickerChange)="skinForm.get('skin.footer.bgColor').setValue($event)"
+          [colorPicker]="skinForm.get('skin.footer.bgColor').value" formControlName="bgColor" />
+      </span>
+    </span>
+  </span>
+  <div class="btn blue" (click)="sendForm()"> Aplicar cores </div>
+</form>

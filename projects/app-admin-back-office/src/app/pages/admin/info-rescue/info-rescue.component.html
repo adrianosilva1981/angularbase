@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="row mx-3 rowBreadCrumb">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>
+        Intervalo de {{interval[0]|date:'dd/MM/yyyy'}} até {{interval[1]|date:'dd/MM/yyyy'}}
+      </h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-center py-5 mx-2">
+    <div class="col-12">
+      <p-table #dt [columns]="cols" [value]="associates" [paginator]="true" [rows]="20" [responsive]="true" dataKey="id"
+        [autoLayout]="true">
+
+        <ng-template pTemplate="caption">
+            <div class="row justify-content-center">
+              <div class="col-12 col-sm-6 col-md-4">
+                <i class="fa fa-search" style="margin:6px 4px 0 0"></i>
+                <input type="text" placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value,'contains')"
+                  style="width: 90%">
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <button type="button" class="btn btn-primary btn-sm" (click)="exportExcel(dt)">Exportar</button>
+              </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{
+              col.field.includes('value')?(rowData[col.field]|conversion:'BRL':false)
+              :col.field.includes('date')?(rowData[col.field]|date:'dd/MM/yyyy')
+              :rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+
+</div>

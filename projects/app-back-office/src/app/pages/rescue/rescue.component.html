@@ -1,0 +1,301 @@
+<div class="rescue">
+  <div class="content">
+
+    <h3> Saque de Bonificações.</h3>
+
+
+    <form [formGroup]="rescueForm">
+
+      <div *ngIf="reseller.type == 'P'">
+
+        <div class="contemcards">
+          <div class="card">
+            <div class="content">
+
+              <div class="title">
+                Solicitar Saque como Pessoa Física
+              </div>
+              <div class="text">Para fazer a solicitação você deve validar seu CPF em seu Perfil para validação de titularidade.</div>
+               <div class="text">O meio de resgate para Pessoa Fisica é com cartão Pré-pago.
+                <span class="link" (click)="solicitecard();">(Saiba mais)</span>
+              </div>
+
+              <div class="text">Após validar seu CPF <a  class="link" routerLink="/office/myAcount">(aqui)</a> e solicitar seu cartão você poderá fazer a solicitação de resgate.</div>
+
+              <div class="title">
+                  Quando vou Receber?
+              </div>
+              <div class="text">Na YouHub, como você sabe, o pagamento é SEMANAL!<BR>O procedimento é muito simples.<br>Você deve fazer o seu pedido de saque até as 18 horas da Sexta-feira de cada semana para receber o valor solicitado até Quinta-feira da semana seguinte.</div>
+
+              <div formGroupName="priceForm">
+
+                <div class="contentSaldo" *ngIf="creditok">
+                  <div class="text-card">Saldo Disponível</div>
+                  <div Class="text" [ngClass]="{'green' : credit > 0}" [innerHTML]="credit | conversion : 'BRL'"></div>
+                </div>
+
+                <div class="price">
+                  <div class="form-group">
+                    <label>Valor do Saque:</label>
+                    <input type="text" class="form-control" currencyMask [options]="maskMoney" required formControlName="value_cash">
+                    <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                  </div>
+                </div>
+                <div class="contentbutton">
+                  <button [disabled]="!rescueForm.get('priceForm').valid" (click)="sendRescue('prepaid_card')" class="btn orange" [ngClass]="{'disabled':!rescueForm.get('priceForm').valid}">Solicitação Resgate com Cartão Pré-pago</button>
+                </div>
+
+                <div class="obs">
+                  *Se preferir efetuar o resgate com Pessoa Jurídica deverá fazer a alteração da titularidade no seu perfil.
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div *ngIf="reseller.type == 'B'">
+
+        <div class="contemcards">
+          <div class="card">
+            <div class="content">
+
+              <div class="title">
+                Solicitar Resgate como Pessoa Jurídica
+              </div>
+              <div class="text">Para fazer a solicitação você deve validar seu CNPJ em seu Perfil para validação de titularidade.</div>
+              <div class="text">
+                <b>Atenção!</b> temporariamente esta validação poderá ser feita através do email:
+                <span class="email">financeiro@youhub.com.br</span>.</div>
+
+              <div class="text">O meio de resgate para Pessoa Jurídica será feito por Transferência Bancária ou BitCoins.</div>
+
+              <div class="text">Após validar seu CNPJ e enviar sua Nota Fiscal poderá fazer a solicitação de resgate.</div>
+              <div class="obs"></div>
+
+              <div class="title">
+                  Quando vou Receber?
+              </div>
+              <div class="text">Na YouHub, como você sabe, o pagamento é SEMANAL!<BR>O procedimento é muito simples.<br> Você deve fazer o seu pedido de saque até a sexta-feira de cada semana para receber o valor solicitado na quarta-feira da semana seguinte.</div>
+
+                
+              <div class="title">
+                Solicitar Resgate por BitCoins.
+              </div>
+
+              <div formGroupName="priceFormCrypto">
+
+                <div class="ui-float-label inputform">
+                  <input id="wallet" formControlName="value_wallet" size="40" pInputText>
+                  <label for="wallet">Carteira Bitcoins</label>
+                  <span class="error" *ngIf="rescueForm.get('priceFormCrypto.value_wallet').hasError('required')">Obrigatório!</span>
+                </div>
+
+                <div class="contentSaldo" *ngIf="creditok">
+                  <div class="text-card">Saldo Disponível</div>
+                  <div Class="text" [ngClass]="{'green' : credit > 0}" [innerHTML]="credit | conversion : 'BRL'"></div>
+                </div>
+
+                <div class="price">
+                  <div class="form-group">
+                    <label>Valor do Resgate:</label>
+                    <input type="text" class="form-control" currencyMask [options]="maskMoney" required formControlName="value_cash_crypto">
+                    <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                  </div>
+                </div>
+
+                <div class="contentbutton">
+                  <button [disabled]="!rescueForm.get('priceFormCrypto').valid" (click)="sendRescue('crypto_coins')" class="btn orange" [ngClass]="{'disabled':!rescueForm.get('priceFormCrypto').valid}">Solicitação Resgate com BitCoins</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contemcards">
+          <div class="card">
+            <div class="content">
+
+              <div class="title">
+                Solicitar Resgate por Transferência Bancária.
+              </div>
+
+              <div formGroupName="priceFormTranfers">
+
+                <p>Informações de Conta Bancária:</p>
+
+                <!--
+               <div class="price">
+                  <div class="form-group">
+                    <label>Nome do Titular:</label>
+                    <input type="text" class="form-control" required formControlName="value_bank_holderName">
+                    <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                  </div>
+                </div> 
+                
+              <div class="price">
+                <div class="form-group">
+                  <label>Código do Banco:</label>
+                  <input type="text" class="form-control" required formControlName="value_bank_id">
+                  <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                </div>
+              </div>
+              
+              <div class="price">
+                  <div class="form-group">
+                    <label>Nome do Banco:</label>
+                    <input type="text" class="form-control" required formControlName="value_bank_name">
+                    <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                  </div>
+                </div>
+            <div class="price">
+                  <div class="form-group">
+                    <label>Agência:</label>
+                    <input type="text" class="form-control" required formControlName="value_agence">
+                    <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                  </div>
+                </div>
+                <div class="price">
+                  <div class="form-group">
+                    <label>Conta:</label>
+                    <input type="text" class="form-control" required formControlName="value_acount">
+                    <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                  </div>
+                </div>
+-->
+
+                <div style="display: flex; flex-wrap: wrap;">
+
+                  <div class="ui-float-label inputform">
+                    <input id="hold" formControlName="value_bank_holderName" size="40" pInputText>
+                    <label for="hold">Nome do Titular</label>
+                    <span class="error" *ngIf="rescueForm.get('priceFormTranfers.value_bank_holderName').hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="bankid" formControlName="value_bank_id" size="15" pInputText>
+                    <label for="bankid">Código do Banco</label>
+                    <span class="error" *ngIf="rescueForm.get('priceFormTranfers.value_bank_id').touched && rescueForm.get('priceFormTranfers.value_bank_id').hasError('pattern')">Somente Números!</span>
+                    <span class="error" *ngIf="rescueForm.get('priceFormTranfers.value_bank_id').hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="bankname" formControlName="value_bank_name" size="30" pInputText>
+                    <label for="bankname">Nome do Banco</label>
+                    <span class="error" *ngIf="rescueForm.get('priceFormTranfers.value_bank_name').hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="bankagencie" formControlName="value_agence" size="15" pInputText>
+                    <label for="bankagencie">Agência</label>
+                    <span class="error" *ngIf="rescueForm.get('priceFormTranfers.value_agence').hasError('required')">Obrigatório!</span>
+                  </div>
+
+                  <div class="ui-float-label inputform">
+                    <input id="bankaccount" formControlName="value_acount" size="15" pInputText>
+                    <label for="bankaccount">Conta</label>
+                    <span class="error" *ngIf="rescueForm.get('priceFormTranfers.value_acount').hasError('required')">Obrigatório!</span>
+                  </div>
+
+                </div>
+
+                <div class="contentSaldo" *ngIf="creditok">
+                  <div class="text-card">Saldo Disponível</div>
+                  <div Class="text" [ngClass]="{'green' : credit > 0}" [innerHTML]="credit | conversion : 'BRL'"></div>
+                </div>
+
+
+                <!-- <div class="ui-float-label inputform">
+                    <p-inputMask id="valuemoney" formControlName="value_cash_tranfers" size="30" mask="99-9999"></p-inputMask>
+                    <label for="valuemoney">Valor do Resgate</label>
+                    <span class="error" *ngIf="rescueForm.get('priceFormTranfers.value_cash_tranfers').hasError('required')">Obrigatório!</span>
+                  </div> -->
+
+
+                <div class="price">
+                  <div class="form-group">
+                    <label>Valor do Resgate:</label>
+                    <input type="text" class="form-control" currencyMask [options]="maskMoney" required formControlName="value_cash_tranfers">
+                    <span style="color: #ccc; font-size: 12px;">*Obrigatório</span>
+                  </div>
+                </div>
+
+                <div class="contentbutton">
+                  <button [disabled]="!rescueForm.get('priceFormTranfers').valid" (click)="sendRescue('transfer_bank')" class="btn orange"
+                    [ngClass]="{'disabled':!rescueForm.get('priceFormTranfers').valid}">Solicitação Resgate por Transferência Bancária</button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </form>
+
+    <div class="contemcards" *ngIf="rescueok">
+      <div class="card">
+        <div class="content">
+          <p>Solicitações de Resgates</p>
+          
+          <p-table #dt styleClass="classetable" [value]="rescue" [responsive]="true" [paginator]="true" [rows]="10" [rowsPerPageOptions]="rowsperpage">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:5em">Código</th>
+                <th>Data</th>
+                <th style="width:20em">Método de pagamento</th>
+                <th style="width:10em">Valor</th>
+                <th style="width:20em">Status</th>
+                <th *ngIf="reseller.type == 'B'" style="width:12em">Upload</th>                
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-data>
+              <tr>
+                <td>{{data.id}}</td>
+                <td>{{data.creation_date}}</td>
+                <td>{{data.method}}</td>
+                <td [innerHtml]="data.value | conversion : 'BRL'"></td>
+                <td>{{data.stage}}</td>
+                <td *ngIf="reseller.type == 'B'">
+                    <p-overlayPanel #op [showCloseIcon]="true" [dismissable]="false">
+                        <img src="{{data.url}}">
+                      </p-overlayPanel>
+                      
+                <div style="display: flex; justify-content: center;     align-items: center;">
+
+<lib-components-upload-image class="btn orange" [width]="400" [height]="800" [urlRequest]="urlApiImage" [pathBucket]="'documents'"
+                    [buttonText]="'Nota Fiscal'" (onUpload)="changeImageDocumentNf(data.id, $event)" style="margin: 0 !important;" *ngIf="reseller.type == 'B' && data.stage == 'Processando'"></lib-components-upload-image>
+                
+                <div *ngIf="reseller.type == 'B' && data.url != ''">
+                             
+
+                  <div (click)="op.toggle($event, data)" style="cursor: pointer; width: 20px; text-align: center;">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </div>
+
+                </div>
+
+                </div>
+
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+          
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

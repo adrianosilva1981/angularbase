@@ -1,0 +1,48 @@
+<div class="content">
+    <div *ngIf="table.length <= 0">
+        Nenhum registro de parcelas de financiamento em atraso.
+    </div>
+    <div *ngIf="table.length > 0">
+        <p-table #dt [value]="table" [responsive]="true" [globalFilterFields]="['username','name']">
+            <ng-template pTemplate="caption">
+                <div style="text-align: left">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder=" Pesquisar ID ou Nome" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        style="max-width:250px !important; padding: 0 !important; margin: 0 0 0 5px !important;">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:5em">Código</th>
+                    <th>Nome</th>
+                    <th>Patrocinador</th>
+                    <th style="width:8em">Parcelas em Atraso</th>
+                    <th style="width:10em">Valor em Atraso</th>
+                    <th style="width:8em">Parcelas a Vencer</th>
+                    <th style="width:10em">Valor a Pagar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-pre>
+                <tr>
+                    <td>{{pre.username}}</td>
+                    <td>{{pre.name}}</td>
+                    <td>{{pre.patrocinador}}</td>
+                    <td style="text-align: center; color: red;">{{pre.qtdaberto}}</td>
+                    <td style="text-align: right; color: red;" [innerHtml]="pre.vencida | conversion : 'BRL'"></td>
+                    <td style="text-align: center">{{pre.qtdfutura}}</td>
+                    <td style="text-align: right" [innerHtml]="pre.apagar | conversion : 'BRL'"></td>
+                </tr>               
+            </ng-template>
+            <ng-template pTemplate="footer">
+               <tr>
+                    <td colspan="3"></td>
+                    <td style="text-align: right;">Total:</td>
+                    <td style="text-align: right; color: red;" [innerHtml]="totalDevido | conversion : 'BRL'"></td>
+                    <td style="text-align: right;">Total:</td>
+                    <td style="text-align: right;" [innerHtml]="totalReceber| conversion : 'BRL'"></td>
+                </tr> 
+            </ng-template>            
+        </p-table>
+    </div>
+</div>
+<p></p><p></p>

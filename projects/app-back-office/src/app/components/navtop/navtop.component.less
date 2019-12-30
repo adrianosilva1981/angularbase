@@ -1,0 +1,179 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.bartop {
+    z-index: 1;
+    width: 100%;
+    background: white;
+    height: 70px;
+    display: flex;
+    position: fixed;
+    .lefttop {
+        width: 260px;
+        height: 70px;
+        background: @blue1;
+        .logo {
+            width: 100%;
+            height: 70px;
+            background: url('/assets/img/logo_youhub_home.png') center center no-repeat;
+        }
+    }
+    .centertop {
+        width: 120px;
+        height: 70px;
+        .logo {
+            width: 120px;
+            height: 70px;
+            background: url(/assets/img/logo_youhub.png) center center no-repeat;
+            background-size: contain;
+        }
+    }
+    .banner {
+        position: relative;
+        display: block;
+        visibility: visible;
+        margin: 0 auto;
+        cursor: pointer;
+        width: 900px;
+        height: 48px;
+        .fa-caret-left {
+            z-index: 2;
+            position: absolute;
+            line-height: 48px;
+            align-items: center;
+            color: white;
+            padding-left: 10px;
+            left: 0;
+            top: 0;
+        }
+        .fa-caret-right {
+            z-index: 2;
+            position: absolute;
+            line-height: 48px;
+            align-items: center;
+            color: white;
+            padding-right: 10px;
+            right: 0;
+            top: 0;
+        }
+    }
+    @media screen and (max-width: 1396px) {
+        .banner {
+            visibility: hidden;
+            height: 0;
+            width: 0;
+            .fa-caret-left, .fa-caret-right {
+                line-height: 0;
+            }
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .lefttop {
+            .logo {
+                display: none;
+            }
+        }
+        .lefttop {
+            width: 80px;
+            height: 70px;
+            background: @blue1;
+            .menuMobili {
+                cursor: pointer;
+                width: 100%;
+                height: 70px;
+                background: url('/assets/img/icon_menu.png') center center no-repeat !important;
+            }
+        }
+    }
+    @media screen and (min-width: 600px) {
+        .menuMobili, .centertop {
+            display: none;
+        }
+    }
+    .righttop {
+        padding: 10px 30px;
+        font-size: 16px;
+        flex: 1;
+        .drop {
+            display: flex;
+            justify-content: flex-end;
+            //margin-right: 20px !important;                                     
+            .down {
+                color: @grey6;
+                margin-top: 12px;
+                font-size: 14px;
+                cursor: pointer;
+                .text {
+                    color: @grey7;
+                    margin-right: 5px;
+                    @media screen and (max-width: 600px) {
+                        display: none;
+                    }
+                }
+            }
+            .photo {
+                margin-left: 10px;
+                cursor: pointer;
+                img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    border: 2px solid @grey6;
+                }
+            }
+        }
+        .visible {
+            display: block;
+        }
+        .invisible {
+            display: none;
+        }
+        .arrow-div {
+            text-align: center;
+            z-index: 9;
+            position: absolute;
+            width: 150px;
+            height: 70px;
+            background: @blue1;
+            box-shadow: 3px 3px 5px @grey6;
+            margin: 15px 2px;
+            border-radius: 5px;
+            right: 47px;
+            top: 50px;
+        }
+        .arrow-div:after, .arrow-div:before {
+            bottom: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+        .arrow-div:after {
+            border-color: rgba(255, 72, 59, 0);
+            border-bottom-color: @blue1;
+            border-width: 10px;
+            margin-left: 17px;
+        }
+        .arrow-div:before {
+            border-color: rgba(255, 255, 255, 0);
+            border-bottom-color: @blue1;
+            border-width: 17px;
+            margin-left: 10px;
+        }
+        ul {
+            margin-top: 12px;
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            &:hover {
+                background: @blue2;
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+.center {
+  text-align: center;
+}
+.contentModal {
+  width: 450px;
+  background-color: #fff;
+  -webkit-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+.contentModal button {
+  border: none;
+  background: transparent;
+}
+.contentModal .content {
+  padding: 0px 20px 20px;
+  background-image: -webkit-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: -moz-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: -ms-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: -o-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  width: 100%;
+}
+.contentModal .content .contentClose {
+  text-align: right;
+  padding: 10px 0px;
+}
+.contentModal .content .contentClose .btnClose {
+  font-size: 16px;
+}
+.contentModal .content .contentClose .btnClose .fa {
+  color: #666;
+}
+.contentModal .content .contentClose .btnClose:hover .fa {
+  color: #222;
+}
+.contentModal .content .photo img {
+  border: 10px solid rgba(0, 0, 0, 0.11);
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+}
+.contentModal .content .userName {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px auto 2px;
+  color: #424446;
+}
+.contentModal .content .userMessage {
+  font-size: 16px;
+  color: #ff0000;
+}
+.contentModal .bottom {
+  padding: 24px 0;
+  width: 85%;
+  margin: 0 auto;
+}
+.contentModal .bottom .bottomTitle h5 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+}
+.contentModal .bottom .bottomTitle p {
+  font-size: 16px;
+  font-weight: normal;
+  color: #999;
+  margin: 0px 0px 10px;
+}
+.contentModal .bottom .textCall {
+  font-size: 14px;
+  font-weight: normal;
+  color: #999;
+}

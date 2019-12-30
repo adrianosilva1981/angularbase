@@ -1,0 +1,163 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.contentPage {
+    .form-group {
+        padding: 10px;
+        .w-100 {
+            width: 100%;
+        }
+    }
+    .mainBox {
+        margin: 30px 0px;
+        border: 1px solid @grey3;
+        background: #efefef;
+        .radius(10px);
+        .titleBox {
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+            background: @grey3;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            .radius(10px 10px 0 0);
+        }
+    }
+    .collumm {
+        display: flex;
+        flex-wrap: wrap;
+        .form-group, .group {
+            min-width: 150px;
+            flex: 1;
+        }
+        &.bank {
+            // .box {
+            //     display: flex;
+            //     flex-wrap: wrap;
+            //     border: 1px solid #ccc;
+            //     border-radius: 5px;
+            //     width: 100%;
+            //     margin-top: 15px;
+            //     .boxTitle {
+            //         width: 100%;
+            //         padding: 10px 10px 0;
+            //     }
+            // }
+            .form-group {
+                flex: unset;
+                max-width: unset;
+            }
+            .chkbox {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    .supplierForm {
+        .cntBox {
+            padding: 10px;
+            .cntInfo {
+                width: 100%;
+                // max-width: 350px;
+                min-height: 50px;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            .open {
+                flex: 1;
+                padding-left: 10px;
+                min-width: 150px;
+                .lnk {
+                    a {
+                        color: @newblue1;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .access {
+                flex: 1;
+                min-width: 180px;
+                margin: 10px 0;
+                display: flex;
+                .btnAcess {
+                    border: none;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    .radius(5px);
+                    padding: 10px 20px;
+                    text-align: center;
+                    background: @orange1;
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+            .access-info {
+                flex: 2;
+                min-width: 280px;
+            }
+        }
+        .cntProductDetails {
+            padding: 10px;
+            .bt {
+                display: flex;
+                flex: 1;
+                .btn-add {
+                    display: flex;
+                    flex: 1;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    cursor: pointer;
+                    i {
+                        font-size: 35px;
+                        color: @green1;
+                    }
+                }
+            }
+        }
+    }
+    .cntBtnSubmit {
+        margin-bottom: 30px;
+        text-align: right;
+        .btnSubmit {
+            border: none;
+            font-size: 20px;
+            text-transform: uppercase;
+            .radius(5px);
+            padding: 5px 60px;
+            text-align: center;
+            background: @green1;
+            color: #fff;
+            &:disabled {
+                background: @grey4;
+                cursor: not-allowed;
+            }
+        }
+    }
+    .show-banks {
+        display: flex;
+        flex-wrap: wrap;
+        .acc {
+            background: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 5px;
+            flex: 1;
+            min-width: 280px;
+            box-shadow: 0px 0px 5px 0px #ccc;
+            position: relative;
+            .remove {
+                position: absolute;
+                top: 8px;
+                right: 10px;
+                i {
+                    cursor: pointer;
+                    color: @red1;
+                }
+            }
+        }
+    }
+    // .cntBtnSubmit
+}

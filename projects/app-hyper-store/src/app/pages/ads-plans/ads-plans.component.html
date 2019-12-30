@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="items">
+    <div class="box-item">
+      <div class="desc">
+        <div class="text">
+          Pacote de
+          <span>Publicidade</span>
+        </div>
+      </div>
+      <div class="action">Ações</div>
+      <div class="details">Home HubMix</div>
+      <div class="details">E-mail MKT</div>
+      <div class="details">Compartilhamento em Rede Social</div>
+      <div class="details">Postagem Instagram Youhub</div>
+      <div class="details">Postagem Facebook Youhub</div>
+    </div>
+    <div class="box-item" *ngFor="let plan of plans">
+      <div class="title">{{ plan.title }}</div>
+      <div class="value">
+        <span [innerHtml]="plan?.value_cash_sale | conversion : 'BRL'"></span>
+        <div class="month">Por mês</div>
+      </div>
+      <div class="details" *ngFor="let action of plan.actions">{{ action.quantity }}</div>
+      <div class="details">
+        <app-hyper-store-btn-add-shop-cart (onclick)="addToCart(plan.id)"></app-hyper-store-btn-add-shop-cart>
+      </div>
+    </div>    
+  </div>
+</div>

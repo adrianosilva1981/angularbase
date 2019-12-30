@@ -1,0 +1,72 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.filter {
+    padding: 10px;
+    .contentBtn {
+        text-align: right;
+        padding: 10px 0px;
+        margin-bottom: 15px;
+    }
+    .orderSelect {
+        label {}
+        .form-control {
+            cursor: pointer;
+            outline: none;
+            option {
+                background: @blue1;
+                color: @grey2;
+            }
+        }
+    }
+    .filter {
+        .cntFilter {
+            .loopType {
+                .cntFilt {
+                    color: @grey5;
+                    cursor: pointer;                    
+                    .val {
+                        font-weight: 400;
+                        margin-bottom: 5px;
+                        font-size: 14px;
+                    }
+                    .fa {
+                        display: inline-block;
+                        color: @grey5;
+                        font-family: FontAwesome;
+                        margin-top: 2px;
+                        &:before {
+                            content: "\f096"; //content: "□";
+                        }
+                    }
+                    &:hover {
+                        color: @blue1;
+                    }
+                    
+                    &.active {
+                        .fa {
+                            color: @blue1;
+                            &:before {
+                                content: "\f0c8"; //content: "■";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .btnClearFilter {
+        display: inline-block;
+        padding: 3px 15px;
+        background: @grey1;
+        border: 1px solid @grey3;
+        color: @grey5;
+        .radius(20px);
+        font-size: 12px;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            background: @grey2;
+            color: @grey4;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="jumbotron col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <h1>Troca de pagamento de associado</h1>
+  </div>
+  <form class="row" [formGroup]="userForm" novalidate>
+
+    <div class="offset-xl-4 offset-lg-4 offset-md-4 offset-sm-3"></div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 field">
+      <label for="photo_profile">Foto de Perfil</label>
+      <br>
+      <img src="{{ photo_profile }}">
+    </div>
+    <div class="offset-xl-4 offset-lg-4 offset-md-4 offset-sm-3"></div>
+
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 field">
+      <label for="name">Nome</label>
+      <br>
+      <input class="form-control" type="text" formControlName="name" readonly>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 field">
+      <label for="email">E-mail</label>
+      <br>
+      <input class="form-control" type="text" formControlName="email" readonly>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 field">
+      <label for="listPayment">Pagamento</label>
+      <br>
+      <p-dropdown [options]="listPayment" formControlName="payment" [style]="{'width':'100%'}"></p-dropdown>
+    </div>
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 field">
+      <label>Observação</label>
+      <br>
+      <textarea class="form-control" type="text" formControlName="message"></textarea>
+    </div>
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 field">
+      <label for="image">Comprovante</label>
+      <br>
+      <p-fileUpload #form [showUploadButton]="false" accept="image/*" customUpload="true" (onSelect)="onUpload($event,form)"></p-fileUpload>
+    </div>
+  </form>
+  <br>
+  <div class="row">
+    <div class="col-lg-8 col-md-8">
+      <button class="btn col-lg-2 col-md-4" [routerLink]="[ '/associates/associate-edit']">
+        <span>Cancelar</span>
+      </button>
+      <i class="col-lg-3 col-md-3"></i>
+      <!-- aparecer usuario logado for adm -->
+      <button class="btn col-lg-2 col-md-4" [disabled]="!userForm.valid" (click)="updateUser()" [ngClass]="{ 'green': userForm.valid}">
+        <span>Ativar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="row mx-3">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>
+        Intervalo de {{interval[0]|date:'dd/MM/yyyy'}} até {{interval[1]|date:'dd/MM/yyyy'}}
+      </h4>
+    </div>
+  </div>
+
+  <div class="content_disp">
+    <div class="card hover" [routerLink]="['/admin','consumption','details-consumption']" [queryParams]="{interval:interval}">
+      <div class="content">
+        <div class="titles">Consumo</div>
+        <div class="line"></div>
+        <div class="info">
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Pontos:</span>{{consumption.points}}
+          </div>
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Valor:</span>{{consumption.total_value|conversion:'BRL':false}}
+          </div>
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Quantidade:</span>{{consumption.count_consumption}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content_disp">
+    <div class="card hover" *ngFor="let item of consumptionValid" [routerLink]="['/admin','consumption','details-'+item.type]"
+      [queryParams]="{interval:interval}">
+      <div class="content">
+        <div class="titles">{{returnTitle(item.type)}}</div>
+        <div class="line"></div>
+        <div class="info">
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Pontos:</span>{{item.points}}
+          </div>
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Valor:</span>{{item.total_value|conversion:'BRL':false}}
+          </div>
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Quantidade:</span>{{item.count_consumption}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content_disp">
+    <div class="card hover" *ngFor="let itemReversal of consumptionReversal" [routerLink]="['/admin','consumption','details-reversal-'+itemReversal.type]"
+      [queryParams]="{interval:interval}">
+      <div class="content">
+        <div class="titles">{{returnTitle(itemReversal.type)}} Estornados</div>
+        <div class="line"></div>
+        <div class="info">
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Pontos:</span>{{itemReversal.points}}
+          </div>
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Valor:</span>{{itemReversal.total_value|conversion:'BRL':false}}
+          </div>
+          <div style="text-align:center; width: 100%;">
+            <span class="subtitle">Quantidade:</span>{{itemReversal.count_consumption}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

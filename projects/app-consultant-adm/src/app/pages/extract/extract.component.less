@@ -1,0 +1,257 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+@border-color: red;
+.contentAll {
+    .cntResume {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        .resume {
+            flex: 1;
+            display: flex;
+            text-align: center;
+            height: 50px;
+            padding: 10px;
+            align-items: center;
+            color: #fff;
+            min-width: 275px;
+            border: 5px solid #fff;
+            .txt {
+                flex: 1;
+                text-align: left;
+                font-size: 12px;
+                .fa, .fas {
+                    display: inline-block;
+                    font-size: 20px;
+                    margin-right: 5px;
+                }
+            }
+            .val {
+                flex: 1;
+                text-align: right;
+                font-weight: 700;
+                font-size: 20px;
+            }
+            &.PP {
+                background: @grey7;
+            }
+            &.PC {
+                background: @green1;
+            }
+            &.PE {
+                background: @yellow1;
+            }
+            &.PD {
+                background: @blue2;
+                cursor: pointer;
+            }
+        }
+    }
+    .timeline-item {
+        padding: 0px 5px 30px 20px;
+        position: relative;
+        color: @grey5;
+        border-left: 2px solid #ccc;
+        .item-title {
+            .lineTitle {
+                background: #e5e5e5;
+                padding: 5px 10px;
+                .radius(5px);
+                .info {
+                    font-weight: 700;
+                    display: inline-block;
+                    margin-right: 10px;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                }
+                .value {
+                    float: right;
+                    font-size: 14px;
+                }
+            }
+            .date {
+                font-weight: lighter;
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+        }
+        .item-order {
+            overflow: hidden;
+            transition: 0.5s all ease;
+            ul {
+                li {
+                    small {
+                        display: inline-block;
+                        margin-left: 5px
+                    }
+                }
+            }
+            &.collapsed {
+                max-height: 2000px;
+            }
+            &.uncollapsed {
+                max-height: 65px;
+            }
+        }
+        .cntShowMore {
+            padding-top: 10px;
+            text-align: left;
+            .btnShowMore {
+                color: @newblue2;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+        &.first {
+            &::after {
+                width: 30px;
+                height: 30px;
+                background: @grey1;
+                text-align: center;
+                display: block;
+                bottom: 0px;
+                position: absolute;
+                left: -16px;
+                font-family: FontAwesome;
+                font-size: 20px;
+                content: "\f005";
+                color: @yellow1;
+            }
+        }
+        .iconTransaction {
+            width: 30px;
+            height: 30px;
+            background: @grey1;
+            text-align: center;
+            display: block;
+            top: 0px;
+            position: absolute;
+            left: -16px;
+            font-size: 20px;
+            .fa {
+                font-family: FontAwesome;
+            }
+        }
+        // Pagamento Pendente
+        &.PP {
+            .iconTransaction {
+                .fa {
+                    color: @grey7;
+                    &:before {
+                        content: "\f217";
+                    }
+                }
+            }
+            .item-title {
+                .info, .value {
+                    color: @grey7;
+                }
+            }
+        }
+        // Pagamento Confirmado
+        &.PC {
+            .iconTransaction {
+                .fa {
+                    color: @green1;
+                    &:before {
+                        content: "\f155";
+                    }
+                }
+            }
+            .item-title {
+                .info, .value {
+                    color: @green1;
+                }
+            }
+        }
+        // Pagamento Estornado
+        &.PE {
+            .iconTransaction {
+                .fa {
+                    color: @orange1;
+                    &:before {
+                        content: "\f0e2";
+                    }
+                }
+            }
+            .item-title {
+                .info, .value {
+                    color: @orange1;
+                }
+            }
+        }
+    }
+}
+
+.filters {
+    .icon {
+        cursor: pointer;
+        width: 100px;
+        margin-left: auto;
+        display: block;
+        .plus-filter {
+            color: @blue2;
+            font-size: 16px;
+        }
+    }
+    .dates {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 15px 0;
+        max-height: 0;
+        transition: max-height 0.7s cubic-bezier(0, 1.01, 0, 1.03);
+        overflow: hidden;
+        background: white;
+        padding: 0px 25px;
+        border-radius: 5px;
+        .btns, .drop, .input, .submit-filter {
+            width: 100%;
+        }
+        .btns {
+            margin-top: 25px;
+        }
+        .drop {
+            .cnt-drop {
+                margin: 5px 0;
+            }
+        }
+        .submit-filter {
+            margin: 15px 0;
+            .btn {
+                &.grey {
+                    background: #ccc;
+                    margin: 0 5px;
+                }
+            }
+        }
+        .initial, .finish, .total {
+            flex: 1;
+            margin: 10px 0;
+            min-width: 280px;
+        }
+        .initial {
+            margin-top: 0;
+        }
+        .title-date {
+            font-weight: bold;
+        }
+        .input {
+            .filterCod {
+                height: 38px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                text-align: center;
+                max-width: 150px;
+            }
+        }
+        &.show {
+            max-height: 750px;
+            transition: max-height 0.8s ease-in-out;
+        }
+    }
+    .btn {
+        color: #fff;
+        background: @orange1;
+    }
+}

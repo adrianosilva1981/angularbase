@@ -1,0 +1,136 @@
+<div class="containerMiniChat">
+  <aside id="chatBoxHyperJobs" class="chat_sidebar" [ngClass]="{'minimized': chatWindowMinimized && !firstLoad, 'maximized': !chatWindowMinimized}">
+    <div class="boxMiniChat" *ngIf="!showChatContacts">
+      <div class="minichatHeader" (click)="toogleMaximize()">
+        <div class="contentNameStatus pull-left">
+          <div class="nameChat"> {{nameSelectedContact | truncate : 20 : '...'}}</div>
+          <div class="statusChat">
+            <span>{{subtitleHeader}}</span>
+            <span *ngIf="subtitleHeader ==''">
+              <i class="fa fa-spinner fa-pulse fa-fw"></i> Aguarde...
+            </span>
+          </div>
+        </div>
+        <div class="contentBtnsHeader pull-right">
+          <!-- <span class="btnSearch" (click)="triggerSearch()">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span> -->
+          <span class="btnContacts" (click)="showContacts()">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span *ngIf="notification" class="chatNotification"></span>
+          </span>
+          <span class="btnMinimize">
+            <i class="fa fa-chevron-down" [ngClass]="{'fa-chevron-up': chatWindowMinimized, 'fa-chevron-down': !chatWindowMinimized}" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+      <div #scrollMe class="minichatBody" (scroll)="listenScroll($event)">
+        <div class="waintLoadConversations" *ngIf="objConversations.length <= 0">
+          <div class="contentLoadConversations">
+            <div class="loadingConversations">
+              <i class="fa fa-spinner fa-pulse fa-fw"></i>
+            </div>
+            <div class="textLoadingConversations">
+              Carregando conversas
+            </div>
+          </div>
+        </div>
+        <div class="contentBox">
+          <div class="ballomChat" [ngClass]="{'ballomRight': idSelectedContact == item.user_sender}" *ngFor="let item of objConversations">
+            <div class="dateSend" style="text-align: center">{{item.created_at}}</div>
+            <div class="chat_user_avatar">
+              <img [src]="idSelectedContact == item.user_sender ? item.url_photo : myObjectUser.photoUrl" class="photoUser">
+            </div>
+            <div class="chat_message">
+              <div class="contentBallom">
+                <div class="message">{{item.text}}</div>
+                <div class="statusMessage" *ngIf="idSelectedContact == item.user_receiver" [ngSwitch]="item.read_at">
+                  <span *ngSwitchCase="'sending'" class='_sending'><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                  <span *ngSwitchCase="'fail'" class='_fail'><i class="fa fa-times"></i></span>
+                  <span *ngSwitchCase="null" class='_sended'><i class="fa fa-check"></i><i class="fa fa-check"></i></span>
+                  <span *ngSwitchDefault class='_read'><i class="fa fa-check"></i><i class="fa fa-check"></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="showTyping && !chatWindowMinimized" class="typing">
+          {{nameTyping | words : 1 : ' '}}está digitando...
+        </div>
+      </div>
+      <div class="minichatFotter">
+        <div class="contentSubmitBox">
+          <div class="contentInputTextButtons">
+            <input type="text" (keyup)="typingMessage($event)" placeholder="Mensagem" [(ngModel)]="message" class="inputMessage">
+          </div>
+          <span class="contentSend" [ngClass]="{'disabled' : message ===''}" (click)="sendMessage()">
+            <i class="material-icons">send</i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="boxContact" *ngIf="showChatContacts">
+      <div class="contactsHeader" [ngClass]="showSearch ? 'showSearch': 'hiddenSeach'">
+        <div class="contentHeaderOptions">
+            <div class="contentBtnBack pull-left">
+              <span class="btnBack" (click)="backToChat()" *ngIf="idSelectedContact !== 0">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              </span>
+            </div>
+            <div class="contentTextInfo pull-left">
+              <div class="textContact">Contatos</div>
+              <div class="countContact">{{objRecentChat.length}} contatos</div>
+            </div>
+            <div class="contentBtns pull-right">
+              <span class="btnAddNew" (click)="addNewContact()">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+              </span>
+              <span class="btnSearch" (click)="toogleSearch()">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>           
+              <span class="btnMinimize" (click)="toogleMaximize()">
+                <i class="fa fa-chevron-down" [ngClass]="{'fa-chevron-up': chatWindowMinimized, 'fa-chevron-down': !chatWindowMinimized}" aria-hidden="true"></i>
+              </span>
+            </div>
+        </div>
+        <div class="contentSearchContact">
+          <div class="contentBtnClear pull-left">
+            <span class="btnClear" (click)="toogleSearch()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="contentInputSearch pull-left">
+            <input [(ngModel)]="filterContact" type="text" name="" value="" placeholder="Pesquisar...">
+          </div>
+        </div>
+      </div>
+      <div class="contactsBody">
+        <div class="waintLoadContacts" *ngIf="objRecentChat.length <= 0">
+          <div class="contentLoadContacts">
+            <div class="loadingContacts">
+              <i class="fa" [ngClass]="noContacts ? 'fa-user-times' : 'fa-spinner fa-pulse fa-fw'"></i>
+            </div>
+            <div class="textLoadingContacts">
+              {{!noContacts ? 'Carregando contatos' : 'Você não possui nenhum contato'}}              
+            </div>
+          </div>
+        </div>
+        <div class="lineContact" *ngFor="let item of applyFilter(); let idx = index" (click)="selectContact(item, idx)">
+          <div class="contentPhoto pull-left">
+            <img [src]="item.url_photo" class="photoUser">
+            <span class="statusChat hjStatusUserChat_{{item.chatWith}} {{item.status}}"></span>
+          </div>
+          <div class="contentText">
+            <div class="contentNameTime">
+              <span class="name truncate">{{item.name}}</span>
+              <small class="time hidden">{{item.created_at}}</small>
+            </div>
+            <div class="lastMessage truncate">{{item.text}}</div>
+          </div>
+          <div class="clearfix"></div>
+          <span *ngIf="item.notRead > 0" class="messageCount badge">{{item.notRead}}</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>

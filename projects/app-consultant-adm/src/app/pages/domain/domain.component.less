@@ -1,0 +1,42 @@
+@import 'global/css/global-variables.less';
+.domain {
+    .title {
+        font-size: 24px;
+        color: @grey7;
+        margin-bottom: 10px;
+    }
+    .desc {
+        line-height: 1.3;
+    }
+    .url {
+        display: flex;
+        margin-top: 15px;
+        max-width: 500px;
+        .disabled-label {
+            background: @grey4;
+            height: 38px;
+            color: @grey6;
+            align-items: center;
+            display: flex;
+            border-radius: 7px 0 0 7px;
+            padding: 15px;
+        }
+        .subdomain {
+            width: 100%;
+            input {
+                border-radius: 0 7px 7px 0;
+            }
+        }
+    }
+    .btn {
+        margin: 25px 0;
+        &.blue {
+            background: @blue1;
+        }
+        &.btnLink {
+            margin-left: 20px;
+            background: @orange1;
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,95 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.contentPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fa {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+    }
+    .nameBuyer{
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .cnt {
+        .cntResume {
+            margin-top: 20px;
+            .resume {
+                text-align: right;
+                font-weight: 700;
+                .text {
+                    display: inline-block;
+                    font-size: 18px;                    
+                    color: @grey7;
+                }
+                .value {
+                    display: inline-block;
+                    min-width: 100px;
+                    font-size: 20px;
+                    color: @red1;
+                }
+            }
+        }
+    }
+}
+
+.requestCustomersDetailsTable {
+    table {
+        tr {
+            th {
+                background: #E5E5E5;
+                padding: 10px 10px 1px 10px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+            td {
+                padding: 10px;
+                font-size: 14px;
+                color: #586066;
+            }
+            &:nth-of-type(even) {
+                background: #F2F2F2;
+            }
+        }
+    }
+    span {
+        &.percentage_value {
+            font-size: 16px;
+            color: #004370;
+            .percentage{               
+                font-size: 10px;
+            }
+        }
+        &.unit_value {
+            font-size: 16px;
+            color: #6FB309;
+        }
+        &.unit_aditional {
+            font-size: 14px;
+            color: #F97F0E;
+        }
+        &.amount_value {
+            font-size: 16px;
+            color: #FF6060;
+        }
+        &.amount_aditional {
+            font-size: 14px;
+            color: #FF6060;
+        }
+    }
+}

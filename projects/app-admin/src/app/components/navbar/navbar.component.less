@@ -1,0 +1,192 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+@import 'css/global-components.less';
+.contentNav {
+    height: 60px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding: 5px 10px;
+    background: @blue1;
+    color: #fff;
+    z-index: 999;
+    .contentMenuSide {
+        width: 40px;
+        display: flex;
+        align-items: center;
+        display: none;
+        .fa {
+            cursor: pointer;
+            font-size: 25px;
+        }
+    } // .contentLogo
+    .contentLogo {
+        width: 185px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        img {
+            width: 100%;
+            content: url("/global/img/logo_text.png");
+        }
+    } // .contentLogo
+    .contentProject {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 0px 20px;
+        .cntMenus {
+            flex: 1;
+            .menu {
+                text-transform: uppercase;
+                cursor: pointer;
+                display: inline-block;
+                padding: 5px;
+                margin-right: 15px;
+                &:last-child {
+                    margin-right: 0px;
+                }
+                &:hover{
+                    color: @yellow1;
+                }
+            }
+            ;
+        } // .cntMenus
+    } // .contentProject
+    .contentProfile {
+        display: flex;
+        .profile {
+            justify-content: flex-end;
+            display: flex;
+            align-items: center;
+            padding: 0px 10px;
+            //background: aqua;
+            justify-content: flex-end;
+            padding-left: 20px;
+            outline: none;
+            .btnMenu {
+                text-align: center;
+                cursor: pointer;
+                .fas {
+                    display: none;
+                }
+                .text {
+                    display: block;
+                    font-size: 14px;
+                }
+                &:hover, &.active {
+                    color: @yellow1;
+                }
+            }
+            .notLogged {
+                cursor: pointer;
+                font-size: 16px;
+                .fas {
+                    display: inline-block;
+                    margin-left: 5px;
+                }
+                &:hover {
+                    color: @yellow1;
+                }
+            }
+            .logged {
+                .drop-down-shop {
+                    cursor: pointer;
+                    font-size: 16px;
+                    .fas {
+                        font-size: 16px;
+                        margin-left: 5px;
+                        display: inline-block;
+                    }
+                    &:hover {
+                        color: @yellow1;
+                        .fas {
+                            color: @yellow1;
+                        }
+                    }
+                    .drop-down-content-shop {
+                        min-width: 170px;
+                        right: 0;
+                        top: 16px;
+                        .triangle {
+                            width: 0;
+                            height: 0;
+                            border-style: solid;
+                            border-width: 0 5px 7.9px 5px;
+                            border-color: transparent transparent @grey8 transparent;
+                            margin-left: 115px;
+                            margin-top: 13px;
+                        }
+                        .profileContent {
+                            padding: 10px;
+                            background: @grey8;
+                            font-weight: 400;
+                            border: 1px solid @grey6;
+                            border-top: none;
+                            text-align: left;
+                            .radius(0px 0px 5px 5px);
+                            .menuItem {
+                                color: @grey2;
+                                font-size: 14px;
+                                margin-bottom: 10px;
+                                outline: none;
+                                &:last-of-type {
+                                    margin: 0px;
+                                }
+                                a {
+                                    text-decoration: none;
+                                    color: @grey2;
+                                    .fas {
+                                        color: @grey2;
+                                        font-size: 14px;
+                                        display: inline-block;
+                                        margin-right: 5px;
+                                    }
+                                    img {
+                                        width: 40px;
+                                        height: 40px;
+                                        .radius(50%);
+                                        margin-right: 10px;
+                                    }
+                                    &:hover {
+                                        color: @yellow1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } // .contentProfile
+    @media screen and (max-width: 768px) {
+        .contentMenuSide {
+            display: flex;
+        } // .contentLogo
+        .contentLogo {
+            width: 40px;
+            img {
+                content: url("/global/img/logo_only.png");
+            }
+        }
+        .contentProject {
+            padding: 0px;
+            .cntMenus {
+                display: none;
+            }
+        }
+        .contentProfile {
+            .profile {
+                .btnMenu {
+                    .fas {
+                        display: block;
+                        font-size: 20px;
+                    }
+                    .text {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,59 @@
+<div class="settings serv">
+  <div class="containerServices">
+    <div class="cnt">
+
+      <div class="breadcrumb">
+        <span class="cntBread" (click)="onBreadClick(0)">
+          <span class="itemBread">Departamentos</span>
+        </span>
+        <ng-container *ngFor="let item of mapPath">
+          <span class="cntBread" *ngIf="item.id_item" (click)="onBreadClick(item.level + 1)">
+            <span class="separate">/</span>
+            <span class="itemBread">{{item.name_item}}</span>
+          </span>
+        </ng-container>
+
+      </div>
+      <div class="title">
+        Escolha os serviços que serão exibidos em sua loja online.
+      </div>
+      <div class="content-services">
+        <div class="headlight">
+          <div class="select-all">
+              <p-checkbox [(ngModel)]="selectAll" (onChange)="onSelectAll($event)" binary="true" label="Selecionar todos"></p-checkbox>
+            </div>
+          <div class="comission">Comissão</div>
+          <div class="detail">Detalhes</div>
+        </div>
+        <div class="service">
+          <div class="item-cont" *ngFor="let item of itenList">
+            <div class="select">
+              <p-checkbox [(ngModel)]="item.checked" binary="true" [label]="item.value" (onChange)="checkChanged($event)"
+                value="{{item.id}}"></p-checkbox>
+            </div>
+            <div class="comission">
+              <b>Comissão:</b> {{item.comission}}
+            </div>
+            <div class="moreInfo" (click)="nextLevel(item)" *ngIf="currentLevel < 2">
+              <i class="fas fa-level-down-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contentBtn">
+        <div class="btnSend" (click)="saveChanges()">Salvar</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [draggable]="false" *ngIf="dialog" [resizable]="false" [modal]="true" [dismissableMask]="true" [header]="dialogItem.name"
+  [(visible)]="dialog">
+  <div class="dialog-service">
+    <div class="img">
+      <img [src]="dialogItem?.photos.length > 0 ? dialogItem.photos[0].url : ''">
+    </div>
+    <div class="desc" [innerHtml]="dialogItem?.description"></div>
+    <div class="price" [innerHtml]="dialogItem?.salary || 0 | conversion : dialogItem?.coin || 'BRL'"></div>
+  </div>
+</p-dialog>

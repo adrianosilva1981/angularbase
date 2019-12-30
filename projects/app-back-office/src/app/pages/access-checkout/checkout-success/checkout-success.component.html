@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="success">
+    <div class="center">
+      <h3>Parabéns! Você foi conectado a comunidade YOUHUB com sucesso!</h3>
+    </div>
+
+    <div *ngIf="financing !== 'Y'">
+
+      <div *ngIf="method=='credit_card'">
+        <button class="btn orange" routerLink="/office/home">Ir para Home</button>
+      </div>
+
+      <div *ngIf="method=='ticket'" class="center">
+        <div class="billetDownloadLink center">
+          <div class="center successBilletMessage">
+            Seu acesso estará disponível assim que a instituição financeira comprovar o pagamento do boleto, o que pode
+            levar até 3 dias
+            úteis.
+          </div>
+          <div *ngIf="urlBillet?.length > 0">
+            <div *ngFor="let url of urlBillet">
+              <a [href]="url" target="_blank">
+                <div class="btn orange">Imprimir Boleto</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="method=='crypto_coins'" class="center">
+
+        <p>Você optou pelo pagamento via BitCoin</p>
+
+        <div class="title">Como Funciona?</div>
+        <div class="text">Ao clicar no botão sua solicitação é enviada, e é aberto um popup para fazer a
+          transação.</div>
+        <div class="text">Você usa seu e-mail cadastrado no YOUHUB para comprar sua conexão.</div>
+        <div class="text">Após a compra envie um email para
+          <span style="color: blue;">
+            <b>financeiro@youhub.com.br</b>
+          </span> e confime seu pagamento da conexão.</div>
+        <div class="text">Depois de confirmado o pagamento, seu acesso será liberado.</div>
+      </div>
+
+
+      <div *ngIf="method=='transfer_bank'" class="center">
+        <p>Você optou pelo pagamento via TED (Transferência Bancária)</p>
+
+        <div class="title">Como Funciona?</div>
+        <div class="text">Ao clicar no botão sua solicitação é enviada.</div>
+        <div class="text">Você faz a solicitação dos dados bancários enviando um e-mail para
+          <span style="color: blue;">
+            <b>financeiro@youhub.com.br</b>
+          </span>.</div>
+        <div class="text">Você receberá as instruções em seu e-mail.</div>
+        <div class="text">Depois de confirmado o pagamento, seu acesso será liberado.</div>
+
+      </div>
+
+      <div *ngIf="method!=='credit_card' || (method=='credit_card' && user.status!=='A')" class="center">
+        <div class="center">
+          <p></p>
+          <p>Se preferir você pode mudar o método de pagamento</p>
+
+          <button class="btn orange max" routerLink="/office/access">Escolher outro método de pagamento</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="financing == 'Y'" class="center">
+      <p>Você optou pelo pagamento financiado</p>
+
+      <div *ngIf="method == 'credit_card'">
+        <button class="btn orange" routerLink="/office/home">Ir para Home</button>
+      </div>
+
+      <div *ngIf="method==='ticket'" class="center">
+        <div class="billetDownloadLink center">
+          <div class="center successBilletMessage">
+            Seu acesso estará disponível assim que a instituição financeira comprovar o pagamento do boleto, o que pode
+            levar até 3 dias
+            úteis.
+          </div>
+          <div *ngIf="urlBillet?.length > 0">
+            <div *ngFor="let url of urlBillet">
+              <a [href]="url" target="_blank">
+                <div class="btn orange">Imprimir Boleto</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="method==='transfer_bank'">
+        <div class="title">Como Funciona?</div>
+        <div class="text">Sua solicitação de financiamento foi encaminhada ao setor financeiro.</div>
+        <div class="text">Você deverá efetuar o pagamento da entrada via transferência bancária.</div>
+        <div class="text">BANCO: CEF 104<br>
+          PAGSIMPLES PORTAIS DE INTERNET<br>
+          CNPJ: 11.237.205/0001-01<br>
+          Ag: 0095<br>
+          C/C: 613524-5<br>
+          OP: 003</div>
+        <div class="text">Envie um email para <span class="mail">financeiro@youhub.com.br</span> com o comprovante de
+          transferência.</div>
+        <div class="text">Após a confirmação do pagamento da entrada, seu acesso será liberado imediatamente.</div>
+        <div class="text">Tire suas dúvidas adicionais através do email <span class="mail">financeiro@youhub.com.br</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>

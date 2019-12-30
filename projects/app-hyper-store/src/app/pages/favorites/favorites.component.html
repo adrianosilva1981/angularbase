@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="contentPage">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+        <span class="text">Favoritos</span>
+      </div>
+      <div class="pageOptions">
+        <div class="info">
+          Você tem
+          <b>{{listFull?.length}}</b> itens na sua lista
+        </div>
+      </div>
+    </div>
+    <div class="cnt">
+      <div class="boxItens">
+        <div class="contentItem" *ngFor="let item of listFull">
+          <div class="details">
+            <div class="cntImage">
+              <img [src]="item?.photo ? item?.photo : 'assets/img/image_default.png'">
+            </div>
+            <div class="cntText">
+              <div class="name">
+                {{item?.title}}
+                <div class="added">
+                  Adicionado em {{item?.dateAdd}}
+                </div>
+              </div>
+              <div class="price">
+                <span *ngIf="item?.value > 0">
+                  <span [innerHtml]="item?.value | conversion : 'BRL'"></span>
+                </span>
+                <span class="plus" *ngIf="item?.value > 0 && item?.hyperCoin > 0"> + </span>
+                <span *ngIf="item?.hyperCoin > 0">
+                  <span [innerHtml]="item?.hyperCoin | conversion : 'HCS'"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <div class="contentBtnAdd">
+              <app-hyper-store-btn-add-shop-cart (onclick)="buyItem(item)"></app-hyper-store-btn-add-shop-cart>
+            </div>
+            <div class="remove" (click)="removeItem(item)">
+              <i class="fa fa-trash" aria-hidden="true"></i> Remover
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "lib-components": [
+        "dist/lib-components",
+        "node_modules/lib-components"
+      ],
+      "lib-components/*": [
+        "dist/lib-components/*",
+        "node_modules/lib-components"
+      ],
+      "lib-login": [
+        "dist/lib-login",
+        "node_modules/lib-login"
+      ],
+      "lib-login/*": [
+        "dist/lib-login/*",
+        "node_modules/lib-login"
+      ],
+      "lib-services": [
+        "dist/lib-services",
+        "node_modules/lib-services"
+      ],
+      "lib-services/*": [
+        "dist/lib-services/*",
+        "node_modules/lib-services"
+      ],
+      "lib-navbar": [
+        "dist/lib-navbar",
+        "node_modules/lib-navbar"
+      ],
+      "lib-navbar/*": [
+        "dist/lib-navbar/*",
+        "node_modules/lib-navbar"
+      ],
+      "lib-extract": [
+        "dist/lib-extract/*",
+        "node_modules/lib-extract"
+      ],
+      "lib-extract/*": [
+        "dist/lib-extract/*",
+        "node_modules/lib-extract"
+      ],
+      "lib-chat": [
+        "dist/lib-chat",
+        "node_modules/lib-chat"
+      ],
+      "lib-chat/*": [
+        "dist/lib-chat/*",
+        "node_modules/lib-chat"
+      ],
+      "lib-questionnaire": [
+        "dist/lib-questionnaire",
+        "node_modules/lib-questionnaire"
+      ],
+      "lib-questionnaire/*": [
+        "dist/lib-questionnaire/*",
+        "node_modules/lib-questionnaire"
+      ],
+      "@env/*": [
+        "projects/*/src/environments/environment"
+      ],
+      "@app-playground/*": [
+        "projects/app-playground/src/app/*"
+      ],
+      "@app-consultant-adm/*": [
+        "projects/app-consultant-adm/src/app/*"
+      ],
+      "@app-consultant-shop/*": [
+        "projects/app-consultant-shop/src/app/*"
+      ],
+      "@app-universal/*": [
+        "projects/app-universal/src/app/*"
+      ],
+      "@app-account/*": [
+        "projects/app-account/src/app/*"
+      ],
+      "@app-hyper-opportunity/*": [
+        "projects/app-hyper-opportunity/src/app/*"
+      ],
+      "@app-hyper-store/*": [
+        "projects/app-hyper-store/src/app/*"
+      ],
+      "@app-home/*": [
+        "projects/app-home/src/app/*"
+      ],
+      "@app-back-office/*": [
+        "projects/app-back-office/src/app/*"
+      ],
+      "@app-admin/*": [
+        "projects/app-admin/src/app/*"
+      ],
+      "@app-admin-back-office/*": [
+        "projects/app-admin-back-office/src/app/*"
+      ],
+      "@app-lps/*": [
+        "projects/app-lps/src/app/*"
+      ],
+      "@app-admin-youhubshop/*": [
+        "projects/app-admin-youhubshop/src/app/*"
+      ]
+    }
+  }
+}

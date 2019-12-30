@@ -1,0 +1,259 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.contentPaymentCheckout {
+    .contentAll {
+        .formCheckout {
+            display: flex;
+            flex-wrap: wrap;
+            .groupData {
+                flex: 1;
+                min-width: 300px;
+                .contentOptionsPayment {
+                    display: flex;
+                    flex-wrap: wrap;
+                    .cntBtn {
+                        flex: 1;
+                        padding: 5px;
+                    }
+                    .btnOpt {
+                        padding: 10px;
+                        background: @blue1;
+                        font-size: 16px;
+                        min-width: 250px;
+                        width: 100%;
+                        color: #fff;
+                        text-align: left;
+                        cursor: pointer;
+                        .radius(5px);
+                        &:hover, &.active {
+                            background: @blue2;
+                        }
+                        &:disabled {
+                            pointer-events: none;
+                            background: @grey3;
+                            cursor: not-allowed !important;
+                        }
+                        .fas {
+                            font-size: 23px;
+                            color: #fff;
+                            display: inline-block;
+                            margin-right: 10px;
+                        }
+                    } //.btnOpt
+                } //.contentOptionsPayment
+                .contentPaymentSelected {
+                    margin-top: 20px;
+                    .cntCreditCard {
+                        .contentFields {
+                            display: flex;
+                            flex-wrap: wrap;
+                            .cntCommon {
+                                flex: 1;
+                                min-width: 250px;
+                                padding: 5px;
+                            }
+                            .cntValidDate {
+                                width: 100%;
+                                margin: 0px;
+                                display: flex;
+                                flex-wrap: wrap;
+                                .columm {
+                                    padding: 5px;
+                                    &.inputMonth {
+                                        flex: 2;
+                                    }
+                                    &.inputYear {
+                                        flex: 1.65;
+                                    }
+                                    &.inputCvv {
+                                        position: relative;
+                                        flex: 1.2;
+                                        .help {
+                                            position: absolute;
+                                            right: 6px;
+                                            bottom: 10px;
+                                            font-size: 18px;
+                                            cursor: pointer;
+                                            color: @grey5;
+                                            &:hover {
+                                                color: @blue1;
+                                            }
+                                        }
+                                        .contentTooltip {
+                                            .fadeIn(1s);
+                                            box-shadow: 3px 3px 14px -3px @grey4;
+                                            position: absolute;
+                                            bottom: 40px;
+                                            right: 0px;
+                                            background: #fff;
+                                            padding: 20px;
+                                            min-width: 280px;
+                                            border-radius: 5px;
+                                            border: 1px solid @grey3;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } //.cntCreditCard
+                    .cntBillet {
+                        .boxInfo {
+                            padding: 5px;
+                            display: flex;
+                            flex-wrap: wrap;
+                            .cntifn {
+                                flex: 1;
+                                padding-right: 10px;
+                                min-width: 320px;
+                                .contentInfo {
+                                    display: flex;
+                                    align-items: center;
+                                    min-height: 70px;
+                                    .fa {
+                                        display: inline-block;
+                                        color: @blue3;
+                                        font-size: 60px;
+                                        margin-right: 10px;
+                                    }
+                                    .info1 {
+                                        display: inline-block;
+                                        font-size: 12px;
+                                        color: @grey4;
+                                        line-height: 13px;
+                                        margin-bottom: 7px;
+                                    }
+                                }
+                                .info2 {
+                                    display: inline-block;
+                                    font-size: 14px;
+                                    color: @grey4;
+                                    line-height: 15px;
+                                    margin-bottom: 20px;
+                                }
+                            }
+                            .cntFormBillet {
+                                flex: 1;
+                                min-width: 320px;
+                                .form-group {
+                                    padding: 10px;
+                                    margin-bottom: 0px;
+                                }
+                                .collumm {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    .form-group, .group {
+                                        min-width: 95px;
+                                        flex: 1;
+                                    }
+                                }
+                            }
+                        }
+                    } //.cntBillet
+                    .cntHjPay {
+                        .contentSaldo {
+                            border-top: 1px solid @grey2;
+                            padding: 20px 0px 10px 0px;
+                            margin-top: 10px;
+                            .titleResume {
+                                font-weight: bold;
+                                color: @grey5;
+                                padding: 5px 15px;
+                                font-size: 18px;
+                            }
+                            .contentItemResume {
+                                font-size: 12px;
+                                padding: 0px 15px;
+                                .line {
+                                    padding: 0px;
+                                    .titleText {
+                                        display: inline-block;
+                                        width: 100px;
+                                    }
+                                    .value {
+                                        display: inline-block;
+                                    }
+                                    .total {
+                                        border-top: 1px solid #ccc;
+                                        width: 50%;
+                                    }
+                                }
+                            }
+                        }
+                    } //.cntHjPay
+                    .default {
+                        text-align: center;
+                        font-size: 16px;
+                        color: @red1;
+                        line-height: 16px;
+                        padding: 20px;
+                    } //.default
+                } // .contentPaymentSelected
+            }
+            .contentResume {
+                width: 320px;
+                padding: 5px;
+                margin: 0 auto;
+                .cntPadd {
+                    padding: 20px;
+                    .radius(10px);
+                    border: 1px solid @grey3;
+                    background: @grey2;
+                    .textResume {
+                        width: 100%;
+                        text-align: right;
+                        font-weight: bold;
+                        color: @grey5;
+                        padding: 15px 0px;
+                        font-size: 16px;
+                    }
+                    .lineItem {
+                        display: flex;
+                        color: @grey5;
+                        font-size: 12px;
+                        .cntText {
+                            flex: 1;
+                            text-align: left;
+                        }
+                        .cntValue {
+                            flex: 1;
+                            text-align: right;
+                        }
+                    }
+                    .amoutAll {
+                        margin: 20px 0px;
+                        .lineItemAll {
+                            display: flex;
+                            color: @red1;
+                            font-weight: 700;
+                            font-size: 16px;
+                            .textTitle {
+                                flex: 1;
+                                text-align: left;
+                            }
+                            .textValue {
+                                flex: 1;
+                                text-align: right;
+                            }
+                        }
+                    }
+                    .cntBtnFinish {
+                        padding: 10px 0px;
+                        .btnFinish {
+                            background: @green1;
+                            color: #fff;
+                            padding: 8px 5px;
+                            width: 100%;
+                            &:hover {
+                                background: @green2;
+                            }
+                            &:disabled {
+                                pointer-events: none;
+                                background: @grey3;
+                            }
+                        }
+                    }
+                }
+            } // .contentResume
+        } // .formCheckout
+    }
+}

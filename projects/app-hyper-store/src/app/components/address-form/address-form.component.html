@@ -1,0 +1,50 @@
+<div class="contentAddAddress">
+  <form [formGroup]="registerForm" novalidate (ngSubmit)="submitAddressForm()">
+    <div class="collumm">
+      <div class="form-group">
+        <label class="center-block">* CEP:</label>
+        <input class="form-control" formControlName="zipcode" (input)="clearSearch()">
+        <span class="errorFormField" *ngIf="registerForm.controls.zipcode.hasError('pattern')">* CEP inválido</span>
+        <span class="errorFormField" *ngIf="registerForm.controls.zipcode.hasError('cepNotFound')">* CEP não encontrado</span>
+      </div>
+
+      <div class="form-group cep-ok-button">
+        <button type="button" class="btn btn-success" (click)="searchCEP()">OK</button>
+        <span class="i-dont-know-my-cep">
+          <lib-components-open-find-cep (onSearchCep)="onSearchCep($event)"></lib-components-open-find-cep>
+        </span>
+      </div>
+    </div>
+    <div class="collumm">
+      <div class="form-group">
+        <label class="center-block">* Estado</label>
+        <input class="form-control" readonly formControlName="state">
+      </div>
+      <div class="form-group">
+        <label class="center-block">* Cidade</label>
+        <input class="form-control" readonly formControlName="city">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="center-block">* Bairro</label>
+      <input class="form-control" [attr.readonly]="cepAdd?.bairro !== '' ? true : null" formControlName="neighborhood">
+    </div>
+    <div class="form-group">
+      <label class="center-block">* Endereço</label>
+      <input class="form-control" [attr.readonly]="cepAdd?.logradouro !== '' ? true : null" formControlName="street">
+    </div>
+    <div class="form-group">
+      <label class="center-block">* Numero</label>
+      <input class="form-control" formControlName="number">
+      <span class="errorFormField" *ngIf="registerForm.controls.number.hasError('pattern')">* Somente números</span>
+    </div>
+    <div class="form-group">
+      <label class="center-block">Complemento</label>
+      <input class="form-control" formControlName="complement">
+    </div>
+    <div class="form-group center">
+      <button [disabled]="!registerForm.valid || cepAddresEmpty" type="submit" class="btnAdd">Cadastrar novo endereço</button>
+    </div>
+  </form>
+</div>

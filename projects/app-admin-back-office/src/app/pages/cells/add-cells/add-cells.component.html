@@ -1,0 +1,78 @@
+<div class="addcells">
+  <div class="content_form">
+
+    <h3>Cadastro de Células</h3>
+
+    <form [formGroup]="cellsForm">
+
+      <div class="ui-float-label inputform">
+        <input id="name" formControlName="nameControl" size="40" pInputText autocomplete="off">
+        <label for="name">Digite o nome da Célula</label>
+        <span class="error" *ngIf="cellsForm.get('nameControl').hasError('minlength')">Campo
+          nome deve conter no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="cellsForm.get('nameControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="contenButton">
+        <button [disabled]="!cellsForm.valid" class="btn" (click)="saveForm()" [ngClass]="{'disabled':!cellsForm.valid}">Criar
+          Célula</button>
+      </div>
+
+    </form>
+  </div>
+
+  <div *ngIf="cellsok" class="content_cell">
+    <!-- cells -->
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let cell of cells">
+        <button pButton type="button" icon="{{(cell?.expanded)?'fas fa-minus':'fas fa-plus'}}" *ngIf="cell?.grids"
+          (click)="click(cell)"></button>
+        <span>
+          {{ cell?.name }}
+        </span>
+        <!-- grids -->
+        <ul class="list-group offset-1" *ngIf="cell.expanded" style="margin-top: 10px;">
+          <li class="list-group-item" *ngFor="let grid of cell.grids">
+            <button pButton type="button" icon="{{grid.expanded?'fas fa-minus':'fas fa-plus'}}" *ngIf="grid?.resellers"
+              (click)="click(grid)"></button>
+            <span (click)="infoGrid(grid)" [ngStyle]="{'cursor': 'pointer'}" >
+              {{ grid?.name }}
+            </span>
+           
+            <button pButton style="margin-left: 10px;" type="button" label="Baixar Lista" (click)="export(grid)"  icon="fas fa-file-download" class="ui-button-secondary" *ngIf="grid?.resellers" ></button>
+           
+            <!-- resellers -->
+            <ul class="list-group offset-1" *ngIf="grid.expanded" style="margin-top: 10px;">
+              <li class="list-group-item" *ngFor="let reseller of grid.resellers" pTooltip="Enter your username"
+                tooltipPosition="top">
+                <span (click)="infoReseller(reseller)" [ngStyle]="{'cursor': 'pointer'}" >
+                  {{ reseller?.name }}
+                </span>
+              </li>
+            </ul>
+            <!-- resellers-->
+          </li>
+        </ul>
+        <!-- grids -->
+      </li>
+    </ul>
+    <!-- cells -->
+
+
+    <!-- <div class="subtitle">
+      Células Existentes
+    </div>
+    <div class="content_cells">
+
+      <div *ngFor="let cel of cells">
+        <div class="card">
+          <div class="content">
+            <div class="name">Nome da Célula: <span class="titles"> {{cel.name}}</span></div>
+            <div class="info">Número de Managers: <span class="number"> {{cel.numbercells}}</span></div>
+          </div>
+        </div>
+      </div> 
+    </div>-->
+
+  </div>
+</div>

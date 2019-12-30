@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <div class="row mx-3 rowBreadCrumb">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center py-5 mx-1">
+    <div class="col-12">
+      <h4>
+        Intervalo de {{interval[0]|date:'dd/MM/yyyy'}} até {{interval[1]|date:'dd/MM/yyyy'}}
+      </h4>
+    </div>
+
+    <p-table [columns]="cols" [value]="orders" dataKey="id" [paginator]="true" [rows]="10">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th style="width: 3em"></th>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+        <tr>
+          <td>
+            <a href="#" [pRowToggler]="rowData">
+              <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+            </a>
+          </td>
+          <td *ngFor="let col of columns" [pRowToggler]="rowData" style="cursor: pointer">
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+        <tr>
+          <td [attr.colspan]="columns.length + 1">
+            <div class="table-users">
+              <p-table [columns]="colsUser" [value]="rowData.userBuyer" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header" let-columns>
+                  <tr>
+                    <th style="background-color: #848080; color: #fff" *ngFor="let col of columns">
+                      {{col.header}}
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                  <tr>
+                    <td *ngFor="let col of columns">
+                      {{rowData[col.field]}}
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

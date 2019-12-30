@@ -1,0 +1,100 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentStepLogin {
+    padding: 20px;
+    &.box-log-step-logged {
+        background-image: url("/global/img/bgHyper.png") !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0px;
+    }
+    .userNotLogged {
+        width: 100%;
+        .userExists {
+            text-align: center;
+            .btnLogin {
+                background: @green1;
+                padding: 8px 5px;
+                width: 100%;
+                color: #fff;
+            }
+        }
+        .userNotExists {
+            margin-top: 10px;
+            text-align: center;
+            .contentForm {
+                margin-top: 25px;
+                text-align: left;
+                border-top: 1px solid @grey2;
+                padding-top: 25px;
+                .tlt {
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: @grey5;
+                    text-align: center;
+                }
+                .subTlt {
+                    font-size: 14px;
+                    color: @grey5;
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+                .contentBtnRegister {
+                    margin: 0px;
+                    .btnRegister {
+                        background: @blue1;
+                        color: #fff;
+                        padding: 8px 5px;
+                        width: 100%;
+                        &:disabled {
+                            background: @grey3;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .userLogged {
+        width: 100%;
+        .info {
+            text-align: center;
+            color: #fff;
+            padding: 10px;
+            .welcome {
+                text-align: center;
+                margin-bottom: 15px;
+                .text {
+                    text-transform: uppercase;
+                    font-size: 22px;
+                    font-weight: lighter;
+                }
+                .name {
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+            }
+            .photo {
+                text-align: center;
+                img {
+                    width: 100px;
+                    height: 100px;
+                    .radius(50%);
+                }
+            }
+            .logout {
+                margin-top: 10px;
+                .btnLogout {
+                    cursor: pointer;
+                    color: @yellow1;
+                    &:hover {
+                        color: @yellow2;
+                    }
+                }
+            }
+        }
+    }
+}

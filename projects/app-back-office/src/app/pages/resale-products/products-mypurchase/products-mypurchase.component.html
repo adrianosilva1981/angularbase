@@ -1,0 +1,53 @@
+<div class="purchase">
+
+  <div class="content">
+
+    <div class="contentTable">
+
+      <div  *ngIf="!viewpurchase">        
+          {{msg}}       
+      </div>
+
+      <div class="card" *ngIf="viewpurchase">
+        <div class="content">
+          <h3>Minhas Compras</h3>
+
+          <p><strong><em>Na compra de ingresso apresente seu RG no balcão de credenciamento e retire sua pulseira que
+                dará
+                acesso ao evento.</em></strong></p>
+
+          <p-table #dt styleClass="classetable" [value]="purchase" [responsive]="true" [paginator]="true" [rows]="15"
+            [rowsPerPageOptions]="rowsperpage">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:5em">Tipo</th>
+                <th style="width:10em">Método</th>
+                <th>Descrição</th>
+                <th style="width:8em">Valor</th>
+                <th style="width:8em">Valor Pago</th>
+                <th style="width:10em">Data</th>
+                <th style="width:10em">Data Pagamento</th>
+                <th style="width:10em">status</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-data>
+              <tr>
+                <td>{{data?.type}}</td>
+                <td>{{data?.method}}</td>
+                <td>{{data?.evento}}</td>
+                <td><span [innerHtml]="data?.valor | conversion : 'BRL'"></span></td>
+                <td><span [innerHtml]="data?.amount_receiver ? (data?.amount_receiver | conversion : 'BRL') : '-'"></span></td>
+                <td>{{data?.creation_date}}</td>
+                <td>{{data?.payment_date ? data?.payment_date : '-'}}</td>
+                <td>{{data?.stage}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

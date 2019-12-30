@@ -1,0 +1,24 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.mainLayout {
+    .contentNav {
+        position: fixed;
+        width: 100%;
+        z-index: 99;
+        top: 0;
+    }
+    .contentPage {
+        margin-top: 117px;
+        .contentBreadCrumbs {
+            padding: 5px 0px;
+        }
+    }
+    &.sideNav {
+        .contentNav {
+            position: unset;
+        }
+        .contentPage {
+            margin-top: 0px;
+        }
+    }
+}

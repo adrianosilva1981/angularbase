@@ -1,0 +1,28 @@
+<div class="contentPage">
+  <div class="boxLogin">
+    <div class="logo">
+      <img src="global/img/logo_text.png" class="img-responsive">
+    </div>
+    <br>
+    <form class="formlogin" [formGroup]="loginForm">
+      <div class="contentlogin">
+        <div class="ui-float-label inputform">
+          <input id="email" type="email" formControlName="emailFormControl" size="30" pInputText autocomplete="off"
+            placeholder="E-mail">
+          <div class="mySpace">
+            <span class="error" *ngIf="loginForm.get('emailFormControl').hasError('pattern')">E-mail inválido</span>
+          </div>
+        </div>
+        <div class="ui-float-label inputform">
+          <input id="senha" type="password" formControlName="passwordFormControl" size="30" pInputText autocomplete="off"
+            placeholder="Senha">
+        </div>
+        <br>
+        <div class="my-3"></div>
+
+        <button class="btn" (click)="login()">Acessar</button>
+
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="content" style="min-width:350px; padding: 20px;">
+  <h4>Associado:</h4>
+  <div><b>Código:</b> {{data.user.username}}</div>
+  <div><b>Nome:</b> {{data.user.name}}</div>
+  <div><b>E-mail:</b> {{data.user.email}}</div>
+  <div><b>Documento:</b> {{data.user.document}}</div>
+
+  <div *ngIf="data.type=='image'">
+    <img src="{{ data.user.url }}" class="img-fluid">
+  </div>
+
+  <div *ngIf="data.type=='transfer_bank'">
+    <h4>Dados Bancários:</h4>
+    <div><b>Nome do titular:</b> {{data.user.extra_info.holder_name}}</div>
+    <div><b>Nome do Banco:</b> {{data.user.extra_info.bank_name}}</div>
+    <div><b>Código do Banco:</b> {{data.user.extra_info.bank_code}}</div>
+    <div><b>Número da agência:</b> {{data.user.extra_info.agency_number}}</div>
+    <div><b>Número da Contat:</b> {{data.user.extra_info.account_number}}</div>
+    <div><b>Tipo da Conta:</b> {{data.user.extra_info.type_account}}</div>
+  </div>
+
+  <div *ngIf="data.type=='crypto_coins'">
+    <h4>Carteira BitCoin:</h4>
+    <div>{{data.user.extra_info.wallet}}</div>
+  </div>
+
+
+  <div *ngIf="data.type=='prepaid_card'">
+    <h4>Número do Cartão:</h4>
+    <div>{{data.user.extra_info.reference_card}}</div>
+  </div>
+
+  <div style="max-width:800px; padding-top: 20px;" *ngIf="data.type=='pendencies'">
+    <h4>Pendências</h4>
+    <p-table [value]="data.user.pendencies_info">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Data</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{(item?.type == 'monthly' ? 'Mensalidade':'Indefinido')}}</td>
+          <td><span [innerHtml]="item?.value | conversion : 'BRL'"></span></td>
+          <td>{{item?.date|date:'dd/MM/yyyy'}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

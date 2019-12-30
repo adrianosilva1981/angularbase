@@ -1,0 +1,116 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.serviceDetails {
+    margin-top: 20px;
+    .exists {
+        .contentDetails {
+            display: flex;
+            flex-wrap: wrap;
+            .contentGallery {
+                width: 300px;
+                margin: 0 auto;
+            }
+            .contentInfo {
+                flex: 1;
+                min-width: 350px;
+                margin-left: 20px;
+                .infoTitle {
+                    min-height: 50px;
+                    font-size: 28px;
+                    line-height: 26px;
+                    color: @grey8;
+                    font-weight: 300;
+                    small {
+                        font-size: 18px;
+                    }
+                }
+                .ocupation {
+                    margin-bottom: 10px;
+                }
+                .location {
+                    margin-bottom: 10px;
+                }
+                .bio {
+                    margin-bottom: 10px;
+                }
+                .contentContact {
+                    margin-top: 20px;
+                    .btnContact {
+                        padding: 7px 30px;
+                        background: @blue1;
+                        color: #fff;
+                        text-transform: uppercase;
+                        display: inline-block;
+                        cursor: pointer;
+                        .radius(15px);
+                        &:hover {
+                            background: @blue2;
+                        }
+                    }
+                }
+            }
+        }
+        .contentMoreDetails {
+            .desctiption {
+                color: @grey8;
+                .descTitle {
+                    border-bottom: 1px solid @grey3;
+                    font-size: 22px;
+                }
+                .descText {
+                    margin: 20px 0px 20px 40px;
+                    font-size: 16px;
+                }
+            }
+            .language {
+                color: @grey8;
+                margin-top: 50px;
+                .langTitle {
+                    border-bottom: 1px solid @grey3;
+                    font-size: 22px;
+                }
+                .langText {
+                    margin: 20px 0px 20px 40px;
+                    font-size: 16px;
+                }
+            }
+            .skill {
+                color: @grey8;
+                margin-top: 50px;
+                .skTitle {
+                    border-bottom: 1px solid @grey3;
+                    font-size: 22px;
+                }
+                .contentSkText {
+                    margin: 20px 0px 20px 40px;
+                    .skText {
+                        display: inline-block;
+                        margin: 15px 15px 0px 0px;
+                        font-size: 16px;
+                        padding: 5px 20px;
+                        background: @blue1;
+                        color: #fff;
+                        .radius(15px);
+                    }
+                }
+            }
+        }
+        .relatedItems {
+            color: @grey8;
+            margin-top: 50px;
+            .relTitle {
+                border-bottom: 1px solid @grey3;
+                font-size: 22px;
+            }
+            .relText {
+                margin: 20px 0px;
+                font-size: 16px;
+            }
+        }
+    }
+    .notExists {
+        text-align: center;
+        font-size: 14px;
+        color: @grey4;
+    }
+}

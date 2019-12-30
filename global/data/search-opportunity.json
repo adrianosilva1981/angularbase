@@ -1,0 +1,14 @@
+{
+    "id_default": 1,
+    "config": [
+        {
+            "label": "Oportunidades",
+            "value": {
+                "id": 1,
+                "type": "router",
+                "redirect": "/department/opportunity",
+                "placeholder": "Buscar por Oportunidades"
+            }
+        }
+    ]
+}

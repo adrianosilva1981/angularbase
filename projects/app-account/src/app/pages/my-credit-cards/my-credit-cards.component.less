@@ -1,0 +1,103 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fas {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+    }
+    .cnt {
+        .contentCC {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            .boxCC {
+                width: 250px;
+                height: 250px;
+                .boxShadow(0px 0px 25px 0px @grey4);
+                background: #fff;
+                background-image: url(/assets/img/creditCard.png);
+                background-size: 250px 250px;
+                background-repeat: no-repeat;
+                background-position: 70px -29px;
+                margin: 10px;
+                &.add {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    cursor: pointer;
+                    background-image: none;
+                    border: 1px solid @grey4;
+                    .boxShadow(none);
+                    .addNew {
+                        width: 100%;
+                        .fa {
+                            font-size: 20px;
+                            color: @green1;
+                        }
+                        .txt {
+                            width: 100%;
+                            color: @blue1;
+                        }
+                    }
+                }
+                .box {
+                    width: 100%;
+                    text-align: left;
+                    padding: 20px;
+                    .defaultCC {
+                        color: @green1;
+                        font-size: 16px;
+                        margin-bottom: 15px;
+                        min-height: 22px;
+                    }
+                    .centerCC {
+                        min-height: 140px;
+                        .nickName {
+                            color: @blue1;
+                            font-size: 18px;
+                            margin-bottom: 20px;
+                        }
+                        .creditCard {
+                            color: @grey7;
+                            font-size: 14px;
+                        }
+                        .zipCode {
+                            color: @grey7;
+                            font-size: 14px;
+                        }
+                    }
+                    .options {
+                        margin-top: 15px;
+                        .txt {
+                            color: @blue1;
+                            font-size: 16px;
+                            cursor: pointer;
+                        }
+                        .sep {
+                            display: inline-block;
+                            margin: 0px 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

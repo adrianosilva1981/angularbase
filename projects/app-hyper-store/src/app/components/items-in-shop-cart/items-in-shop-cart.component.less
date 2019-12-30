@@ -1,0 +1,223 @@
+@import 'css/global-variables.less';
+@widthQuantity: 120px;
+.contentShopCart {
+  .pleaseWaiting {
+    text-align: center;
+    padding-top: 40px;
+    .fas, .text {
+      font-size: 30px;
+      color: @blue1;
+    }
+    .text {
+      font-size: 20px;
+    }
+  }
+  .shopCartEmpty {
+    text-align: center;
+    color: @blue1;
+    max-width: 400px;
+    margin: 0 auto;
+    .iconCart {
+      .fa {
+        color: @blue1;
+        font-size: 200px;
+      }
+    }
+    .cartTitle {
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .cartSubTitle {
+      font-weight: lighter;
+      font-size: 28px;
+      line-height: 30px;
+    }
+    .cartInfo {
+      color: @grey5;
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      line-height: 18px;
+    }
+    .contentBtn {
+      .btnGoHome {
+        background: @green1;
+        color: #fff;
+        padding: 5px 70px;
+      }
+    }
+  }
+  .tableItens {
+    margin-bottom: 0px;
+    thead {
+      tr {
+        border: 1px solid @blue1;
+        background: @blue1;
+        color: #fff;
+      }
+    }
+    tbody {
+      tr {
+        background: #fff;
+        border-right: 1px solid @grey2;
+        border-left: 1px solid @grey2;
+        transition: all 0.5s ease;
+        td {
+          vertical-align: middle;
+          border-color: @grey2;
+          padding: 20px;
+          &.itemTitle {
+            width: 40%;
+            .allTitle {
+              color: @grey4;
+              font-weight: 700;
+              position: relative;
+              display: flex;
+              img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                object-position: top;
+                display: inline-block;
+                margin-right: 10px;
+              }
+              .cntTitle {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                .tlt {
+                  width: 100%;
+                  text-transform: uppercase
+                }
+                .small {
+                  font-size: 12px;
+                }
+                .pts {
+                  width: 100%;
+                  font-weight: lighter;
+                  color: @blue1;
+                }
+              }
+              .preorder {
+                width: 50px;
+                height: 50px;
+                top: -15px;
+                left: -15px;
+                position: absolute;
+              }
+            }
+          }
+          &.itemQuantity {
+            width: 20%;
+            .qnt {
+              .contentQuantity {
+                width: @widthQuantity;
+                .minus, .plus {
+                  outline: none;
+                  background: @grey1;
+                  border: 1px solid #CCCCCC;
+                  &:hover {
+                    background: 1;
+                    color: #fff;
+                  }
+                  &:focus {
+                    background: #fff;
+                    border-color: @grey3;
+                    &:hover {
+                      background: @blue1;
+                      color: #fff;
+                    }
+                  }
+                }
+                .minus {
+                  border-right: none;
+                }
+                .plus {
+                  border-left: none;
+                }
+                .inputQuantity {
+                  text-align: center;
+                  border: 1px solid @grey3;
+                  box-shadow: unset;
+                  background: #fff;
+                  padding: 0px;
+                }
+              }
+              .contenRemoveItem {
+                text-align: center;
+                width: @widthQuantity;
+                color: @grey4;
+                cursor: pointer;
+                &:hover {
+                  color: @red1;
+                }
+              }
+            }
+          }
+          &.itemUnit {
+            width: 20%;
+            .free {
+              color: @green1;
+              font-weight: 700;
+            }
+            .money {
+              color: @red1;
+              display: block;
+            }
+            .hypercoin {
+              color: @green1;
+              display: block;
+            }
+          }
+          &.itemTotal {
+            font-weight: 700;
+            width: 20%;
+            .free {
+              color: @green1;
+            }
+            .money {
+              color: @red1;
+              display: block;
+            }
+            .hypercoin {
+              color: @green1;
+              display: block;
+            }
+            .bonushypercoin {
+              color: @blue1;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+  .contentResume {
+    border: 1px solid @grey2;
+    background: @grey1;
+    padding: 10px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    .contentValues {
+      text-align: right;
+      span {
+        font-size: 16px;
+      }
+      .value {
+        font-size: 18px;
+        b {
+          color: @red1;
+        }
+      }
+      .hyperCoin {
+        font-size: 18px;
+        b {
+          color: @red1;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="title">Configurações basicas de sua Campanha</div>
+<form class="form" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Título do e-mail</label>
+    <input type="text" class="form-control" required formControlName="name">
+    <span class="errorFormField" *ngIf="registerForm.controls.name.hasError('minlength')">* Minimo 6 caracteres</span>
+  </div>
+
+  <div class="form-group">
+    <label>Data</label>
+    <input type="date" class="form-control" required formControlName="startDate">
+  </div>
+
+  <div class="form-group">
+    <label>Data</label>
+    <input type="date" class="form-control" required formControlName="endDate">
+  </div>
+
+  <button class="btnRegister" type="submit">Salvar</button>
+</form>

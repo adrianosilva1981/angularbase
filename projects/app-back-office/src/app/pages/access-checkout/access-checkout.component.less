@@ -1,0 +1,194 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.content {
+  //width: 90%;
+  padding: 30px 0 0 30px;
+  .checkout {
+    .subtitle {
+      padding: 20px 0;
+      font-size: 16px;
+      text-align: center;
+      @media screen and (max-width: 600px) {
+        font-size: 12px;
+      }
+    }
+    .payment {
+      font-size: 18px;
+      padding: 15px 0 5px 0;
+      text-align: center;
+      width: 100%;
+    }
+    .Justifydiv {
+      justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      .check {
+        label {
+          margin: 0 !important;
+        }
+      }
+      .methodPayment {
+        flex: 1;
+        position: relative;
+        .title {
+          font-weight: bold;
+          span {
+            color: #ff0d00;
+          }
+        }
+        .text {
+          font-size: 12px;
+          color: @grey4;
+          .mail {
+            color: @blue1;
+          }
+        }
+        .formcard {
+          max-width: 370px;
+          margin: 0 auto;
+        }
+        .warn {
+          width: 100%;
+          text-align: center;
+          color: @grey3;
+          font-size: 12px;
+        }
+        .button {
+          margin-right: 15px;
+          max-width: 350px;
+          text-align: center;
+          margin: 0 auto;
+          .bit {
+            font-size: 14px;
+            max-width: 350px;
+            white-space: normal !important;
+          }
+          .valor {
+            margin: 20px 0 -20px 0;
+            .price {
+              font-size: 20px;
+              color: @green1
+            }
+          }
+        }
+      }
+    }
+    .box-total {
+      text-align: center;
+      .total-value-text {
+        color: limegreen;
+        font-size: 18px;
+        display: block;
+      }
+    }
+    input {
+      margin: 0;
+    }
+    .inputPattern {
+      margin-top: 5px;
+    }
+    .credit {
+      margin: 30px 0px;
+      .columnBreak {
+        border-right: 1px solid #ccc;
+      }
+      .search {
+        color: @grey6;
+        text-align: center;
+        padding: 15px;
+      }
+    }
+    .cardAccept {
+      filter: grayscale(100%);
+      img {
+        width: 30px;
+        height: auto;
+      }
+    }
+    .dateValidate {
+      padding-top: 15px;
+    }
+    .TextJustified {
+      text-align: justify;
+    }
+    .billetdownloadBox {
+      padding-top: 20px;
+    }
+    .billetDownloadLink {
+      padding-top: 30px;
+    }
+    .center {
+      text-align: center;
+    }
+    .successBilletMessage {
+      font-size: 18px;
+      display: block;
+      margin-bottom: 25px;
+    }
+    .homeLink {
+      margin-top: 10px;
+      color: deepskyblue;
+    }
+    .input-cvv {
+      width: 100px;
+      margin: 0 5px;
+    }
+    .border-right-blue {
+      border-right: 1px solid @blue3;
+    }
+    .min-height-28 {
+      min-height: 28px;
+    }
+    hr {
+      border-color: @blue3;
+    }
+    div {
+      font-family: 'Roboto', sans-serif;
+    }
+    .price {
+      font-size: 20px;
+      color: #6FB309
+    }
+    .title-dblue {
+      color: @blue1;
+    }
+    .display-flex {
+      display: flex;
+    }
+    .flex-1 {
+      flex: 1;
+      margin: 0 5px;
+    }
+    .contentComplete {
+      max-width: 450px;
+      margin: 0 auto;
+      text-align: center;
+      justify-items: center;
+      .inputform {
+        display: block;
+        width: 100%;
+      }
+      .inputformflex {
+        // display: inline-flex;
+        .checktrue {
+          position: absolute;
+          color: @green1;
+          top: 10px;
+          right: 10px;
+        }
+        .checkfalse {
+          position: absolute;
+          color: @red2;
+          top: 10px;
+          right: 10px;
+        }
+        .checkload {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+      }
+    }
+  }
+}

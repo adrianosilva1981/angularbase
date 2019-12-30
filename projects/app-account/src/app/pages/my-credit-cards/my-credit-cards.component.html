@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="contentPage">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fas fa-credit-card" aria-hidden="true"></i>
+        <span class="text">Formas de Pagamento</span>
+      </div>
+    </div>
+    <div class="cnt">
+      <div *ngIf="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando!</div>
+      <div *ngIf="!loading">
+        <div class="contentCC">
+          <div class="boxCC add" [routerLink]="'/add-new-credit-card'">
+            <div class="addNew">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <div class="txt">Adicionar novo cartão</div>
+            </div>
+          </div>
+          <div class="boxCC" *ngFor="let item of objCreditCard">
+            <div class="box">
+              <div class="defaultCC">
+                <span>{{item?.banner}}</span>
+              </div>
+              <div class="centerCC">
+                <div class="nickName">
+                  <b>Final:</b>
+                  <span>{{item?.last_numbers}}</span>
+                </div>
+                <div class="creditCard">
+                  <div>
+                    <b>Nome: </b>
+                    <span>{{item?.name}}</span>
+                  </div>
+                  <div>
+                    <b>Válido até: </b>
+                    <span>{{item?.date_expire}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="options">
+                <span class="txt" (click)="deleteCC(item.id)">Excluir</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

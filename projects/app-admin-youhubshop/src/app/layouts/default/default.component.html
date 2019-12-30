@@ -1,0 +1,18 @@
+<div class="top">
+    <div class="drop-down-shop">
+        <span class="text {{objCurrentApplication?.name}}">Olá,
+            <b>{{objUserLogged?.name}}</b>!</span>
+        <div class="drop-down-content-shop">
+            <div class="profileContent">
+                <a class="menuItem" (click)="logOut()">
+                    <i class="fas fa-sign-out-alt fa-fw"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cont">
+    <app-admin-youhubshop-navbar></app-admin-youhubshop-navbar>
+    <router-outlet></router-outlet>
+</div>

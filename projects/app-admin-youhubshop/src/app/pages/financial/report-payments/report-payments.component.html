@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Pagamentos Realizados
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p-table #dt [columns]="cols" [value]="payments" *ngIf="payments.length" [paginator]="true" [rows]="20" [responsive]="true">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns">
+              {{col.header}}
+            </th>
+            <th class="text-center">
+              Imagens
+            </th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns">
+                <input placeholder="{{col.header}}" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'equals')"
+                *ngIf="!col.field.includes('date')" style="max-width:100%">
+                <input placeholder="{{col.header}}" pInputText type="date" (input)="dt.filter($event.target.value, col.field, 'contains')"
+                *ngIf="col.field.includes('date')" style="max-width:100%">
+            </th>
+            <th>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-payment let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+                <span class="ui-column-title">{{col.header}}</span>
+              {{ col.field.includes('value')? (payment[col.field]|currency:'BRL') : col.field.includes('date')?(
+              payment[col.field]|date:'dd/MM/yyyy') :payment[col.field]}}
+            </td>
+            <td class="text-center">
+                <span class="ui-column-title">Imagens</span>
+              <button pButton type="button" icon="far fa-images" (click)="showDialog(payment.images)" ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="slideBanner">
+
+  <ngu-carousel [inputs]="carouselOne">
+    
+    <ngu-item NguCarouselItem *ngFor="let item of bannersList">
+      <ng-container [ngSwitch]="item.router">
+        <ng-container *ngSwitchCase="true">
+          <div class="contentSlide" routerLink="{{item.link}}" [queryParams]="item.search != ''? {search: item.search} : {}">
+            <img src="{{item.img}}">
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="false">
+          <a href="{{item.link}}" target="_blank">
+            <div class="contentSlide">
+              <img src="{{item.img}}">
+            </div>
+          </a>
+        </ng-container>
+      </ng-container>
+    </ngu-item>
+
+
+    <button NguCarouselPrev class='buttonPrev'>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <button NguCarouselNext class='ButtonNex'>
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </button>
+  </ngu-carousel>
+</div>

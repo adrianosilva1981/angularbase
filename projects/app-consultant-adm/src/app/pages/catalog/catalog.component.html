@@ -1,0 +1,63 @@
+<div class="contentPage" [ngClass]="accessAuthenticated ?'auth':''">
+  <div class="contentIndex">
+    <div class="idxSlug" *ngFor="let type of summary; let idx = index">
+      {{type?.title}}
+      <div class="idxCateg" *ngFor="let categ of type?.category">
+        {{categ?.description}}
+        <div class="idxService" *ngFor="let service of categ?.jobs">
+          <span class="name">{{service?.name}}</span>
+          <span class="linePage"></span>
+          <span class="pageNumber"> {{service?.page}}</span>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page-break"></div>
+  </div>
+
+  <div class="page" *ngFor="let page of arrayLength; let idx = index">
+    <div class="type">{{allServices[idx * itensPerpage]?.type}}</div>
+    <div class="service" *ngFor="let item of arrayPerPage; let sum = index" [ngStyle]="{'height.px': 985 / itensPerpage}">
+
+      <span appCallFunction (callFunction)="paginateIndex(allServices[(idx * itensPerpage) + sum], idx)"></span>
+
+      <div *ngIf="!allServices[(idx * itensPerpage) + sum]?.type"></div>
+      <div *ngIf="allServices[(idx * itensPerpage) + sum]?.type">
+        <div class="serviceTitle">
+          <span class="categ">{{allServices[(idx * itensPerpage) + sum]?.category}}</span>
+          <span class="separator">|</span>
+          <span class="name">{{allServices[(idx * itensPerpage) + sum]?.name}}</span>
+        </div>
+        <div class="servicePrice">
+          <span [innerHtml]="allServices[(idx * itensPerpage) + sum]?.salary || 0 | conversion : allServices[(idx * itensPerpage) + sum]?.coin || 'BRL'"></span>
+        </div>
+        <div class="contentService">
+          <div class="cntImage">
+            <img [src]="allServices[(idx * itensPerpage) + sum]?.photos[0]?.url ? allServices[(idx * itensPerpage) + sum]?.photos[0]?.url : '//files.hyper.jobs/image_default.png'">
+          </div>
+          <div class="cntDescription">
+            <span [innerHTML]="allServices[(idx * itensPerpage) + sum]?.description"></span>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="numberPage">
+      <div class="cntNr">
+        <div class="lineFooter"></div>
+        <span class="infoPage">
+          <span>
+            <b>Ligue para nosso Associado:</b> {{dataShop?.data_shop?.phoneTalk}}
+          </span>
+          <span>
+            <b>Acesse:</b> https://hyper.jobs/loja/{{dataShop?.subDomain}}
+          </span>
+        </span>
+        <span class="nrPage">{{idx+1}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

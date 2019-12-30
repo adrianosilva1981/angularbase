@@ -1,0 +1,69 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+@heightSpinner: 2px;
+.spinnerProgress {
+    width: 100%;
+    &.default {
+        height: @heightSpinner;
+        background: @grey3;
+    }
+    &.waiting {
+        position: relative;
+        z-index: 1000002;
+        background-color: @grey3;
+        display: -webkit-flex;
+        display: flex;
+        height: @heightSpinner;
+        width: 100%;
+        margin: 0;
+        &:before {
+            height: @heightSpinner;
+            width: 100%;
+            margin: 0;
+            background-color: @blue2;
+            content: '';
+            -webkit-animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        @-webkit-keyframes running-progress {
+            0% {
+                margin-left: 0px;
+                margin-right: 100%;
+            }
+            50% {
+                margin-left: 25%;
+                margin-right: 0%;
+            }
+            100% {
+                margin-left: 100%;
+                margin-right: 0;
+            }
+        }
+        @keyframes running-progress {
+            0% {
+                margin-left: 0px;
+                margin-right: 100%;
+            }
+            50% {
+                margin-left: 25%;
+                margin-right: 0%;
+            }
+            100% {
+                margin-left: 100%;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.backgroundSpinner {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000001;
+    background-color: rgba(255, 255, 255, 0.5);
+    .fadeIn(.5s, 2s);
+    cursor: wait;
+}

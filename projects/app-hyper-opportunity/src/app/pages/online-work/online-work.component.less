@@ -1,0 +1,71 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.contentPage {
+    .container {
+        .boxContent {
+            display: flex;
+            justify-content: center;
+            margin: 80px 0px;
+            position: relative;
+            .contentIcon {
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                background: red;
+                .radius(50%);
+                top: -50px;
+                background: transparent;
+                border: 1px solid @grey3;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .centerIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    height: 50px;
+                    background: #fff;
+                    .radius(50%);
+                    border: 1px solid @blue1;
+                    .fa {
+                        color: @grey3;
+                        font-size: 20px;
+                    }
+                }
+            }
+            .cnt {
+                padding: 50px 20px;
+                max-width: 590px;
+                .boxShadow(0px 0px 5px -1px @blue3);
+                height: 100%;
+                text-align: center;
+                background: #fff;
+                .tlt {
+                    font-weight: 500;
+                    text-align: center;
+                    font-size: 40px;
+                    color: @grey5;
+                    .destaque {
+                        color: @blue1;
+                    }
+                }
+                .subTlt {
+                    text-align: center;
+                    margin-top: 20px;
+                    color: @grey5;
+                }
+                .btn {
+                    margin-top: 20px;
+                    .radius(5px);
+                    display: inline-block;
+                    background: @blue1;
+                    color: #fff;
+                    padding: 8px 30px;
+                    font-size: 14px;
+                    line-height: 1.42857143;
+                }
+            }
+        }
+    }
+}

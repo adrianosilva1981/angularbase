@@ -1,0 +1,56 @@
+<div class="settings serv">
+    <div class="containerServices">
+        <div class="cnt">
+            <div class="breadcrumb">
+                <span class="cntBread" (click)="onBreadClick(0)">
+                    <span class="itemBread">Departamentos</span>
+                </span>
+                <ng-container *ngFor="let item of mapPath">
+                    <span class="cntBread" *ngIf="item.id_item" (click)="onBreadClick(item.level + 1)">
+                        <span class="separate">/</span>
+                        <span class="itemBread">{{item.name_item}}</span>
+                    </span>
+                </ng-container>
+
+            </div>
+            <div class="showHyperPrd">
+                <p-checkbox [(ngModel)]="showHyperPrd" (onChange)="fc_showHyperPrd()" binary="true" label="Exibir produtos nacionais em sua loja"></p-checkbox>
+            </div>
+            <ng-container *ngIf="showHyperPrd">
+
+                <div class="title">
+                    Escolha os produtos nacionais que serão exibidos em sua loja online.
+                </div>
+                <div class="cntSearch">
+                    <div class="src">
+                        <input [(ngModel)]="search" type="text" placeholder="Filtrar" (keyup)="filterResult()">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="content-services">
+                    <div class="headlight">
+                        <p-checkbox [(ngModel)]="selectAll" (onChange)="onSelectAll($event)" binary="true" label="Selecionar todos"></p-checkbox>
+                    </div>
+                    <div class="service">
+                        <div class="item-cont" *ngFor="let item of itenList">
+                            <div class="select">
+                                <p-checkbox [(ngModel)]="item.checked" binary="true" [label]="item.value" (onChange)="checkChanged($event)"
+                                    value="{{item.id}}"></p-checkbox>
+                            </div>
+                            <div class="comission">
+                                <b>Comissão:</b> {{item.comission}}
+                            </div>
+                            <div class="moreInfo" (click)="nextLevel(item)" *ngIf="currentLevel < 2">
+                                <i class="fas fa-level-down-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contentBtn">
+                    <div class="btnSave" (click)="saveChanges()">Salvar</div>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

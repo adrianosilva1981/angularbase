@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="contentPage">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fa fa-truck" aria-hidden="true"></i>
+        <span class="text">Opções de entrega</span>
+      </div>
+    </div>
+    <div class="contentAllShipping">
+      <ng-container *ngIf="objShippings?.length > 0">
+        <div class="lineSupplier" *ngFor="let group_item of objShippings">
+          <div class="cntItens">
+            <div class="deliveredBy">
+              <span>Vendido e entregue por</span>
+              <span>{{group_item.supplier_name}}</span>
+            </div>
+            <ul class="listItens">
+              <li class="item" *ngFor="let item of group_item?.items">{{item?.name}}</li>
+            </ul>
+          </div>
+          <div class="cntValues">
+            <div class="cntRadio">
+              <i class="far fa-dot-circle"></i>
+              <div *ngIf="group_item.shipping[group_item.shipping_selected].slug !== 'RetirarNoLocal' && group_item.shipping[group_item.shipping_selected].slug !== 'free'">
+                <span>{{group_item.shipping[group_item.shipping_selected].company}} -
+                  {{group_item.shipping[group_item.shipping_selected].name}}</span>
+                <span [innerHtml]="group_item.shipping[group_item.shipping_selected].price | conversion : 'BRL'"></span>
+              </div>
+
+              <div *ngIf="group_item.shipping[group_item.shipping_selected].slug === 'RetirarNoLocal' || group_item.shipping[group_item.shipping_selected].slug === 'free'">
+                <div class="combine">{{group_item.shipping[group_item.shipping_selected].company}}</div>
+                <div *ngIf="group_item.shipping[group_item.shipping_selected].slug === 'RetirarNoLocal'" class="tel">
+                  <b>Contato: </b>
+                  <div *ngIf="group_item.phoneNumber || group_item.contactNumber">
+                    <div *ngIf="group_item.phoneNumber">{{ group_item.phoneNumber }} </div>
+                    <div *ngIf="group_item.phoneNumber && group_item.contactNumber"> | </div>
+                    <div *ngIf="group_item.contactNumber">{{ group_item.contactNumber }}</div>
+                  </div>
+                  <div *ngIf="!group_item.phoneNumber && !group_item.contactNumber && group_item.supplier_email">
+                    {{ group_item.supplier_email }}
+                  </div>
+                  <br>
+                  <div *ngIf="group_item.address">
+                    <b>Rua:</b> {{ group_item.address.street }}<br>
+                    <b>Complemento:</b> {{ group_item.address.neighborhood }} <br>
+                    <b>{{ group_item.address.city }} - {{ group_item.address.state }}</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cntMoreSipping">
+              <span (click)="openModalShipping(group_item)">Outros tipos de frete</span>
+            </div>
+          </div>
+        </div>
+        <div class="amoutShipping">
+          <div class="amout">
+            <span>Total de Fretes:</span>
+            <span [innerHtml]="amountShipping | conversion : 'BRL'"></span>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="objShippings?.length <= 0">
+        <div class="noShipping">
+          <span *ngIf="!loading"> Não há frete para os itens do carrinho. Clique em próximo para finalizar a compra.</span>
+          <span *ngIf="loading">Carregando...</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

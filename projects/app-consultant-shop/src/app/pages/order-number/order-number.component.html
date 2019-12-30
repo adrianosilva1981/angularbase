@@ -1,0 +1,20 @@
+<div class="contentOrder">
+  <div class="contentIcon">
+    <div class="circle">
+      <i class="fa fa-check" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="contentTitle">Obrigado por comprar na</div>
+  <div class="contentSubTitle">    
+    <span *ngIf="!objConsultant?.subDomain">YouHub</span>
+    <span *ngIf="objConsultant?.subDomain">{{objConsultant?.data_shop?.name}}</span>
+  </div>
+  <div class="contentTitle2">Seu Marketplace de serviços</div>
+  <div class="contentNumber">
+    <span class="text">Número do pedido: </span>
+    <span class="number">{{orderNumber}}</span>
+  </div>
+  <div class="contentBtn">
+    <div class="btn btnGotoOrder" (click)="gotoOrder(orderNumberHJ)">Ver meu pedido</div>
+  </div>
+</div>

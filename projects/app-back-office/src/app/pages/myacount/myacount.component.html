@@ -1,0 +1,281 @@
+<div class="container">
+
+  <div *ngIf="createform">
+    <div class="perfil">
+      <div class="contemcards">
+        <p-card Class="cardphoto">
+          <div class="content">
+            <div class="photo">
+              <img [src]="userinfoObj.photo_profile ? userinfoObj.photo_profile : 'assets/img/user-photo-default.png'" />
+            </div>
+            <div class="contemtext">
+              <div class="name">Olá {{userinfoObj.recognition_name}}
+                <span *ngIf="userinfoObj.validade_document=='Y'" title="Documento Válido" alt="Documento Válido">
+                  <i class="fa fa-check-square-o green" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div class="text">Associado desde {{created}}</div>
+            </div>
+          </div>
+          <div class="contentUploadProfile">
+            <lib-components-upload-image class="btn blue" [width]="300" [height]="300" [urlRequest]="urlApiImage" [pathBucket]="'profile'"
+              [buttonText]="'Alterar Foto'" (onUpload)="changeImageProfile($event)"></lib-components-upload-image>
+          </div>
+        </p-card>
+
+        <p-card Class="cardplano" *ngIf="userinfoObj.id_plan!=''">
+          <div class="content">
+            <div class="title">
+              <span class="circle">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+              </span> {{userinfoObj.plan_name}}
+              <span class="menor">(Atual)</span>
+            </div>
+          </div>
+        </p-card>
+
+        <div class="link" (click)="countersign()">Criar ou Redefinir Contrasenha.</div>
+        <div class="text">A contrasenha é necessária para efetuar operações com seus pontos.</div>
+
+      </div>
+
+
+      <p-card Class="cardperfil">
+        <div class="content">
+
+          <form [formGroup]="formGroup">
+
+            <div class="ui-float-label inputform">
+              <input id="name" formControlName="nameControl" size="30" pInputText readonly class="readonly">
+              <label for="name">Nome</label>
+              <span class="error" *ngIf="formGroup.get('nameControl').hasError('required')">Campo nome não pode ser vazio!</span>
+              <span class="error" *ngIf="formGroup.get('nameControl').hasError('minlength')">Campo nome deve conter no mínimo
+                6 digitos!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="nameknow" formControlName="nameknowControl" size="30" pInputText>
+              <label for="nameknow">Nome de Identificação</label>
+              <span class="error" *ngIf="formGroup.get('nameknowControl').hasError('required')">Campo nome de identificação
+                não pode ser vazio!</span>
+              <span class="error" *ngIf="formGroup.get('nameknowControl').hasError('minlength')">Campo nome de identificação
+                deve conter no mínimo 6 digitos!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="email" formControlName="emailControl" size="30" pInputText readonly class="readonly">
+              <label for="email">E-mail</label>
+              <span class="error" *ngIf="formGroup.get('emailControl').hasError('required')">Campo e-mail não pode ser vazio!</span>
+              <span class="error" *ngIf="formGroup.get('emailControl').hasError('email')">E-mail inválido!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="type" formControlName="typeControl" size="30" pInputText readonly class="readonly">
+              <label for="type">Tipo de usuário</label>
+            </div>
+
+            <div class="ui-float-label inputform" *ngIf="type=='P'">
+              <p-checkbox labelStyleClass="classelabel" name="converttype" label=" Converter para Pessoa Jurídica" (onChange)="convert()"></p-checkbox>
+            </div>
+
+            <div *ngIf="formGroup.controls.typeControl.value == 'Pessoa Física' && convertType=='P'">
+
+              <div class="ui-float-label inputformflex">
+                <input id="cpf" formControlName="cpfControl" size="30" [textMask]="{mask: CPFMASK}" pInputText readonly class="readonly">
+                <label for="cpf">CPF</label>
+                <span class="checktrue" *ngIf="userinfoObj.validade_document=='Y'"><i class="fa fa-check" aria-hidden="true"></i> Seu CPF já foi validado!</span>
+                <span class="checkfalse" *ngIf="userinfoObj.validade_document=='R'"><i class="fa fa-times"  aria-hidden="true"></i> Validação Incorreta!</span>
+                <span class="error" *ngIf="formGroup.get('cpfControl').hasError('required')">Campo CPF não pode ser vazio!</span>
+                <span class="error" *ngIf="formGroup.get('cpfControl').hasError('pattern')">CPF inválido!</span>
+                <span class="error" *ngIf="userinfoObj.validade_document=='R'">Motivo: {{userinfoObj.obs_documents}}. Envie outra imagem.</span>
+              </div>
+
+              <div *ngIf="userinfoObj.validade_document=='N' || userinfoObj.validade_document=='R'">
+                <div class="cntInputFileCpf">
+                  <lib-components-upload-image class="btn orange" [width]="600" [height]="400" [urlRequest]="urlApiImage" [pathBucket]="'documents'"
+                    [buttonText]="'Upload CPF'" (onUpload)="changeImageDocumentCpf($event)"></lib-components-upload-image>
+                  <span class="text"> Formato (.jpg ou .png)</span>
+                  <span class="viewdocument" *ngIf="userinfoObj.photo_documents">
+                    <p-overlayPanel #op>
+                      <img src="{{userinfoObj.photo_documents}}">
+                    </p-overlayPanel>
+                    <span pButton (click)="op.toggle($event)">  <i class="fa fa-picture-o" aria-hidden="true"></i> Ver Documento enviado.</span>
+                  </span>
+                  <span class="text" *ngIf="!userinfoObj.photo_documents">Envie a foto do seu CPF para validação.</span>                  
+                </div>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="rg" formControlName="rgControl" size="30" pInputText>
+                <label for="rg">RG</label>
+                <span class="error" *ngIf="formGroup.get('rgControl').hasError('required')">Campo RG não pode ser vazio!</span>
+                <span class="error" *ngIf="formGroup.get('rgControl').hasError('minlength')">Campo RG deve conter no mínimo
+                  6 digitos!</span>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="date" formControlName="dateControl" size="30" [textMask]="{mask: DATEMASK}" pInputText>
+                <label for="date">Data de Nascimento</label>
+                <span class="error" *ngIf="formGroup.get('dateControl').hasError('required')">Campo data de nascimento não
+                  pode ser vazio!</span>
+                <span class="error" *ngIf="formGroup.get('dateControl').hasError('pattern')">Data de nascimento inválida!</span>
+              </div>
+
+              <div class="ui-float-label">
+                <span class="labelgender">Selecione o sexo</span>
+                <p-radioButton name="genderControl" value="M" label="Masculino" formControlName="genderControl"></p-radioButton>
+                <p-radioButton name="genderControl" value="F" label="Feminino" formControlName="genderControl"></p-radioButton>
+              </div>
+
+              <div class="ui-float-label">
+                <span class="labelgender">Estado Civil: </span>
+                <p-radioButton name="married1" value="N" label="Solteiro" formControlName="marriedControl" (click)="setMarried('N')"></p-radioButton>
+                <p-radioButton name="married1" value="Y" label="Casado" formControlName="marriedControl" (click)="setMarried('Y')"></p-radioButton>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="name1" formControlName="name1Control" size="30" pInputText>
+                <label for="name1"> 2º Titular</label>
+                <span class="error" *ngIf="formGroup.get('name1Control').hasError('minlength')">Campo nome deve conter no
+                  mínimo 6 digitos!</span>
+                <span class="error" *ngIf="married === 'Y' && formGroup.get('name1Control').hasError('required')">Obrigatório!</span>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="cpf1" formControlName="cpf1Control" size="30" [textMask]="{mask: CPFMASK}" pInputText>
+                <label for="cpf1">CPF do 2º Titular</label>
+                <span class="error" *ngIf="formGroup.get('cpf1Control').hasError('pattern')">Formato de CPF inválido!</span>
+                <span class="error" *ngIf="married === 'Y' && formGroup.get('cpf1Control').hasError('required')">Obrigatório!</span>
+              </div>
+
+            </div>
+
+            <div *ngIf="formGroup.controls.typeControl.value == 'Pessoa Jurídica' && convertType=='B'">
+
+              <div class="ui-float-label inputform">
+                <input id="nameSocial" formControlName="nameSocialControl" size="30" pInputText>
+                <label for="nameSocial">Razão Social</label>
+                <span class="error" *ngIf="formGroup.get('nameSocialControl').hasError('required')">Campo razão social não
+                  pode ser vazio!</span>
+              </div>
+
+              <div class="ui-float-label inputformflex">
+                <input id="cnpj" formControlName="cnpjControl" size="30" [textMask]="{mask: CNPJMASK}" pInputText [readonly]="userinfoObj.type=='B'"
+                  [ngClass]="{'readonly':userinfoObj.type=='B'}">
+                <label for="cnpj">CNPJ</label>
+                <span class="checktrue" *ngIf="userinfoObj.validade_document=='Y'"><i class="fa fa-check" aria-hidden="true"></i> Seu CNPJ já foi validado!</span>                  
+                <span class="checkfalse" *ngIf="userinfoObj.validade_document=='R'"><i class="fa fa-times"  aria-hidden="true"></i> Validação Incorreta!</span>
+                <span class="error" *ngIf="formGroup.get('cnpjControl').hasError('required')">Campo CNPJ não pode ser vazio!</span>
+                <span class="error" *ngIf="formGroup.get('cnpjControl').hasError('pattern')">CNPJ inválido!</span>
+                <span class="error" *ngIf="userinfoObj.validade_document=='R'">Motivo: {{userinfoObj.obs_documents}}. Envie outra imagem.</span>
+              </div>
+
+              <div *ngIf="userinfoObj.validade_document=='N' || userinfoObj.validade_document=='R'">
+                <div class="cntInputFileCpf">
+                  <lib-components-upload-image class="btn orange" [width]="600" [height]="400" [urlRequest]="urlApiImage" [pathBucket]="'documents'"
+                    [buttonText]="'Upload CNPJ'" (onUpload)="changeImageDocumentCnpj($event)"></lib-components-upload-image>
+                  <span class="text"> Formato (.jpg ou .png)</span>
+                  <span class="viewdocument" *ngIf="userinfoObj.photo_documents">
+                    <p-overlayPanel #op>
+                      <img src="{{userinfoObj.photo_documents}}">
+                    </p-overlayPanel>
+                    <span pButton (click)="op.toggle($event)">  <i class="fa fa-picture-o" aria-hidden="true"></i> Ver Documento
+                      enviado.</span></span>
+                  <span class="text" *ngIf="!userinfoObj.photo_documents">Envie a foto do seu CNPJ para validação.</span>
+                </div>
+              </div>
+
+              <div class="ui-float-label inputform">
+                <input id="ie" formControlName="ieControl" size="30" pInputText>
+                <label for="ie">Inscrição estadual</label>
+                <span class="error" *ngIf="formGroup.get('ieControl').hasError('required')">Campo IE não pode ser vazio!</span>
+                <span class="error" *ngIf="formGroup.get('ieControl').hasError('minlength')">Campo IE deve conter no mínimo
+                  6 digitos!</span>
+              </div>
+
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="phone" formControlName="phoneControl" size="30" [textMask]="{mask: PHONEMASK}" pInputText>
+              <label for="phone">Telefone Fixo</label>
+              <span class="error" *ngIf="formGroup.get('phoneControl').hasError('pattern')">Telefone Fixo inválido!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="celular" formControlName="celularControl" size="30" [textMask]="{mask: CELLPHONEMASK}" pInputText>
+              <label for="celular">Telefone Celular</label>
+              <span class="error" *ngIf="formGroup.get('celularControl').hasError('required')">Campo Celular não pode ser
+                vazio!
+              </span>
+              <span class="error" *ngIf="formGroup.get('celularControl').hasError('pattern')">Celular inválido!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="website" formControlName="websiteControl" size="30" pInputText>
+              <label for="website">Web Site</label>
+            </div>
+
+            <div class="ui-float-label inputformflex">
+              <input id="cep" formControlName="cepControl" size="30" [textMask]="{mask: CEPMASK}" (keyup)="getCEP()" pInputText>
+              <label for="cep">Digite o CEP</label>
+              <i *ngIf="resellerCheck" class="fa fa-check checktrue" aria-hidden="true"></i>
+              <i *ngIf="resellerLoading" class="fa fa-spinner fa-pulse fa-fw checkload"></i>
+              <i *ngIf="resellerCheckfalse" class="fa fa-times checkfalse" aria-hidden="true"></i>
+              <span class="error" *ngIf="formGroup.get('cepControl').touched && formGroup.get('cepControl').hasError('pattern')">Formato
+                de CEP inválido!</span>
+              <span class="error" *ngIf="formGroup.get('cepControl').hasError('required')">Obrigatório!</span>
+            </div>
+            <div class="contenButton">
+              <button class="btn orange max" (click)="getCEP();">Buscar CEP</button>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="street" formControlName="streetControl" size="30" [readonly]="cep.logradouro!=''" pInputText>
+              <label for="street">Digite a rua</label>
+              <span class="error" *ngIf="formGroup.get('streetControl').hasError('required')">Obrigatório!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="number" formControlName="numberControl" size="30" pInputText>
+              <label for="number">Digite o número</label>
+              <span class="error" *ngIf="formGroup.get('numberControl').hasError('required')">Obrigatório!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="complement" formControlName="complementControl" size="30" pInputText>
+              <label for="complement">Digite o complemento</label>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="district" formControlName="districtControl" size="30" [readonly]="cep.bairro!=''" pInputText>
+              <label for="district">Digite o bairro</label>
+              <span class="error" *ngIf="formGroup.get('districtControl').hasError('required')">Obrigatório!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <input id="city" formControlName="cityControl" size="30" [readonly]="cep.localidade!=''" pInputText>
+              <label for="city">Digite a cidade</label>
+              <span class="error" *ngIf="formGroup.get('cityControl').hasError('required')">Obrigatório!</span>
+            </div>
+
+            <div class="ui-float-label inputform">
+              <p-dropdown id="states" [options]="states" formControlName="stateControl" [readonly]="cep.uf!=''"></p-dropdown>
+              <label for="states">Selecione o estado</label>
+              <span class="error" *ngIf="formGroup.get('stateControl').hasError('required')">Obrigatório!</span>
+            </div>
+
+            <mat-select style="display:none;"></mat-select>
+
+            <div class="contenButton">
+              <button class="btn orange max" [disabled]="!formGroup.valid" (click)="saveForm()" [ngClass]="{'disabled':!formGroup.valid}">Salvar</button>
+            </div>
+
+          </form>
+
+        </div>
+      </p-card>
+
+    </div>
+  </div>
+
+</div>

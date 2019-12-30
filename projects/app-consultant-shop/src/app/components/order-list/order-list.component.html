@@ -1,0 +1,51 @@
+<div class="contentOrderList">
+  <div class="allOrders" *ngFor="let item of orderList">
+    <div class="box status" [ngClass]="item.status">
+      <div class="Otext">
+        <span class="text">Status do Pedido</span>
+        <span class="sts" [ngSwitch]="item.status">
+          <span *ngSwitchCase="'FN'">Entregue</span>
+          <span *ngSwitchCase="'ET'">Em Trânsito</span>
+          <span *ngSwitchCase="'AP'">Aguardando pagamento</span>
+          <span *ngSwitchCase="'PC'">Pagamento confirmado</span>
+          <span *ngSwitchCase="'PR'">Pagamento recusado</span>
+          <span *ngSwitchCase="'C'">Cancelado</span>
+          <span *ngSwitchDefault>Aguarde...</span>
+        </span>
+      </div>
+      <div class="Oicon">
+        <!-- <i class="fa" [ngClass]="!item.status? 'fa-pulse' : ''" aria-hidden="true"></i> -->
+      </div>
+    </div>
+    <div class="box date">
+      <div class="cntDate">
+        <div class="text">Data do pedido</div>
+        <div class="day">{{ item.date_creation | date: 'dd' }}</div>
+        <div class="month">{{ item.date_creation | date: 'dd/MM/yyyy H:mm' }}</div>
+      </div>
+    </div>
+    <div class="box order">
+      <div class="cntOrder">
+        <div class="contentOrder">
+          <div class="textOrder">Número do pedido:</div>
+          <div class="order">{{ item.id }}</div>
+        </div>
+        <div class="contentValue">
+          <span class="textValue">Valor: </span>
+          <span class="value" [innerHtml]="item?.value | conversion : 'BRL'"></span>
+        </div>
+      </div>
+    </div>
+    <div class="box options">
+      <div class="contentButton" (click)="viewDetails(item.id)" *ngIf="item.status==='PC' || item.status==='FN' || item.status==='ET'">
+        <div class="btn buttonDetails">Detalhes</div>
+      </div>
+      <div class="contentButton" *ngIf="item.status!=='PC' && item.status!=='FN' && item.status!=='ET'">
+        <div class="btn buttonDetailsDisabled">Detalhes</div>
+      </div>
+      <div class="contentButton" (click)="openBillet(item.url_document)" *ngIf="item.status =='AP' && item.url_document !== ''">
+        <div class="btn buttonBillet">Gerar Boleto</div>
+      </div>
+    </div>
+  </div>
+</div>

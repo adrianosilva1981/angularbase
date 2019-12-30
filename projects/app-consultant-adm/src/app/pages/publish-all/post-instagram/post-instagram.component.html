@@ -1,0 +1,30 @@
+<app-consultant-adm-box-info [objInfo]="info"></app-consultant-adm-box-info>
+
+<form class="form" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+  <div class="uploadImage">
+    <div class="image" *ngFor="let img of registerForm?.controls.images.value">
+      <img [src]="img?.url">
+    </div>
+    <div class="cntButtonAdd">
+      <div class="iconUpload" *ngIf="!registerForm?.controls.images.value.length"><i class="fas fa-long-arrow-alt-up"></i></div>
+      <lib-components-upload-image [buttonText]="txtImage" [width]="'1000'" [height]="'1000'" [urlRequest]="urlRequest"
+        [pathBucket]="pathBucket" (onUpload)="onUpload($event)"></lib-components-upload-image>
+    </div>
+  </div>
+
+  <div class="content-form">
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea rows="8" class="form-control" required formControlName="description"></textarea>
+      <span class="errorFormField" *ngIf="registerForm.controls.description.hasError('minlength')">* Mínimo 20 caracteres</span>
+    </div>
+
+    <div class="form-group">
+      <label>Data</label>
+      <input type="date" class="form-control" required formControlName="date">
+      <span class="errorFormField" *ngIf="registerForm.controls.date.hasError('required')">* Valor Inválido</span>
+    </div>
+
+    <button class="btnRegister" type="submit">Salvar</button>
+  </div>
+</form>

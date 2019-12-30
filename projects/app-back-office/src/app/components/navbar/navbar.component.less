@@ -1,0 +1,222 @@
+    @import 'css/global-variables.less';
+    @import 'css/global-functions.less';
+    .menu {
+        background-color: @blue2;
+        height: 109vh;
+        color: white;
+        max-width: 260px;
+        width: 260px;
+        position: fixed;
+        margin-top: 70px;
+        padding-bottom: 150px;
+        z-index: 999;
+        .scroll {
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 100%;
+        }
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+        .app {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            // position: absolute;
+            // bottom: 50px;
+            // left: 0;
+            width: 100%;
+            .bar {
+                width: 90%;
+                height: 1px;
+                margin: 0 auto;
+                background: @blue4;
+            }
+            .contentTitle {
+                padding: 10px 0 10px 0;
+                width: 150px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                .iconApp {
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    margin: 0 5px 0 0;
+                    &.download {
+                        background: url('/assets/img/icon_downloads.png') left top no-repeat;
+                    }
+                }
+            }
+            .contentImage {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                .app_apple {
+                    width: 115px;
+                    height: 35px;
+                    background: url('/assets/img/apple.png') left top no-repeat;
+                }
+                .app_android {
+                    width: 115px;
+                    height: 35px;
+                    background: url('/assets/img/android.png ') left top no-repeat;
+                }
+            }
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            a {
+                display: flex;
+                align-items: center;
+            }
+            .collum {
+                width: 3px;
+                height: 45px;
+                background: @blue2;
+            }
+            .icon {
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                margin: 0 5px 0 15px;
+                &.home {
+                    background: url('/assets/img/icon_home.png') left top no-repeat;
+                }
+                &.register {
+                    background: url('/assets/img/icon_register.png') left top no-repeat;
+                }
+                &.team {
+                    background: url('/assets/img/icon_customers.png') left top no-repeat;
+                }
+                &.extract {
+                    background: url('/assets/img/icon_extract.png') left top no-repeat;
+                }
+                &.shop {
+                    background: url('/assets/img/icon_shopping.png') left top no-repeat;
+                }
+                &.myarea {
+                    background: url('/assets/img/icon_myarea.png') left top no-repeat;
+                }
+                &.product {
+                    background: url('/assets/img/icon_product.png') left top no-repeat;
+                }
+                &.cards {
+                    background: url('/assets/img/icon_card.png') left top no-repeat;
+                }
+                &.whatsapp {
+                    background: url('/assets/img/icon_whatsapp.png') left top no-repeat;
+                }
+                &.logout {
+                    background: url('/assets/img/icon_logout.png') left top no-repeat;
+                }
+                &.setting {
+                    background: url('/assets/img/icon_setting.png') left top no-repeat;
+                }
+                &.bank {
+                    background: url('/assets/img/icon_bank.png') left top no-repeat;
+                }
+                &.money {
+                    background: url('/assets/img/icon_money.png') left top no-repeat;
+                }
+                &.documents {
+                    background: url('/assets/img/icon_document.png') left top no-repeat;
+                }
+                &.marketing {
+                    background: url('/assets/img/icon_promotion.png') left top no-repeat;
+                }
+                &.arrow-right {
+                    background: url('/assets/img/icon_arrow_right.png') left top no-repeat;
+                }
+                &.arrow-down {
+                    background: url('/assets/img/icon_arrow_down.png') left top no-repeat;
+                }
+                &.recognition {
+                    background: url('/assets/img/icon_recognition.png') left top no-repeat;
+                }
+                &.voucher_smart {
+                    background: url('/assets/img/icon_voucher_smart.png') left top no-repeat;
+                }
+                &.voucher_prime {
+                    background: url('/assets/img/icon_voucher_prime.png') left top no-repeat;
+                }
+                &.ebooks {
+                    background: url('/assets/img/icon_ebooks.png') left top no-repeat;
+                }
+                &.googleAuthenticator {
+                    background: url('/assets/img/icon_googleAuthenticator.png') left top no-repeat;
+                }
+                &.monthly {
+                    background: url('/assets/img/icon_monthly.png') left top no-repeat;
+                }
+                &.questionnaire {
+                    background: url('/assets/img/icon_questionnaire.png') left top no-repeat;
+                }
+                &.invitation {
+                    background: url('/assets/img/icon_invitation.png') left top no-repeat;
+                }
+                &.bonus {
+                    background: url('/assets/img/icon_bonus.png') left top no-repeat;
+                }
+                &.rescue {
+                    background: url('/assets/img/icon_rescue.png') left top no-repeat;
+                }
+                &.ads {
+                    background: url('/assets/img/icon_ads.png') left top no-repeat;
+                }
+            }
+            .text {
+                flex: 1;
+                color: white;
+            }
+            &.active {
+                background: @blue3;
+                .collum {
+                    width: 3px;
+                    height: 45px;
+                    background: @blue4;
+                }
+            }
+            &:hover {
+                .collum {
+                    width: 3px;
+                    height: 45px;
+                    background: @blue4;
+                }
+            }
+        }
+        @media screen and (max-width: 600px) {
+            margin-top: -7px;
+            margin-left: -11px;
+            //display: none;
+            // width: 80px;
+            // .item {
+            //     .text {
+            //         display: none;
+            //     }
+            // }
+            // .app {
+            //     .contentTitle {
+            //         width: 80px;
+            //         .title {
+            //             display: none;
+            //         }
+            //     }
+            //     .contentImage {
+            //         .app_apple {
+            //             width: 75px;
+            //             height: 23px;
+            //             background: url('/assets/img/apple_m.png') left top no-repeat;
+            //         }
+            //         .app_android {
+            //             width: 75px;
+            //             height: 23px;
+            //             background: url('/assets/img/android_m.png ') left top no-repeat;
+            //         }
+            //     }
+            // }
+        }
+    }

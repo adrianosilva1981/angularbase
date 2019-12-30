@@ -1,0 +1,66 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+@import 'css/global-components.less';
+.filterProfessional {
+    padding: 10px;
+    .contentBtn {
+        text-align: right;
+        padding: 10px 0px;
+        margin-bottom: 15px;
+    }
+    .orderSelect {
+        label {}
+        .form-control {
+            cursor: pointer;
+            outline: none;
+                padding: 6px 40px 6px 10px;
+            option {
+                background: @blue1;
+                color: @grey2;
+            }
+        }
+    }
+    .filter {
+        .search {
+            flex: 2;
+            .sContent {
+                position: relative;
+                border: 1px solid @grey3;
+                .radius(4px);
+                padding: 6px 40px 6px 10px;
+                .sInput {
+                    width: 100%;
+                    position: relative;
+                    border: none;
+                    outline: none;
+                }
+                .sIcon {
+                    position: absolute;
+                    top: 2px;
+                    right: 5px;
+                    padding: 5px;
+                    color: @blue1;
+                    cursor: pointer;
+                    .fa {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .filterCity {
+            margin-bottom: 20px;
+            .lbl {
+                font-weight: 700;
+                margin: 5px 0px;
+            }
+        }
+        .filterOcupations {
+            margin-bottom: 20px;
+            .lbl {
+                font-weight: 700;
+                margin: 5px 0px;
+            }
+        }        
+      
+    }
+}

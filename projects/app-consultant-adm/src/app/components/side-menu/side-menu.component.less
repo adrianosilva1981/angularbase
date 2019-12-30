@@ -1,0 +1,37 @@
+@import 'global/css/global-variables.less';
+.side-menu {
+    max-width: 320px;
+    min-height: 400px;
+    background: white;
+    box-shadow: 1px 1px 1px 1px #ccc;
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    @media screen and (max-width: 655px) {
+        min-height: auto;
+    }
+    .item {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        min-width: 100%;
+        cursor: pointer;
+        .icon::ng-deep {
+            height: 24px;
+            margin-right: 5px;
+            i {
+                color: @blue1;
+            }
+        }
+        .name {
+            &:hover {
+                color: @blue1;
+            }
+        }
+        &.active {
+            .name {
+                color: @blue1;
+            }
+        }
+    }
+}

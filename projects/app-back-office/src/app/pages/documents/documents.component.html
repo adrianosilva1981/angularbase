@@ -1,0 +1,55 @@
+<div class="documents">
+  <div class="content">
+
+    <div class="contentTable">
+
+      <div class="card">
+        <div class="content">
+          <p>Documentos</p>
+
+          <p-table #dt styleClass="classetable" [columns]="cols" [responsive]="true" [value]="documents" *ngIf="documents?.length">
+
+            <!-- <ng-template pTemplate="caption">
+              <div class="row justify-content-center">
+                <p-dropdown [options]="options" [ngStyle]="{'width': '200px'}" (onChange)="dt.filter($event.value, 'group', 'equals')" ></p-dropdown>
+              </div>
+            </ng-template> -->
+
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:8em">
+                  Arquivo
+                </th>
+                <th *ngFor="let col of cols">
+                  {{col.header}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-doc>
+              <tr>
+                <td style="text-align: center"><i class="{{doc.group==='documento'?'fa fa-file-pdf':'far fa-file-archive'}}"
+                    aria-hidden="true" style="color:red"></i></td>
+                <td *ngFor="let col of cols">
+                  <a *ngIf="col.field === 'name'" [href]="doc.url" target="_blank" download="true">{{doc[col.field]}}</a>
+                  <span *ngIf="col.field !== 'name'">{{doc[col.field]}}</span>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="contentCard text-center" *ngIf="userObj?.url_googledrive">
+      <a [href]="userObj?.url_googledrive" target="_blank">
+        <div class="card hover">
+          <div class="icon"></div>
+          <div class="text">Pasta do Associado</div>
+        </div>
+      </a>
+    </div> -->
+
+  </div>
+
+</div>

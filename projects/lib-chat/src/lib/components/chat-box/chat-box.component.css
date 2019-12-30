@@ -1,0 +1,610 @@
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #eee;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: #999;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #bbb;
+}
+.containerMiniChat .chat_sidebar {
+  z-index: 999999;
+  right: 50px;
+  bottom: -415px;
+  width: 320px;
+  height: 466px;
+  background: #fff;
+  display: none;
+  position: fixed;
+  display: block !important;
+  -webkit-box-shadow: 0px 5px 10px 0px #999999;
+  -moz-box-shadow: 0px 5px 10px 0px #999999;
+  box-shadow: 0px 5px 10px 0px #999999;
+}
+@media screen and (max-width: 370px) {
+  .containerMiniChat .chat_sidebar {
+    right: 5px;
+  }
+}
+.containerMiniChat .chat_sidebar.minimized {
+  -webkit-animation-name: minimizeChat;
+  animation-name: minimizeChat;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes minimizeChat {
+  0% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: -415px;
+  }
+}
+@keyframes minimizeChat {
+  0% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: -415px;
+  }
+}
+.containerMiniChat .chat_sidebar.maximized {
+  -webkit-animation-name: maximizeChat;
+  animation-name: maximizeChat;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes maximizeChat {
+  0% {
+    bottom: -415px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+@keyframes maximizeChat {
+  0% {
+    bottom: -415px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader {
+  cursor: pointer;
+  background: #85b838;
+  color: #fff;
+  display: table;
+  width: 100%;
+  padding: 12px 18px;
+  border-bottom: 1px solid #fff;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader {
+  padding: 6px 0px 0px 0px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnMinimize,
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnContacts,
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnSearch {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnMinimize .fa,
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnContacts .fa,
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnSearch .fa {
+  color: #fff;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnContacts {
+  position: relative;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentBtnsHeader .btnContacts .chatNotification {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: red;
+  top: 0px;
+  right: 0px;
+  border-radius: 50%;
+  -webkit-animation-name: chatNotification;
+  animation-name: chatNotification;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+}
+@-webkit-keyframes chatNotification {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes chatNotification {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  10%,
+  20% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%,
+  60%,
+  80% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentNameStatus {
+  color: #fff;
+  line-height: 17px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentNameStatus .nameChat {
+  font-size: 18px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentNameStatus .statusChat {
+  font-size: 12px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatHeader .contentNameStatus .statusChat .fa {
+  color: #fff;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody {
+  height: 345px;
+  overflow-y: scroll;
+  width: 100%;
+  position: relative;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .waintLoadConversations {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .waintLoadConversations .contentLoadConversations {
+  margin: 0 auto;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .waintLoadConversations .contentLoadConversations .loadingConversations .fa {
+  color: #ccc;
+  font-size: 50px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .waintLoadConversations .contentLoadConversations .textLoadingConversations {
+  color: #ccc;
+  font-size: 14px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat {
+  padding: 10px 16px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .message {
+  word-break: break-word !important;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message {
+  float: left;
+  margin: 0 0 0 20px;
+  max-width: 77%;
+  list-style: outside none none;
+  padding: 0;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom {
+  min-width: 222px;
+  list-style: outside none none;
+  padding: 0;
+  margin: 0;
+  background: #ededed;
+  border-radius: 7px;
+  clear: both;
+  color: #212121;
+  display: block;
+  float: left;
+  font-size: 13px;
+  padding: 8px 16px 0px 16px;
+  position: relative;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom:first-child::before {
+  border-color: transparent #ededed transparent transparent;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  content: "";
+  right: 210px;
+  position: absolute;
+  top: 0;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom .statusSend {
+  color: #fff;
+  display: block;
+  font-size: 11px;
+  padding-top: 2px;
+  text-transform: uppercase;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom .statusMessage {
+  letter-spacing: -5px;
+  text-align: right;
+  font-size: 10px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom .statusMessage ._read .fa {
+  color: #00c3ff;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom .statusMessage ._sended .fa {
+  color: #999;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom .statusMessage ._sending .fa {
+  letter-spacing: normal;
+  color: #999;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_message .contentBallom .statusMessage ._fail .fa {
+  letter-spacing: normal;
+  color: red;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .dateSend {
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat.ballomRight .chat_user_avatar {
+  float: right;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat.ballomRight .chat_message {
+  float: right;
+  margin-left: 0 !important;
+  margin-right: 24px !important;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat.ballomRight .chat_message .contentBallom {
+  min-width: 222px;
+  background: #85b838;
+  color: #fff;
+  padding: 8px 16px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat.ballomRight .chat_message .contentBallom:first-child::before {
+  border-color: transparent transparent transparent #85b838;
+  border-width: 0px 0 20px 20px;
+  left: auto;
+  left: 210px;
+  top: 0px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat::before {
+  content: " ";
+  display: table;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .chat_user_avatar {
+  float: left;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .contentBox .ballomChat .photoUser {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatBody .typing {
+  position: fixed;
+  bottom: 57px;
+  width: 320px;
+  padding: 5px;
+  text-align: center;
+  background: #fff;
+  opacity: .8;
+  color: #999;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatFotter {
+  bottom: 0;
+  box-sizing: border-box;
+  left: 0;
+  overflow: hidden;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ccc;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatFotter .contentSubmitBox {
+  border-collapse: separate;
+  display: table;
+  position: relative;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatFotter .contentInputTextButtons {
+  background: #fff;
+  float: left;
+  padding: 3px;
+  width: 265px;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatFotter .contentInputTextButtons .inputMessage {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 6px;
+  width: 100%;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatFotter .contentSend {
+  display: inline-block;
+  height: 36px;
+  width: 35px;
+  text-align: center;
+  cursor: pointer;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatFotter .contentSend.disabled .material-icons {
+  color: #ccc;
+  cursor: default;
+}
+.containerMiniChat .chat_sidebar .boxMiniChat .minichatFotter .contentSend .material-icons {
+  color: #85b838;
+  font-size: 21px;
+  line-height: 36px;
+  padding: 0 6px;
+  margin: 0 auto;
+}
+.containerMiniChat .chat_sidebar .boxContact {
+  position: relative;
+  overflow: hidden;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader {
+  display: table;
+  width: 640px;
+  position: relative;
+  display: inline-flex;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader.hiddenSeach {
+  -webkit-animation-name: hiddenSeach;
+  animation-name: hiddenSeach;
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes hiddenSeach {
+  0% {
+    right: 320px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+@keyframes hiddenSeach {
+  0% {
+    right: 320px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader.showSearch {
+  -webkit-animation-name: showSearch;
+  animation-name: showSearch;
+  -webkit-animation-duration: .1s;
+  animation-duration: .1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes showSearch {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 320px;
+  }
+}
+@keyframes showSearch {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: 320px;
+  }
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions {
+  background: #85b838;
+  color: #fff;
+  padding: 12px 18px;
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  width: 320px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtnBack {
+  padding: 6px 0px 0px 0px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtnBack .btnBack {
+  margin-right: 15px;
+  cursor: pointer;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtnBack .btnBack .fa {
+  color: #fff;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentTextInfo {
+  color: #fff;
+  line-height: 15px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentTextInfo .textContact {
+  font-size: 18px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentTextInfo .countContact {
+  font-size: 12px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtns {
+  padding: 6px 0px 0px 0px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtns .btnAddNew {
+  cursor: pointer;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtns .btnAddNew .fa {
+  color: #fff;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtns .btnSearch {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtns .btnSearch .fa {
+  color: #fff;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtns .btnMinimize {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentHeaderOptions .contentBtns .btnMinimize .fa {
+  color: #fff;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentSearchContact {
+  background: #ECECEC;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  width: 320px;
+  border: 10px solid #fff;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentSearchContact .contentBtnClear {
+  padding: 10px 0px 0px 17px;
+  width: 45px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentSearchContact .contentBtnClear .btnClear {
+  cursor: pointer;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentSearchContact .contentBtnClear .btnClear .fa {
+  color: #85b838;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentSearchContact .contentInputSearch {
+  width: 240px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsHeader .contentSearchContact .contentInputSearch input {
+  width: 100%;
+  padding: 9px 0px;
+  border: none;
+  background: transparent;
+  color: #999;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody {
+  height: 411px;
+  overflow-y: scroll;
+  width: 100%;
+  position: relative;
+  border-top: 1px solid #eee;
+  padding: 10px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .waintLoadContacts {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .waintLoadContacts .contentLoadContacts {
+  margin: 0 auto;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .waintLoadContacts .contentLoadContacts .loadingContacts .fa {
+  color: #ccc;
+  font-size: 50px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .waintLoadContacts .contentLoadContacts .textLoadingContacts {
+  color: #ccc;
+  font-size: 14px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  cursor: pointer;
+  min-height: 76px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact:hover {
+  background: #efefef;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentPhoto {
+  width: 45px;
+  position: relative;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentPhoto .photoUser {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentPhoto .statusChat {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  bottom: 0px;
+  right: 0px;
+  border-radius: 50%;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentPhoto .statusChat.online {
+  background: #85b838;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentPhoto .statusChat.offline {
+  background: #fff;
+  border: 2px solid #85b838;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentPhoto .statusChat.busy {
+  background: red;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentText {
+  margin-left: 60px;
+  max-width: 180px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentText .contentNameTime .name {
+  color: #85b838;
+  font-weight: 600px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentText .contentNameTime .time {
+  color: #666;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .contentText .lastMessage {
+  width: 100%;
+  color: #666;
+  font-size: 12px;
+}
+.containerMiniChat .chat_sidebar .boxContact .contactsBody .lineContact .messageCount {
+  background: #85b838;
+  color: #fff;
+  position: absolute;
+  top: 25px;
+  right: 10px;
+}

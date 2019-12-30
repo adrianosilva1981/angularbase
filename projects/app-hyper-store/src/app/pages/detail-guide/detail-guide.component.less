@@ -1,0 +1,296 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.detail-product {
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+    margin-bottom: 25px;
+    .left-side {
+        flex: 1;
+        min-width: 300px;
+        border-right: 1px solid #f2f2f2;
+        .img {
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            border-bottom: 1px solid #f2f2f2;
+            .cnt {
+                position: relative;
+            }
+            .garantia, .preorder {
+                position: absolute;
+                top: -25px;
+                left: -25px;
+                img {
+                    width: 75px;
+                    height: auto;
+                }
+            }
+        }
+        .sold {
+            .title {
+                font-weight: bold;
+                font-size: 16px;
+                padding: 15px 25px;
+            }
+        }
+    }
+    .right-side {
+        flex: 1;
+        min-width: 300px;
+        .info {
+            padding: 25px;
+            .name-pro {
+                font-size: 30px;
+                font-weight: bold;
+                word-break: break-word;
+                line-height: 1.2;
+            }
+            .discount {
+                display: flex;
+                color: white;
+                flex-wrap: wrap;
+                .smart {
+                    padding: 3px 15px;
+                    background: @orange1;
+                    font-size: 13px;
+                    .color {
+                        color: @blue1;
+                        font-weight: bold;
+                        font-size: 11px;
+                    }
+                }
+                .prime {
+                    padding: 3px 15px;
+                    background: @blue1;
+                    margin-right: 10px;
+                    font-size: 13px;
+                    .color {
+                        margin-right: 5px;
+                        color: @orange1;
+                        font-weight: bold;
+                        font-size: 11px;
+                    }
+                }
+            }
+            .price {
+                font-size: 26px;
+                margin-top: 15px;
+            }
+            .bt {
+                .btn {
+                    padding: 7px;
+                    border-radius: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    background: @orange1;
+                    max-width: 175px;
+                    margin: 25px 0;
+                    &.success {
+                        .flipInX(1.0s);
+                        background: @grey2;
+                        color: @blue2;
+                    }
+                    &.off {
+                        .flipInX(1.0s);
+                    }
+                }
+            }
+        }
+        .intro {
+            padding: 0 25px;
+            .bold {
+                font-weight: bold;
+                margin: 15px 0 5px;
+                font-size: 16px;
+            }
+            .text {}
+        }
+        .info-product {
+            padding: 25px;
+            .bold {
+                font-weight: bold;
+                margin: 15px 0 5px;
+                font-size: 16px;
+            }
+            .item {
+                display: flex;
+                padding: 15px 0px;
+                align-items: center;
+                flex-wrap: wrap;
+                border-bottom: 1px solid #f2f2f2;
+                .name {
+                    width: 200px;
+                }
+                .desc {}
+            }
+        }
+        .social-medias {
+            .banner {}
+            .icons {
+                .fab {}
+            }
+        }
+    }
+    .bottom {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        .voucher-title {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 10px;
+            margin: 30px auto 15px;
+            border-top: 1px solid #f2f2f2;
+        }
+        .thumb {
+            .grid {
+                @media screen and (max-width: 768px) {
+                    height: auto;
+                    max-width: 300px;
+                }
+                .box {
+                    background: white;
+                    max-width: 235px;
+                    margin: 12px;
+                    transition: all 0.3s ease-in-out;
+                    @media screen and (max-width: 768px) {
+                        max-width: initial;
+                        box-shadow: 0 0 10px 0 #dedede;
+                        display: flex;
+                        align-items: center;
+                    }
+                    .img {
+                        transition: all 0.3s ease-in-out;
+                        border-bottom: 1px solid #ccc;
+                        cursor: pointer;
+                        @media screen and (max-width: 768px) {
+                            max-width: 100px;
+                        }
+                        img {
+                            padding: 25px;
+                            max-width: 100%;
+                            @media screen and (max-width: 768px) {
+                                min-width: 75px;
+                                padding: 0;
+                            }
+                        }
+                    }
+                    .cnt {
+                        padding: 10px 25px;
+                        position: relative;
+                        @media screen and (max-width: 768px) {
+                            padding: 10px;
+                        }
+                        .btn-add {
+                            position: absolute;
+                            top: -20px;
+                            right: 20px;
+                            width: 35px;
+                            height: 35px;
+                            border: solid 1px @grey3;
+                            border-radius: 30px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: white;
+                            cursor: pointer;
+                            transition: all 0.3s ease-in-out;
+                            @media screen and (max-width: 768px) {
+                                display: none;
+                            }
+                            i {
+                                transition: all 0.1s ease-in-out;
+                                color: @grey3;
+                                font-size: 16px;
+                                &:active {
+                                    color: #ccc !important;
+                                    transform: scale(1.02);
+                                }
+                            }
+                        }
+                        .price {
+                            font-size: 24px;
+                            .installments {
+                                font-size: 11px;
+                                color: #ccc;
+                            }
+                            .points {
+                                padding: 5px;
+                                font-size: 12px;
+                                text-align: center;
+                                color: @grey8;
+                            }
+                            .valueV {
+                                font-size: 14px;
+                                .input-valueV {
+                                    border: 1px solid #ccc;
+                                    border-radius: 25px;
+                                    width: 100%;
+                                    padding: 0px 10px;
+                                }
+                            }
+                        }
+                        .desc {
+                            transition: all 0.3s ease-in-out;
+                            min-height: 50px;
+                            overflow: hidden;
+                            line-height: 1;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            @media screen and (max-width: 768px) {
+                                opacity: 1;
+                                height: auto;
+                            }
+                            .title {
+                                margin: 5px;
+                                text-align: center;
+                                color: @grey7;
+                                font-size: 14px;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                word-wrap: break-word;
+                            }
+                        }
+                        .cntBtn {
+                            .bt {
+                                transition: all 0.3s ease-in-out;
+                                opacity: 0;
+                                margin-top: 10px;
+                                @media screen and (max-width: 768px) {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+                    @media screen and (min-width: 768px) {
+                        &:hover {
+                            transform: scale(1.02);
+                            box-shadow: 0 0 10px 0 @grey2;
+                            .img {
+                                border-bottom: 1px solid @blue2;
+                            }
+                            .cnt {
+                                .bt {
+                                    opacity: 1 !important;
+                                }
+                                .btn-add {
+                                    border: solid 1px @blue2;
+                                    i {
+                                        color: @blue1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

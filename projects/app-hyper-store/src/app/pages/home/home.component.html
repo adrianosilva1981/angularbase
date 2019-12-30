@@ -1,0 +1,23 @@
+<div class="home container">
+
+  <div class="contentBanner">
+    <app-hyper-store-slider-banner></app-hyper-store-slider-banner>
+  </div>
+
+  <div class="featuredItem" *ngIf="hyperProducts?.length">
+    <div class="fsTitle">Produtos</div>
+    <div class="listItem">
+      <!-- <app-hyper-store-thumbnail-product *ngFor="let product of adsProds" [itemObject]="product" class="item"></app-hyper-store-thumbnail-product> -->
+      <app-hyper-store-thumbnail-product *ngFor="let product of spotlightProducts" [itemObject]="product" class="item"></app-hyper-store-thumbnail-product>
+      <app-hyper-store-thumbnail-product *ngFor="let product of hyperProducts" [itemObject]="product" class="item"></app-hyper-store-thumbnail-product>
+    </div>
+  </div>
+
+  <!-- <div class="featuredItem" *ngIf="hyperServices?.length > 0">
+    <div class="fsTitle">Serviços</div>
+    <div class="listItem">
+      <app-hyper-store-thumbnail-service *ngFor="let service of hyperServices" [itemObject]="service" class="item"></app-hyper-store-thumbnail-service>
+    </div>
+  </div> -->
+
+</div>

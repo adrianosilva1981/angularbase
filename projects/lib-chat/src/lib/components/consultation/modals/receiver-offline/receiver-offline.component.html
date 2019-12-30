@@ -1,0 +1,21 @@
+<div class="contentModal">
+  <div class="content center">
+    <div class="contentClose">
+      <button class="btnClose" tabindex="-1" mat-dialog-close>
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="photo">
+      <img class="imgCircle" [src]="objParams.user_sender.photoUrl">
+    </div>
+    <div class="userName">{{objParams.user_sender.name}}</div>
+    <div class="userMessage">está <b>offline</b> no momento</div>
+  </div>
+  <div class="bottom center">
+    <div class="bottomTitle">
+      <h5>{{objParams.job.name}}</h5>
+      <p>{{objParams.job.category + ' / ' + objParams.job.subcategory}}</p>
+    </div>
+    <div class="textCall">{{objParams.job.description | words : 120 : '...'}}</div>
+  </div>
+</div>

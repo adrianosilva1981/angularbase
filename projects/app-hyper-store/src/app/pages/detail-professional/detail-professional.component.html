@@ -1,0 +1,55 @@
+<div class="serviceDetails">
+  <div class="container">
+    <div class="exists" *ngIf="objProfessional.id">
+      <div class="contentDetails">
+        <div class="contentGallery">
+          <lib-components-photo-gallery [listPhotos]="listPhotos"></lib-components-photo-gallery>
+        </div>
+        <div class="contentInfo">
+          <div class="infoTitle">
+            <span>{{objProfessional?.name }}</span>
+          </div>
+          <div class="ocupation">Ocupação: {{objProfessional?.profile?.occupation}}</div>
+          <div class="location">{{objProfessional?.city}} | {{objProfessional?.state}}</div>
+          <div class="bio" [innerHTML]="objProfessional?.profile?.bio"></div>
+          <div class="contentContact">
+            <div class="btnContact" (click)="openModalContact()">Fale comigo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contentMoreDetails">
+
+        <div class="desctiption" *ngIf="objProfessional?.aboutYou?.length > 0">
+          <div class="descTitle">Sobre</div>
+          <div class="descText" [innerHTML]="objProfessional?.aboutYou"></div>
+        </div>
+
+        <div class="language" *ngIf="objProfessional?.language?.length > 0">
+          <div class="langTitle">Idiomas</div>
+          <div class="langText" *ngFor="let lang of objProfessional?.language">■ {{lang.language}}</div>
+        </div>
+
+        <div class="skill" *ngIf="objProfessional?.skills?.length > 0">
+          <div class="skTitle">Áreas de Interesse e Habilidades</div>
+          <div class="contentSkText">
+            <div class="skText" *ngFor="let skill of objProfessional?.skills">{{skill.description}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relatedItems" *ngIf="objProfessional?.jobs?.length > 0">
+        <div class="relTitle">Seus Jobs</div>
+        <div class="relText">
+          <app-hyper-store-slider-items [itemList]="objProfessional?.jobs" [type]="'service'"></app-hyper-store-slider-items>
+        </div>
+      </div>
+    </div>
+    <div class="notExists" *ngIf="!objProfessional?.id">
+      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+      <span>Profissional não encontrado.</span>
+    </div>
+
+
+  </div>
+</div>

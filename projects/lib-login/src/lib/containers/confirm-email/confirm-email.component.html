@@ -1,0 +1,16 @@
+<lib-login-nav-bar></lib-login-nav-bar>
+
+<div class="contentPage">
+  <div class="boxInfo">
+
+    <i class="fas" [ngClass]="{'fa-spinner fa-spin':status==='loading','fa-check':status==='success','fa-times':status==='error'}"></i>
+    <div class="text">
+      <span *ngIf="status==='loading'">Confirmando E-mail</span>
+      <span *ngIf="status==='success'">Email confirmado com sucesso!</span>
+      <span *ngIf="status==='error'">Não foi possível confirmar o E-mail</span>
+    </div>
+
+  </div>
+  
+  <lib-login-copy-right></lib-login-copy-right>
+</div>

@@ -1,0 +1,48 @@
+<div class="thumb">
+  <div class="grid">
+    <div class="box">
+      <div class="img" (click)="viewDetails()">
+        <img [src]="itemObject?.photos[0]?.url" onError="src='global/img/image_default.png'">
+      </div>
+      <div class="cnt">
+        <div class="btn-add" (click)="addToCart()">
+          <i class="fas fa-cart-plus"></i>
+        </div>
+
+        <div class="desc">
+          <div class="title" (click)="viewDetails()">
+            {{itemObject.title | truncate : 98 : '...' }}
+          </div>
+        </div>
+
+        <div class="price" (click)="viewDetails()">
+          <div class="value">
+            <div [innerHtml]="itemObject?.value | conversion : itemObject?.coin || 'BRL'"></div>
+          </div>
+
+          <div class="cntOtherValue prime" *ngIf="itemObject?.value_prime > 0">
+            <span class="val" [innerHtml]="itemObject?.value_prime | conversion : itemObject?.coin || 'BRL'"></span>
+            <span class="type">Prime</span>
+          </div>
+          <ng-container *ngIf="userLogged == 'smart'">
+
+            <div class="cntOtherValue associate" *ngIf="itemObject?.value_associate > 0">
+              <span class="val" [innerHtml]="itemObject?.value_associate | conversion : itemObject?.coin || 'BRL'"></span>
+              <span class="type">Smart</span>
+            </div>
+            <div class="points" *ngIf="itemObject?.points_value > 0">
+              <b><em>Ganhe {{itemObject?.points_value}} pontos</em></b>
+            </div>
+          </ng-container>
+
+        </div>
+
+        <div class="cntBtn">
+          <div class="bt">
+            <app-consultant-shop-btn-add-shop-cart (onclick)="addToCart()"></app-consultant-shop-btn-add-shop-cart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

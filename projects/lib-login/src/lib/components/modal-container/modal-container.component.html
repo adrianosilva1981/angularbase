@@ -1,0 +1,4 @@
+<div [ngSwitch]="data?.component">
+  <lib-login-enter-login *ngSwitchCase="'login'"></lib-login-enter-login>
+  <lib-login-forgot-password [emailRecovery]="data?.emailRecovery" *ngSwitchCase="'forgot-password'"></lib-login-forgot-password>
+</div>

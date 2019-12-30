@@ -1,0 +1,156 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+@import 'global/css/global-components.less';
+.filterOpportunity {
+    padding: 10px;
+    .contentBtn {
+        text-align: right;
+        padding: 10px 0px;
+        margin-bottom: 15px;
+    }
+    .orderSelect {
+        label {}
+        .form-control {
+            cursor: pointer;
+            outline: none;
+            padding: 6px 40px 6px 10px;
+            option {
+                background: @blue1;
+                color: @grey2;
+            }
+        }
+    }
+    .filter {
+        .search {
+            flex: 2;
+            .sContent {
+                position: relative;
+                border: 1px solid @grey3;
+                .radius(4px);
+                padding: 6px 40px 6px 10px;
+                .sInput {
+                    width: 100%;
+                    position: relative;
+                    border: none;
+                    outline: none;
+                }
+                .sIcon {
+                    position: absolute;
+                    top: 2px;
+                    right: 5px;
+                    padding: 5px;
+                    color: @blue1;
+                    cursor: pointer;
+                    .fa {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .filterInterest {
+            margin-top: 10px;
+            .lbl {
+                font-weight: 700;
+                margin: 15px 0px;
+            }
+            .loopInterest {
+                .filtCat {
+                    height: 35px;
+                    display: flex;
+                    align-items: center;
+                    line-height: 18px;
+                    outline: none;
+                    cursor: pointer;
+                    outline: none;
+                    .icon {
+                        padding-top: 5px;
+                        .radius(50%);
+                        background: @blue1;
+                        width: 25px;
+                        height: 25px;
+                        display: inline-block;
+                        text-align: center;
+                        margin-right: 10px;
+                        .fa {
+                            color: #fff;
+                        }
+                    }
+                    .text {
+                        color: @grey5;
+                        font-size: 12px;
+                    }
+                    &:hover {
+                        .text {
+                            color: @blue1;
+                        }
+                    }
+                }
+                .filtSubCat {
+                    margin-bottom: 5px;
+                    cursor: pointer;
+                    outline: none;
+                    .fa {
+                        display: inline-block;
+                        color: @grey5;
+                        font-family: FontAwesome;
+                        margin-top: 2px;
+                        &:before {
+                            content: "\f096"; //content: "□";
+                        }
+                    }
+                    &:hover {
+                        .fa, .text {
+                            color: @blue1;
+                        }
+                    }
+                    &.active {
+                        .fa {
+                            color: @blue1;
+                            &:before {
+                                content: "\f0c8"; //content: "■";
+                            }
+                        }
+                    }
+                    .text {
+                        color: @grey5;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .hyperServices {
+            margin-top: 10px;
+            .contentText {
+                padding: 35px 0px;
+                border-top: 1px solid @grey2;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                line-height: 18px;
+                cursor: pointer;
+                .icon {
+                    padding-top: 5px;
+                    .radius(50%);
+                    background: @red1;
+                    width: 25px;
+                    height: 25px;
+                    display: inline-block;
+                    text-align: center;
+                    margin-right: 10px;
+                    .fa {
+                        color: #fff;
+                    }
+                }
+                .text {
+                    color: @grey5;
+                    font-size: 14px;
+                }
+                &:hover {
+                    .text {
+                        color: @blue1;
+                    }
+                }
+            }
+        }
+    }
+}

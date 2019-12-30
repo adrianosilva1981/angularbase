@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="contentPage">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fas fa-user-circle" aria-hidden="true"></i>
+        <span class="text">Meus Dados</span>
+      </div>
+    </div>
+    <div class="cnt">
+      <div *ngIf="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando!</div>
+      <div *ngIf="!loading">
+        <div class="titlePage">
+          Mantenha sempre seus dados atualizados, fica mais fácil para nos encontrar.
+        </div>
+        <div class="cntInfo" *ngIf="objUser">
+          <div class="info" *ngFor="let item of stucture">
+            <div class="tlt">{{item.label}}</div>
+            <div class="val">{{objUser[item.field] ? objUser[item.field] : 'Não Informado'}}</div>
+          </div>
+        </div>
+        <div class="cntBtnEdit">
+          <div class="btnEdit" (click)="editForm()">Editar meus dados</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+@marginPage: 75px;
+.page-break {
+    display: block;
+    page-break-after: always;
+}
+
+.contentPage {
+    background: #fff;
+    &.auth {
+        .contentIndex {
+            padding: @marginPage;
+            width: 100%;
+        }
+        .page {
+            padding: @marginPage;
+            width: 100%;
+            border-top: 5px solid #ccc;
+            &:first-child {
+                border-top: 5px solid pink;
+            }
+            .numberPage {
+                padding: 0px @marginPage;
+                height: calc(@marginPage - 10);
+            }
+        }
+    }
+    .contentIndex {
+        width: 794px;
+        background: #fff;
+        .idxSlug {
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: bold;
+            .idxCateg {
+                font-weight: 500;
+                text-transform: none;
+                font-size: 18px;
+                margin-left: 40px;
+                margin-bottom: 10px;
+                color: #586066 !important;
+                .idxService {
+                    margin-left: 40px;
+                    display: flex;
+                    .name {
+                        text-transform: none;
+                        font-size: 16px;
+                        font-weight: lighter;
+                    }
+                    .linePage {
+                        border-bottom: 1px dotted #ccc;
+                        flex: 1;
+                        width: 100%;
+                    }
+                    .pageNumber {
+                        text-transform: none;
+                        font-size: 16px;
+                        font-weight: lighter;
+                        width: 35px;
+                        float: right;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+    .page {
+        width: 794px;
+        height: 1200px; // soma de 1123 + 75px de margin
+        background: #fff;
+        position: relative;
+        border: none;
+        .type {
+            background: #39C2D7;
+            font-size: 25px;
+            color: #fff;
+            font-weight: bold;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+        .service {
+            overflow: hidden;
+            border-top: 1px solid #ccc;
+            .serviceTitle {
+                font-size: 20px;
+                margin-top: 30px;
+                .categ {
+                    display: inline-block;
+                    padding: 5px;
+                    color: #004370;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                }
+                .separator {
+                    display: inline-block;
+                    padding: 5px;
+                }
+                .name {
+                    text-transform: none;
+                    display: inline-block;
+                    padding: 5px;
+                    color: #004370;
+                }
+            }
+            .servicePrice {
+                text-align: right;
+                margin-bottom: 10px;
+                span {
+                    font-size: 30px;
+                    color: #6FB309;
+                }
+            }
+            .contentService {
+                margin-bottom: 40px;
+                .cntImage {
+                    float: left;
+                    padding-right: 20px;
+                    img {
+                        width: 150px;
+                        height: 150px;
+                        object-fit: cover;
+                        object-position: top;
+                    }
+                }
+                .cntDescription {
+                    font-size: 14px;
+                    color: #586066;
+                    text-align: justify;
+                }
+            }
+        }
+        .numberPage {
+            padding: 0px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: unset;
+            .cntNr {
+                color: #666;
+                font-size: 12px;
+                .lineFooter {
+                    height: 1px;
+                    background: #ccc;
+                    margin-bottom: 10px;
+                }
+                .infoPage {
+                    float: left;
+                    span {
+                        display: inline-block;
+                        margin-right: 20px;
+                    }
+                }
+                .nrPage {
+                    float: right;
+                }
+            }
+        }
+    }
+}

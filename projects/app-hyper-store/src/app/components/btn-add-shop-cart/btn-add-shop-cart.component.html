@@ -1,0 +1,14 @@
+<div class="contentAll" [ngSwitch]="stage">
+  <div class="addCart" (click)="addToCart()" *ngSwitchCase="'add'">
+    <span class="text">Adicionar</span>
+    <i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>
+  </div>
+  <div class="waiting" *ngSwitchCase="'wait'">
+    <span class="text">Aguarde</span>
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+  </div>
+  <div class="success" *ngSwitchCase="'success'">
+    <span class="text">Adicionado</span>
+    <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+  </div>
+</div>

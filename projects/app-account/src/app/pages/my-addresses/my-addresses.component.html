@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="contentPage">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <span class="text">Meus Endereços</span>
+      </div>
+    </div>
+    <!-- <div class="cnt">
+      <div *ngIf="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando!</div>
+      <div *ngIf="!loading">
+        <div class="contentAddress">
+          <div class="boxAddress add" routerLink="/add-new-address">
+            <div class="addNew">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <div class="txt">Adicionar novo endereço</div>
+            </div>
+          </div>
+          <div class="boxAddress" *ngFor="let item of objAddress?.address">
+            <div class="box">
+              <div class="defaultAddress">
+                <span *ngIf="item?._id == addressSelected">
+                  <span>Endereço Principal</span>
+                  <small>(Entrega)</small>
+                </span>
+              </div>
+              <div class="centerAddr">
+                <div class="nickName">{{item?.nickname}}</div>
+                <div class="address">
+                  <span>{{item?.address}}, {{item?.number}}, {{item?.neighborhood}}</span>
+                  <small *ngIf="item?.complement">({{item?.complement}})</small>
+                  <span>{{item?.city}}-{{item?.state}}</span>
+                </div>
+                <div class="zipCode">CEP {{item?.zipCode}}</div>
+              </div>
+              <div class="options">
+                <span class="txt" (click)="deleteAddress(item._id)">Excluir</span>
+                <span class="sep"> | </span>
+                <span class="txt" (click)="selectAddress(item)">Tornar pricipal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div> -->
+  <div class="working" style="text-align: center; font-size: 18px;">Em Desenvolvimento</div>
+  </div>
+</div>

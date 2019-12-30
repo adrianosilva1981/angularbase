@@ -1,0 +1,61 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.cntAll {
+    padding: 20px;
+    .cntCard {
+        display: flex;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        .card {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 300px;
+            cursor: pointer;
+            padding: 20px 10px;
+            margin-right: 20px;
+            border: none;
+            box-shadow: 0px 0px 10px 0px @grey2;
+            flex-direction: inherit;
+            &.active {
+                box-shadow: 0px 0px 10px 0px @blue2;
+            }
+            .cntBtn {
+                display: flex;
+                align-items: center;
+                .icon {
+                    width: 40px;
+                    height: 40px;
+                    &.tabtable {
+                        background: url('/assets/img/icon_table.png') no-repeat center center;
+                    }
+                    &.tabtree {
+                        background: url('/assets/img/icon_tree.png') no-repeat center center;
+                    }
+                    &.tabpre {
+                        background: url('/assets/img/icon_preregister.png') no-repeat center center;
+                    }
+                    &.tabinactive {
+                        background: url('/assets/img/icon_inactive.png') no-repeat center center;
+                    }
+                    &.tabmanager {
+                        background: url('/assets/img/icon_manager.png') no-repeat center center;
+                    }
+                    &.tabmatriz{
+                        background: url('/assets/img/icon_matriz.png') no-repeat center center;
+                    }
+                }
+                .text {
+                    flex: 1;
+                    margin-left: 10px;
+                    @media screen and (max-width: 900px) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .cntComp {}
+}

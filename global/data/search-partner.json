@@ -1,0 +1,23 @@
+{
+    "id_default": 1,
+    "config": [
+        {
+            "label": "Produtos",
+            "value": {
+                "id": 1,
+                "type": "router",
+                "redirect": "REPLACE_SUBDOMAIN_OWNER/department/product",
+                "placeholder": "Buscar produtos"
+            }
+        },
+        {
+            "label": "Servicos",
+            "value": {
+                "id": 2,
+                "type": "router",
+                "redirect": "REPLACE_SUBDOMAIN_OWNER/department/service",
+                "placeholder": "Buscar serviços"
+            }
+        }
+    ]
+}

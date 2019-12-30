@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="content-page">
+    <div class="balance">
+      <div class="text">Saldo</div>
+      <ngu-carousel [inputs]="carouselOne">
+        <ngu-item NguCarouselItem *ngFor="let item of extractData.amount">
+          <div class="value" [innerHTML]="item.balance | conversion : item.initials"></div>
+        </ngu-item>
+        <button NguCarouselPrev class='d-none'>&lt;</button>
+        <button NguCarouselNext class='d-none'>&gt;</button>
+      </ngu-carousel>
+      <div class="btns" (libClickOutside)="openAdd = false">
+        <span class="input" [ngClass]="{'show':openAdd}">
+          <i class="symbol-money">R$</i>
+          <input type="text" class="add-input" (keyup.enter)="openCheckout()" #addCredit [(ngModel)]="insertValue" pInputText pKeyFilter="money">
+          <i class="material-icons" (click)="openCheckout()">
+            add_circle
+          </i>
+        </span>
+        <div class="add" (click)="openInput()">Adicionar</div>
+        <div class="rescue" (click)="openWithdraw()">Resgatar</div>
+      </div>
+    </div>
+    <div class="cnt">
+      <p-dataScroller [value]="extractDataFiltered" [rows]="50">
+        <ng-template let-item pTemplate="item">
+          <mgl-timeline>
+            <mgl-timeline-entry>
+              <mgl-timeline-entry-header>
+                <div class="date">{{item.date}}</div>
+                {{ item.typeOperation=== 'D'? '-': '+' }} {{item.symbol}} {{item.amount}}
+              </mgl-timeline-entry-header>
+              <mgl-timeline-entry-content>
+                <div class="history">
+                  {{item.history}}
+                </div>
+              </mgl-timeline-entry-content>
+              <mgl-timeline-entry-dot size="15" [color]="item.typeOperation"></mgl-timeline-entry-dot>
+            </mgl-timeline-entry>
+          </mgl-timeline>
+        </ng-template>
+      </p-dataScroller>
+      <div class="not-found" *ngIf="extractDataFiltered.length === 0">Nenhuma movimentação encontrada</div>
+      <div class="filters">
+        <div class="form-group">
+          <input class="form-control" [(ngModel)]="filter.search" (keyup.enter)="setFilter()" (blur)="setFilter()" type="text" placeholder="Buscar">
+          <i class="material-icons">
+            search
+          </i>
+        </div>
+        <div class="form-group">
+          <label>Movimentação</label>
+          <p-dropdown [options]="movimentation" styleClass="extract" dropdownIcon="fas fa-caret-down" (onChange)="setFilter()" [(ngModel)]="filter.movimentation"></p-dropdown>
+        </div>
+        <div class="form-group">
+          <label>Período</label>
+          <p-dropdown [options]="period" styleClass="extract" dropdownIcon="fas fa-caret-down" (onChange)="setFilter()" [(ngModel)]="filter.period"></p-dropdown>
+        </div>
+        <div class="form-group">
+          <label>Moeda</label>
+          <p-dropdown [options]="currency" styleClass="extract" dropdownIcon="fas fa-caret-down" (onChange)="setFilter()" [(ngModel)]="filter.currency"></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

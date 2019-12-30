@@ -1,0 +1,61 @@
+<div class="box-steps contentStepLogin" [ngClass]="{'box-log-step-logged':userData}">
+  <div class="userNotLogged" *ngIf="!userData">
+    <div class="userExists center">
+      <button type="button" (click)="openLogin()" class="btnLogin btn btn-lg">Já sou cadastrado</button>
+    </div>
+    <div class="userNotExists">
+      <div class="contentForm">
+        <div class="tlt">Ainda não sou assinante</div>
+        <div class="subTlt">Preencha o formulário abaixo para se cadastrar</div>
+        <form [formGroup]="registerForm" novalidate (ngSubmit)="submitRegisterForm()">
+
+          <div class="form-group">
+            <label>* Nome</label>
+            <input type="text" class="form-control" formControlName="name">
+            <span class="errorFormField" *ngIf="registerForm.controls.name.hasError('minlength')">* Nome deve conter no minimo 5 letras</span>
+          </div>
+          <div class="form-group">
+            <label>* E-mail</label>
+            <input type="email" class="form-control" formControlName="email">
+            <span class="errorFormField" *ngIf="registerForm.controls.email.hasError('pattern')">* Email inválido</span>
+          </div>
+          <div class="form-group">
+            <label>* Telefone</label>
+            <input type="tel" [textMask]="{mask: maskPhone}" class="form-control" formControlName="phone">
+            <span class="errorFormField" *ngIf="registerForm.controls.phone.hasError('pattern')">* Telefone Inválido</span>
+          </div>
+          <div class="form-group">
+            <label>* Senha</label>
+            <input type="password" class="form-control" formControlName="password">
+            <span class="errorFormField" *ngIf="registerForm.controls.password.hasError('minlength')">* Senha deve conter no minimo 6 caracteres</span>
+            <span class="errorFormField" *ngIf="registerForm.controls.password.hasError('mismatch')">* Senha e Confirmação de senha não conferem</span>
+          </div>
+          <div class="form-group">
+            <label>* Confirmação de senha</label>
+            <input type="password" class="form-control" formControlName="conf_password">
+            <span class="errorFormField" *ngIf="registerForm.controls.conf_password.hasError('minlength')">* Confirmação de senha deve conter no minimo 6 caracteres</span>
+            <span class="errorFormField" *ngIf="registerForm.controls.conf_password.hasError('mismatch')">* Senha e Confirmação de senha não conferem</span>
+          </div>
+          <div class="form-group center contentBtnRegister">
+            <button [disabled]="!registerForm.valid || cepAddresEmpty" type="submit" class="btnRegister btn btn-lg">Registrar-se</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="userLogged" *ngIf="userData">
+    <div class="info">
+      <div class="welcome">
+        <div class="text">Bem Vindo! (a)</div>
+        <div class="name">{{userData.name}}</div>
+      </div>
+      <div class="photo">
+        <img [src]="userData?.photoUrl ? userData?.photoUrl : 'global/img/image_default.png'">
+      </div>
+      <div class="logout">
+        <span>Não é você?</span>
+        <span class="btnLogout">Entrar com outra conta</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="container-fluid">
+  <div class="row mx-3">
+    <h6>
+      <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+    </h6>
+  </div>
+
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>
+        Dashboard
+      </h4>
+    </div>
+  </div>
+
+  <div class="row justify-content-center py-5 mx-1">
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect('shops')">
+        <div class="col-12">
+          Lojas
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{shops === -1?'Carregando':shops}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect('suppliers')">
+        <div class="col-12">
+          Fornecedores
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{suppliers === -1?'Carregando':suppliers}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect('gift-card')">
+        <div class="col-12">
+          Guia Smarts
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          {{giftCard === -1?'Carregando':giftCard}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect('products')" >
+        <div class="col-12">
+          Produtos: {{
+          products.product=== -1 ? 'Carregando' : products.product }}
+        </div>
+        <div class="w-100">
+        </div>
+        <div class="col-12">
+          Hyper Produtos: {{
+          products.hyper_product === -1 ? 'Carregando': products.hyper_product
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect('users')"  >
+        <div class="col-12">
+          Usuários: {{
+          users.normal === -1 ? 'Carregando': users.normal
+          }}
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          Primes: {{
+          users.prime === -1 ?'Carregando': users.prime
+          }}
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          Associados: {{
+          users.associate === -1 ? 'Carregando': users.associate
+          }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container" (click)="redirect('services')"  >
+        <div class="col-12">
+          Serviços: {{
+          services.service === -1?'Carregando':services.service
+          }}
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12">
+          Hyper Serviços: {{
+          services.hyper_service === -1?'Carregando':services.hyper_service
+          }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

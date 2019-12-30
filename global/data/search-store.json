@@ -1,0 +1,32 @@
+{
+    "id_default": 1,
+    "config": [
+        {
+            "label": "Produtos",
+            "value": {
+                "id": 1,
+                "type": "router",
+                "redirect": "/department/product",
+                "placeholder": "Buscar produtos"
+            }
+        },
+        {
+            "label": "Servicos",
+            "value": {
+                "id": 2,
+                "type": "router",
+                "redirect": "/department/service",
+                "placeholder": "Buscar serviços"
+            }
+        },
+        {
+            "label": "Profissionais",
+            "value": {
+                "id": 3,
+                "type": "router",
+                "redirect": "/department/professional",
+                "placeholder": "Buscar profissionais"
+            }
+        }
+    ]
+}

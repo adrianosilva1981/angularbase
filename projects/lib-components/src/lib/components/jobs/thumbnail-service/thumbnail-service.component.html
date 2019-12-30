@@ -1,0 +1,40 @@
+<div class="thumb">
+  <div class="grid">
+    <div class="box">
+      <div class="img" (click)="editThis()">
+        <img [src]="itemObject?.mediasForm.images[0]?.url" onError="src='global/img/image_default.png'">
+      </div>
+      <div class="cnt">
+        <div class="btn-add" (click)="removeThis()">
+          <i class="fas fa-trash-alt"></i>
+        </div>
+        <div class="price" (click)="editThis()">
+          <div class="value">
+            <div [innerHtml]="itemObject?.priceForm.value_cash_sale | conversion : 'BRL'"></div>
+          </div>
+          <!-- <div class="installments">
+            12x R$ 76,83 sem juros  (evt * primeOff - evt) * -1
+          </div> -->
+          <div class="othersValue">
+            <div class="cntOtherValue prime" *ngIf="itemObject?.priceForm.discount_prime > 0">
+              <span class="val" [innerHtml]="(itemObject?.priceForm.value_cash_sale * (itemObject?.priceForm.discount_prime / 100) - itemObject?.priceForm.value_cash_sale) * -1 | conversion : 'BRL'"></span>
+              <span class="type">Prime</span>
+            </div>
+            <div class="cntOtherValue associate" *ngIf="itemObject?.priceForm.discount_associate > 0">
+              <span class="val" [innerHtml]="(itemObject?.priceForm.value_cash_sale * (itemObject?.priceForm.discount_associate / 100) - itemObject?.priceForm.value_cash_sale) * -1 | conversion : 'BRL'"></span>
+              <span class="type">Smart</span>
+            </div>
+          </div>
+        </div>
+        <div class="desc" (click)="editThis()">
+          <div class="title">
+            {{itemObject.serviceForm.name | words : 5 : '...' }}
+          </div>
+          <div class="bt">
+            Editar
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.title-city {
+    color: @blue2;
+    font-size: 42px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.find {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    .box-find {
+        flex: 1.5;
+        .text {
+            padding: 5px;
+        }
+        .input {
+            position: relative;
+            .input-find {
+                border-radius: 20px;
+                min-width: 280px;
+                border: 1px solid #ccc;
+                padding: 5px 25px 5px 10px;
+                height: 38px;
+                width: 100%;
+            }
+            .fa-search {
+                position: absolute;
+                right: 15px;
+                top: 10px;
+                font-size: 16px;
+                color: #ccc;
+                cursor: pointer;
+            }
+        }
+    }
+    .company-resgistered {
+        flex: 0.8;
+        margin: 0 15px;
+        .t-green {
+            color: @green2;
+            font-weight: bold;
+        }
+        .t-blue {
+            color: @newblue2;
+        }
+    }
+    .here {
+        flex: 1;
+        background: @blue2;
+        color: white;
+        padding: 25px;
+        .here-title {
+            font-weight: bold;
+            font-size: 22px;
+        }
+        .here-text {}
+    }
+}
+
+.alphabetic-filter {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #ccc;
+    margin: 25px 0 0;
+    padding: 10px 0;
+    .txt {
+        margin: 0 25px;
+    }
+    .alphabetic {
+        .letters {
+            margin: 0 5px;
+            cursor: pointer;
+            &:hover {
+                color: @blue3;
+            }
+            &:active {
+                color: white;
+                background: @blue3;
+            }
+        }
+    }
+}

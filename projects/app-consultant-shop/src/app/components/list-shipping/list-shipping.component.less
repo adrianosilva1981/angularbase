@@ -1,0 +1,122 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fa {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+    }
+    .contentAllShipping {
+        .lineSupplier {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            border-bottom: 1px solid @grey3;
+            margin-bottom: 10px;
+            .cntItens {
+                flex: 1.5;
+                padding: 10px;
+                min-width: 280px;
+                .deliveredBy {
+                    margin-bottom: 20px;
+                    span {
+                        margin-right: 5px;
+                        font-weight: 700;
+                        &:last-child {
+                            color: @orange1;
+                        }
+                    }
+                }
+                .listItens {
+                    .item {}
+                }
+            }
+            .cntValues {
+                flex: 1;
+                padding: 10px 20px;
+                min-width: 280px;
+                border-left: 1px solid @grey3;
+                min-height: 50px;
+                .cntRadio {
+                    display: flex;
+                    align-items: center;
+                    i {
+                        font-size: 18px;
+                        color: @orange1;
+                        display: inline-block;
+                    }
+                    span {
+                        margin-left: 5px;
+                        display: inline-block;
+                        &:last-child {
+                            margin-left: 15px;
+                            color: @green1;
+                            font-weight: 700;
+                        }
+                    }
+                    .combine {
+                        margin-left: 15px;
+                        color: @green1;
+                        font-weight: 700;
+                    }
+                    .tel {
+                        margin-left: 15px;
+                        div {
+                            display: inline;
+                        }
+                    }
+                }
+                .cntMoreSipping {
+                    padding: 20px 20px 0px 25px;
+                    span {
+                        color: @newblue3;
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .amoutShipping {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 50px;
+            .amout {
+                padding: 10px;
+                span {
+                    &:first-child {
+                        text-transform: uppercase;
+                    }
+                    &:last-child {
+                        margin-left: 40px;
+                        color: @blue1;
+                        font-weight: 700;
+                        font-size: 25px;
+                    }
+                }
+            }
+        }
+
+        .noShipping{
+            font-size: 18px;
+            color: @grey6;
+            text-align: center;
+        }
+    }
+}

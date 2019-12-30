@@ -1,0 +1,81 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.photoGallery {
+    max-width: 300px;
+    .contentImage {
+        img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+            display: inline-block;
+            border: 1px solid @grey2;
+        }
+    }
+    .galeryOptions {
+        padding: 10px;
+        .contentPhotoGallery {
+            &.unique {
+                opacity: 0;
+                height: 1px;
+            }
+            background: #fff;
+            .tumb {
+                border: 1px solid @grey2;
+                cursor: pointer;
+                outline: none;
+                background: #efefef;
+                width: 50px;
+                height: 50px;
+                overflow: hidden;
+                filter: grayscale(100%);
+                &:hover, &.selected {
+                    filter: grayscale(0%);
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: top;
+                    display: inline-block;
+                }
+            }
+            .buttonPrev {
+                outline: none;
+                position: absolute;
+                top: 25px;
+                left: -20px;
+                border: none;
+                background: transparent;
+                .fa {
+                    font-size: 20px;
+                    color: @grey5;
+                    opacity: 0.8;
+                }
+                &:hover {
+                    .fa {
+                        opacity: 1;
+                    }
+                }
+            }
+            .ButtonNex {
+                outline: none;
+                position: absolute;
+                top: 25px;
+                right: -20px;
+                border: none;
+                background: transparent;
+                .fa {
+                    font-size: 20px;
+                    color: @grey5;
+                    opacity: 0.8;
+                }
+                &:hover {
+                    .fa {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+<app-consultant-adm-box-info [objInfo]="info"></app-consultant-adm-box-info>
+<form class="form" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Selecione as opções de Redes Sociais</label>
+    <select class="form-control" required formControlName="network" (change)="filterUsers()">
+      <option value="Facebook">Facebook</option>
+      <option value="Instagram">Instagram</option>
+    </select>
+  </div>
+
+
+  <div *ngIf="users.length">
+    <label>Selecione os usuários</label>
+    <div class="users">
+      <div class="user-item" *ngFor="let user of users">
+        <span (click)="user.select = !user.select">
+          <div class="check y" *ngIf="user.select"><i class="fas fa-check"></i></div>
+          <div class="check n" *ngIf="!user.select"><i class="fas fa-times"></i></div>
+          <div class="image" [ngStyle]="{ 'border-color': user.select ? '#8BBF27': '#F24E86' }">
+            <img [src]="('https://' + user.photoUrl)" width="100" *ngIf="user.photoUrl">
+            <img src="assets/img/image_default.png" width="100" *ngIf="!user.photoUrl">
+          </div>
+          <div class="description">
+            <div class="name">{{ user.name }}</div>
+            <div class="network">{{ user.follower }} Seguidores</div>
+            <div class="city">{{ user.city }}</div>
+          </div>
+        </span>
+      </div>
+    </div>
+
+    <div>
+      <p-table [value]="getUsersSelect()">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Nome</th>
+            <th>Nr° seguidores</th>
+            <th>Localização</th>
+            <th><div [ngClass]="{ 'error': errorNrError }">Nr° de compartilhamento</div></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr> <!-- *ngIf="user.select" -->
+            <td>{{ user.name }}</td>
+            <td>{{ user.follower }}</td>
+            <td>{{ user.city }}</td>
+            <td>
+              <input type="number" [value]="user.nrShare" (blur)="nrSharedUser(user, $event.target.value)">
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <div class="uploadImage">
+      <div class="image" *ngIf="registerForm?.controls.urlBanner.value !== ''">
+        <img [src]="registerForm?.controls.urlBanner.value">
+      </div>
+      <div class="cntButtonAdd">
+        <div class="iconUpload" *ngIf="!registerForm?.controls.urlBanner.value.length"><i class="fas fa-long-arrow-alt-up"></i></div>
+        <lib-components-upload-image [buttonText]="txtImage" [width]="'600'" [height]="'400'" [urlRequest]="urlRequest"
+          [pathBucket]="pathBucket" (onUpload)="onUpload($event)"></lib-components-upload-image>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea rows="8" class="form-control" required formControlName="description"></textarea>
+      <span class="errorFormField" *ngIf="registerForm.controls.description.hasError('minlength')">* Mínimo 20
+        caracteres</span>
+    </div>
+
+    <button class="btnRegister" type="submit">Salvar</button>
+  </div>
+</form>

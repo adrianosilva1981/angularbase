@@ -1,0 +1,137 @@
+<div class="content">
+
+  <div class="extractPoint" *ngIf="!viewextract">
+
+    <div *ngIf="!viewextractok">
+      <div class="empty">Nenhuma pontuação encontrada!</div>
+    </div>
+
+    <div *ngIf="viewextractok">
+
+      <div class="contentCard">
+        <div class="card hover" (click)="card('line')" [ngClass]="{'active' : myline}">
+          <div class="icon tabline"></div>
+          <div class="text">Ver meu extrato como Timeline</div>
+        </div>
+        <div class="card hover" (click)="card('table')" [ngClass]="{'active' : mytable}">
+          <div class="icon tabtable"></div>
+          <div class="text">Ver meu extrato como Tabela</div>
+        </div>
+      </div>
+
+      <div class="contentline" *ngIf="myline">
+
+        <div class="balance">
+          <div style="display: flex; max-width: 500px; margin: 0 auto; flex-wrap: wrap;">
+            <div style="flex:1; min-width: 200px;">
+              <div class="text">Saldo Total Conta Corrente</div>
+              <div class="value" [innerHTML]="total_points | conversion : 'BRL'"></div>
+            </div>
+            <div style="flex:1;">
+              <div class="text">Saldo Disponível</div>
+              <div [ngClass]="{'value': +release_points == 0, 'value-green' : +release_points > 0, 'value-red': +release_points < 0}" [innerHTML]="release_points | conversion : 'BRL'"></div>
+            </div>
+          </div>
+          <div class="btns">            
+            <div class="rescue" (click)="rescue()">Solicitar Saque</div>
+          </div>
+          <div style="padding: 2px;"></div>
+        </div>
+
+        <div class="cnt">
+          <p-dataScroller [value]="lines" [rows]="10">
+            <ng-template let-item pTemplate="item">
+              <mgl-timeline>
+                <mgl-timeline-entry>
+                  <mgl-timeline-entry-header>
+                    <div class="date">{{item.date_created}}</div>
+                    {{ item.type_operation=== 'D'? '-': '+' }}
+                    <span class="value" [innerHTML]="item.point | conversion : 'BRL'"></span>
+                  </mgl-timeline-entry-header>
+                  <mgl-timeline-entry-content>
+                    <div class="history">
+                      {{item.description}}
+                    </div>
+                  </mgl-timeline-entry-content>
+                  <mgl-timeline-entry-dot size="15" [color]="item.type_operation"></mgl-timeline-entry-dot>
+                </mgl-timeline-entry>
+              </mgl-timeline>
+            </ng-template>
+          </p-dataScroller>
+          
+          <div class="btnMore" (click)="loadMore();">Ver mais +</div>
+
+          <div class="not-found" *ngIf="lines.length === 0">Nenhuma movimentação encontrada</div>
+          <div class="filters">
+            <!-- <div class="form-group">
+              <input class="form-control" [(ngModel)]="search" (keyup.enter)="setFilter()" (blur)="setFilter()" type="text" placeholder="Buscar">
+              <i class="material-icons">
+                search
+              </i>
+            </div> -->
+            <div class="form-group">
+              <label>Movimentação</label>
+              <p-dropdown [options]="movimentation" styleClass="extract" dropdownIcon="fas fa-caret-down" (onChange)="setFilter()" [(ngModel)]="type_balance"></p-dropdown>
+            </div>
+            <div class="form-group">
+              <label>Período</label>
+              <p-dropdown [options]="period" styleClass="extract" dropdownIcon="fas fa-caret-down" (onChange)="setFilter()" [(ngModel)]="days_period"></p-dropdown>
+            </div>
+            <div class="form-group">
+              <label>Bônus</label>
+              <p-dropdown [options]="bonus" styleClass="extract" dropdownIcon="fas fa-caret-down" (onChange)="setFilter()" [(ngModel)]="type_bonus"></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contentTable" *ngIf="mytable">
+
+      <div class="card">
+        <div class="content">
+          <p>Movimentações</p>
+
+          <!-- [rowsPerPageOptions]="rowsperpage" -->
+          <div *ngIf="table?.length <= 0" style="width: 100%; text-align: center;">Nenhuma movimentação encontrada</div>
+          <p-table #dt styleClass="classetable" [value]="table" [responsive]="true" [paginator]="false" [rows]="rowsperpage" [globalFilterFields]="['source_username','source_name','','date_created','type_operation','bonus_type','']"
+            *ngIf="table?.length > 0">
+            <ng-template pTemplate="caption">
+              <div style="text-align: right">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input type="text" pInputText size="50" placeholder=" Pesquisar" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  style="width:200px !important; padding: 0 !important; margin: 0!important;">
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:8em">Código</th>
+                <th style="width:18em">Nome</th>
+                <th>Descrição</th>
+                <th style="width:10em">Data</th>
+                <th style="width:5em">Tipo</th>
+                <!-- <th style="width:8em">Bônus</th> -->
+                <th style="width:10em">Valor</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-table>
+              <tr>
+                <td>{{table.source_username}}</td>
+                <td>{{table.source_name}}</td>
+                <td>{{table.description}}</td>
+                <td>{{table.date_created}}</td>
+                <td [ngClass]="{'credit': table.type_operation==='C', 'debit' : table.type_operation!=='C'}">{{status[table.type_operation]}}</td>
+                <!-- <td>{{table.bonus_type}}</td> -->
+                <td [innerHtml]="table.point | conversion : 'BRL'"></td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <div class="btnMore" (click)="loadMore();">Ver mais +</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

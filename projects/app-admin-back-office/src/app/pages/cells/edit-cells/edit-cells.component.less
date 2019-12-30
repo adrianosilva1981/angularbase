@@ -1,0 +1,59 @@
+@import 'css/global-variables.less';
+.editcells {
+    .content_cell {
+        padding: 15px;
+        .content_cells {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 15px;
+            .card {
+                margin: 10px;
+                flex: 1;
+                padding: 5px 15px 15px 15px;
+                border: none;
+                box-shadow: 0px 0px 10px 0px @grey2;
+                flex-direction: inherit;
+                min-width: 280px;
+                justify-content: center;
+                .content_button{
+                    margin: 10px 0 0 0;
+                    display: flex;
+                    .btn{
+                        flex: 1;
+                        max-width: 200px;
+                        padding: 5px 15px;
+                        margin: 5px;
+                        color: white;
+
+                        &.edit{
+                            background: @blue1;
+                        }
+                        &.del{
+                            background: @red1;
+                        }
+                    }
+                }
+                .content {
+                    padding: 5px;
+                    width: 100%;                    
+                    .info {
+                        padding-top: 10px;
+                        color: @grey6;
+                        font-size: 12px;
+                        .titles {
+                            font-size: 15px;
+                            font-weight: 700;
+                            color: @blue1;
+                        }                        
+                        .number {
+                            color: @blue1;
+                            font-size: 20px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

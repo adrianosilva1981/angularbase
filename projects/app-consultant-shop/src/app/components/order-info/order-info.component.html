@@ -1,0 +1,109 @@
+<div class="contentItem">
+  <div class="contentInfo">
+    <div class="name">
+      <div class="tlt">
+        Item
+        <span [ngSwitch]="orderItem?.type_item">
+          <span *ngSwitchCase="'product'" class="fas fa-box"></span>
+          <span *ngSwitchCase="'service'" class="far fa-building"></span>
+        </span>
+      </div>
+      <div class="cnt">
+        <!-- <span [ngSwitch]="orderItem?.type_item"> -->
+        <!-- <img *ngSwitchCase="'product'" [src]="orderItem?.photos[0]?.url ? orderItem?.photos[0]?.url : '/assets/img/image_default.png'"> -->
+        <img [src]="orderItem?.image ? orderItem?.image : '/assets/img/image_default.png'">
+        <!-- <img *ngSwitchCase="'service'" [src]="orderItem?.image ? orderItem?.image : '/assets/img/image_default.png'"> -->
+        <!-- </span> -->
+        <div class="txt">
+          <div class="name">{{ orderItem?.name }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="price">
+      <div class="tlt">Preço</div>
+      <div class="cnt">
+        <span [innerHtml]="orderItem?.item_value | conversion : 'BRL'"></span>
+      </div>
+    </div>
+    <div class="qty">
+      <div class="tlt">Quantidade</div>
+      <div class="cnt">{{ orderItem?.quantity }}</div>
+    </div>
+    <div class="amount">
+      <div class="tlt">Total</div>
+      <div class="cnt">
+        <span [innerHtml]="orderItem?.item_value * orderItem?.quantity | conversion : 'BRL'"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contentLine">
+    <div class="border" *ngIf="objAcompanhamento?.length > 0">
+      <div class="contentStatus">
+        <div class="itemShop">
+          <div class="graph">
+            <div class="circle active">
+              <i class="fa"></i>
+            </div>
+            <div class="trace active"></div>
+          </div>
+          <div class="text">
+            <span>
+              <span>Gerado</span>
+            </span>
+          </div>
+        </div>
+        <div class="itemShop" *ngFor="let item of objAcompanhamento; let idx = index">
+          <div class="graph">
+            <div class="circle" [class.active]="item?.acompanhamento >= (idx + 1) || idx === 0">
+              <i class="fa" [ngClass]="item?.icon"></i>
+            </div>
+            <div class="trace" [class.active]="item?.acompanhamento >= (idx + 1) || finalizado"></div>
+          </div>
+          <div class="text">
+            <span [ngSwitch]="item?.status">
+              <span *ngSwitchCase="'ES'">Estornado</span>
+              <span *ngSwitchCase="'RT'">Retornado</span>
+              <span *ngSwitchCase="'ET'">Em Transito</span>
+              <span *ngSwitchCase="'NF'">Nota Fiscal Emitida</span>
+              <span *ngSwitchCase="'PA'">Pedido Autorizado</span>
+              <span *ngSwitchCase="'PE'">Pedido Efetuado</span>
+              <span *ngSwitchCase="'C'">Cancelado</span>
+              <span *ngSwitchCase="'AP'">Aguardando pagamento</span>
+              <span *ngSwitchCase="'PC'">Pagamento confirmado</span>
+              <span *ngSwitchCase="'PR'">Pagamento recusado</span>
+            </span>
+          </div>
+        </div>
+        <div class="itemShop">
+          <div class="graph">
+            <div class="circle" [class.active]="finalizado">
+              <i class="fa" [ngClass]="item?.icon"></i>
+            </div>
+          </div>
+          <div class="text">
+            <span>Pedido finalizado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contentLine">
+    <div class="border">
+      <span>
+        Fornecedor: {{ orderItem?.fantasyname }}
+        <br />
+        E-mail: {{ orderItem?.email }}
+      </span>
+    </div>
+  </div>
+  <div *ngFor="let item of objAcompanhamento">
+    <div *ngIf="item?.trackingCode !== ''" class="contentButton">
+      <div class="btn buttonDetails" (click)="tracking(item.trackingCode);">Rastrear pedido</div>
+    </div>
+  </div>
+  <br>
+  <!-- <div class="contentButton">
+      <div class="btn buttonDetails" (click)="manager();">Gerenciar Pedidos</div>
+    </div> -->
+</div>

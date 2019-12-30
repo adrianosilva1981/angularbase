@@ -1,0 +1,46 @@
+<div class="contentPage">
+  <div class="mainBox">
+    <div class="titleBox">
+      Validar Cupom Smart
+    </div>
+    <div class="content">
+      <form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+        <div>
+          <div class="form-group">
+            <label>Código do Cupom Smart</label>
+            <input type="text" class="form-control" formControlName="voucher" [textMask]="{ mask: VOUCHERMASK }" required placeholder="0000-0000-0000">
+            <!-- formControlName="title" -->
+            <!-- <span class="errorFormField" *ngIf="registerForm?.get('productForm.title').hasError('minlength')">*
+                  Minimo
+                  6 caracteres</span> -->
+          </div>
+          <div class="cntBtnSubmit">
+            <button class="btnSubmit" type="submit">Validar</button>
+          </div>
+        </div>
+
+        <div class="tQr">Ler qrCode </div>
+
+        <div class="qr-sacanner">
+          <div class="loader-qr-scanner" *ngIf="load">
+            <span>
+              <p-progressSpinner [strokeWidth]="'3'"></p-progressSpinner>
+            </span>
+          </div>
+          <div class="scanner">
+            <qr-scanner [debug]="false" [canvasWidth]="500" [canvasHeight]="500" [stopAfterScan]="true" [updateTime]="500"
+              (capturedQr)="capturedQr($event)">
+            </qr-scanner>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<p-confirmDialog #cd>                                                                       
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" label="Sim" (click)="cd.accept()"></button>
+    <button type="button" pButton icon="pi pi-times" label="Não" (click)="cd.reject()"></button>
+  </p-footer>
+</p-confirmDialog>

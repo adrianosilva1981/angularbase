@@ -1,0 +1,159 @@
+/* You can add global styles to this file, and also import other style files */
+
+.navi {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    background: #d7e0e4;
+    z-index: 2;
+}
+
+.userTable {
+    .ui-table-auto-layout>.ui-table-wrapper {
+        min-height: 150px;
+        min-width: 850px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navi {
+        height: 100vh;
+        width: 180px;
+        position: fixed;
+        background: #d7e0e4;
+        z-index: 2;
+    }
+    .userTable {
+        .ui-table-auto-layout>.ui-table-wrapper {
+            min-height: 50px;
+            min-width: 450px;
+        }
+    }
+}
+
+.ui-table .ui-table-tbody > tr {
+    background-color: inherit;
+}
+
+.menu-class {
+    height: 100%;
+    .ui-state-active {
+        background-color: transparent;
+    }
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+
+@import 'css/global-variables.less';
+.navi {
+    height: 100vh;
+    width: 250px;
+    position: fixed;
+    background: #d7e0e4;
+    z-index: 2;
+}
+
+.userTable {
+    .ui-table-auto-layout>.ui-table-wrapper {
+        min-height: 150px;
+        min-width: 850px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .navi {
+        height: 100vh;
+        width: 180px;
+        position: fixed;
+        background: #d7e0e4;
+        z-index: 2;
+    }
+    .userTable {
+        .ui-table-auto-layout>.ui-table-wrapper {
+            min-height: 50px;
+            min-width: 450px;
+        }
+    }
+}
+
+.menu-class {
+    // mobile
+    .ui-sidebar-left.ui-sidebar-active, .ui-sidebar-right.ui-sidebar-active {
+        background: @blue1;
+    }
+    .ui-button-icon-only .ui-button-icon-left {
+        color: @orange1;
+        // top: -20px;
+        // left: 20px;
+    }
+    .ui-menuitem-icon, .pi {
+        color: @orange1;
+        margin-right: 15px;
+    }
+    .ui-panelmenu {
+        .ui-state-default {
+            border: none;
+        }
+        // .ui-panelmenu-header.ui-state-active, 
+        .ui-panelmenu-header.ui-state-active {
+            background: @blue2;
+            a {
+                background: @blue2;
+                border: solid;
+                border-radius: 5px;
+                border-top: 0;
+                border-bottom: 0;
+                border-right: 0;
+                border-color: @orange1;
+            }
+        }
+        .ui-panelmenu-header-link {
+            font-size: 18px;
+            color: @grey1 !important;
+            background: @blue1;
+            height: 50px;
+            vertical-align: middle;
+        }
+        .ui-panelmenu-content {
+            background: @blue1;
+            border: none;
+            padding-left: 20px;
+            .ui-menuitem-link {
+                color: @grey1 !important;
+            }
+            .ui-menuitem-link {
+                background: @blue1;
+            }
+            .ui-state-active {
+                background: @blue2;
+                border: solid;
+                border-top: 0;
+                border-bottom: 0;
+                border-right: 0;
+                border-color: @orange1;
+            }
+        }
+    }
+}
+
+app-admin-youhubshop-users,app-admin-youhubshop-services,app-admin-youhubshop-info-products,app-admin-youhubshop-suppliers, 
+app-admin-youhubshop-details-shop,app-admin-youhubshop-shops, app-admin-youhubshop-dashboard, app-admin-youhubshop-products, 
+app-admin-youhubshop-report-payments, app-admin-youhubshop-products-by-supplier, app-admin-youhubshop-images, pp-admin-youhubshop-report-payments,
+app-admin-youhubshop-hubmix-details,app-admin-youhubshop-commissions, app-admin-youhubshop-payments, app-admin-youhubshop-performance,
+app-admin-youhubshop-gift-card,app-admin-youhubshop-user-details {
+    width: 100%;
+}
+
+.myBreadCrumb {
+    .ui-breadcrumb {
+        background: transparent !important;
+        border: unset !important;
+        .ui-menuitem {
+            background: transparent !important;
+        }
+        .ui-state-active {
+            background: unset !important;
+        }
+    }
+}

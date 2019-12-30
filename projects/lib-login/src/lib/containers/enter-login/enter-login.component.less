@@ -1,0 +1,76 @@
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+.contentPage {
+    background: #fff;
+    max-width: 445px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    // .boxShadow(0 1px 1px 0 @grey3);
+    .boxLogin {
+        width: 100%;
+        min-height: 350px;
+        overflow: hidden;
+        position: relative;
+        .fillEmail {
+            position: absolute;
+            width: 100%;
+            top: 0px;
+            right: 0px;
+            padding: 40px;
+            transition: all .3s ease-in-out;
+            &.showMe {
+                right: 0px;
+            }
+            &.hideMe {
+                right: 1800px;
+            }
+            .logTitle {
+                color: @grey7;
+                font-size: 15.5px;
+                margin-bottom: 30px;
+                text-align: center;
+            } //logTitle
+            .contentNext {
+                padding: 50px 0px;
+                text-align: center;
+                .btn {
+                    padding: 10px 40px;
+                    background: @yellow1;
+                    color: #fff;
+                    text-transform: uppercase;
+                    border: 1px solid transparent;
+                    &:disabled {
+                        background: @grey3;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+            .link {
+                font-size: 14px;
+                text-align: center;
+                a {
+                    color: @blue1;
+                    cursor: pointer;
+                }
+            }
+        } //fillEmail
+        .secondStep {
+            position: relative;
+            width: 100%;
+            top: 0px;
+            left: 1800px;
+            padding: 0 40px;
+            transition: all .3s ease-in-out;
+            &.showMe {
+                left: 0px;
+            }
+            &.hideMe {
+                left: 1800px;
+            }
+        }
+        //secondStep
+    } //.boxLogin
+}

@@ -1,0 +1,106 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.contentPage {
+    margin: 5px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fa {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+    }
+    .cnt {
+        .cntSearch {
+            max-width: 400px;
+            position: relative;
+            border: 1px solid @grey4;
+            .radius(20px);
+            padding: 7px 40px 6px 20px;
+            height: 38px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            .sInput {
+                width: 100%;
+                position: relative;
+                border: none;
+                outline: none;
+            }
+            .sIcon {
+                position: absolute;
+                top: 4px;
+                right: 12px;
+                padding: 5px;
+                color: @grey4;
+                cursor: pointer;
+                .fa {
+                    font-size: 14px;
+                }
+            }
+        }
+        .cntTable {
+            margin-top: 20px;
+            .cntResume {
+                margin-top: 20px;
+                .resume {
+                    text-align: right;
+                    font-weight: 700;
+                    .text {
+                        display: inline-block;
+                        font-size: 18px;
+                        color: @grey7;
+                    }
+                    .value {
+                        display: inline-block;
+                        min-width: 100px;
+                        font-size: 20px;
+                        color: @red1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ng2SmartTableShopOrders {
+    .fa {
+        font-size: 18px;
+    }
+    .fa-credit-card-alt, .fa-barcode, .fa-usd {
+        color: #262C34;
+    }
+    .fa-exclamation-circle {
+        color: #F97F0E;
+    }
+    .fa-check {
+        color: #6FB309;
+    }
+    .fa-eye {
+        color: #085190;
+    }
+    span {
+        &.amount {
+            font-size: 16px;
+            color: #6FB309;
+        }
+        &.hcs_amount {
+            font-size: 14px;
+            color: #F97F0E;
+        }
+    }
+}
+

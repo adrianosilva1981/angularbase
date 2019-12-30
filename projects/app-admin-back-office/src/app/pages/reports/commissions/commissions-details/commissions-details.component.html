@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <h1>{{user.name}}</h1>
+</div>
+<mat-tab-group>
+  <mat-tab label="{{tab.header}}" *ngFor="let tab of tabs">
+    <p-table [columns]="cols[tab.field]" [value]="user[tab.field]" [responsive]="true" class="table" [rows]="10" [paginator]="true" selectionMode="single"
+      #equals [globalFilterFields]="name" (onRowSelect)="onRowSelect($event)" styleClass="comissionTable">
+      <ng-template pTemplate="caption">
+        <i class="fa fa-search"></i>
+        <input type="text" pInputText size="50" placeholder="Filter" (input)="equals.filterGlobal($event.target.value, 'contains')"
+          style="width:auto">
+      </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of columns">
+            <span class="ui-column-title">{{col.header}}</span>
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </mat-tab>
+</mat-tab-group>

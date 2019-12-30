@@ -1,0 +1,58 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+
+.mat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+ .labelgender {
+   color:@grey6;
+   margin-right: 20px;
+ }
+
+.complete-register {
+  margin-top: 100px;
+  width: 100%;
+  background: #fff;
+ .contentStep{
+   margin: 0 auto;
+  max-width: 600px;
+ }
+  .contentComplete {
+    max-width: 450px;
+    margin: 0 auto;
+    text-align: center;
+    justify-items: center;
+    .inputform {
+      display: block;
+      width: 100%;
+      .readonly {
+        color: @grey6;
+      }
+    }
+    
+    .inputformflex{
+      // display: inline-flex;
+      .checktrue {
+        position: absolute;
+        color: @green1;
+        top: 10px;
+        right: 10px;
+      }
+      .checkfalse {
+        position: absolute;
+        color: @red2;
+        top: 10px;
+        right: 10px;
+      }
+      .checkload {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+  }
+}

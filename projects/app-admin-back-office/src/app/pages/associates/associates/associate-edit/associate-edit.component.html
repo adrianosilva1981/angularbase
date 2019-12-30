@@ -1,0 +1,169 @@
+<div class="container-fluid text-center">
+	<div class="col-12 jumbotron">
+		<h1>Alteração de Associados</h1>
+	</div>
+	<form [formGroup]="associateForm" novalidate>
+		<div class="row">
+			<div class="col-md-6 offset-md-3 col-12 field">
+				<label for="photo_profile">Foto de Perfil</label>
+				<br>
+				<img src="{{ photo_profile }}">
+			</div>
+			<div class="col-md-6 field">
+				<label for="name">Nome</label>
+				<br>
+				<input class="form-control" type="text" formControlName="name">
+			</div>
+			<div class="col-lg-6 col-md-6 field">
+				<label for="recognition_name">Nome de Reconhecimento</label>
+				<br>
+				<input class="form-control" type="text" formControlName="recognition_name" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-6 col-md-6 field">
+				<label for="username">Código</label>
+				<br>
+				<input class="form-control" type="text" formControlName="username" readonly>
+			</div>
+			<div class="col-lg-6 col-md-6 field">
+				<label for="email">E-mail</label>
+				<br>
+				<input class="form-control" type="text" formControlName="email">
+			</div>
+			<div class="col-lg-3 col-md-3 field">
+				<label for="status">Status</label>
+				<br>
+				<input class="form-control" type="text" formControlName="status" readonly>
+			</div>
+			<div class="col-lg-3 col-md-3 field">
+				<label for="created">Criação</label>
+				<br>
+				<input class="form-control" type="text" formControlName="created" readonly>
+			</div>
+			<div class="col-lg-3 col-md-3 field">
+				<label for="type">Tipo</label>
+				<br>
+				<p-dropdown #pddType [options]="optionsTypeAssociate" formControlName="type" [readonly]="!isAdmin" [style]="{'width':'100%'}"></p-dropdown>
+				<!-- <input class="form-control" type="text" formControlName="type" > -->
+			</div>
+			<div class="col-lg-3 col-md-3 field">
+				<label for="cnpj_cpf" *ngIf="pddType.value === 'B'">CNPJ</label>
+				<label for="cnpj_cpf" *ngIf="pddType.value === 'P'">CPF</label>
+				<br>
+				<input class="form-control" type="text" [textMask]="{mask:maskCNPJ}" formControlName="cnpj_cpf" [readonly]="!isAdmin"
+				 *ngIf="pddType.value === 'B'">
+				<input class="form-control" type="text" [textMask]="{mask:maskCPF}" formControlName="cnpj_cpf" [readonly]="!isAdmin"
+				 *ngIf="pddType.value === 'P'">
+			</div>
+			<div class="col-lg-3 col-md-3 field">
+				<label for="cellphone">Celular</label>
+				<br>
+				<input class="form-control" [textMask]="{mask:maskCel}" type="text" formControlName="cellphone" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'P'">
+				<label for="ie_rg">RG</label>
+				<br>
+				<input class="form-control" type="text" formControlName="ie_rg" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'B'">
+				<label for="ie_rg">Inscrição estadual</label>
+				<br>
+				<input class="form-control" type="text" formControlName="ie_rg" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'B'">
+				<label for="corporative_name">Razão Social</label>
+				<br>
+				<input class="form-control" type="text" formControlName="corporative_name" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'P'">
+				<label for="birthday">Data de nascimento</label>
+				<br>
+				<input class="form-control" [textMask]="{mask:maskDate}" type="text" placeholder="dd/mm/yyyy" formControlName="birthday" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'P'">
+				<label for="gender">Gênero</label>
+				<br>
+				<p-dropdown [options]="optionsGender" formControlName="gender" [readonly]="!isAdmin" [style]="{'width':'100%'}"></p-dropdown>
+			</div>
+			<div class="col-lg-3 col-md-3 field">
+				<label for="phone">Telefone</label>
+				<br>
+				<input class="form-control" type="text" formControlName="phone" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-6 col-md-6 field">
+				<label for="website">Website</label>
+				<br>
+				<input class="form-control" type="text" formControlName="website" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'P'">
+				<label for="married">Casado</label>
+				<br>
+				<p-dropdown [options]="optionsMarried" formControlName="married" [readonly]="!isAdmin" [style]="{'width':'100%'}"
+				 [(ngModel)]="married"></p-dropdown>
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'P' && married === 'S'">
+				<label for="first_holder">Segundo Titular</label>
+				<br>
+				<input class="form-control" type="text" formControlName="first_holder" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-3 col-md-3 field" *ngIf="pddType.value === 'P' && married === 'S'">
+				<label for="first_holder_document">CPF do Segundo Titular</label>
+				<br>
+				<input class="form-control" type="text" formControlName="first_holder_document" [readonly]="!isAdmin">
+			</div>
+		</div>
+		<!-- endereço -->
+		<div class="row">
+			<h3 class="col-12 jumbotron">
+				Endereço
+			</h3>
+
+			<div class="col-lg-2 col-md-2 field">
+				<label for="state">Estado</label>
+				<br>
+				<input class="form-control" type="text" formControlName="state" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-2 col-md-2 field">
+				<label for="zipcode">CEP</label>
+				<br>
+				<input class="form-control" [textMask]="{mask:maskCEP}" type="text" formControlName="zipcode" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-4 col-md-4 field">
+				<label for="city">Cidade</label>
+				<br>
+				<input class="form-control" type="text" formControlName="city" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-4 col-md-4 field">
+				<label for="neighborhood">Bairro</label>
+				<br>
+				<input class="form-control" type="text" formControlName="neighborhood" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-5 col-md-5 field">
+				<label for="street">Rua</label>
+				<br>
+				<input class="form-control" type="text" formControlName="street" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-2 col-md-2 field">
+				<label for="number">Número</label>
+				<br>
+				<input class="form-control" type="text" formControlName="number" [readonly]="!isAdmin">
+			</div>
+			<div class="col-lg-5 col-md-5 field">
+				<label for="complement">Complemento</label>
+				<br>
+				<input class="form-control" type="text" formControlName="complement" [readonly]="!isAdmin">
+			</div>
+		</div>
+	</form>
+	<br>
+	<div class="row" style="height:75px">
+		<div class="col-12">
+			<button class="btn col-5 col-md-2" [routerLink]="['/associates/associate-edit']">
+				<span>Cancelar</span>
+			</button>
+			<i class="col-2 col-md-3"></i>
+			<button class="btn col-5 col-md-2" [disabled]="!associateForm.valid" (click)="updateUser()" [ngClass]="{'green': associateForm.valid}">
+				<span>Salvar</span>
+			</button>
+		</div>
+	</div>
+</div>

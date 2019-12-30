@@ -1,0 +1,31 @@
+<div class="mainLayout">
+  <div class="contentNav">
+    <lib-navbar-nav-top></lib-navbar-nav-top>
+    <app-consultant-adm-sub-navbar></app-consultant-adm-sub-navbar>
+    <lib-components-progress-interceptor></lib-components-progress-interceptor>
+  </div>
+  <div class="contentPage">
+    <div [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-260px'}">
+      <div class="clearfix"></div>
+      <div class="container">
+        <div class="contentBreadCrumbs">
+          <lib-components-breadcrumb></lib-components-breadcrumb>
+        </div>
+      </div>
+      <div class="settings">
+        <div class="container">
+          <div class="row">
+            <div [ngClass]="dataMenu?.length > 0 ? 'col-sm-12 col-md-4 col-lg-3' : 'hidden'">
+              <app-consultant-adm-side-menu [objMenu]="dataMenu"></app-consultant-adm-side-menu>
+            </div>
+            <div [ngClass]="dataMenu?.length > 0 ? 'col-sm-12 col-md-8 col-lg-9' : 'col-sm-12'">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [ngStyle]="{'height': '260px'}"></div>
+    </div>
+    <app-consultant-adm-footer></app-consultant-adm-footer>
+  </div>
+</div>

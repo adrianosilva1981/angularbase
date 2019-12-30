@@ -1,0 +1,230 @@
+.center {
+  text-align: center;
+}
+.checkbox label:after,
+.radio label:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.checkbox .cr,
+.radio .cr {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #a9a9a9;
+  border-radius: .25em;
+  width: 1em;
+  height: 1em;
+  float: left;
+  margin-right: 0.3em;
+  margin-top: 2px;
+}
+.checkbox .cr i,
+.radio .cr i {
+  color: #00c1cb;
+}
+.radio .cr {
+  border-radius: 50%;
+}
+.radio .cr .cr-icon {
+  margin-left: 0.04em;
+}
+.checkbox + .checkbox,
+.radio + .radio {
+  margin-top: 10px;
+}
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+  position: absolute;
+  font-size: .8em;
+  line-height: 0;
+  top: 50%;
+  left: 6.5%;
+}
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+  display: none;
+}
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+  transform: scale(3) rotateZ(-20deg);
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+  transform: scale(0.8) rotateZ(0deg);
+  opacity: 1;
+}
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+  opacity: .5;
+}
+.inputPatternCall {
+  background-color: #fff;
+  height: 44px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border: none;
+  margin-top: 25px;
+}
+.inputPatternCall.active {
+  -webkit-box-shadow: 0px 0px 10px 0px #ccc;
+  -moz-box-shadow: 0px 0px 10px 0px #ccc;
+  -ms-box-shadow: 0px 0px 10px 0px #ccc;
+  -o-box-shadow: 0px 0px 10px 0px #ccc;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+.inputPatternCall:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px #ccc;
+  -moz-box-shadow: 0px 0px 10px 0px #ccc;
+  -ms-box-shadow: 0px 0px 10px 0px #ccc;
+  -o-box-shadow: 0px 0px 10px 0px #ccc;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+.inputPatternCall.disabled:hover {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+.contentModal {
+  width: 450px;
+  background-color: #fff;
+  -webkit-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 1px 18px rgba(0, 0, 0, 0.3);
+  padding: 0;
+}
+.contentModal button {
+  border: none;
+  background: transparent;
+}
+.contentModal .content {
+  padding: 0px 20px 10px;
+  background-image: -webkit-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: -moz-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: -ms-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: -o-linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  background-image: linear-gradient(0deg, rgba(181, 148, 137, 0.2), rgba(208, 244, 251, 0.2));
+  width: 100%;
+}
+.contentModal .content .contentClose {
+  text-align: right;
+  padding: 10px 0px;
+}
+.contentModal .content .contentClose .btnClose {
+  font-size: 16px;
+}
+.contentModal .content .contentClose .btnClose .fa {
+  color: #666;
+}
+.contentModal .content .contentClose .btnClose:hover .fa {
+  color: #222;
+}
+.contentModal .content .photo img {
+  border: 10px solid rgba(0, 0, 0, 0.11);
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+}
+.contentModal .content .userName {
+  font-size: 24px;
+  font-weight: bold;
+  color: #424446;
+}
+.contentModal .content .userMessage {
+  font-size: 16px;
+  color: #85b838;
+}
+.contentModal .content .contentResume {
+  padding: 10px 0px 0px 0px;
+}
+.contentModal .content .contentResume .resume {
+  display: inline-flex;
+  align-items: center;
+}
+.contentModal .content .contentResume .resume .fa-stack {
+  font-size: 20px;
+}
+.contentModal .content .contentResume .resume .fa-stack .fa-circle-thin {
+  color: red;
+}
+.contentModal .content .contentResume .resume .fa-stack .fa-usd {
+  color: red;
+}
+.contentModal .content .contentResume .resume .money {
+  font-size: 18px;
+  color: red;
+  padding-left: 5px;
+  display: inline-block;
+  font-weight: 700;
+}
+.contentModal .content .errorMedia {
+  font-size: 12px;
+  color: red;
+}
+.contentModal .bottom {
+  padding: 10px 0px 5px 0px;
+  width: 90%;
+  margin: 0 auto;
+}
+.contentModal .bottom .bottomTitle {
+  padding: 10px 0px;
+}
+.contentModal .bottom .bottomTitle h5 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #666;
+}
+.contentModal .bottom .contentRating .stars {
+  font-size: 20px;
+}
+.contentModal .bottom .contentRating .comment {
+  text-align: left;
+  font-size: 12px;
+  color: #666;
+  margin-top: 15px;
+}
+.contentModal .bottom .contentRating .comment .inputPatternCall {
+  min-height: 70px;
+  margin-top: 0px;
+}
+.contentModal .contentButtons {
+  text-align: center;
+  padding: 10px;
+}
+.contentModal .contentButtons .callButtons .buttonCall {
+  display: inline-block;
+  padding: 10px 0px;
+}
+.contentModal .contentButtons .callButtons .buttonCall .buttonAccept {
+  margin: 3px auto;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+  background-image: -webkit-linear-gradient(270deg, #5e9812, #85b838);
+  background-image: -moz-linear-gradient(270deg, #5e9812, #85b838);
+  background-image: -ms-linear-gradient(270deg, #5e9812, #85b838);
+  background-image: -o-linear-gradient(270deg, #5e9812, #85b838);
+  background-image: linear-gradient(270deg, #5e9812, #85b838);
+  padding: 7px 40px;
+  text-transform: uppercase;
+}
+.contentModal .contentButtons .callButtons .buttonCall .buttonAccept:hover {
+  background: #85b838;
+}
+.contentModal .contentButtons .callButtons .buttonCall .buttonAccept:disabled {
+  background-image: -webkit-linear-gradient(270deg, #ccc, #ddd);
+  background-image: -moz-linear-gradient(270deg, #ccc, #ddd);
+  background-image: -ms-linear-gradient(270deg, #ccc, #ddd);
+  background-image: -o-linear-gradient(270deg, #ccc, #ddd);
+  background-image: linear-gradient(270deg, #ccc, #ddd);
+}

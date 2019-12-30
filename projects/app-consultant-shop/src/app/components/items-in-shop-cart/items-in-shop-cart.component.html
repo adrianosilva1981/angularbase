@@ -1,0 +1,101 @@
+<div class="contentShopCart">
+  <div class="pleaseWaiting" *ngIf="!pageLoaded">
+    <i class="fas fa-spinner fa-spin"></i>
+    <div class="text">Carregando</div>
+  </div>
+  <!--.pleaseWaiting-->
+
+  <div class="shopCartEmpty" *ngIf="shopCartFull?.length <= 0 && pageLoaded">
+    <div class="iconCart">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+    </div>
+    <div class="cartTitle">Ops,</div>
+    <div class="cartSubTitle">Seu carrrinho de compras está vazio</div>
+    <div class="cartInfo">Para inserir produtora no seu carrinho navegue em nossos departamentos ou utilize nossa
+      busca.</div>
+    <div class="contentBtn">
+      <div class="btnGoHome btn btn-large" (click)="redirectToHome()">Ir para Home</div>
+    </div>
+  </div>
+  <!--.shopCartEmpty-->
+
+  <div class="contentAll" *ngIf="shopCartFull?.length > 0 && pageLoaded">
+    <table class="tableItens table table-hover">
+      <thead>
+        <tr>
+          <th>Produto(s)</th>
+          <th>Quantidade</th>
+          <th>Valor Unitário</th>
+          <th>Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of shopCartFull">
+          <td class="itemTitle">
+            <div class="allTitle">
+              <img [src]="item?.photos[0]?.url ? item?.photos[0]?.url : 'global/img/image_default.png'">
+              <div class="cntTitle">
+                <div>
+                  <div class="tlt">{{item.title}}</div>
+                  <div class="pts" *ngIf="item.points_value > 0">Ganhe <b>{{item.points_value}}</b> pontos</div>
+                </div>
+              </div>
+              <img class="preorder" src="assets/img/selo-preorder.png" *ngIf="item?.preorder === 'Y'">
+            </div>
+          </td>
+          <td class="itemQuantity">
+            <div *ngIf="!editable">{{item.quantityShopCart}}</div>
+            <div *ngIf="editable" class="qnt">
+              <div class="contentQuantity input-group">
+                <div class="input-group-btn">
+                  <button type="button" class="btn minus" (click)="changeQuantity(item, -1)">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <input type="text" readonly class="form-control inputQuantity" [value]="item.quantityShopCart" />
+                <div class="input-group-btn">
+                  <button type="button" class="btn plus" (click)="changeQuantity(item, 1)">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div *ngIf="editable" class="contenRemoveItem" (click)="removeFromShopCart(item)">
+                Remover
+              </div>
+            </div>
+          </td>
+          <td class="itemUnit">
+            <span class="money" *ngIf="item[fieldPricePerTypeUser] > 0" [innerHtml]="item[fieldPricePerTypeUser] | conversion : 'BRL'"></span>
+            <span class="money" *ngIf="item[fieldPricePerTypeUser] == 0" [innerHtml]="item['value'] | conversion : 'BRL'"></span>
+          </td>
+          <td class="itemTotal">
+            <ng-container *ngIf="item[fieldPricePerTypeUser] == 0">
+              <span class="money" *ngIf="(item['value'] * item.quantityShopCart) > 0">
+                <span [innerHtml]="(item['value'] * item.quantityShopCart) | conversion : 'BRL'"></span>
+              </span>
+            </ng-container>
+            <ng-container *ngIf="item[fieldPricePerTypeUser] > 0">
+              <span class="money" *ngIf="(item[fieldPricePerTypeUser] * item.quantityShopCart) > 0">
+                <span [innerHtml]="(item[fieldPricePerTypeUser] * item.quantityShopCart) | conversion : 'BRL'"></span>
+              </span>
+            </ng-container>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="contentResume">
+      <div class="contentValues">
+        <div class="value">
+          <span>Valor total em dinheiro: </span>
+          <b [innerHtml]="resumeList?.resume?.money | conversion : 'BRL'"></b>
+        </div>
+        <div class="hyperCoin" *ngIf="resumeList?.resume?.hyperCoins > 0">
+          <span>Valor Total em Hyper Coins: </span>
+          <b [innerHtml]="resumeList?.resume?.hyperCoins | conversion : 'HCS'"></b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--.contentAll-->
+</div>

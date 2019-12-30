@@ -1,0 +1,71 @@
+<section class="footer">
+  <div class="contentMenu">
+    <div class="container">
+      <div class="contentLinks">
+        <div class="colLink col1">
+          <div class="help">
+            <div class="tlt">Podemos te AJUDAR?</div>
+            <div class="txt">
+              <p>contato@youhub.com.br</p>
+              <div>Horário de atendimento: </div>
+              <div>Segunda à Sexta: 8:00 às 12:00</div>
+              <div>e das 13:00 às 18:00h – exceto feriados.</div>
+            </div>
+          </div>
+        </div>
+        <div class="colLink col2">
+          <div class="serviceContent" *ngFor="let type of listServices">
+            <div class="tlt">{{type.title}}</div>
+            <ul class="txt">
+              <li *ngFor="let cat of type.category" routerLink="/department/service" [queryParams]="{type: type.slug, cat: cat.id}">{{cat.description}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="colLink col3">
+          <!-- <div class="questions">
+            <div class="tlt">QUER TER UMA RENDA EXTRA?</div>
+            <div class="txt">
+              <p>Seja um prestador de serviços cadastrado na YouHub.
+                <a href="//opportunity.youhub.com.br/online-work">CADASTRAR AGORA!</a>
+              </p>
+            </div>
+          </div> -->
+          <!-- <div class="revendedor">
+            <div class="tlt">SEJA UM ASSOCIADO DE VENDAS NA SUA REGIÃO! OPORTUNIDADE ÚNICA!</div>
+            <div class="txt">
+              <p>Conheça nossos benefícios e bônus. Comece a
+                <a routerLink="/be-consultant">EMPREENDER AGORA MESMO!</a>
+              </p>
+            </div>
+          </div> -->
+        </div>
+        <div class="colLink col4">
+          <div class="text">Siga YouHub. Todo dia uma nova oportunidade.</div>
+          <div class="contentSocial">
+            <span class="icon">
+              <a href="https://www.instagram.com/youhub.oficial/" target="_blank">
+                <i class="fa fa-fw fa-fw fa-instagram" aria-hidden="true"></i>
+              </a>
+            </span>
+            <span class="icon">
+              <a href="https://www.facebook.com/pg/youhub.oficial/" target="_blank">
+                <i class="fa fa-fw fa-facebook" aria-hidden="true"></i>
+              </a>
+            </span>
+            <span class="icon">
+              <a href="https://www.youtube.com/channel/UCodrPzyqtRjmN9-UL_tJjHg?view_as=subscriber" target="_blank">
+                <i class="fa fa-fw fa-youtube" aria-hidden="true"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="contentHyper">
+        <div class="copyright">© Todos os direitos reservado YouHub - {{currentYear}}</div>
+        <div class="logo">
+          <img src="global/img/Hyper-Jobs-gray.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

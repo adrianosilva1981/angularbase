@@ -1,0 +1,61 @@
+<div class="container-fluid justify-content-center">
+  <div class="row text-center">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Débitos e créditos
+      </h1>
+    </div>
+    <div class="col-12">
+      <p-calendar [(ngModel)]="dates" selectionMode="range" (onSelect)="setAssociates()" (onInput)="setAssociates()"
+        dateFormat="dd/mm/yy"></p-calendar>
+    </div>
+  </div>
+
+    <div class="col-12 my-5">
+      <p-table #dt [columns]="cols" [responsive]="true" [resizableColumns]="true" [value]="associates" [paginator]="true"
+        [rows]="50" *ngIf="associates.length">
+
+        <ng-template pTemplate="caption">
+          <div style="text-align: left">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value, 'contains');sumTotal(dt);"
+              style="width:auto">
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+			
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{ col.header }}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th *ngIf="associates.length > 0" class="header">
+              Nota Fiscal
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-associate let-columns="columns">
+          <tr [pSelectableRow]="associate">
+            <td *ngFor="let col of columns">
+              {{ (col.field === 'value_receiver')?(associate[col.field]|currency:'R$'):(associate[col.field]) }}
+            </td>
+            <td>
+              <button *ngIf="associate.url != null" pButton type="button" icon="far fa-id-card" (click)="showDialog(associate)"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+					<tr>
+						<th colspan="3">
+							<h3 [ngStyle]="{'color': 'black'}">Total do Período</h3>
+						</th>
+						<th>
+							<h3 [ngStyle]="{'color': 'black'}">{{ total | currency:'R$' }}</h3>
+						</th>
+					</tr>
+				</ng-template> 
+      </p-table>
+    </div>
+</div>

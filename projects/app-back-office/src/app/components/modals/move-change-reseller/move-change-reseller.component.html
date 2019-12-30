@@ -1,0 +1,18 @@
+<div class="cntModal">
+    <div class="result" *ngIf="!notAlowed">
+        <div class="lineTable" *ngFor="let item of listResellers">
+            <div class="collum level">{{item.level}}</div>
+            <div class="collum username">{{item.username}}</div>
+            <div class="collum name">{{item.name}}</div>
+            <div class="collum action" (click)="actionHere(item)">
+                {{ data.action === 'change' ? 'Trocar por este' : 'Inserir aqui' }}
+            </div>
+        </div>
+    </div>
+    <div class="notAlowed" *ngIf="notAlowed">
+        <div class="tlt">
+            <i class="fas fa-exclamation-triangle"></i> <span>Atenção</span>
+        </div>
+        <div class="info">Você já excedeu o limite máximo de troca de pernas <small>(2 trocas)</small></div>
+    </div>
+</div>

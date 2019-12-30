@@ -1,0 +1,14 @@
+<div class="contentCard">
+  <div class="container">
+    <form [formGroup]="cardForm" novalidate (ngSubmit)="submitCard()">
+      <div class="contentFields">
+
+        <div class="form-group">
+          <label>Pergunta</label>
+          <input type="text" class="form-control" required formControlName="question">
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

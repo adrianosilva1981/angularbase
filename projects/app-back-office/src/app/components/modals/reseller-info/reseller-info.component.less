@@ -1,0 +1,195 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.content {
+    width: 50vw;
+    max-width: 400px;
+    max-height: 80vh;
+    padding: 10px;
+    border: @grey6 1px solid;
+    background: @grey2;
+    .img {
+        padding: 10px;
+        img {
+            width: 100%;
+            height: 100%;
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 100px;
+            border: @grey6 3px solid;
+        }
+        text-align: center;
+    }
+    .info {
+        padding: 5px;
+        .title {
+            font-size: 14px;
+            color: @blue2;
+            font-weight: 600;
+            span {
+                font-size: 14px;
+                color: @grey6;
+            }
+        }
+    }
+    .plan {
+        font-size: 16px;
+        font-weight: 500;
+        color: #006FA0;
+        display: flex;
+        justify-content: center;
+        background: white;
+        .ativo {
+            color: @green1;
+        }
+        .inativo {
+            color: @grey6;
+        }
+        .circle {
+            font-size: 14px;
+            margin: 5px 10px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: @grey6;
+            border: @grey6 2px solid;
+            &.ative {
+                background-color: @green1;
+                border: @green1 2px solid;
+            }
+            &.silver {
+                background-color: @grey3;
+                border: @grey3 2px solid;
+            }
+            &.gold {
+                background-color: @yellow1;
+                border: @yellow1 2px solid;
+            }
+            &.platinum {
+                background-color: @grey4;
+                border: @grey4 2px solid;
+            }
+            &.double_platinum {
+                background-color: @grey4;
+                border: @grey6 2px solid;
+            }
+            .elite {
+                background-color: @blue4;
+                border: @blue3 3px solid;
+            }
+            &.sapphire {
+                background-color: @sapphire2;
+                border: @sapphire1 2px solid;
+            }
+            &.ruby {
+                background-color: @red3;
+                border: red 2px solid;
+            }
+            &.emerald {
+                background-color: @green2;
+                border: @green1 2px solid;
+            }
+            &.diamond {
+                background-color: @grey3;
+                border: @black 2px solid;
+            }
+            &.blue_diamond {
+                background-color: @sapphire2;
+                border: @black 2px solid;
+            }
+            &.black_diamond {
+                background-color: @grey7;
+                border: @grey8 2px solid;
+            }
+            &.emperor {
+                background-color: @orange2;
+                border: @black 2px solid;
+            }
+            &.crown {
+                background-color: black;
+                border: @black 2px solid;
+            }
+            &.disabled {
+                background-color: @grey6;
+                border: @grey6 2px solid;
+            }
+        }
+    }
+    .cntGroupNew {
+        .groupNew {
+            background: #fff;
+            border: 2px solid @grey5;
+            .radius(5px);
+            margin-top: 15px;
+            overflow: hidden;
+            .tlt {
+                text-align: center;
+                background: @grey5;
+                padding: 2px 0px;
+                color: #fff;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            .info {
+                line-height: 15px;
+                font-size: 14px;
+                padding: 10px;
+            }
+            .cntAll {
+                display: flex;
+                padding: 10px 5px;
+                .cnt {
+                    flex: 1;
+                    padding: 5px;
+                    text-align: center;
+                    .btnAdd {
+                        cursor: pointer;
+                        .radius(5px);
+                        padding: 5px;
+                        text-align: center;
+                        background: @blue1;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+    .cntGroupMove {
+        .groupMove {
+            background: #fff;
+            border: 2px solid @grey5;
+            .radius(5px);
+            margin-top: 15px;
+            overflow: hidden;
+            .tlt {
+                text-align: center;
+                background: @grey5;
+                padding: 2px 0px;
+                color: #fff;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            .info {
+                line-height: 15px;
+                font-size: 14px;
+                padding: 10px;                
+            }
+            .cntAll {
+                display: flex;
+                padding: 10px 5px;
+                .cnt {
+                    flex: 1;
+                    padding: 5px;
+                    text-align: center;
+                    .btnAction {
+                        cursor: pointer;
+                        .radius(5px);
+                        padding: 5px;
+                        text-align: center;
+                        background: @blue1;
+                        color: #fff;                       
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,73 @@
+<div class="product">
+  <div class="content">
+    <div style="width:100%;">
+      <div class="contentCard">
+        <div class="card hover" (click)="publisher()">
+          <div class="icon"></div>
+          <div class="text">Trabalhe com Publicidade</div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="pacotes?.length > 0" style="display:flex; width:100%;">
+      <div class="cntThumb">
+        <div class="thumb">
+          <div class="cntInfoPack">
+            <div class="packTitle">Pacotes de Publicidade</div>
+            <div class="packPrice overrideFormatPrice">
+              <div class="title">Ações</div>
+            </div>
+            <div class="actions">
+              <div class="txt">Home Hubmix</div>
+              <div class="lines"> </div>
+              <div class="txt">Email MKT</div>
+              <div class="lines"> </div>
+              <div class="txt">Compartilhamento em Rede social</div>
+              <div class="lines"> </div>
+              <div class="txt">Postagem Instagran YouHub</div>
+              <div class="lines"> </div>
+              <div class="txt">Postagem Facebook YouHub</div>
+              <div class="lines"> </div>
+            </div>
+          </div>
+          <div class="cntFooter">
+            <div class="cntButton">
+              <div style="height:80px;"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cntThumb" *ngFor="let dataPack of pacotes">
+        <div class="thumb">
+
+          <div class="cntInfoPack">
+            <div class="packTitle blue">{{dataPack?.title | truncate : 40 : '...'}}</div>
+            <div class="packPrice overrideFormatPrice">
+              <span class="money" [innerHtml]="dataPack?.value || 0 | conversion : dataPack?.currency || 'BRL'"></span>
+              <div class="tlt">Por mês</div>
+            </div>
+            <div class="actions">
+              <div class="txt">{{dataPack?.hubmix}}</div>
+              <div class="lines"> </div>
+              <div class="txt">{{dataPack?.email}}</div>
+              <div class="lines"> </div>
+              <div class="txt">{{dataPack?.social}}</div>
+              <div class="lines"> </div>
+              <div class="txt">{{dataPack?.Instagran}}</div>
+              <div class="lines"> </div>
+              <div class="txt">{{dataPack?.facebook}}</div>
+              <div class="lines"> </div>
+            </div>
+          </div>
+          <div class="cntFooter">
+            <div class="cntButton">
+              <a class="btn orange max" [href]="urlStoreAds + dataPack?.id" target="_blank">Comprar</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

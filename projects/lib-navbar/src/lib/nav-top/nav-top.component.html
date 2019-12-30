@@ -1,0 +1,75 @@
+<div class="contentNav">
+  <div class="contentLogo" [routerLink]="['/']">
+    <img src="">
+  </div>
+  <!-- .contentLogo-->
+
+  <div class="contentProject" [ngSwitch]="objCurrentApplication?.name">
+    <div class="cntComponents">
+      <lib-navbar-app-playground *ngSwitchCase="'app-playground'"></lib-navbar-app-playground>
+      <lib-navbar-app-hyper-store *ngSwitchCase="'app-hyper-store'"></lib-navbar-app-hyper-store>
+      <lib-navbar-app-hyper-opportunity *ngSwitchCase="'app-hyper-opportunity'"></lib-navbar-app-hyper-opportunity>
+      <div *ngSwitchDefault></div>
+    </div>
+  </div>
+  <!-- .contentProject-->
+
+  <div class="contentMenu">
+    <div class="menu tohire">
+      <div class="btnMenu" [class.active]="objCurrentApplication?.group==='to-hire'" (click)="redirectTo('to-hire')">
+        <i class="fas fa-handshake"></i>
+        <span class="text">Comprar</span>
+      </div>
+    </div>
+    <div class="separate">|</div>
+    <div class="menu consultant">
+      <div class="btnMenu" [class.active]="objCurrentApplication?.group==='consultant'" (click)="redirectTo('consultant')">
+        <i class="fas fa-user-alt"></i>
+        <span class="text">Associado</span>
+      </div>
+    </div>
+    <div class="menu profile">
+      <div class="notLogged" *ngIf="!objUserLogged" (click)="signIn()">
+        <span class="text">Entre</span>
+        <i class="fas fa-sign-in-alt"></i>
+      </div>
+      <div class="logged" *ngIf="objUserLogged">
+        <div class="drop-down-shop">
+          <span class="text">Olá,
+            <b>{{objUserLogged?.name | words : 1 : ''}}</b>!</span>
+          <i class="fas fa-chevron-down"></i>
+          <div class="drop-down-content-shop">
+            <div class="triangle"></div>
+            <div class="profileContent">
+              <div class="menuItem">
+                <a href="//account.youhub.com.br">
+                  <img [src]="objUserLogged?.photoUrl" width="50px" height="50px">
+                  <span>{{objUserLogged?.name | truncate : 12 : '...'}}</span>
+                </a>
+              </div>
+              <!-- <div class="menuItem">
+                <a href='//account.youhub.com.br/extract'>
+                  <i class="fas fa-fw fa-dollar-sign"></i>
+                  <span>Meu Saldo</span>
+                </a>
+              </div> -->
+              <div class="menuItem" *ngIf="objUserLogged.reseller_parent != null">
+                <a href='//store.youhub.com.br/supplier/dash'>
+                  <i class="fas fa-fw fa-dollar-sign"></i>
+                  <span>Vale Compra</span>
+                </a>
+              </div>
+              <div class="menuItem">
+                <a (click)="signOut()">
+                  <i class="fas fa-sign-out-alt fa-fw"></i>
+                  <span>Sair</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- .contentMenu-->
+</div>

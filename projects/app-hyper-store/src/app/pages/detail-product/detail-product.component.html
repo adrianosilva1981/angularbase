@@ -1,0 +1,91 @@
+<div class="container detail-product">
+  <div class="left-side">
+    <div class="img">
+      <div class="cnt">
+        <lib-components-photo-gallery [listPhotos]="listPhotos"></lib-components-photo-gallery>
+        <!-- <div class="garantia" *ngIf="objProduct?.hyper_product === 'Y' && objProduct?.preorder === 'N'">
+          <img src="assets/img/selo-qualidade-detalhes.svg" alt="">
+        </div> -->
+        <div class="preorder" *ngIf="objProduct?.preorder === 'Y'">
+          <img src="assets/img/selo-preorder.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="sold" *ngIf="show">
+      <div class="title">
+        Itens relacionados
+      </div>
+      <app-hyper-store-slider-items [itemList]="objProduct?.related" [type]="'product'"></app-hyper-store-slider-items>
+    </div>
+  </div>
+  <div class="right-side">
+    <div class="info">
+      <div class="name-pro">
+        {{objProduct.title}}
+      </div>
+      <div class="discount" *ngIf="objProduct?.value_associate > 0">
+        <div class="prime">{{objProduct?.value_prime | conversion : 'BRL' : false}} <span class="color">Prime</span>
+        </div>
+        <ng-container *ngIf="userLogged == 'smart'">
+          <div class="smart">{{objProduct?.value_associate | conversion : 'BRL' : false}} <span
+              class="color">Smart</span></div>
+        </ng-container>
+      </div>
+      <div class="price" [innerHTML]="objProduct?.value  | conversion : 'BRL'"></div>
+      <div class="value points" *ngIf="objProduct?.points_value > 0 && userLogged == 'smart'">
+        <b><em class="val">Ganhe {{objProduct?.points_value}} pontos</em></b>
+      </div>
+      <div class="sold" *ngIf="objProduct?.nameShop != null">Vendido e entregue por <a
+          [href]="environment.shopPartner+objProduct?.subdomain">{{objProduct?.nameShop}}</a></div>
+      <div class="options">
+        <div class="orderSelect form-group" *ngFor="let select of objProduct?.features; let i = index">
+          <label>{{select[0].type.charAt(0).toUpperCase() + select[0].type.slice(1) }}: </label>
+          <select class="form-control" [(ngModel)]="selected[i]">
+            <option *ngFor="let item of select" selected
+              value="{{' '+ select[0].type.charAt(0).toUpperCase()  + select[0].type.slice(1) + ': ' + item.name}}">
+              {{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="bt">
+        <div class="btn" [ngClass]="{'success': animate}" (click)="addToCart()">
+          <ng-container *ngIf="!animate">
+            <span class="text">Adicionar</span>
+            <i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>
+          </ng-container>
+
+          <ng-container *ngIf="animate">
+            <span class="text">Adicionado</span>
+            <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+    <div class="intro">
+      <div class="bold">
+        Introdução
+      </div>
+      <div class="text" [innerHTML]="objProduct?.description">
+
+      </div>
+    </div>
+    <div class="info-product">
+      <div class="bold">
+        Informações do Produto
+      </div>
+      <div class="item" *ngFor="let item of objProduct?.details">
+        <div class="name"><b>{{item.key}}</b></div>
+        <div class="desc">{{item.value}}</div>
+      </div>
+    </div>
+    <!-- <div class="social-medias">
+      <div class="banner"></div>
+      <div class="icons">
+        <i class="fab fa-facebook-square"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div class="info_points">
+  <div class="content">
+
+    <h3>Informações para Bonificações</h3>
+    <div class="contemcards">
+      <div class="card">
+        <div class="content">
+          O Ciclo é do 1º ao último dia do mês.<br>
+          <div class="texto"><b>Data Inicial do meu Ciclo para Bonificação:</b>
+            {{unilevel.date_start_cycle_bonus}}</div>
+          <div class="texto"><b>Data final do meu Ciclo para Bonificação:</b> {{unilevel.date_end_cycle_bonus}}</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="content">
+          <div class="title2">(VP) Volume de Consumo Pessoal no Ciclo</div>
+          <div class="info">
+            <div *ngIf="unilevel.vp_accession">Minha Adesão: <span class="text">{{unilevel.vp_accession ?
+                unilevel.vp_accession : '0'}} pontos</span></div>
+            <div>Minha Mensalidade: <span class="text">{{unilevel.vp_monthly ? unilevel.vp_monthly : '0'}} pontos</span></div>
+            <div>Meu Consumo: <span class="text">{{unilevel.consumption ? unilevel.consumption : '0'}} pontos</span></div>
+            <span class="amount">{{unilevel.vp_total ? unilevel.vp_total : '0'}}</span>
+            <span class="text">pontos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Informação para Graduação</h3>
+    <div class="contemcards">
+
+      <div class="card">
+        <div class="content">
+          O Ciclo é de 30 dias.<br>
+          <div class="texto"><b>Data Inicial do meu Ciclo para Graduação:</b> {{unilevel.date_start_cycle}}</div>
+          <div class="texto"><b>Data final do meu Ciclo para Graduação:</b> {{unilevel.date_end_cycle}}</div>
+          <div class="texto"><b>Minha Próxima Graduação:</b>
+            {{unilevel.graduation_next}} ({{unilevel.value_required}})</div>
+          <div class="texto"><b>Minha Pontuação Necessária para próxima Graduação:</b>
+            {{value_necessaire}} pontos</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          <div class="title">(VQ) Volume de Qualificação no Ciclo</div>
+          <div class="info">
+            <span class="amount">{{unilevel.vq ? unilevel.vq : '0'}}</span>
+            <span class="text">pontos</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- 
+        <div class="contemcards">
+          <div class="card">
+            <div class="content">
+              <div class="title">(VQ-A) Volume de Qualificação Perna A</div>
+              <div class="info">
+                <span class="amount">{{unilevel.vq_const_a ? unilevel.vq_const_a : '0'}}</span>
+                <span class="text">pontos</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="content">
+              <div class="title">(VQ-B) Volume de Qualificação Perna B</div>
+              <div class="info">
+                <span class="amount">{{unilevel.vq_const_b ? unilevel.vq_const_b : '0'}}</span>
+                <span class="text">pontos</span>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="content">
+              <div class="title">(VQ-P) Volume de Qualificação Perna de Qualificação</div>
+              <div class="info">
+                <span class="amount">{{unilevel.vq_qualif ? unilevel.vq_qualif : '0'}}</span>
+                <span class="text">pontos</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        
+    <div class="contemcards">
+
+      <div class="card">
+        <div class="content">
+
+          <p-table styleClass="classetable" [responsive]="true" [value]="graduate">
+            <ng-template pTemplate="header">
+              <tr>                
+                <th style="width:5em; text-align: center;">Pin</th>
+                <th style="width:10em">Graduação</th>
+                <th style="width:15em">Pontos Necessários</th>
+                <th >VME (Volume Máximo por Equipe)</th>
+                <th >ME (Volume Mínimo por Equipe)</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-grad let-rowData>
+              <tr>
+                <td style="text-align: center;"><img class="pin" src="assets/img/pin_{{grad.slug}}.png" (click)="modalPack('assets/img/pin_'+grad.slug+'.png')" ></td>
+                <td>{{grad.name}}</td>
+                <td>{{grad.point_team}}</td>
+                <td>{{grad.vme}}% ({{grad.value_vme}})</td>
+                <td><span *ngIf="grad.me > 0">{{grad.me}}% ({{grad.value_me}}) na perna A e B</span></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

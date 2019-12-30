@@ -1,0 +1,34 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentPage {
+    width: 100vw;
+    height: 100vh;
+    background: @grey3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .contentSearch {        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 320px;
+        .cntInput {
+            flex: 1;
+            input {
+                .radius(5px 0px 0px 5px);
+            }
+        }
+        .cntBtn {
+            width: 100px;
+            button {
+                background: @green1;
+                width: 100%;
+                height: 38px;
+                color: #fff;
+                font-weight: bold;
+                border: none;
+                .radius(0px 5px 5px 0px);
+            }
+        }
+    }
+}

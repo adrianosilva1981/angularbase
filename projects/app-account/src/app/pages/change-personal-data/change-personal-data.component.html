@@ -1,0 +1,101 @@
+<div class="contenPage">
+  <div class="container">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fas fa-user-circle" aria-hidden="true"></i>
+        <span class="text">Editar meus dados</span>
+      </div>
+    </div>
+    <div class="all">
+      <div class="titlePage">
+        Mantenha sempre seus dados atualizados, fica mais fácil para nos encontrar.
+      </div>
+      <div class="personalData">
+        <div *ngIf="loading" class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando!</div>
+        <div class="contentPersonal" *ngIf="!loading">
+          <div class="contentPersonalData" *ngIf="registerForm">
+            <form [formGroup]="registerForm" novalidate (ngSubmit)="submitChange()">
+              <div class="content-row">
+                <div class="form-group content-col">
+                  <label class="center-block">* Nome</label>
+                  <input class="form-control" formControlName="name">
+
+                  <span class="errorFormField" *ngIf="registerForm.controls.name.hasError('nameComplete')">* Nome e Sobrenome</span>
+                </div>
+                <div class="form-group content-col">
+                  <label class="center-block">* Email</label>
+                  <input type="email" class="form-control" formControlName="mail">
+
+                </div>
+              </div>
+              <div class="content-row">
+                <div class="form-group content-col">
+                  <label class="center-block">* Nome de Usuário</label>
+                  <input type="text" #username class="form-control" (blur)="checkUserName(username.value)" formControlName="username">
+                  <span class="errorFormField" *ngIf="registerForm.controls.username.hasError('usernameExists')">* Este nome de usuário já está em uso</span>
+                </div>
+                <div class="form-group content-col">
+                  <label class="center-block">* Idioma</label>
+                  <select class="form-control" required formControlName="language">
+                    <option value="pt_BR">Português</option>
+                    <option value="en_US">Ingles</option>
+                    <option value="es_ES">Espanhol</option>
+                  </select>
+                </div>
+                <div class="form-group content-col">
+                  <label class="center-block">* Sexo</label>
+                  <select class="form-control" required formControlName="gender">
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                  </select>
+                </div>
+              </div>
+              <div class="content-row">
+                <div class="form-group content-col">
+                  <label class="center-block">* Documento</label>
+                  <input type="text" class="form-control" formControlName="socialSecurity">
+                </div>
+                <div class="form-group content-col">
+                  <label class="center-block">* Telefone</label>
+                  <input type="tel" class="form-control" [textMask]="{mask: maskPhone}" formControlName="phoneNumber">
+                </div>
+                <div class="form-group content-col">
+                  <label class="center-block">* Data de nascimento</label>
+                  <input type="date" class="form-control" formControlName="birthDate">
+                </div>
+              </div>
+              <div class="content-row">
+                <div class="form-group content-col-2">
+                  <label class="center-block">* Formação</label>
+                  <input type="text" class="form-control" formControlName="professionalTitle">
+                </div>
+                <div class="form-group content-col">
+                  <label class="center-block">* Senha</label>
+                  <input type="password" class="form-control" formControlName="password">
+                  <span class="errorFormField" *ngIf="registerForm.controls.password.hasError('minlength')">* Minimo 6 caracteres</span>
+                  <span class="errorFormField" *ngIf="registerForm.controls.password.hasError('mismatch')">* Senhas não conferem</span>
+                </div>
+                <div class="form-group content-col">
+                  <label class="center-block">* Confirmação de Senha</label>
+                  <input type="password" class="form-control" formControlName="conf_password">
+                  <span class="errorFormField" *ngIf="registerForm.controls.conf_password.hasError('minlength')">* Minimo 6 caracteres</span>
+                  <span class="errorFormField" *ngIf="registerForm.controls.conf_password.hasError('mismatch')">* Senhas não conferem</span>
+                </div>
+              </div>
+              <div class="content-row">
+                <div class="form-group content-col">
+                  <label class="center-block">* Sobre Você</label>
+                  <textarea class="form-control" formControlName="aboutYou"></textarea>
+                </div>
+              </div>
+              <div class="form-group content-button">
+                <button [disabled]="!registerForm.valid" type="submit" class=" btn btn-success btn-lg">Salvar Alterações</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

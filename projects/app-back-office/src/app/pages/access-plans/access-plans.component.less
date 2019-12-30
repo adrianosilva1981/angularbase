@@ -1,0 +1,258 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.rounded {
+  margin: 0;
+}
+
+b {
+  font-weight: 500;
+}
+
+.plans {
+  // background: #f2f2f2;
+  .text {
+    width: 100%;
+    text-align: center;
+    color: @grey7;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 20px;
+  }
+  .cardMsg {
+    background-color: #fff;
+    color: #006fa0;
+    font-size: 16px;
+    padding-bottom: 25px;
+    .inputformflex {
+      position: relative;
+      color: @grey7;
+      .checktrue {
+        position: absolute;
+        color: @green1;
+        top: 10px;
+        right: 30px;
+      }
+      .checkfalse {
+        position: absolute;
+        color: @red2;
+        top: 10px;
+        right: 30px;
+      }
+      .checkload {
+        position: absolute;
+        top: 10px;
+        right: 30px;
+      }
+    }
+    .linecard {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      flex-wrap: wrap;
+      .inputcard {
+        display: inline;
+        width: 250px;
+        margin: 0px 15px;
+      }
+      .buttoncard {
+        display: inline;
+      }
+      .msgcard {
+        color: @red2 !important;
+        margin-left: 18px;
+        position: absolute;
+      }
+    }
+  }
+  .choosePlan {
+    width: 100%;
+    margin: 0 10px;
+    font-size: 32px;
+    text-align: center;
+    padding-top: 10px;
+    font-weight: bold;
+  }
+  .boxPlans {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    .colplan {
+      flex: 1;
+      margin: 0 10px;
+      @media screen and (max-width: 991px) {
+        flex: auto;
+      }
+      .colBg {
+        .boxShadow(3px 3px 10px 1px #e8e8e8);
+        background: white;
+      }
+      .block {
+        min-width: 180px;
+        font-size: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        width: 85%;
+        margin: 10px 0;
+        .blockDesc {
+          display: block;
+          color: @grey4;
+          width: 85%;
+          padding: 20px;
+          text-align: center;
+          margin: 0 auto;
+          min-height: 210px;
+          .linkmaskoto {
+            color: @blue1;
+            cursor: pointer;
+          }
+        }
+        .cntValues {
+          //min-height: 80px;
+          padding: 10px 5px 0px 5px;
+          .cntTxt {
+            text-align: center;
+            color: @grey7;
+            padding: 3px 0px;            
+            .txt {
+              font-size: 14px;
+              margin-right: 5px;
+              display: inline-block;
+            }
+            .val {
+              font-size: 14px;
+              display: inline-block;
+            }
+          }
+        }
+        .priceTitle {
+          width: 100%;
+          text-align: center;
+          font-size: 16px;
+          color: @grey7;
+          font-weight: bold;
+        }
+        .valor {
+          padding: 5px;
+          color: @green1;
+          font-size: 28px;
+          font-weight: 600;
+          margin: 0 auto;
+          width: 100%;
+          text-align: center;
+          .menor {
+            font-size: 14px;
+            font-weight: normal;
+          }
+          .cntTxt {
+            text-align: center;
+            color: @grey7;
+            padding: 3px 0px;            
+            .txt {
+              font-size: 14px;
+              margin-right: 5px;
+              display: inline-block;
+            }
+            .val {
+              font-size: 14px;
+              display: inline-block;
+            }
+          }
+        }
+        &.adesao {
+          background: #fff;
+          color: @grey7;
+          width: 100%;
+          min-height: 135px;
+          &.normal {
+            padding: 10px;
+          }
+          &.promo {
+            padding: 30px;
+            .recomend {
+              background: @yellow1;
+              width: 90%;
+              margin: 0 auto;
+              padding: 8px;
+              font-size: 16px;
+              color: #fff;
+              text-align: center;
+              font-weight: 500;
+              margin-top: -60px;
+            }
+          }
+        }
+        &.plan {
+          background: #fff;
+          color: @grey7;
+          width: 100%;
+          padding: 30px 20px 20px 20px;
+          min-height: 290px;
+          .divider {
+            height: 2px;
+            background-color: @blue3;
+            width: 95%;
+            margin: 0 auto;
+          }
+        }
+        &.button {
+          width: 100%;
+          min-height: 80px;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          &.normal {
+            background: @blue1;
+          }
+          &.promo {
+            background: @yellow1;
+          }
+          .semiesfera {
+            right: calc(~"50% - 20px");
+            margin: 0 auto;
+            top: -30px;
+            background: #fff;
+            border-radius: 100%;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+          }
+          .acess {
+            margin: 0 auto;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            border-radius: 50px;
+            width: 90%;
+            font-size: 18px;
+            white-space: normal !important;
+          }
+        }
+      }
+    }
+    .equal {
+      &.green {
+        width: 40px;
+        height: 40px;
+        background-color: #6fb309;
+        border-radius: 100%;
+        margin: -20px auto;
+        padding-top: 5px;
+        text-align: center;
+        color: white;
+        font-size: 36px;
+        line-height: 0.7;
+        z-index: 3;
+        position: relative;
+        @media screen and (max-width: 991px) {
+          margin: -5px auto -20px;
+        }
+      }
+    }
+  }
+}

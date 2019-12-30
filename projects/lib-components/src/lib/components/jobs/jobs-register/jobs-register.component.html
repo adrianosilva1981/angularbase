@@ -1,0 +1,371 @@
+<div class="contentPage" *ngIf=registerForm>
+  <form class="formCheckout" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+
+    <!-- FORMULARIO DE PRODUTO-->
+    <div class="mainBox serviceForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('serviceForm') >= 0" formGroupName="serviceForm">
+      <div class="titleBox">
+        informaçoes Principais
+      </div>
+      <div class="cntProductDetails">
+        <!-- Nome do produto -->
+        <div class="form-group">
+          <label>Nome do JOB</label>
+          <input type="text" class="form-control" required formControlName="name">
+          <span class="errorFormField" *ngIf="registerForm.get('serviceForm.name').hasError('minlength')">* Minimo 6
+            caracteres</span>
+        </div>
+
+        <div class="collumm">
+          <!-- Slug -->
+          <!-- <div class="form-group">
+                        <label>Slug</label>
+                        <input type="text" class="form-control" required formControlName="slug">
+                        <span class="errorFormField" *ngIf="registerForm?.get('serviceForm.slug').hasError('minlength')">*
+                            Minimo 6 caracteres</span>
+                    </div> -->
+
+          <!-- Categoria -->
+        </div>
+
+        <div class="collumm">
+          <!-- Status -->
+          <div class="form-group">
+            <label>Serviço Publicado?</label>
+            <select class="form-control" required formControlName="status">
+              <option value="P">SIM</option>
+              <option value="I">NÃO</option>
+            </select>
+          </div>
+
+
+          <!-- Tipo de produto -->
+          <div class="form-group">
+            <label>Tipo de serviço</label>
+            <select class="form-control" (blur)="shippingDisable()" required formControlName="type">
+              <option value="physical">Físico</option>
+              <option value="digital">Digital</option>
+            </select>
+          </div>
+
+          <!-- Tipo de JOB -->
+          <div class="form-group">
+            <label>Tipo de JOB</label>
+            <select class="form-control" required formControlName="jobType">
+              <ng-container *ngFor="let type of objJobType">
+                <option *ngIf="type.value!='MobileJob'" [value]="type.value">{{type.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+
+
+          <!-- Data de Validade -->
+          <div class="form-group">
+            <label>Data de Validade</label>
+            <input type="date" class="form-control" required formControlName="valid_thru">
+            <span class="errorFormField" *ngIf="registerForm?.get('serviceForm.valid_thru').hasError('minlength')">*
+              Minimo 6 caracteres</span>
+          </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="form-group">
+          <label>Descrição Completa</label>
+          <p-editor formControlName="description" styleClass="editorHtml">
+            <p-header>
+              <span class="ql-formats">
+                <button class="ql-bold" aria-label="Bold"></button>
+                <button class="ql-italic" aria-label="Italic"></button>
+                <button class="ql-underline" aria-label="Underline"></button>
+              </span>
+            </p-header>
+          </p-editor>
+          <!-- <textarea rows="4" class="form-control" required formControlName="description"></textarea> -->
+          <span class="errorFormField" *ngIf="registerForm?.get('serviceForm.description').hasError('minlength')">*
+            Minimo 20 caracteres</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE categorias-->
+    <div class="mainBox categoryForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('categoryForm') >= 0"
+      formGroupName="categoryForm">
+      <div class="titleBox">
+        Categorias
+      </div>
+      <div class="cntCategory">
+        <p-pickList [source]="objCategories" [showSourceControls]="false" [showTargetControls]="false" filterBy="name"
+          [target]="selectedCat" [responsive]="true" dragdrop="true" (onMoveToTarget)="setCategory()" (onMoveToSource)="setCategory()">
+          <ng-template let-cat pTemplate="item">
+            <div class="ui-helper-clearfix">
+              <div style="font-size:14px; font-size: 14px; text-align: center;">{{cat.name}}</div>
+            </div>
+          </ng-template>
+        </p-pickList>
+      </div>
+    </div>
+
+    
+    <!-- FORMULARIO DE habilidades-->
+    <div class="mainBox categoryForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('skillsForm') >= 0"
+        formGroupName="skillsForm">
+        <div class="titleBox">
+          Habilidades
+        </div>
+        <div class="cntCategory">
+          <p-pickList [source]="objSkills" [showSourceControls]="false" [showTargetControls]="false" filterBy="description"
+            [target]="selectedSkills" [responsive]="true" dragdrop="true" (onMoveToTarget)="setSkills()" (onMoveToSource)="setSkills()">
+            <ng-template let-cat pTemplate="item">
+              <div class="ui-helper-clearfix">
+                <div style="font-size:14px; font-size: 14px; text-align: center;">{{cat.description}}</div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+      </div>
+
+    <!-- FORMULARIO DE MEDIAS-->
+    <div class="mainBox mediasForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('mediasForm') >= 0" formGroupName="mediasForm">
+      <div class="titleBox">
+        <span>Imagens</span>
+      </div>
+      <div class="cntImages">
+        <div class="cntButtonAdd">
+          <lib-components-upload-image [buttonText]="buttonTextUpload" [width]="'500'" [height]="'500'" [urlRequest]="urlRequest"
+            [pathBucket]="pathBucket" (onUpload)="onUpload($event)"></lib-components-upload-image>
+        </div>
+        <div class="listImages">
+          <div class="empty" *ngIf="registerForm?.get('mediasForm.images')?.value?.length <= 0">Adidione
+            imagens
+            para este produto
+            <small>
+              <div>*Recomendamos imagens superiores a 600x600px </div>
+            </small>
+          </div>
+          <div class="cntImg" *ngFor="let img of registerForm?.get('mediasForm.images')?.value; let idx = index">
+            <img [src]="img?.url">
+            <div class="btnRemove" (click)="deletePhoto(idx)">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE PRECO-->
+    <div class="mainBox priceForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('priceForm') >= 0" formGroupName="priceForm">
+      <div class="titleBox">
+        Informações de preço
+      </div>
+      <div class="cntPrices">
+
+        <!-- Preço de mercado -->
+        <div class="collumm">
+          <div class="form-group">
+            <label>Preço de venda</label>
+            <input type="text" class="form-control" (keyup)="calcOff(registerForm?.get('priceForm.value_cash_sale').value)"
+              currencyMask [options]="maskMoney" required formControlName="value_cash_sale">
+          </div>
+          <div class="form-group" *ngIf="!registerForm.get('priceForm.checkResale').value">
+            <label>Valor que você irá receber </label>
+            <input type="text" class="form-control" readonly value="{{receive_value_cash_sale | conversion : 'BRL' : false}}">
+          </div>
+          <div class="type-desc">
+            Nosso sistema já fornece todos os meios de pagamentos integrado para nosso lojista, 15% é a
+            taxa única atual para todos os
+            recebimentos ( cartões e boleto) e remuneração do marketplace
+          </div>
+        </div>
+
+        <!-- Ativar desconto para Rede de Associados -->
+
+        <div class="collumm">
+          <div class="check-off">
+            <p-checkbox [formControl]="registerForm.get('priceForm.checkResale')" binary="true" label="Ativar desconto para Rede de Associados"></p-checkbox>
+          </div>
+          <!-- Desconto global para todos -->
+          <div class="off" [ngClass]="{'view': registerForm.get('priceForm.checkResale').value }">
+            <div class="form-group">
+              <label>Desconto</label>
+              <input type="text" class="form-control percentage" (blur)="checkDiscount()" (keyup)="calcOff(registerForm?.get('priceForm.value_cash_sale').value)"
+                pKeyFilter="pnum" maxlength="2" formControlName="discount_resale">
+              <span class="percent-symbol">%</span>
+              <span class="percent-error" *ngIf="registerForm?.get('priceForm.discount_resale').hasError('min')">Minimo
+                30%
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Valor que você irá receber </label>
+              <input type="text" class="form-control" readonly value="{{receive_resale | conversion : 'BRL' : false}}">
+            </div>
+          </div>
+
+          <!-- Pontos gerados por venda -->
+          <div class="off" [ngClass]="{'view': registerForm.get('priceForm.checkResale').value }">
+            <div class="form-group full">
+              <label>Pontos gerados por venda</label>
+              <input type="text" class="form-control" readonly formControlName="points_value">
+            </div>
+          </div>
+
+          <!-- Desconto do preço para PRIME -->
+          <div class="off" [ngClass]="{'view': registerForm.get('priceForm.checkResale').value }">
+            <div class="form-group">
+              <label>Desconto</label>
+              <input type="text" class="form-control percentage" (blur)="checkDiscount()" (keyup)="calcOff(registerForm?.get('priceForm.value_cash_sale').value)"
+                pKeyFilter="pnum" maxlength="2" formControlName="discount_prime">
+              <span class="percent-symbol">%</span>
+              <span class="percent-error" *ngIf="registerForm?.get('priceForm.discount_prime').hasError('min')">Minimo
+                10%
+              </span>
+              <span class="percent-error" *ngIf="registerForm?.get('priceForm.discount_prime').hasError('max')">Máximo
+                {{maxOffPrime}}%
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Preço Prime</label>
+              <input type="text" class="form-control" readonly value="{{price_prime | conversion : 'BRL' : false}}">
+            </div>
+            <div class="type-desc">
+              Cliente Prime paga uma anuidade de R$ 120,00 que dá desconto na compra de todos produtos e
+              serviços
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Desconto do preço para Associados -->
+        <div class="collumm">
+          <div class="off" [ngClass]="{'view': registerForm.get('priceForm.checkResale').value }">
+            <div class="form-group">
+              <label>Desconto</label>
+              <input type="text" class="form-control percentage" (blur)="checkDiscount()" (keyup)="calcOff(registerForm?.get('priceForm.value_cash_sale').value)"
+                pKeyFilter="pnum" maxlength="2" formControlName="discount_associate">
+              <span class="percent-symbol">%</span>
+              <span class="percent-error" *ngIf="registerForm?.get('priceForm.discount_associate').hasError('min')">Minimo
+                30%
+              </span>
+              <span class="percent-error" *ngIf="registerForm?.get('priceForm.discount_associate').hasError('max')">Máximo
+                {{maxOffAssociate}}%
+              </span>
+            </div>
+            <div class="form-group">
+              <label>Preço Smart</label>
+              <input type="text" class="form-control" readonly value="{{price_associate | conversion : 'BRL' : false}}">
+            </div>
+            <div class="type-desc">
+              Este desconto permite que seu produto possa ser revendido por milhares de associados de
+              nossa comunidade Está sujeito a aprovação
+              de nosso departamento de curadoria de produtos e serviços para revenda Seu produto estará
+              disponível
+              em nosso catálogo físico, no shoppping online e em todas as lojas online dos associados
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Preço de Revenda Nacional -->
+        <!-- <div class="collumm">
+                    <div class="off" [ngClass]="{'view': registerForm.get('priceForm.checkResale').value }">
+                        <div class="form-group">
+                            <label>Valor mínimo para revenda</label>
+                            <input type="text" class="form-control" currencyMask [options]="maskMoney" formControlName="value_minimun_resale">
+                        </div>
+                        <div class="type-desc full">
+                            Ao conceder um desconto para o associado, você tornar seu produto mais atrativo para todos nossos associados e eles aparecerão
+                            nos primeiros resultados de busca e rodízio na vitrine principal do shopping
+                        </div>
+                    </div>
+                </div> -->
+
+      </div>
+    </div>
+
+
+
+
+    <!-- FORMULARIO DE FRETE-->
+    <div class="mainBox shippingForm" [class.invalid]="arrayBoxGroupInvalid.indexOf('shippingForm') >= 0" formGroupName="shippingForm">
+      <div class="titleBox">
+        <span>Peso e dimensões </span>
+        <small>(Para cálculos de frete)</small>
+      </div>
+      <div class="cntShipping">
+
+        <div class="collumm">
+
+          <!-- Peso -->
+          <div class="form-group">
+            <label>
+              <span>Peso</span>
+              <b>(KG)</b>
+            </label>
+            <input type="text" class="form-control" pKeyFilter="num" required formControlName="weight">
+          </div>
+
+          <!-- Altura -->
+          <div class="form-group">
+            <label>
+              <span>Altura</span>
+              <b>(cm)</b>
+            </label>
+            <input type="text" class="form-control" pKeyFilter="num" required formControlName="height">
+          </div>
+
+          <!-- largura -->
+          <div class="form-group">
+            <label>
+              <span>Largura</span>
+              <b>(cm)</b>
+            </label>
+            <input type="text" class="form-control" pKeyFilter="num" required formControlName="width">
+          </div>
+
+          <!-- Profundidade/Raio -->
+          <div class="group">
+            <div class="cntRadio">
+              <div class="groupRadio">
+                <p-radioButton class="radio" name="typeMeasure" formControlName="type_measure" value="depth" label="Pacote"
+                  (click)="changeTypeMeasure()"></p-radioButton>
+                <p-radioButton class="radio" name="typeMeasure" formControlName="type_measure" value="diameter" label="Cilindrico"
+                  (click)="changeTypeMeasure()"></p-radioButton>
+              </div>
+            </div>
+            <div class="cntInput">
+              <div class="form-group">
+                <span *ngIf="registerForm?.get('shippingForm.type_measure').value ==='depth'">
+                  <label>
+                    <span>Profundidade</span>
+                    <b>(cm)</b>
+                  </label>
+                  <input type="text" class="form-control" pKeyFilter="num" required formControlName="depth">
+                </span>
+                <span *ngIf="registerForm?.get('shippingForm.type_measure').value ==='diameter'">
+                  <label>
+                    <span>Diametro</span>
+                    <b>(cm)</b>
+                  </label>
+                  <input type="text" class="form-control" pKeyFilter="num" required formControlName="diameter">
+                </span>
+              </div>
+            </div>
+          </div>
+          <!-- Termos-->
+          <div class="form-group">
+            <div class="conditionsUse">
+              <p-checkbox [formControl]="registerForm.controls['acceptTerms']" binary="true" label="Aceito os"></p-checkbox>
+              <span class="modalBtn">Termos e Condiçoes de Uso</span>
+            </div>
+            <span class="errorFormField" *ngIf="registerForm.get('acceptTerms').hasError('required') && registerForm.get('acceptTerms').touched">*
+              Aceite os termos e condições de uso para poder continuar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  BOTAO DE SUBMIT-->
+    <div class="cntBtnSubmit">
+      <button class="btnSubmit" type="submit">Cadastrar</button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,36 @@
+<div class="slideBanner">
+  <ngu-carousel [inputs]="carouselOne">
+    <ngu-item NguCarouselItem>
+      <div class="contentSlide" (click)="onSelect(1)">
+        <img src="assets/img/banner_home/img1.png">
+      </div>
+    </ngu-item>
+    <ngu-item NguCarouselItem>
+      <div class="contentSlide" (click)="onSelect(2)">
+        <img src="assets/img/banner_home/img2.png">
+      </div>
+    </ngu-item>
+    <ngu-item NguCarouselItem>
+      <div class="contentSlide" (click)="onSelect(3)">
+        <img src="assets/img/banner_home/img3.png">
+      </div>
+    </ngu-item>
+    <ngu-item NguCarouselItem>
+      <div class="contentSlide" (click)="onSelect(4)">
+        <img src="assets/img/banner_home/img4.png">
+      </div>
+    </ngu-item>
+    <ngu-item NguCarouselItem>
+      <div class="contentSlide" (click)="onSelect(5)">
+        <img src="assets/img/banner_home/5.png">
+      </div>
+    </ngu-item>
+
+    <button NguCarouselPrev class='buttonPrev'>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <button NguCarouselNext class='ButtonNex'>
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </button>
+  </ngu-carousel>
+</div>

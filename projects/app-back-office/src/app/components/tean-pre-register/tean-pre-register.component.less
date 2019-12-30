@@ -1,0 +1,16 @@
+@import 'css/global-variables.less'; 
+@import 'css/global-functions.less';
+.content{
+    button{
+        border: none;
+        background: @green1;
+        color: #fff;
+        .radius(5px);
+        padding: 5px 20px;
+        width: 100%;
+        &:disabled{
+            pointer-events: none;
+            background: @grey3;
+        }
+    }
+}

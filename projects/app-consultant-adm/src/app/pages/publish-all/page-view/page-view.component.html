@@ -1,0 +1,40 @@
+<app-consultant-adm-box-info [objInfo]="info"></app-consultant-adm-box-info>
+<div class="content">
+  <div class="title">Selecione os produtos para sua campanha</div>
+  <form [formGroup]="registerForm" novalidate>
+    <div class="form-group">
+      <label>Produto</label>
+      <select class="form-control" required formControlName="product">
+        <option *ngFor="let item of products" [value]="item?.id">{{ item.title }}</option>
+      </select>
+      <span class="errorFormField" *ngIf="registerForm.controls.product.hasError('required')">* Obrigatório</span>
+    </div>
+
+    <div class="form-group">
+      <label>Número de Page View</label>
+      <input type="text" class="form-control" pKeyFilter="int" required formControlName="quantity">
+      <span class="errorFormField" *ngIf="registerForm.controls.quantity.hasError('required')">* Valor Inválido</span>
+    </div>
+
+    <button class="btn orange" (click)="addProduct()">Adicionar</button>
+  </form>
+  <div class="title">Produtos Selecionados</div>
+</div>
+
+<div class="items">
+  <div class="card-product" *ngFor="let item of listProductSelected; let idx = index">
+    <div class="btnTrash" (click)="removeProduct(idx)"><i class="fas fa-trash-alt"></i></div>
+    <div class="top">
+      <span class="nr">{{ item?.numberViews }}</span>Pages View
+    </div>
+    <div class="description">
+      {{ item?.product?.title }}
+    </div>
+  </div>
+
+  <div *ngIf="listProductSelected.length === 0" class="notProduct">
+    Nenhum produto selecionado ainda
+  </div>
+</div>
+
+<button class="btn orange save" *ngIf="listProductSelected.length > 0 || showSaveButton" (click)="save()">Salvar</button>

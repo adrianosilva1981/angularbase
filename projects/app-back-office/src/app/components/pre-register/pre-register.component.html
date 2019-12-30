@@ -1,0 +1,145 @@
+<div class="pre-register">
+  <form [formGroup]="formGroup1" class="form-pre">
+
+    <div class="content-pre">
+      <div *ngIf="(resellerRequired===1 && idParent=='') || resellerRequired!==1">
+        <span *ngIf="resellerRequired===1" class="text">A indicação é obrigatória.</span>
+        <span *ngIf="resellerRequired!==1" class="text">Se tiver um código de indicação digite aqui:</span>
+
+        <div class="ui-float-label inputformflex">
+          <input id="idparent" formControlName="userResselerControl" size="30" (blur)="resellerValidator()" pInputText
+            autocomplete="off">
+          <label for="idparent">Digite o código</label>
+          <i *ngIf="resellerCheck" class="fa fa-check checktrue" aria-hidden="true"></i>
+          <i *ngIf="resellerLoading" class="fa fa-spinner fa-pulse fa-fw checkload"></i>
+          <i *ngIf="resellerCheckfalse" class="fa fa-times checkfalse" aria-hidden="true"></i>
+          <span class="error" *ngIf="formGroup1.get('userResselerControl').hasError('resellervalidate')">Código de
+            indicação inválido!</span>
+          <span class="error" *ngIf="formGroup1.get('userResselerControl').hasError('required')">Código de indicação
+            não pode ser vazio!</span>
+        </div>
+        <button class="btn orange max" style="margin-bottom: 5px !important;">Validar</button>
+      </div>
+
+      <div *ngIf="id_Parent_name !== ''" class="text">Patrocinador: {{id_Parent_name}}</div>
+
+      <div class="ui-float-label inputform">
+        <input id="name" formControlName="nameControl" size="30" pInputText autocomplete="off">
+        <label for="name">Digite seu Nome</label>
+        <span class="error" *ngIf="formGroup1.get('nameControl').touched && formGroup1.get('nameControl').hasError('minlength')">Campo
+          nome deve conter no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="formGroup1.get('nameControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <mat-checkbox class="example-margin" name="foregin" color="warn" (change)="onForeign($event.checked)">Sou Estrageiro</mat-checkbox>
+      </div>
+
+      <div class="foreign" *ngIf="isForeign">
+        <div class="ui-float-label inputform">
+          <input id="foreignTypeDocument" formControlName="foreignTypeDocumentControl" size="30" pInputText autocomplete="off">
+          <label for="foreignTypeDocument">Tipo do Documento</label>
+          <span class="error" *ngIf="formGroup1.get('foreignTypeDocumentControl').touched && formGroup1.get('foreignTypeDocumentControl').hasError('pattern')">
+            Tipo do documento inválido!</span>
+          <span class="error" *ngIf="formGroup1.get('foreignTypeDocumentControl').hasError('required')">Obrigatório!</span>
+        </div>
+
+        <div class="ui-float-label inputform">
+          <input id="foreignNumberDocument" formControlName="foreignNumberDocument" size="30" pInputText autocomplete="off">
+          <label for="foreignNumberDocument">Número do Documento</label>
+          <span class="error" *ngIf="formGroup1.get('foreignNumberDocument').touched && formGroup1.get('foreignNumberDocument').hasError('pattern')">
+            Número do documento inválido</span>
+          <span class="error" *ngIf="formGroup1.get('foreignNumberDocument').hasError('required')">Obrigatório!</span>
+        </div>
+      </div>
+
+      <div *ngIf="!isForeign" class="ui-float-label inputform">
+        <input id="cpf" formControlName="cpfControl" size="30" [textMask]="{mask: CPFMASK}" pInputText autocomplete="off">
+        <label for="cpf">Digite seu CPF</label>
+        <span class="error" *ngIf="formGroup1.get('cpfControl').touched && formGroup1.get('cpfControl').hasError('pattern')">CPF
+          inválido!</span>
+        <span class="error" *ngIf="formGroup1.get('cpfControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <!--<div class="ui-float-label inputform">
+        <input id="date" formControlName="dateControl" size="30" [textMask]="{mask: DATEMASK}" pInputText>
+        <label for="date">Digite sua Data de Nascimento</label>
+        <span class="error" *ngIf="formGroup1.get('dateControl').touched && formGroup1.get('dateControl').hasError('pattern')">Formato de data inválida!</span>        
+      </div> -->
+
+      <div class="ui-float-label inputform">
+        <input id="cellphone" formControlName="celularControl" maxlength="20" size="30" [textMask]="{mask: CELLPHONEMASK}" pInputText  autocomplete="off" *ngIf="!isForeign">
+        <input id="cellphone" formControlName="celularControl" maxlength="20" size="30" pInputText  autocomplete="off" *ngIf="isForeign">
+        <label for="cellphone">Digite seu Telefone Celular</label>        
+        <span class="error" *ngIf="formGroup1.get('celularControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="email" type="email" formControlName="emailControl" size="30" pInputText autocomplete="off">
+        <label for="email">Digite seu email</label>
+        <span class="error" *ngIf="formGroup1.get('emailControl').touched && formGroup1.get('emailControl').hasError('pattern')">E-mail
+          inválido!</span>
+        <span class="error" *ngIf="formGroup1.get('emailControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="password" formControlName="passControl" [type]="hide ? 'text' : 'password'" pInputText autocomplete="off"
+          maxlength="20">
+        <i class="{{hide ? 'fa fa-eye eye' : 'fa fa-eye-slash eye'}}" aria-hidden="true" (click)="hide = !hide"></i>
+        <label for="password">Digite sua Senha</label>
+        <span class="error" *ngIf="formGroup1.get('passControl').touched && formGroup1.get('passControl').hasError('minlength')">Sua
+          senha deve conter no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="formGroup1.get('passControl').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform">
+        <input id="confirmPass" formControlName="confirmPassControl" [type]="hide1 ? 'text' : 'password'" pInputText
+          autocomplete="off" maxlength="20">
+        <i class="{{hide1 ? 'fa fa-eye eye' : 'fa fa-eye-slash eye'}}" aria-hidden="true" (click)="hide1 = !hide1"></i>
+        <label for="confirmPass">Confirme sua Senha</label>
+        <span class="error" *ngIf="formGroup1.get('confirmPassControl').touched && formGroup1.get('confirmPassControl').hasError('minlength')">Sua
+          senha deve conter no mínimo 6 digitos!</span>
+        <span class="error" *ngIf="formGroup1.get('confirmPassControl').hasError('required')">Obrigatório!</span>
+        <span class="error" *ngIf="formGroup1.get('confirmPassControl').touched && formGroup1.controls.confirmPassControl.errors?.MatchPassword">A
+          confimação da senha dever ser igual a senha!</span>
+      </div>
+
+      <div class="ui-float-label inputform center">
+        <mat-checkbox class="example-margin" formControlName="ageValid" name="age" color="warn">Sou maior de 18 anos.</mat-checkbox>
+        <span class="error" *ngIf="formGroup1.get('ageValid').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="ui-float-label inputform center">
+        <mat-checkbox class="example-margin" formControlName="termoValid" name="termo" color="warn">Li e concordo com
+          os
+          <a target="_blank" href="https://s3.amazonaws.com/youhub-files/production/backoffice/Documents/YouHub-Termo-de-Adesão-v2.pdf">Termos do Contrato</a>.
+        </mat-checkbox>
+        <span class="error" *ngIf="formGroup1.get('termoValid').hasError('required')">Obrigatório!</span>
+      </div>
+
+      <div class="contentComplete">
+
+        <div class="contentlink">
+          <a (click)="login()" class="link" href="javascript:void(0);">Voltar para login</a>
+        </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 15px;" *ngIf="siteKey">
+          <p-captcha [siteKey]="siteKey" (onResponse)="showResponse($event)" type="image"></p-captcha>
+        </div>
+
+        <div class="contenButton">
+          <button [disabled]="!formGroup1.valid || !enableSend" (click)="saveForm()" class="btn orange max" [ngClass]="{'disabled':!formGroup1.valid  || !enableSend}">Criar
+            Conta</button>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </form>
+
+
+
+</div>

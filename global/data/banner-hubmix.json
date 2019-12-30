@@ -1,0 +1,74 @@
+[
+    {
+        "router": true,
+        "link": "/department/product",
+        "search": "maskoto",
+        "img": "assets/img/banner_home/img6.jpg"
+    },
+    {
+        "router": true,
+        "link": "/department/product/177",
+        "search": "",
+        "img": "assets/img/banner_home/img3.jpg"
+    },
+    {
+        "router": true,
+        "link": "/department/product",
+        "search": "oculos",
+        "img": "assets/img/banner_home/RoyalGlass2.jpg"
+    },
+    {
+        "router": true,
+        "link": "/prime",
+        "search": "",
+        "img": "assets/img/banner_home/Prime.jpg"
+    },
+    {
+        "router": true,
+        "link": "/department/product/1896",
+        "search": "",
+        "img": "assets/img/banner_home/bierProfissional.jpg"
+    },
+    {
+        "router": true,
+        "link": "/department/product/3241",
+        "search": "",
+        "img": "assets/img/banner_home/celutty.jpeg"
+    },
+    {
+        "router": true,
+        "link": "/department/product/3976",
+        "search": "",
+        "img": "assets/img/banner_home/motoMaskoto.jpg"
+    },
+    {
+        "router": true,
+        "link": "/department/product/378",
+        "search": "",
+        "img": "assets/img/banner_home/Camiseta.png"
+    },
+    {
+        "router": false,
+        "link": "https://partner.youhub.com.br/store/opulodogato/department/service/7370",
+        "search": "",
+        "img": "assets/img/banner_home/meta-associados-banner.png"
+    },
+    {
+        "router": true,
+        "link": "/department/guide",
+        "search": "",
+        "img": "assets/img/banner_home/smart.png"
+    },
+    {
+        "router": true,
+        "link": "/department/product/5031",
+        "search": "",
+        "img": "assets/img/banner_home/ComboFIT.jpg"
+    },
+    {
+        "router": true,
+        "link": "/department/product/5001",
+        "search": "",
+        "img": "assets/img/banner_home/ComboFEMME.jpg"
+    }
+]

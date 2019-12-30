@@ -1,0 +1,51 @@
+
+@import 'css/global-variables.less';
+.contentFormSearch {
+    padding: 30px;
+    max-height: 90vh;
+    overflow: auto;
+    .contentAll {
+        margin-top: 30px;
+        border-top: 1px solid @grey2;
+        padding: 25px 0px 0px 0px;
+        .contentResult {
+            color: @grey5;
+            .textInfo {
+                padding: 20px 0px;
+                text-align: center;
+                font-weight: bold;
+            }
+            .contentList {
+                .list {
+                    cursor: pointer;
+                    background: @grey2;
+                    border-radius: 5px;
+                    padding: 20px;
+                    margin-bottom: 10px;
+                    border: 1px solid transparent;
+                    &:hover {
+                        box-shadow: 3px 3px 14px -3px @grey5;
+                        border: 1px solid @blue1;
+                    }
+                }
+            }
+        }
+        .notFound {
+            text-align: center;
+            color: @grey7;
+            font-weight: bold;
+        }
+    }
+    .content-row{
+        display: flex;
+        .content-col{
+            flex-grow: 1;
+            margin: 5px;
+        }
+    }
+    .content-button{
+        margin: 10px;
+        text-align: center;
+        width: 100%;
+    }
+}

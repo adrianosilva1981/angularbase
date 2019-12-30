@@ -1,0 +1,34 @@
+<div class="contentAll">
+  <div class="titleForm">
+    Envie uma mensagem
+  </div>
+  <form [formGroup]="registerForm" novalidate (ngSubmit)="submitForm()">
+
+    <div class="contentFields">
+
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" required formControlName="name">
+      </div>
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="text" class="form-control" required formControlName="email">
+      </div>
+
+      <div class="form-group">
+        <label>Mensagem</label>
+        <textarea class="form-control" cols="50" rows="10" required formControlName="message"></textarea>
+      </div>
+    </div>
+
+
+    <div class="contentBtnSend form-group">
+      <div class="contentCaptcha">
+        <p-captcha [siteKey]="siteKey" (onResponse)="showResponse($event)" type="image"></p-captcha>
+      </div>
+      <button [disabled]="!registerForm.valid || !enableSend" type="submit" class="btn btnSend">Enviar</button>
+      <div class="clearfix"></div>
+    </div>
+  </form>
+</div>

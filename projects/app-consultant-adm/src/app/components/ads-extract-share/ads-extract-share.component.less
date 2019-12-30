@@ -1,0 +1,113 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.load {
+    text-align: center;
+    margin: 30px;
+}
+
+.table-data {
+    th:nth-child(4) {
+        width: 160px;
+    }
+    th:nth-child(2) {
+        width: 130px;
+    }
+    td:nth-child(2) {
+        width: 120px;
+        height: 80px;
+        img {
+            height: 100%;
+        }
+    }
+    .pointer {
+        cursor: pointer;
+    }
+    .notShare {
+        text-align: center;
+        padding: 30px 15px;
+        font-weight: 700;
+        font-size: 15px;
+    }
+}
+
+.box-print {
+    display: flex;
+    flex-wrap: wrap;
+    .print {
+        flex: 1;
+        max-width: 170px;
+        margin: 10px;
+        box-shadow: 0 0 10px 0 #ccc;
+        padding: 10px;
+        position: relative;
+        .icon {
+            color: #fff;
+            position: absolute;
+            right: -11px;
+            top: -7px;
+            font-size: 17px;
+            background-color: #ccc;
+            border-radius: 100%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &.approved {
+                background-color: @green1;
+            }
+            &.disapproved {
+                background-color: @red1;
+            }
+        }
+        .image {
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            img {
+                height: 90%;
+            }
+        }
+        .actions {
+            text-align: center;
+            .btn {
+                padding: 5px 0;
+                background: @blue2;
+                color: #fff;
+                text-transform: uppercase;
+                margin: 5px;
+                font-size: 12px;
+                min-width: 120px;
+                min-height: unset;
+                cursor: pointer;
+                .radius(15px);
+                &:hover {
+                    background: @orange1;
+                }
+                &:disabled {
+                    background: @grey3;
+                    cursor: not-allowed;
+                }
+                &.approved {
+                    background-color: @green1;
+                }
+                &.disapproved {
+                    background-color: @red1;
+                }
+            }
+        }
+    }
+}
+
+.notExtract {
+    text-align: center;
+    padding: 30px 15px;
+    font-weight: 700;
+    font-size: 22px;
+}

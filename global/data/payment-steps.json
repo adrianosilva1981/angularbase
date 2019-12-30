@@ -1,0 +1,27 @@
+[
+    {
+        "icon": "fa-shopping-cart",
+        "text": "Carrinho",
+        "step": 1
+    },
+    {
+        "icon": "fa-user",
+        "text": "Identificação",
+        "step": 2
+    },
+    {
+        "icon": "fa-map-marker",
+        "text": "Endereço",
+        "step": 3
+    },
+    {
+        "icon": "fa-truck",
+        "text": "Entrega",
+        "step": 4
+    },
+    {
+        "icon": "fa-usd",
+        "text": "Pagamento",
+        "step": 4
+    }
+]

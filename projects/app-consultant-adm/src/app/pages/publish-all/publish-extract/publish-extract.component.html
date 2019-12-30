@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="menu">
+        <button *ngFor="let menu of menus" class="btn blue" (click)="onSelectMenu(menu.action)" [ngClass]="{ 'active': selectMenu === menu.action}">
+            {{ menu.label }}
+        </button>
+    </div>
+
+    <div class="info">
+        <div [ngSwitch]="selectMenu">
+            <div *ngSwitchCase="'cpm'">
+                <app-consultant-adm-ads-extract-cpm [publicity]="publicity"></app-consultant-adm-ads-extract-cpm>
+            </div>
+            <div *ngSwitchCase="'email'">
+                email
+            </div>
+            <div *ngSwitchCase="'share'">
+                <app-consultant-adm-ads-extract-share [action]="'share'" [publicity]="publicity"></app-consultant-adm-ads-extract-share>
+            </div>
+            <div *ngSwitchCase="'post-instagram'">
+                <app-consultant-adm-ads-extract-post-social-net [action]="'post_instagram'" [publicity]="publicity"></app-consultant-adm-ads-extract-post-social-net>
+            </div>
+            <div *ngSwitchCase="'post-facebook'">
+                <app-consultant-adm-ads-extract-post-social-net [action]="'post_facebook'" [publicity]="publicity"></app-consultant-adm-ads-extract-post-social-net>
+            </div>
+        </div>
+    </div>
+</div>

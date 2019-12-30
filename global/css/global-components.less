@@ -1,0 +1,21 @@
+@import 'global-variables.less';
+@import 'global-functions.less';
+.drop-down-shop {
+    position: relative;
+    display: inline-block;
+    &:hover {
+        .drop-down-content-shop {
+            transition: all 0.3s linear;
+            visibility: visible;
+            display: block;
+            opacity: 1;
+        }
+    }
+    .drop-down-content-shop {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        box-shadow: 0px 15px 24px -17px rgba(0, 0, 0, 1);
+        z-index: 1;
+    }
+}

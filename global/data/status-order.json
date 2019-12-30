@@ -1,0 +1,57 @@
+[{
+    "label": "Aguardando Pagamento",
+    "value": "AP"
+  },
+  {
+    "label": "Pagamento Confirmado",
+    "value": "PC"
+  },
+  {
+    "label": "Finalizado",
+    "value": "FN"
+  },
+  {
+    "label": "Estorno",
+    "value": "ES"
+  },
+  {
+    "label": "Aguardando Aprovação",
+    "value": "AA"
+  },
+  {
+    "label": "Ativo",
+    "value": "A"
+  },
+  {
+    "label": "Cancelado",
+    "value": "C"
+  },
+  {
+    "label": "Excluido",
+    "value": "E"
+  },
+  {
+    "label": "Carrinho Abandonado/Expirado",
+    "value": "AB"
+  },
+  {
+    "label": "Pagamento Negado",
+    "value": "PN"
+  },
+  {
+    "label": "Pagamento Aguardando Captura",
+    "value": "PAC"
+  },
+  {
+    "label": "Pagamento Recorrente",
+    "value": "PR"
+  },
+  {
+    "label": "Pagamento Recorrente Agendado",
+    "value": "PRA"
+  },
+  {
+    "label": "Ativo não listado",
+    "value": "ANL"
+  }
+]

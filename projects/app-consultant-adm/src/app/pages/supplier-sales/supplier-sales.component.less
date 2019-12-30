@@ -1,0 +1,162 @@
+@import 'global/css/global-variables.less';
+.sales-detail {
+    .center {
+        text-align: center;
+    }
+    .box {
+        display: flex;
+        background: white;
+        padding: 5px;
+        margin: 10px;
+        max-width: 550px;
+        justify-content: center;
+        flex-wrap: wrap;
+        .img {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            img {
+                max-width: 100px;
+            }
+        }
+        .e-title {
+            flex: 1;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            min-width: 300px;
+            .title {
+                font-size: 18px;
+                font-weight: bold;
+                color: @blue2;
+            }
+            .ean {}
+        }
+        .desc {
+            flex: 3;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            .name {
+                font-weight: bold;
+            }
+        }
+        .v-btn {
+            font-size: 18px;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            .value {}
+            .btn {
+                background: @orange1;
+            }
+        }
+    }
+}
+
+.btn {
+    color: #fff;
+    background: @orange1;
+}
+
+.tableColumn {
+    &:nth-child(1) {
+        width: 80px;
+    }
+    &:nth-child(2) {
+        width: 60px;
+    }
+    &:nth-child(3) {
+        width: 140px;
+    }
+    &:nth-child(4) {
+        width: 110px;
+    }
+    &:nth-child(5) {
+        width: 140px;
+    }
+    &:nth-child(6) {
+        width: 50px;
+    }
+    &:nth-child(7) {
+        width: 110px;
+    }
+}
+
+.filter {
+    input {
+        width: 100%;
+    }
+}
+
+.filters {
+    .icon {
+        cursor: pointer;
+        text-align: right;
+        display: block;
+        .plus-filter {
+            color: @blue2;
+            font-size: 16px;
+        }
+    }
+    .dates {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 15px 0;
+        max-height: 0;
+        transition: max-height 0.7s cubic-bezier(0, 1.01, 0, 1.03);
+        overflow: hidden;
+        background: white;
+        padding: 0px 25px;
+        border-radius: 5px;
+        .btns, .drop, .input, .submit-filter {
+            width: 100%;
+        }
+        .btns {
+            margin-top: 25px;
+        }
+        .drop {
+            .cnt-drop {
+                margin: 5px 0;
+            }
+        }
+        .submit-filter {
+            margin: 15px 0;
+            .btn {
+                &.grey {
+                    background: #ccc;
+                    margin: 0 5px;
+                }
+            }
+        }
+        .initial, .finish, .total {
+            flex: 1;
+            margin: 10px 0;
+            min-width: 280px;
+        }
+        .initial {
+            margin-top: 0;
+        }
+        .title-date {
+            font-weight: bold;
+        }
+        .input {
+            .filterCod {
+                height: 38px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                text-align: center;
+                max-width: 150px;
+            }
+        }
+        &.show {
+            max-height: 750px;
+            transition: max-height 0.8s ease-in-out;
+        }
+    }
+}

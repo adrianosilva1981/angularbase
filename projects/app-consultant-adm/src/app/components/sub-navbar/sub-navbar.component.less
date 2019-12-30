@@ -1,0 +1,92 @@
+@import 'global/css/global-variables.less';
+.subNav {
+    min-height: 60px;
+    background: @grey2;
+    .mobileMenu {
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    .iconsContent {
+        display: flex;
+        align-items: center;
+        min-height: 60px;
+        // justify-content: center;
+        overflow: auto;
+        .mobile {
+            margin-right: 15px;
+            i {
+                font-size: 20px;
+                color: @blue2;
+                cursor: pointer;
+            }
+        }
+        .link {
+            margin-right: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            cursor: pointer;
+            &:hover {
+                color: @blue1;
+            }
+            i {
+                font-size: 20px;
+                margin-right: 5px;
+            }
+            a {
+                text-decoration: none;
+                color: @grey7;
+                &:hover {
+                    color: @blue1;
+                }
+            }
+            &.disabled {
+                cursor: not-allowed;
+                a {
+                    pointer-events: none;
+                    text-decoration: none;
+                    color: @grey4;
+                    &:hover {
+                        color: @grey4;
+                    }
+                }
+                
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .link {
+                display: none;
+                &:nth-child(2) {
+                    display: block;
+                }
+                &:nth-child(3) {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.menu-mobile {
+    .link {
+        padding: 15px 0;
+        cursor: pointer;
+        &:hover {
+            color: @blue1;
+        }
+        i {
+            margin-right: 5px;
+        }
+        img {
+            max-width: 75%;
+        }
+        a {
+            text-decoration: none;
+            color: @grey7;
+            &:hover {
+                color: @blue1;
+            }
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<div class="filterOpportunity">
+  <div class="contentBtn">
+    <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+  </div>
+  <div class="orderSelect form-group">
+    <label>Ordenar por:</label>
+    <select #order class="form-control" (change)="onOrderChange(order.value)">
+      <option value="recentDesc">Mais Recentes</option>
+      <option value="nameAsc">Nome [A-Z] </option>
+      <option value="nameDesc">Nome [Z-A]</option>
+      <option value="popularDesc">Mais Polulares</option>
+      <option value="popularAsc">Menos Populares</option>
+      <option value="salaryDesc">Maior Salário</option>
+      <option value="salaryAsc">Menor Salário</option>
+      <option value="online">Online</option>
+    </select>
+  </div>
+  <div class="filter">
+    <div class="filterInterest">
+      <div class="lbl">Área de interesse</div>
+
+      <div class="loopInterest" *ngIf="catOrSub =='cat'">
+        <div class="filtCat" *ngFor="let filter of filters" (click)="onCategoryChange(filter)">
+          <span class="icon">
+            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+          </span>
+          <span class="text">{{filter?.description}}</span>
+        </div>
+      </div>
+
+      <div class="loopInterest" *ngIf="catOrSub =='sub'">
+        <div class="filtSubCat" [class.active]="filter.active" *ngFor="let filter of filters" (click)="onSubCategoryChange(filter)">
+          <i class="fa fa-fw" aria-hidden="true"></i>
+          <span class="text truncate" [title]="filter?.description">{{filter?.description}}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hyperServices">
+      <div class="contentText">
+        <a [href]="environment.servicesUrl">
+          <span class="icon">
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+          </span>
+          <span class="text">Pesquisar SERVIÇOS</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

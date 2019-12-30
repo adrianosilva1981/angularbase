@@ -1,0 +1,51 @@
+<div class="config">
+  <div class="container-fluid text-center">
+    <div class="content">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 jumbotron">
+        <h1 class="col-12">
+          Buscar Associado
+        </h1>
+        <div style="height: 15px" class="w-100">
+        </div>
+        <span class="ui-float-label col-12">
+          <input #query type="text" size="30" (keydown.enter)="setAssociates(query.value)" pInputText/>
+          <label for="float-input" class="col-12">Código, nome ou CNPJ/CPF</label>
+        </span>
+        <p-button class="col-12" label="Buscar" (onClick)="setAssociates(query.value)"></p-button>
+
+      </div>
+      <div class="col-12">
+        <p-table #dt [columns]="cols" [value]="associates" [paginator]="true" [rows]="10" [globalFilterFields]="colsQuery" selectionMode="single"
+          *ngIf="flag">
+
+          <ng-template pTemplate="caption">
+            <div style="text-align: left">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText size="50" placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value,'contains')"
+                style="width:auto">
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{ col.header }}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-associate let-columns="columns">
+            <tr [pSelectableRow]="associate" (click)="selectAssociate(associate)">
+              <td *ngFor="let col of columns">
+                {{ ((col.field === 'points') || (col.field === 'points_release'))?(associate[col.field]|currency:'R$'):(associate[col.field])
+                }}
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="cntAll">
+  <div class="cntCard">
+    <div class="card" (click)="card(item)" *ngFor="let item of menu; let idx = index" [ngClass]="{'active': idx === menuSelect}">
+      <div class="cntBtn">
+        <div class="icon" [ngClass]="item.icon"></div>
+        <div class="text">{{item.text}}</div>
+      </div>
+    </div>
+  </div>
+
+  <p-table [columns]="cols" [value]="listShare" dataKey="idShare">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 3em"></th>
+        <th style="width: 150px">Imagem</th>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+      <tr>
+        <td class="click" [pRowToggler]="rowData"><i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i></td>
+        <td class="click imageIcon" [pRowToggler]="rowData">
+          <img [src]="rowData.urlBanner">
+        </td>
+        <td class="click" *ngFor="let col of columns" [pRowToggler]="rowData">
+          {{rowData[col.field]}}
+        </td>
+        <td>
+          <i class="fas fa-share-square action" title="Compartilhar Post"></i>
+          <lib-components-upload-image *ngIf="rowData.prints.length < rowData.nrShare" [buttonText]="txtImage" [width]="'600'"
+            [height]="'600'" [urlRequest]="urlRequest" [pathBucket]="pathBucket" (onUpload)="onUpload($event, rowData)"></lib-components-upload-image>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+      <tr>
+        <td [attr.colspan]="columns.length + 3">
+          <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
+            <div class="ui-g-12 ui-md-12">
+              <p>Compartilhamentos (images)</p>
+              <div class="box-print" *ngFor="let item of rowData.prints">
+                <div class="imageDate">{{ item.created | date: 'dd/MM/yyyy' }}</div>
+                <div class="prints">
+                  <div><img [src]="item.urlImage"></div>                               
+                </div>
+                <div>
+                  <div><b>Reprovado:</b></div>
+                  {{ item.reason }}
+                  <div><b>Enviar outro print</b></div>
+                </div>     
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>

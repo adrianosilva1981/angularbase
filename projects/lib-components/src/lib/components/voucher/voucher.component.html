@@ -1,0 +1,18 @@
+<div class="enter-voucher">
+  <div class="box">
+    <div class="logo">
+      <img src="global/img/logo_youhub.png" alt="">
+    </div>
+    <div class="text">
+      Insira seu voucher para ativação <b>PRIME</b>
+    </div>
+    <div class="input">
+      <p-inputMask [(ngModel)]="voucher" styleClass="input-voucher" mask="9999-9999-9999"></p-inputMask>
+    </div>
+    <div class="bt">
+      <div class="btn" (click)="activateVoucher()">
+        Ativar
+      </div>
+    </div>
+  </div>
+</div>

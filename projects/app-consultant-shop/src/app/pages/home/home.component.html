@@ -1,0 +1,21 @@
+<div class="home container">
+
+  <!-- <div class="contentBanner">
+    <app-consultant-shop-slider-banner></app-consultant-shop-slider-banner>
+  </div> -->
+
+  <div class="featuredItem" *ngIf="hyperProducts?.length > 0">
+    <div class="fsTitle">Produtos</div>
+    <div class="listItem">
+      <app-consultant-shop-thumbnail-product *ngFor="let product of hyperProducts" [itemObject]="product" class="item"></app-consultant-shop-thumbnail-product>
+    </div>
+  </div>
+
+  <!-- <div class="featuredItem" *ngIf="hyperServices?.length > 0">
+    <div class="fsTitle">Serviços</div>
+    <div class="listItem">
+      <app-consultant-shop-thumbnail-service *ngFor="let service of hyperServices" [itemObject]="service" class="item"></app-consultant-shop-thumbnail-service>
+    </div>
+  </div> -->
+
+</div>

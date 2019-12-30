@@ -1,0 +1,201 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+body {
+    margin: 0 !important;
+    overflow-x: hidden;
+}
+
+// Formatação do chekcbox****************************************************
+.ui-chkbox-box.ui-state-active, .ui-radiobutton-box.ui-state-active {
+    border: 1px solid @blue1 !important;
+    background: @blue1 !important;
+    color: #FFFFFF !important;
+}
+
+.ui-chkbox-label {
+    font-weight: 400;
+    margin: 1px 0;
+    cursor: pointer;
+    &:hover {
+        color: @blue1;
+    }
+}
+
+.ui-chkbox .ui-chkbox-icon {
+    display: block;
+    &.fa {
+        &:before {
+            content: none;
+        }
+    }
+}
+
+.ui-chkbox-box.ui-state-focus {
+    box-shadow: none !important;
+}
+
+.ui-chkbox {
+    font-size: 14px !important;
+} //**************************************************************************
+// Formatação do dropdown****************************************************
+.ui-dropdown-item.ui-state-highlight {
+    display: none;
+}
+
+.ui-dropdown-panel .ui-dropdown-item {
+    font-weight: 300 !important;
+}
+
+.ui-dropdown .ui-dropdown-trigger {
+    border: none !important;
+    border-radius: 4px;
+}
+
+.ui-dropdown label.ui-dropdown-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} //**************************************************************************
+.ui-inputtext {
+    margin: inherit;
+    outline: medium none;
+    /* padding: inherit; */
+    font-weight: normal;
+    font-size: inherit;
+    height: 38px;
+}
+
+.ui-float-label input:focus ~ label, .ui-float-label input.ui-state-filled ~ label, .ui-float-label .ui-inputwrapper-focus ~ label, .ui-float-label .ui-inputwrapper-filled ~ label {
+    left: 10px;
+}
+
+.ui-float-label label {
+    left: 10px;
+}
+
+.ui-corner-all {
+    border-radius: 4px;
+}
+
+.ui-shadow {
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+p-inputmask.ng-dirty.ng-invalid ~ label, p-inputmask.ng-touched.ng-invalid ~ label, .ui-float-label input.ng-dirty.ng-invalid ~ label, .ui-float-label input.ng-touched.ng-invalid ~ label {
+    color: @red1;
+}
+
+.ui-colorpicker-preview {
+    width: 2em;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.ui-state-default {
+    border: 1px solid #d6d6d6;
+    background: #ffffff;
+    color: #555555;
+}
+
+// SOBRESCREVER O FORMAT PRICE
+.overrideFormatPrice {
+    .formatMoney {
+        display: flex;
+        justify-content: center;
+        .moneySymbol {
+            font-weight: lighter;
+            font-size: 30% !important;
+            align-self: center;
+        }
+        .moneyValue {
+            font-weight: 400;
+            font-size: 100%;
+        }
+        .moneyDecimal {
+            font-weight: lighter;
+            font-size: 30%;
+            margin-top: 20px;
+        }
+    }
+}
+
+// Formatação BTN
+.btn {
+    background: white;
+    color: @grey3;
+    border: 1px solid @grey3;
+    padding: 5px 15px;
+    border-radius: 7px;
+    outline: none;
+    .default {
+        border: none;
+        box-shadow: 1px 2px 10px 0px @grey4;
+        color: white;
+        min-height: 35px;
+        font-size: 18px;
+        min-width: 100px;
+    }
+    &.blue:not(.rounded):not(.circle) {
+        .default;
+        .bgGradient(@blue2, @blue1, 90deg);
+        &:hover {
+            background: @blue1;
+        }
+        &:active {
+            box-shadow: inset 0px 2px 10px 0px @blue2;
+        }
+    }
+}
+
+.ui-dialog {
+    top: calc(~'100vh - 85%')!important;
+}
+
+.editorHtml {
+    .ui-editor-content {
+        background: white;
+        height: 320px;
+    }
+}
+
+.btn-select-date {
+    .ui-button.ui-state-active {
+        border: 1px solid #6a1f87;
+        background: #75308f;
+        color: #FFFFFF;
+    }
+    .ui-button.ui-state-focus.ui-state-active {
+        box-shadow: 0px 0px 5px #6a1f87;
+    }
+    .ui-button.ui-state-active:focus {
+        box-shadow: 0px 0px 5px #6a1f87;
+    }
+}
+
+.calender-filter {
+    margin-right: 10px;
+}
+
+.ui-table-auto-layout>.ui-table-wrapper {
+    overflow-x: unset !important;
+}
+
+.ui-messages-warn {
+    max-width: 660px;
+    margin: 0 auto;
+    color: #8a6714;
+    background-color: #ffe9b5;
+    border-color: #ffe9b5;
+}
+
+.ui-messages-icon {
+    display: none !important;
+}
+
+.ui-messages-summary {
+    margin-left: 0;
+}

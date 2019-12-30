@@ -1,0 +1,57 @@
+@import 'css/global-variables.less';
+.board {
+    margin-left: 280px;
+}
+
+.top {
+    height: 50px;    
+    background: @blue1;
+    color: @grey1;  
+    display: flex;
+}
+
+.contentLogo{    
+    margin-top: 5px;
+    width: 250px;
+    height: auto;
+    background: url('/assets/imgs/logo_white.png') no-repeat center center;
+    @media screen and (max-width: 600px) {
+        margin-top: 1px;
+        width: 60px;
+        background: url('/assets/imgs/logo_icon.png') no-repeat center center;
+    }
+}
+
+.drop-down-shop{
+    width: 100%;
+    text-align: right;
+}
+.drop-down-content-shop {
+    display: inline-block;
+    margin: 13px;
+}
+
+.menuItem {
+    cursor: pointer;
+}
+
+.cont {
+    display: flex;
+    width: 100%;
+    min-height: calc( 100vh - 50px);
+    @media screen and(max-width: 769px) {
+        height: 0;
+    }
+}
+
+.navBar {
+    background: @blue1;
+    color: @grey1;
+    @media screen and(max-width: 769px) {
+        background: transparent;
+        position: absolute;
+        top: 15px;
+        left: 5px;
+    }
+    // min-height: 100%;
+}

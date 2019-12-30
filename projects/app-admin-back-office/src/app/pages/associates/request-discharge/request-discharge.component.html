@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="row text-center">
+    <div class="col-12">
+      <div class="jumbotron">
+        <h1>Solicitação de Saque</h1>
+      </div>
+    </div>
+    <div class="col-12">
+      <p-calendar [(ngModel)]="rangeDates" selectionMode="range" dateFormat="dd/mm/yy" (onSelect)="setAssociates()" ></p-calendar>
+    </div>
+  </div>
+  <div class="row py-5 justify-content-center">
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Total
+        </div>
+        <div class="col-12">
+          {{total|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 p-5">
+      <p-table #dt [columns]="cols" [value]="associates" [responsive]="true" [rows]="50" *ngIf="associates.length"
+        [paginator]="true">
+        <ng-template pTemplate="caption">
+            <div style="text-align: left">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText size="50" placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value, 'contains');sumTotal(dt);"
+                style="width:auto">
+            </div>
+          </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th>Detalhes das Pendências</th>
+            <th>Mais Info</th>
+            <th>Nota Fiscal</th>
+            <th>Solicitação</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-associate let-columns="columns">
+          <tr [pSelectableRow]="associate">
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{ col.field.includes('value')? (associate[col.field] | currency:'R$'):col.field.includes('pendencies')? (associate[col.field] | currency:'R$ '):
+              col.field.includes('date')?(associate[col.field]|date:'dd/MM/yyyy'):associate[col.field] }}
+              <div style="background:black;" *ngIf="col.field === 'url'"></div>
+            </td>
+            <td>
+              <i *ngIf='associate?.pendencies_info' class="fas fa-search-plus" (click)="showDialog(associate, 'pendencies')" style="cursor: pointer;"></i>
+            </td>
+            <td>
+              <i class="fas fa-search-plus" (click)="showDialog(associate, associate.method)" style="cursor: pointer;"></i>
+            </td>
+            <td>
+              <button *ngIf="associate?.url" pButton type="button" icon="far fa-id-card" (click)="showDialog(associate,'image')"></button>
+              <div *ngIf="!associate?.url"> - </div>
+            </td>
+
+            <td>
+              <span class="ui-column-title">Solicitação</span>
+              <div class="row justify-content-around">
+                <button pButton type="button" icon="fas fa-check-circle" (click)="validate(associate)"></button>
+                <button pButton type="button" icon="fas fa-times-circle" class="ui-button-danger" (click)="denied(associate)"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+
+
+</div>

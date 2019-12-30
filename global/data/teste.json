@@ -1,0 +1,58 @@
+[
+    {
+        "supplier_id": 13,
+        "supplier_name": "Fornecedor 1",
+        "items": [
+            "prod1",
+            "prod2",
+            "prod3"
+        ],
+        "shipping": [
+            {
+                "company": "Correios",
+                "slug": "pac",
+                "name": "PAC",
+                "price": 53.00,
+                "time": ""
+            },
+            {
+                "company": "Correios",
+                "slug": "sedex",
+                "name": "SEDEX",
+                "price": 80.65,
+                "time": ""
+            }
+        ]
+    },
+    {
+        "supplier_id": 14,
+        "supplier_name": "Fornecedor 2",
+        "items": [
+            "prod1",
+            "prod2"
+        ],
+        "shipping": [
+            {
+                "company": "Jadlog",
+                "name": "Econômico",
+                "slug": "economic",
+                "price": "53.00",
+                "time": ""
+            },
+            {
+                "company": "Frete Grátis",
+                "slug": "free",
+                "name": "Frete Grátis",
+                "price": "0.000",
+                "time": ""
+            },
+            {
+                "company": "A Combinar",
+                "slug": "combine",
+                "name": "A Combinar",
+                "price": "0.000",
+                "time": ""
+            }
+        ]
+    }
+]

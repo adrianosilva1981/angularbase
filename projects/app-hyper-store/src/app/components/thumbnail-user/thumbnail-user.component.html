@@ -1,0 +1,22 @@
+<div class="thumb">
+  <div class="gridView">
+    <div class="contentGrid">
+      <div class="contentHover">
+        <div class="contentClick" (click)="viewDetails()">
+          <img class="img" [src]="_user?.photo" onError="src='global/img/image_default.png'">
+          <div class="name">{{_user.name}}</div>
+
+          <div class="info">
+            <div class="ocupation" *ngIf="_user?.profile?.occupation">
+              [{{_user?.profile?.occupation}}]
+            </div>
+            <div class="location" *ngIf="_user?.city && _user?.state">
+              {{_user?.city}} | {{_user?.state}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

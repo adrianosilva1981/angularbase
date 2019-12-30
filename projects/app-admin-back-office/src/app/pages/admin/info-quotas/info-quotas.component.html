@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row mx-3 rowBreadCrumb">
+        <h6>
+            <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+        </h6>
+    </div>
+
+    <div class="row justify-content-center text-center">
+        <div class="col-12">
+            <h4>
+                Intervalo de {{interval[0]|date:'dd/MM/yyyy'}} até {{interval[1]|date:'dd/MM/yyyy'}}
+            </h4>
+        </div>
+    </div>
+
+    <div class="row justify-content-center py-5 mx-2">
+        <div class="col-12">
+            <p-table #dt [columns]="cols" [value]="associates" [paginator]="true" [rows]="20" [responsive]="true"
+                dataKey="ro_id" [autoLayout]="true">
+
+                <ng-template pTemplate="caption">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <i class="fa fa-search" style="margin:6px 4px 0 0"></i>
+                            <input type="text" placeholder="Pesquisar..."
+                                (input)="dt.filterGlobal($event.target.value,'contains')" style="width: 90%">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                (click)="exportExcel(dt)">Exportar</button>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            {{col.header}}
+                        </th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pRowToggler]="rowData" style="cursor:pointer">
+                        <td *ngFor="let col of columns">
+                            <span class="ui-column-title">{{col.header}}</span>
+                            {{
+                            col.field.includes('value')?(rowData[col.field]|conversion:'BRL':false)
+                            :col.field.includes('date')?(rowData[col.field]|date:'dd/MM/yyyy')
+                            :rowData[col.field]
+                            }}
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                    <tr *ngIf="rowData.reseller_quotas_used.length">
+                        <td [attr.colspan]="columns.length">
+                            <div class="row justify-content-center p-0 m-0">
+                                <span class="text-center w-100">
+                                    <strong>{{rowData.reseller_quotas_used.length>1?'Usados':'Usado'}} em</strong>
+                                </span>
+                                <div class="col-10 col-md-5 col-lg-3 m-3 p-3 item"
+                                    *ngFor="let item of rowData.reseller_quotas_used">
+                                    <Strong>Código:</Strong> {{item?.username}}<br>
+                                    <Strong>Nome:</Strong> {{item?.name}}<br>
+                                    <Strong>Email:</Strong> {{item?.email}}<br>
+                                    <Strong>Celular:</Strong> {{item?.cellphone}}<br>
+                                    <Strong>Ativado:</Strong> {{item?.activation|date:'dd/MM/yyyy'}}<br>
+                                    <!-- {{item|json}} -->
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </p-table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,29 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.cntAll {
+    .center {
+        text-align: center;
+    }
+    .cntEnter {
+        text-align: center;
+        label {
+            display: block;
+            text-align: left;
+        }
+        .btnLogin {
+            .radius(5px);
+            padding: 10px 30px;
+            background: @green1;
+            color: #fff;
+            text-transform: uppercase;
+            &:disabled {
+                pointer-events: none;
+                background: @grey3;
+            }
+        }
+    }
+    .cntInfo {
+        text-align: center;
+        margin-top: 20px;
+    }
+}

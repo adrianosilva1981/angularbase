@@ -1,0 +1,91 @@
+<div class="contenPage">
+  <div class="container">
+    <div class="headerPage">
+      <div class="pageName">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <span class="text">Adicionar endereço</span>
+      </div>
+      <div class="pageOptions">
+
+      </div>
+    </div>
+    <div class="all">
+      <div class="titlePage">
+        Mantenha sempre seus dados atualizados, fica mais fácil para nós conversarmos.
+      </div>
+      <div class="addr">
+        <div class="contentAddAddress">
+
+          <form [formGroup]="registerForm" novalidate (ngSubmit)="submitAddressForm()">
+            <div class="content-row">
+              <div class="form-group content-col">
+                <label class="center-block">* Apelido do Endereço (Ex: Casa) </label>
+                <input class="form-control" formControlName="nickname">
+              </div>
+            </div>
+            <div class="content-row">
+              <div class="form-group content-col">
+                <label class="center-block">* CEP </label>
+                <input class="form-control" formControlName="zipCode" (input)="clearSearch()">
+                <span class="errorFormField" *ngIf="registerForm.controls.zipCode.hasError('pattern')">* CEP inválido</span>
+                <span class="errorFormField" *ngIf="registerForm.controls.zipCode.hasError('cepNotFound')">* CEP não encontrado</span>
+              </div>
+              <div class="content-col">
+                <div class="form-group cep-ok-button">
+                  <button type="button" class="btn btn-success" (click)="searchCEP()">OK</button> 
+                  <span class="i-dont-know-my-cep" (click)="dontKnowCEP()">Não sei o CEP</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-row">
+              <div class="form-group content-col">
+                <label class="center-block">* Estado </label>
+                <input class="form-control" formControlName="state">
+              </div>
+              <div class="form-group content-col">
+                <label class="center-block">* Cidade</label>
+                <input class="form-control" formControlName="city">
+              </div>
+            </div>
+            <div class="content-row">
+              <div class="form-group content-col">
+                <label class="center-block">* Bairro </label>
+                <input class="form-control" formControlName="neighborhood">
+              </div>
+            </div>
+            <div class="content-row">
+              <div class="form-group content-col">
+                <label class="center-block">* Endereço</label>
+                <input class="form-control" formControlName="address">
+              </div>
+            </div>
+
+            <div class="content-row">
+              <div class="form-group content-col">
+                <label class="center-block">* Numero</label>
+                <input class="form-control" formControlName="number">
+                <span class="errorFormField" *ngIf="registerForm.controls.number.hasError('pattern')">* Somente números</span>
+              </div>
+            </div>
+            <div class="content-row">
+              <div class="form-group content-col">
+                <label class="center-block">Complemento</label>
+                <input class="form-control" formControlName="complement">
+              </div>
+            </div>
+
+
+            <div class="form-group content-button">
+              <button [disabled]="!registerForm.valid || cepAddresEmpty" type="submit" class=" btn btn-success btn-lg">Cadastrar novo endereço</button>
+            </div>
+
+
+
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

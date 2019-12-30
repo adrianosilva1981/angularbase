@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="row text-center justify-content-center">
+    <div class="col-12">
+      <h1 class="jumbotron">
+        Conexão
+      </h1>
+    </div>
+  </div>
+  <div class="row justify-content-center text-center  mx-5">
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item" *ngIf="associate?.username">
+      <div class="container">
+        <div class="col-12">
+          Código
+        </div>
+        <div class="col-12">
+          {{associate?.username}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 py-3 px-2 text-center item" *ngIf="associate?.name">
+      <div class="container">
+        <div class="col-12">
+          Nome
+        </div>
+        <div class="col-12">
+          {{associate?.name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item" *ngIf="associate?.email">
+      <div class="container">
+        <div class="col-12">
+          Email
+        </div>
+        <div class="col-12">
+          {{associate?.email}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item" *ngIf="associate?.cellphone">
+      <div class="container">
+        <div class="col-12">
+          Celular
+        </div>
+        <div class="col-12">
+          {{associate?.cellphone}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item" *ngIf="(associate?.type === 'P')?associate?.cpf:associate?.cnpj">
+      <div class="container">
+        <div class="col-12">
+          CPF/CNPJ
+        </div>
+        <div class="col-12">
+          {{(associate?.type === 'P')?associate?.cpf:associte?.cnpj}}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-5">
+      <h5>Ordem de Pagamento</h5>
+    </div>
+
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Valor
+        </div>
+        <div class="col-12">
+          {{payment?.accession_value|conversion:'BRL':false}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Método de Pagamento
+        </div>
+        <div class="col-12">
+          {{labelMethod(payment?.method)}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4 py-3 px-2 text-center item">
+      <div class="container">
+        <div class="col-12">
+          Data de Criação
+        </div>
+        <div class="col-12">
+          {{payment?.created|date:'dd/MM/yyyy'}}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-5">
+      <h5>Imagem de Pagamento</h5>
+      <p-fileUpload #file accept="image/*" [showUploadButton]="false" chooseLabel="Escolher" cancelLabel="Cancelar"></p-fileUpload>
+      <h5>Motivo</h5>
+      <textarea #reason pInputText rows="5" style="width:100%" autoResize="true" ></textarea>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center my-5">
+    <button type="button" class="btn btn-primary" (click)="connectionRequestSweet(file.files[0],reason.value)">Conectar</button>
+    <div class="mx-3 px-3"></div>
+    <button type="button" class="btn btn-danger" [routerLink]="'/associates/payments/connections'">Voltar</button>
+  </div>
+
+
+</div>

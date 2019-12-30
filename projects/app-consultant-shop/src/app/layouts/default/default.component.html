@@ -1,0 +1,24 @@
+<div class="mainLayout" *ngIf="objUserConsultant" [class.sideNav]="sideNavAction === 'open'">
+    <div class="contentNav">
+        <app-consultant-shop-navbar></app-consultant-shop-navbar>
+        <app-consultant-shop-sub-navbar></app-consultant-shop-sub-navbar>
+        <lib-components-progress-interceptor></lib-components-progress-interceptor>
+    </div>
+    <div class="contentPage">
+        <div [ngStyle]="{'min-height': clientHeight + 'px', 'margin-bottom': '-327px'}">
+            <div class="clearfix"></div>
+            <div class="container">
+                <div class="contentBreadCrumbs">
+                    <lib-components-breadcrumb></lib-components-breadcrumb>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+            <div [ngStyle]="{'height': '327px'}"></div>
+        </div>
+        <app-consultant-shop-footer></app-consultant-shop-footer>
+    </div>
+</div>
+
+<div *ngIf="!objUserConsultant">
+    Carregando...
+</div>

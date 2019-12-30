@@ -1,0 +1,128 @@
+<div class="container-fluid">
+    <div class="row mx-3">
+        <h6>
+            <p-breadcrumb class="myBreadCrumb" [model]="items"></p-breadcrumb>
+        </h6>
+    </div>
+
+    <div class="row justify-content-center text-center">
+        <div class="col-12">
+            <h4>Selecione o Intervalo</h4>
+            <p-calendar #interval selectionMode="range" showIcon="true" dateFormat="dd/mm/yy" (onSelect)="changeDate(interval.value)"></p-calendar>
+        </div>
+    </div>
+
+    <div class="content_disp">
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','connections')">
+            <div class="content">
+                <div class="titles">Conexões</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{ connections === -2 ?('Selecione o intervalo'):(connections===-1)?(0):(connections ||
+                    'Carregando') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','pre-registration')">
+            <div class="content">
+                <div class="titles">Pré-cadastros</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{preRegistration === -2 ?('Selecione o intervalo'):(preRegistration===-1)?(0):(preRegistration ||
+                    'Carregando') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','monthly')">
+            <div class="content">
+                <div class="titles">Mensalidade</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{monthly === -2 ?('Selecione o intervalo'):(monthly===-1)?(0):(monthly || 'Carregando') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','consumption')">
+            <div class="content">
+                <div class="titles">Consumo</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{consumption_itens === -2 ? ('Selecione o
+                    intervalo'):(consumption_itens===-1)?('0'):(consumption_itens || 'Carregando')}}
+                    {{consumption_value === -2 ? '' : (consumption_value===-1)?(' | R$0,00'):(' | R$' +
+                    consumption_value)}}
+                    {{consumption_point === -2 ? '' : (consumption_point===-1)?(' | 0 pontos'):(' | ' +
+                    consumption_point + ' pontos')}}
+                </div>
+            </div>
+        </div>
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','graduation')">
+            <div class="content">
+                <div class="titles">Graduação</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{ graduation === -2 ?('Selecione o intervalo'):(graduation===-1)?(0):(graduation || 'Carregando')
+                    }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','financing')">
+            <div class="content">
+                <div class="titles">Financiamento</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{ financing === -2 ?('Selecione o intervalo'):(financing===-1)?(0):(financing || 'Carregando') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','connections-by-grid')">
+            <div class="content">
+                <div class="titles">Conexão por Grade</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{ connectionsByGrid === -2 ?('Selecione o intervalo')
+                    :(connectionsByGrid===-1)?(0)
+                    :(connectionsByGrid ||'Carregando') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="card hover" (click)="redirect(interval.value,'/admin','quotas')">
+            <div class="content">
+                <div class="titles">Packs | Uso</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{ packs === -2 ?('Selecione o intervalo'):(packs===-1)?(0):(packs || 'Carregando') }}
+                    {{ packs_used === -2 ?(''):(packs_used===-1)?(' | ' + 0):( ' | ' + packs_used + ' usados') }}
+                </div>
+            </div>
+        </div>
+        <div class="card hover" (click)="redirect(interval.value,'/admin','rescue')">
+            <div class="content">
+                <div class="titles">Saque</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{ rescue === -2 ?('Selecione o intervalo'):(rescue===-1)?(0):(rescue || 'Carregando') }}
+                </div>
+            </div>
+        </div>
+        <div class="card hover" (click)="redirect(interval.value,'/admin','tickets-kits')">
+            <div class="content">
+                <div class="titles">Ingressos/Kits</div>
+                <div class="line"></div>
+                <div class="info">
+                    {{ kits === -2 ?('Selecione o intervalo'):(kits===-1)?(0):(kits || 'Carregando') }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

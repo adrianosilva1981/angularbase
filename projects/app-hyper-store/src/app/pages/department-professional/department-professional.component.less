@@ -1,0 +1,129 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+@import 'css/global-components.less';
+.contentAllProfessional {
+    .container {
+        margin-top: 30px;
+        .header {
+            border-bottom: 1px solid @blue1;
+            padding: 10px 5px;
+            font-size: 18px;
+            color: @grey5;
+            position: relative;
+            margin-bottom: 20px;
+            .text {
+                color: @grey5;
+                font-size: 18px;
+                .loop {
+                    .link {
+                        color: @grey5;
+                        outline: none;
+                        &:hover {
+                            cursor: pointer;
+                            color: @blue1;
+                        }
+                    }
+                    &:last-of-type {
+                        .link {
+                            pointer-events: none;
+                        }
+                    }
+                    .fa {
+                        display: inline-block;
+                        margin: 0px 10px;
+                    }
+                }
+            }
+            .btnFilter {
+                display: none;
+                float: right;
+                padding: 1px 20px;
+                background: @blue1;
+                text-align: center;
+                cursor: pointer;
+                .radius(20px);
+                .fa {
+                    color: #fff;
+                    font-size: 14px;
+                }
+                .text {
+                    color: #fff;
+                    font-size: 14px;
+                    display: inline-block;
+                    margin-left: 5px;
+                }
+            }
+        }
+        .contentAll {
+            display: flex;
+            flex-wrap: wrap;
+            .contentFilter {
+                .boxShadow(0px 0px 10px 0px @grey3);
+                width: 240px;
+                display: block;
+                justify-content: center;
+                margin: 0 auto;
+            }
+            .contentResult {
+                flex: 4;
+                min-width: 280px;
+                .contentCards {
+                    &.grid {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                    }
+                    &.list {
+                        display: block;
+                    }
+                    .noData {
+                        .text {
+                            color: @grey4;
+                            text-align: center;
+                        }
+                        .contentBtn {
+                            margin-top: 15px;
+                            text-align: center;
+                        }
+                    }
+                }
+                .contentLoadMore {
+                    text-align: center;
+                    width: 100%;
+                    margin: 20px 0px 30px 0px;
+                    .btnLoadMore {
+                        background: @grey1;
+                        border: 1px solid @grey3;
+                        .radius(30px);
+                        color: @grey5;
+                        text-transform: uppercase;
+                        padding: 8px 50px;
+                        display: inline-block;
+                        font-size: 18px;
+                        &:hover {
+                            background: @grey2;
+                        }
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .header {
+                .text {
+                    font-size: 14px;
+                }
+                .typeView {
+                    display: none;
+                }
+                .btnFilter {
+                    display: block;
+                }
+            }
+            .contentAll {
+                .contentFilter {
+                    display: none;
+                }
+            }
+        }
+    }
+}

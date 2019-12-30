@@ -1,0 +1,176 @@
+@import 'global/css/global-variables.less';
+.container {
+    .content-page {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 666px;
+        margin: 0 auto;
+        .balance {
+            // background: @blue1;
+            background-image: linear-gradient(to bottom, @blue1 0%, @blue2 100%);
+            width: 100%;
+            height: 150px;
+            border-radius: 0 0 10px 10px;
+            .text {
+                text-align: center;
+                color: white;
+                padding-top: 10px;
+                margin-bottom: -5px;
+            }
+            .value {
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+            }
+            .btns {
+                display: flex;
+                justify-content: center;
+                max-width: 500px;
+                margin: 12px auto;
+                border-top: 2px solid white;
+                position: relative;
+                .add, .rescue {
+                    border: 1px solid white;
+                    padding: 5px 30px;
+                    border-radius: 30px;
+                    color: white;
+                    margin: 15px auto 5px;
+                    cursor: pointer;
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                    }
+                }
+                .input {
+                    transition: all 0.2s ease-in-out;
+                    transform: scale(0);
+                    position: absolute;
+                    top: 28px;
+                    left: 120px;
+                    .add-input {
+                        border: 1px solid #fff;
+                        padding: 5px 30px 5px 25px;
+                        border-radius: 30px;
+                        margin: 15px auto 5px;
+                        position: absolute;
+                        width: 120px;
+                        left: 66px;
+                    }
+                    i {
+                        position: absolute;
+                    }
+                    .symbol-money {
+                        position: absolute;
+                        top: 21px;
+                        z-index: 1;
+                        font-style: normal;
+                        left: 75px;
+                    }
+                    .material-icons {
+                        left: 160px;
+                        top: 20px;
+                        color: #266dc4;
+                        cursor: pointer;
+                        &:hover {
+                            color: @green1;
+                        }
+                    }
+                    &.show {
+                        transform: scale(1);
+                        top: 0;
+                        left: 0px;
+                    }
+                }
+            }
+        }
+        .cnt {
+            display: flex;
+            flex-wrap: wrap-reverse;
+            width: 100%;
+            .filters {
+                margin: 50px 15px 0 auto;
+                // position: sticky;
+                // right: 0;
+                // top: 100px;
+                display: table;
+                @media screen and (max-width: 768px) {
+                    margin: 25px auto;
+                }
+                .form-group {
+                    label {
+                        display: table-cell;
+                    }
+                    input {
+                        padding-right: 35px;
+                    }
+                    .material-icons {
+                        position: absolute;
+                        right: 7px;
+                        top: 7px;
+                        color: @blue2;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .date {
+                font-weight: 400;
+                float: left;
+            }
+            .not-found {
+                flex: 1;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.D {
+    background: @red2;
+    border: 1px solid #f2f2f2;
+}
+
+.C {
+    background: @green3;
+    border: 1px solid #f2f2f2;
+}
+
+.ui-datascroller .ui-datascroller-content {
+    padding: 1px 0;
+    background: none;
+    border: 0;
+}
+
+.mobile::ng-deep {
+    .mgl-timeline-line {
+        width: 5px !important;
+        background-color: @blue2 !important;
+        left: 23px !important;
+    }
+    .mgl-timeline-entry-card .mgl-timeline-entry-card-header {
+        background-color: #ccc !important;
+    }
+    mgl-timeline-entry-content {
+        background: #fff;
+        font-size: 15px;
+    }
+}
+
+mgl-timeline-entry {
+    margin-bottom: 20px !important;
+}
+
+mgl-timeline-entry-header {
+    // background: @blue1;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+mgl-timeline {
+    max-width: 350px;
+    padding: 1px 0;
+}

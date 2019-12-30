@@ -1,0 +1,23 @@
+<div class="cntAll">
+
+  <div class="cntEnter">
+    <div class="form-group">
+      <label class="center-block">E-mail</label>
+      <input [(ngModel)]="objSend.email" [attr.readonly]="true" class="form-control">
+    </div>
+
+    <button class="btnLogin" type="button" (click)="getTKLogin(formLogin)">Entrar</button>
+  </div>
+  
+  <div class="cntInfo">
+    <small>OBS: Deixar o bloqueador de popups desabilitado</small>
+  </div>
+
+  <form ngNoForm #formLogin action="http://youhub.galaxia.pro/api/sistema/usuarios.php" method="post" target="_blank">
+    <input type="hidden" name="email" [value]="objSend.email">
+    <input type="hidden" name="acao" [value]="objSend.acao">
+    <input type="hidden" name="tk_login" [value]="objSend.tk_login">
+    <input type="hidden" name="ID" [value]="objSend.ID">
+    <input type="hidden" name="tk" [value]="objSend.tk">
+  </form>
+</div>

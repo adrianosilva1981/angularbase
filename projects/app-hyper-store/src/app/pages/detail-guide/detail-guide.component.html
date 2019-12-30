@@ -1,0 +1,92 @@
+<div class="container detail-product">
+  <div class="left-side">
+    <div class="img">
+      <div class="cnt">
+        <lib-components-photo-gallery [listPhotos]="listPhotos"></lib-components-photo-gallery>
+        <div class="garantia" *ngIf="objGuide?.hyper_product === 'Y' && objGuide?.preorder === 'N'">
+          <img src="assets/img/selo-qualidade-detalhes.svg" alt="">
+        </div>
+        <div class="preorder" *ngIf="objGuide?.preorder === 'Y'">
+          <img src="assets/img/selo-preorder.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right-side">
+    <div class="info">
+      <div class="name-pro">
+        {{objGuide.name}}
+      </div>
+      <div class="desc" [innerHTML]="objGuide.company_description">
+      </div>
+
+    </div>
+    <div class="intro">
+      <div class="bold">
+        Contato:
+      </div>
+      <div class="text" *ngFor="let cell of objGuide.cellphones">
+        <div class="cell">
+          • {{cell}}
+        </div>
+      </div>
+      <div class="bold">
+        Cidades:
+      </div>
+      <div class="text" *ngFor="let city of objGuide.cities">
+        <div class="cell">
+          • {{city}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="voucher-title">
+      Escolha seu Voucher
+    </div>
+    <div class="thumb" *ngFor="let gift of gifts">
+      <div class="grid">
+        <div class="box">
+          <div class="img">
+            <img [src]="gift.mediasGift[0]?.url" onError="src='global/img/image_default.png'">
+          </div>
+          <div class="cnt">
+            <div class="btn-add" (click)="addToCart(gift)">
+              <i class="fas fa-cart-plus"></i>
+            </div>
+
+            <div class="desc">
+              <div class="title">
+                {{gift.title}}
+              </div>
+            </div>
+            <div class="descc">
+              <div class="title" [innerHTML]="gift.gift_description | truncate : 98 : '...'">
+              </div>
+            </div>
+            <div class="price">
+              <div class="value" *ngIf="gift.type === 'F'">
+                <div [innerHtml]="gift.value | conversion : 'BRL'"></div>
+              </div>
+              <div class="valueV" *ngIf="gift.type === 'V'">
+                <input type="text" currencyMask [options]="maskMoney" [(ngModel)]="gift.value" required class="input-valueV" (keyup)="calcPointsPercent(gift)">
+                <div>Preencha o valor desejado do seu voucher</div>
+                <!-- <div><small>*Valor maximo {{gift.value_cash_sale_max | conversion : 'BRL':false}}</small></div> -->
+              </div>
+              <div class="othersValue">
+                <div class="points" *ngIf="gift?.points_value > 0 && userData.id_youhub != null">
+                  <b><em>Ganhe {{ gift?.points_value }} pontos</em></b>
+                </div>
+              </div>
+            </div>
+            <div class="cntBtn">
+              <div class="bt">
+                <app-hyper-store-btn-add-shop-cart (onclick)="addToCart(gift)"></app-hyper-store-btn-add-shop-cart>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

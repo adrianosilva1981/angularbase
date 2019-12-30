@@ -1,0 +1,101 @@
+<div class="contentActivateCode">
+  <div class="navTop">
+    <img class="logo" src="global/img/logo_text.png">
+  </div>
+  <div class="contentActivateCode">
+    <div class="boxActivateCode">
+
+      <!-- Formulario de giftcard -->
+      <form class="formGift" *ngIf="viewForm ==='gift'" [formGroup]="giftForm" novalidate (ngSubmit)="submitGiftForm()">
+        <div class="titleModal">
+          <i class="fa fa-gift" aria-hidden="true"></i>
+          <span>Ative seu código</span>
+        </div>
+        <div class="form-group">
+          <label class="center-block">Digite aqui seu código de acesso</label>
+          <input type="text" class="form-control" [textMask]="{mask: maskGift}" placeholder="0000.0000.0000" formControlName="giftcard">
+
+          <span class="errorFormField" *ngIf="giftForm.controls.giftcard.hasError('minlength')">* Código deve conter 12 caracteres</span>
+          <span class="errorFormField" *ngIf="giftForm.controls.giftcard.hasError('invalidCode')">* Código Inválido</span>
+        </div>
+        <div class="form-group contentBtnGift">
+          <button [disabled]="!giftForm.valid" type="submit" class="btnGift btn btn-lg">Enviar</button>
+        </div>
+      </form>
+
+      <!-- Formulario de registro -->
+      <form class="formRegister" *ngIf="viewForm ==='register'" [formGroup]="registerForm" novalidate (ngSubmit)="submitRegisterForm()">
+        <div class="titleModal">
+          Faça um breve cadastro para ativar seu código.
+        </div>
+        <div class="form-group">
+          <label class="center-block">* Nome
+            <input type="text" class="form-control" formControlName="name">
+          </label>
+          <span class="errorFormField" *ngIf="registerForm.controls.name.hasError('minlength')">* Nome deve conter no minimo 5 letras</span>
+        </div>
+        <div class="form-group">
+          <label class="center-block">* E-mail
+            <input type="email" class="form-control" formControlName="email">
+          </label>
+          <span class="errorFormField" *ngIf="registerForm.controls.email.hasError('pattern')">* Email inválido</span>
+        </div>
+        <div class="form-group">
+          <label class="center-block">* Telefone
+            <input type="tel" [textMask]="{mask: maskPhone}" class="form-control" formControlName="phone">
+          </label>
+          <span class="errorFormField" *ngIf="registerForm.controls.phone.hasError('pattern')">* Telefone Inválido</span>
+        </div>
+        <div class="form-group">
+          <label class="center-block">* Senha
+            <input type="password" class="form-control" formControlName="password">
+          </label>
+          <span class="errorFormField" *ngIf="registerForm.controls.password.hasError('minlength')">* Senha deve conter no minimo 6 caracteres</span>
+          <span class="errorFormField" *ngIf="registerForm.controls.password.hasError('mismatch')">* Senha e Confirmação de senha não conferem</span>
+        </div>
+        <div class="form-group">
+          <label class="center-block">* Confirmação de senha
+            <input type="password" class="form-control" formControlName="conf_password">
+          </label>
+          <span class="errorFormField" *ngIf="registerForm.controls.conf_password.hasError('minlength')">* Confirmação de senha deve conter no minimo 6 caracteres</span>
+          <span class="errorFormField" *ngIf="registerForm.controls.conf_password.hasError('mismatch')">* Senha e Confirmação de senha não conferem</span>
+        </div>
+        <div class="form-group center contentBtnRegister">
+          <button [disabled]="!registerForm.valid" type="submit" class="btnRegister btn btn-lg">Ativar</button>
+        </div>
+        <div class="isUser" (click)="viewForm = 'login'">
+          Já sou cadastrado
+        </div>
+      </form>
+
+      <!-- Formulario de login -->
+      <form class="formLogin" *ngIf="viewForm ==='login'" [formGroup]="loginForm" novalidate (ngSubmit)="submitLoginForm()">
+        <div class="titleModal">
+          Informe seu email e senha para podermos dar continuidade no processo de ativação do código.
+        </div>
+        <div class="form-group">
+          <label class="center-block">* E-mail
+            <input type="email" class="form-control" formControlName="email">
+          </label>
+          <span class="errorFormField" *ngIf="loginForm.controls.email.hasError('pattern')">* Email inválido</span>
+        </div>
+        <div class="form-group">
+          <label class="center-block">* Senha
+            <input type="password" class="form-control" formControlName="password">
+          </label>
+          <span class="errorFormField" *ngIf="loginForm.controls.password.hasError('minlength')">* Senha deve conter no minimo 6 caracteres</span>
+        </div>
+        <div class="form-group center contentBtnLogin">
+          <button [disabled]="!loginForm.valid" type="submit" class="btnLogin btn btn-lg">Ativar</button>
+        </div>
+        <div class="notUser" (click)="viewForm = 'register'">
+          Não sou cadastrado
+        </div>
+      </form>
+
+    </div>
+    <div class="direitos">
+      © Copyright YouHub - 2018 Todos os direitos reservados.
+    </div>
+  </div>
+</div>

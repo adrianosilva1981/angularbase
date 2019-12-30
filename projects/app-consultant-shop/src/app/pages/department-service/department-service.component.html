@@ -1,0 +1,40 @@
+<div class="contentAllServices">
+  <div class="container">
+    <div class="header">
+      <span class="btnFilter" (click)="display = true">
+        <i class="fa fa-sliders"></i>
+        <span class="text">Filtrar</span>
+      </span>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="contentAll">
+
+      <div class="contentFilter">
+        <app-consultant-shop-filter-service></app-consultant-shop-filter-service>
+      </div>
+
+      <p-sidebar [(visible)]="display" position="right" blockScroll="true">
+        <app-consultant-shop-filter-service></app-consultant-shop-filter-service>
+      </p-sidebar>
+
+      <div class="contentResult">
+        <div class="contentCards grid">
+          <div *ngIf="hyperServices?.length === 0" class="noData">
+            <div class="text">Nenhum serviço encontrado para o filtro aplicado</div>
+            <div class="contentBtn">
+              <span class="btnClearFilter" (click)="clearFilter()">Limprar Filtros</span>
+            </div>
+          </div>
+          <app-consultant-shop-thumbnail-service *ngFor="let service of hyperServices" [itemObject]="service">
+          </app-consultant-shop-thumbnail-service>
+        </div>
+
+        <div class="contentLoadMore" *ngIf="hyperServices?.length > 0 && count > hyperServices?.length">
+          <div class="btn btnLoadMore" (click)="loadMoreResults()">Ver Mais</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

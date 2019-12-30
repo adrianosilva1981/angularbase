@@ -1,0 +1,29 @@
+
+<div class="btnClose"><span (click)="onClose()"><i class="fas fa-times-circle"></i></span></div>
+<div class="content">
+  <div *ngIf="!start">
+    <div class="til">Olá, <b>{{ userObj?.name }}</b></div>
+    <div class="text">
+      Seja bem-vindo à YouHub!<br>
+      Agora que você já faz parte da nossa comunidade, precisamos ter a certeza de que você viverá a melhor experiência
+      possível na plataforma.<br>
+      Para isso, é fundamental que dedique 1 minutinho para responder a essas rápidas perguntas a seguir.
+    </div>
+    <div class="tf">Vamos lá?</div>
+    <div class="text-center"><button class="btn btnlink blue" (click)="start = true">Iniciar</button></div>
+  </div>
+
+
+  <div *ngIf="start">
+    <div class="contemcards">
+      <div class="card">
+        <div class="content padding0">
+          <div *ngIf="userObj" class="quizCom" style="font-size: 25px">
+            <lib-questionnaire-answer-questionnaire-youhub [id]="questionnaireId" [type]="questionnaireType" [relation]="youhubControl"
+              [id_user]="userObj?.id" idMail="userObj?.id" (finish)="onClose()" (message)="showMessage($event)"></lib-questionnaire-answer-questionnaire-youhub>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

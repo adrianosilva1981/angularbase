@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="contentPage">
+      <!-- <div class="headerPage">
+        <div class="pageName">
+          <i class="fa fa-cubes" aria-hidden="true"></i>
+          <span class="text">Detalhe do Pedido</span>
+        </div>
+      </div> -->
+      <div class="nameBuyer" *ngIf="objOrder[0]?.buyer_name">
+        Comprador:
+        <b>{{objOrder[0]?.buyer_name}}</b>
+      </div>
+      <div class="cnt">
+
+        <div *ngIf="objOrder?.length == 0">O pedido ainda não foi concretizado</div>
+
+          <p-table #dt class="requestCustomersDetailsTable" [columns]="cols" [value]="dataSource" [resizableColumns]="true" *ngIf="objOrder?.length > 0">  
+          
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" pResizableColumn>
+                            {{col.header}}
+                        </th>
+                    </tr>
+                </ng-template>
+      
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr >
+                        <td *ngFor="let col of columns" class="ui-resizable-column">
+                                {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+      
+              <ng-template pTemplate="summary">
+                <div class="cntResume">
+                    <div class="resume">
+                      <span class="text">Total de Frete: </span>
+                      <span class="value" [innerHtml]="objOrder[0]?.order_shipping | conversion : objOrder[0]?.order_coin || 'BRL'"></span>
+                    </div>
+                    <div class="resume">
+                      <span class="text">Total de Comissões: </span>
+                      <span class="value" [innerHtml]="amountComission | conversion : objOrder[0]?.order_coin || 'BRL'"></span>
+                    </div>
+                    <div class="resume">
+                      <span class="text">Total do Pedido: </span>
+                      <span class="value" [innerHtml]="objOrder[0]?.order_brl | conversion : objOrder[0]?.order_coin || 'BRL'"></span>
+                    </div>
+                  </div>                
+              </ng-template>
+            </p-table>
+
+        <!-- <ng2-smart-table class="requestCustomersDetailsTable" [settings]="tableSettings" [source]="dataSource"></ng2-smart-table>
+        <div class="cntResume" *ngIf="objOrder?.length > 0">
+          <div class="resume">
+            <span class="text">Total de Frete: </span>
+            <span class="value" [innerHtml]="objOrder[0]?.order_shipping | conversion : objOrder[0]?.order_coin || 'BRL'"></span>
+          </div>
+          <div class="resume">
+            <span class="text">Total de Comissão: </span>
+            <span class="value" [innerHtml]="amountComission | conversion : objOrder[0]?.order_coin || 'BRL'"></span>
+          </div>
+          <div class="resume">
+            <span class="text">Total do Pedido: </span>
+            <span class="value" [innerHtml]="objOrder[0]?.order_brl | conversion : objOrder[0]?.order_coin || 'BRL'"></span>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>

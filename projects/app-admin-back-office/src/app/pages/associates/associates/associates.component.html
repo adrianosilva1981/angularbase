@@ -1,0 +1,144 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+    <div class="col-12">
+      <h1 class="jumbotron mb-0 pb-5"> Alteração de usuários</h1>
+    </div>
+    <div class="col-12 col-sm-6 pb-5">
+      <div class="search">
+        <input #query type="text" pInputText placeholder="Pesquisar..." (keyup.enter)="setAssociates(query.value)">
+        <i class="fas fa-search" (click)="setAssociates(query.value)"></i>
+      </div>
+    </div>
+
+  </div>
+  <div class="row mb-5">
+    <div class="col-12">
+
+      <p-table #dt [columns]="cols" [value]="associates" autoLayout="true" [responsive]="true" [autoLayout]="true"
+        *ngIf="associates.length" rowExpandMode="single" dataKey="username" [rows]="20" [paginator]="true">
+
+        <ng-template pTemplate="caption">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value,'contains')"
+                style="width:90%">
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+              <p-dropdown [options]="status" appendTo="body" (onChange)="dt.filter($event.value,'status','equals')"></p-dropdown>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4">
+              <button type="button" class="btn btn-primary" (click)="export(dt)">Exportar</button>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th style="width: 3em"></th>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+            <th class="header">
+              Editar
+            </th>
+          </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+          <tr>
+            <td>
+              <i [pRowToggler]="rowData" [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+            </td>
+            <td *ngFor="let col of columns" [ngSwitch]="col.field">
+              <span class="ui-column-title">{{col.header}}</span>
+              <span *ngSwitchCase="'status'" [ngStyle]="{'color': rowData.status === 'A'?'green':'red' }">
+                {{statusLabel(rowData)}}
+              </span>
+              <span *ngSwitchCase="'ativacao'">
+                {{rowData[col.field]|date:'dd/MM/yyyy'}}
+              </span>
+              <span *ngSwitchDefault>
+                {{rowData[col.field]}}
+              </span>
+            </td>
+            <td>
+              <div class="mydiv">
+                <span class="link" title="Alterar cadastro">
+                  <i [routerLink]="'/associates/associate-edit/'+rowData.id" class="fas fa-edit"></i>
+                </span>
+
+                <!-- <span class="link" title="Confirmar Pagamento" *ngIf="(rowData.status === 'AA' || (rowData.status === 'AP' && rowData.stage !== 'inanalysis'))">
+                  <i [routerLink]="'/associates/payment/'+rowData.id" class="fas fa-clipboard-check"></i>
+                </span> -->
+
+                <span class="link" title="Excluir" *ngIf="(rowData.status === 'AA' || (rowData.status === 'AP' && rowData.stage !== 'inanalysis'))">
+                  <i [routerLink]="'/associates/delete/'+rowData.id" class="fas fa-user-minus"></i>
+                </span>
+
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+          <tr>
+            <td [attr.colspan]="columns.length + 2">
+              <div class="row m-3 justify-content-center">
+                <div class="col-12">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nome</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngIf="rowData.parent">
+                        <th scope="row">Patrocinador</th>
+                        <td>{{rowData.parent?.username}}</td>
+                        <td>{{rowData.parent?.name}}</td>
+                      </tr>
+                      <tr *ngIf="rowData.status === 'A'">
+                        <th scope="row">Gerente</th>
+                        <td>{{rowData.grid_info?.manager.username}}</td>
+                        <td>{{rowData.grid_info?.manager.name}}</td>
+                      </tr>
+                      <tr *ngIf="rowData.status === 'A'">
+                        <th scope="row">Diretor</th>
+                        <td>{{rowData.grid_info?.director.username}}</td>
+                        <td>{{rowData.grid_info?.director.name}}</td>
+                      </tr>
+                      <tr *ngIf="rowData.status === 'A'">
+                        <th scope="row">Diretor Senior</th>
+                        <td>{{rowData.grid_info?.senior_director.username}}</td>
+                        <td>{{rowData.grid_info?.senior_director.name}}</td>
+                      </tr>
+                      <tr *ngIf="rowData.status === 'A'">
+                        <th scope="row">Diretor Nacional</th>
+                        <td>{{rowData.grid_info?.national_director.username}}</td>
+                        <td>{{rowData.grid_info?.national_director.name}}</td>
+                      </tr>
+                      <tr *ngIf="rowData.status === 'A'">
+                        <th scope="row">Presidente</th>
+                        <td>{{rowData.grid_info?.president.username}}</td>
+                        <td>{{rowData.grid_info?.president.name}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+
+  </div>
+</div>

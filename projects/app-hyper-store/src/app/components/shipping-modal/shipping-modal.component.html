@@ -1,0 +1,24 @@
+<div class="cntModal">
+    <div class="title">Opções de Frete</div>
+    <div class="subTitle">
+        <div>Temos outros tipos de frete preparados para você.</div>
+        <div>Escolha uma opção abaixo.</div>
+    </div>
+    <div class="cntListShipping">
+        <div class="LineShipping" *ngFor="let item of _data.shipping; let idx = index">
+            <div class="cntRadio">
+                <div class="txt" (click)="_data.shipping_selected = idx ">
+                    <i class="far" [ngClass]="_data.shipping_selected === idx ? 'fa-dot-circle' : 'fa-circle'"></i>
+                    <span *ngIf="item.slug.toLowerCase() !== 'free' && item.slug.toLowerCase() !== 'retirarnolocal'">{{item.company}} - {{item.name}}</span>
+                    <span *ngIf="item.slug.toLowerCase() === 'free' || item.slug.toLowerCase() === 'retirarnolocal'">{{item.company}}</span>
+                </div>
+                <div class="val">
+                    <span [innerHtml]="item.price | conversion : 'BRL'"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cntBtn">
+        <button type="button" class="btn" (click)="closeModal()">Confirmar</button>
+    </div>
+</div>

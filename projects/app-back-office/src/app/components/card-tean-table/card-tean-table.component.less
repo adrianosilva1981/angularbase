@@ -1,0 +1,181 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentAll {
+    padding-left: 40px;
+    width: 585px;
+    border-left: 1px dashed @grey3;
+    &.first {
+        padding-left: 0px;
+        padding-right: 40px;
+        border-left: none;
+    }
+    .cntCard {
+        padding: 10px 0px;
+        position: relative;
+        cursor: pointer;
+        .lineCard {
+            background: #fff;
+            box-shadow: 0px 0px 10px 0px @grey3;
+            padding: 20px;
+            .headerCard {
+                display: flex;
+                align-items: center;
+                .cntPhoto {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 10px;
+                    img {
+                        .radius(50%);
+                        width: 100%;
+                        height: 50px;
+                        object-fit: cover;
+                        object-position: top;
+                        border: 2px solid @newblue1
+                    }                    
+                }
+                .cntName {
+                    // flex: 2;
+                    font-weight: bold;
+                    color: @grey5;
+                    font-size: 20px;
+                }
+                .cntPin {
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-top: 5px;
+                    .pin {
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+            }
+            .subHeader {
+                padding: 10px 0px;
+                display: flex;
+                align-items: center;
+                .cntPin {
+                    display: inline-block;
+                    margin-right: 15px;
+                    .pin {
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
+                .cntUsername {
+                    display: inline-block;
+                    font-size: 14px;
+                    color: @grey5;
+                    font-weight: 700;
+                    margin-right: 15px;
+                }
+                .cntEnable {
+                    display: inline-block;
+                    margin-right: 15px;
+                    i {
+                        margin-right: 5px;
+                        &.active {
+                            color: @green1;
+                        }
+                        &.inactive {
+                            color: @red1;
+                        }
+                        &.hability {
+                            color: @yellow1;
+                        }
+                    }
+                    span {
+                        font-weight: 500;
+                    }
+                }
+                .cntActive {
+                    display: inline-block;
+                    margin-right: 15px;
+                    i {
+                        margin-right: 5px;
+                        color: @red1;
+                        &.active {
+                            color: @green1;
+                        }
+                    }
+                    span {
+                        font-weight: 500;
+                    }
+                }
+            }
+            .cntCounters {
+                display: flex;
+                justify-content: flex-end;
+                .cntItm {
+                    .itm {
+                        display: inline-block;
+                        font-size: 12px;
+                        margin-right: 10px;
+                        border-right: 1px solid @grey3;
+                        padding-right: 10px;
+                        &:last-of-type {
+                            border-right: none;
+                            padding-right: 0;
+                            margin-right: 0;
+                        }
+                        .key {
+                            font-weight: 700;
+                            margin-right: 10px;
+                        }
+                        .value {
+                            font-weight: lighter;
+                        }
+                    }
+                }
+            }
+            .cntSlugs {
+                display: flex;
+                flex-wrap: wrap;
+                border-top: 1px solid @grey3;
+                padding-top: 10px;
+                .slug {
+                    width: 100px;
+                    font-size: 14px;
+                    color: @newblue1;
+                    .tlt {
+                        font-weight: bold;
+                    }
+                    .val {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+        .cntLevel {
+            position: absolute;
+            width: 100px;
+            text-align: center;
+            padding: 5px;
+            top: 25px;
+            right: 0;
+            color: #fff;
+            background: @blue1;
+        }
+        .cntArrow {
+            position: absolute;
+            bottom: 20px;
+            right: 15px;
+            color: @grey5;
+            &.opened {
+                i {
+                    font-family: FontAwesome;
+                    &:before {
+                        content: "\f068";
+                    }
+                }
+            }
+            &.closed {
+                i {
+                    font-family: FontAwesome;
+                    &:before {
+                        content: "\f067";
+                    }
+                }
+            }
+        }
+    }
+}

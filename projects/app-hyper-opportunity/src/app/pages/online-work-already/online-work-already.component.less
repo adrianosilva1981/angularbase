@@ -1,0 +1,156 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.contentPage {
+    .contentBody {
+        padding: 0px 150px;
+        .cntBox {
+            display: flex;
+            margin-top: 50px;
+            .cntIcon {
+                width: 50px;
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    height: 50px;
+                    .radius(50%);
+                    background: @blue1;
+                    border: 1px solid transparent;
+                    .fa {
+                        font-size: 20px;
+                        color: #fff;
+                    }
+                    &.diff {
+                        background: #fff;
+                        border: 1px solid @blue1;
+                        .fa {
+                            font-size: 20px;
+                            color: @grey4;
+                        }
+                    }
+                }
+            }
+            .cntText {
+                flex: 1;
+                margin-left: 15px;
+                .tlt {
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: @grey7;
+                    margin-bottom: 10px;
+                    padding-right: 10px;
+                }
+                .text {
+                    font-size: 16px;
+                    // color: @grey4;
+                    padding-right: 10px;
+                }
+            }
+            .cntTopText {
+                flex: 1;
+                margin-left: 15px;
+                .name {
+                    color: @grey3;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                    font-size: 18px;
+                }
+                .tlt {
+                    color: @blue1;
+                    margin-bottom: 15px;
+                    font-size: 40px;
+                }
+                .subTlt {
+                    color: @grey3;
+                    font-weight: bold;
+                    margin-bottom: 15px;
+                    font-size: 16px;
+                }
+                .btn {
+                    margin-top: 20px;
+                    .radius(5px);
+                    border: 1px solid @blue1;
+                    display: inline-block;
+                    background: #fff;
+                    color: @grey4;
+                    padding: 8px 30px;
+                }
+            }
+        }
+    }
+    .contentFooter {
+        background: @grey2;
+        padding: 30px 10px;
+        margin-top: 30px;
+        .contentBTN {
+            text-align: center;
+            .btn {
+                margin-left: 20px;
+                .radius(5px);
+                display: inline-block;
+                background: @blue1;
+                color: #fff;
+                padding: 8px 30px;
+            }
+        }
+        .cntBox {
+            margin-left: 65px;
+            padding: 0px 150px;
+            .tlt {
+                font-size: 30px;
+                color: @grey4;
+                font-weight: bold;
+            }
+            .txt {
+                font-size: 20px;
+                color: @grey4;
+            }
+            .boxPlan {
+                background: @grey4;
+                padding: 30px;
+                margin-top: 20px;
+                display: inline-block;
+                .value {
+                    font-size: 20px;
+                    color: #fff;
+                    display: inline-block;
+                    span {
+                        font-weight: bold;
+                    }
+                    small {
+                        font-weight: lighter;
+                    }
+                }
+                .btn {
+                    margin-left: 20px;
+                    .radius(5px);
+                    display: inline-block;
+                    background: @blue1;
+                    color: #fff;
+                    padding: 8px 30px;
+                }
+            }
+        }
+    }
+    @media screen and (max-width: 991px) {
+        .contentBody {
+            padding: 0px 70px;
+        }
+        .contentFooter {
+            .cntBox {
+                padding: 0px 70px;
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .contentBody {
+            padding: 0px;
+        }
+        .contentFooter {
+            .cntBox {
+                padding: 0px;
+            }
+        }
+    }
+}

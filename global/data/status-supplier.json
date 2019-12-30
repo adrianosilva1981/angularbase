@@ -1,0 +1,34 @@
+[
+    {
+      "label": "",
+      "value": null
+    },
+    {
+      "label": "Pedido Efetuado",
+      "value": "PE"
+    },
+    {
+      "label": "Pedido Autorizado",
+      "value": "PA"
+    },
+    {
+      "label": "Nota Fiscal Autorizado",
+      "value": "NF"
+    },
+    {
+      "label": "Em Transito",
+      "value": "ET"
+    },
+    {
+      "label": "Entregue",
+      "value": "FN"
+    },
+    {
+      "label": "Retornado",
+      "value": "RT"
+    },
+    {
+      "label": "Cancelado",
+      "value": "C"
+    }
+]

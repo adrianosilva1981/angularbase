@@ -1,0 +1,67 @@
+<div class="container-fluid text-center">
+    <div class="row">
+      <div class="col-12 jumbotron">
+        <h1>Bonificações</h1>
+        <p>
+          Período:
+          <p-calendar [(ngModel)]="dates" selectionMode="range" (onSelect)="setAssociates()" (onInput)="setAssociates()" dateFormat="dd/mm/yy"></p-calendar><br></p>
+        <p>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p-table #dt [columns]="cols" [value]="associates" [paginator]="true" [rows]="20" [responsive]="true" [globalFilterFields]="colsQuery">
+  
+          <ng-template pTemplate="caption">
+            <div style="text-align: left">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText placeholder="Pesquisar..." (input)="dt.filterGlobal($event.target.value, 'contains')"
+               style="width:auto">
+            </div>
+          </ng-template>
+  
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th colspan="1">
+                <h3>Total de Bônus Gerado</h3>
+              </th>
+              <th colspan="2">
+                <h3>{{ total_generated | currency:'R$' }}</h3>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="1">
+                <h3>Total de Bonificações a Pagar</h3>
+              </th>
+              <th colspan="2">
+                <h3>{{ toPay | currency:'R$' }}</h3>
+              </th>
+            </tr>
+            <tr>
+                <th colspan="1">
+                  <h3>Total de Bonificações Pagas</h3>
+                </th>
+                <th colspan="2">
+                  <h3>{{ paid | currency:'R$' }}</h3>
+                </th>
+              </tr>
+            <tr>
+              <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                {{ col.header }}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-associate let-columns="columns">
+            <tr [pSelectableRow]="associate" (click)="details(associate)" style="cursor: pointer;">
+              <td *ngFor="let col of columns">
+                {{ (col.field === 'value_credit')?(associate[col.field]|currency:'R$'):(associate[col.field]) }}
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+      </div>
+    </div>
+  </div>

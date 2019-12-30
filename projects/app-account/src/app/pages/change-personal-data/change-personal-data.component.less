@@ -1,0 +1,58 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contenPage {
+    margin: 20px 0px;
+    .headerPage {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+        align-items: center;
+        .pageName {
+            flex: 1;
+            min-width: 265px;
+            .fas {
+                display: inline-block;
+                margin-right: 10px;
+                font-size: 20px;
+                color: @blue1;
+            }
+            .text {
+                font-size: 18px;
+                color: @blue1;
+            }
+        }
+    }
+    .all {
+        .titlePage {
+            margin-bottom: 40px;
+            color: @grey7;
+            font-size: 14px;
+        }
+        .personalData {
+            display: flex;
+            text-align: left;
+            .contentPersonal {
+                max-width: 800px;
+                width: 100%;
+            }
+        }
+    }
+    .contentPersonalData {
+        .content-row{
+            display: flex;
+            .content-col{
+                flex: 1;
+                margin: 5px;
+            }
+            .content-col-2{
+                flex: 2;
+                margin: 5px;
+            }
+        }
+        .content-button{
+            margin: 10px;
+            text-align: center;
+            width: 100%;
+        }
+    }
+}

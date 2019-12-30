@@ -1,0 +1,75 @@
+<div class="cntCheckout">
+
+  <div class="cntSteps">
+    <div class="contentLogo">
+      <img [src]="objConsultant?.skin?.nav?.logo" (click)="goHome()">
+    </div>
+    <div class="contentStatus">
+      <div class="itemShop" *ngFor="let step of steps; let idx = index">
+        <div class="graph">
+          <div class="trace" [class.active]="currentStep >= (idx + 1)"></div>
+          <div class="circle" [class.active]="currentStep >= (idx + 1) || idx === 0" (click)="onStepClick(step)">
+            <i class="fa" [ngClass]="step?.icon"></i>
+          </div>
+          <div class="trace" [class.active]="currentStep > (idx + 1)"></div>
+        </div>
+        <div class="text">{{step?.text}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cntBodySteps">
+    <div class="container">
+      <div class="conditionStep" [ngSwitch]="currentStep">
+        <!-- CARRINHO -->
+        <div class="lineStep cart" *ngSwitchCase="1">
+          Carrinho
+        </div>
+        <!-- LOGIN -->
+        <div class="lineStep login" *ngSwitchCase="2">
+          <div class="cntLogin">
+            <app-consultant-shop-box-login-register (onNext)="currentStep = 3"></app-consultant-shop-box-login-register>
+          </div>
+        </div>
+        <!-- ENDERECO -->
+        <div class="lineStep address" *ngSwitchCase="3">
+          <app-consultant-shop-address-delivery (onAddressSelected)="onAddressSelected($event)"></app-consultant-shop-address-delivery>
+          <div class="cntBtnNext" *ngIf="objUserData?.id">
+            <button type="button" class="btnNext" (click)="currentStep = 4">Próximo</button>
+          </div>
+        </div>
+        <!-- ENTREGA -->
+        <div class="lineStep shipping" *ngSwitchCase="4">
+          <app-consultant-shop-list-shipping [zipcode]="addressSelected.zipcode" (onShippingSelected)="onShippingSelected($event)"></app-consultant-shop-list-shipping>
+          <div class="cntBtnNext" *ngIf="objUserData?.id">
+            <button type="button" class="btnNext" (click)="currentStep = 5; mountCheckoutParameters();">Próximo</button>
+          </div>
+        </div>
+        <!-- PAGAMENTO -->
+        <div class="lineStep payment" *ngSwitchCase="5">
+          <div class="cntPay">
+            <div class="cntResume">
+              <div class="title">Itens do pedido</div>
+              <div class="cntItem" *ngFor="let item of listItens">
+                <div class="itm">
+                  <span>{{item?.title}}</span>
+                  <span class="pts" *ngIf="item.points_value > 0">(Ganhe <b>{{item.points_value}}</b> pontos)</span>
+                </div>
+                <ul>
+                  <li>{{item?.description | truncate : 500 : '...'}}</li>
+                </ul>
+              </div>
+              <div class="cntTotalPoints">
+                <span class="tlt">Total de Pontos:</span>
+                <span class="val">{{totalPoints}}</span>
+              </div>
+            </div>
+            <div class="cntCheckout">
+              <lib-components-checkout [checkout_parameter]="checkout_parameter" (onCheckoutSuccess)="onCheckoutSuccess($event)"></lib-components-checkout>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

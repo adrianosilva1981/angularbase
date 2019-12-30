@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <h6>Intervalo</h6>
+        <div class="w-100"></div>
+        <p-calendar #calendar selectionMode="range" dateFormat="dd/mm/yy" (onSelect)="getInfoSales(calendar.value)"></p-calendar>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <app-consultant-adm-thumbnail-gift-card-sales *ngFor="let item of giftCards" [itemObject]="item">
+        </app-consultant-adm-thumbnail-gift-card-sales>
+
+    </div>
+</div>

@@ -1,0 +1,95 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.buyStores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    .thumb {
+        text-align: center;
+        font-size: 22px;
+        max-width: 300px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        .img-product {
+            max-width: 300px;
+            img {
+                max-width: 100%;
+            }
+        }
+        .title-product {
+            color: @blue1;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .desc-product {
+            color: @grey4;
+            font-size: 15px;
+        }
+        .value-product {
+            color: @orange2;
+        }
+        .total-product {
+            font-size: 13px;
+        }
+        .contentQuantity {
+            width: 135px;
+            margin: 10px 0;
+            .minus, .plus {
+                outline: none;
+                background: @grey1;
+                border: 1px solid #CCCCCC;
+                &:hover {
+                    background: 1;
+                    color: #fff;
+                }
+                &:focus {
+                    background: #fff;
+                    border-color: @grey3;
+                    &:hover {
+                        background: @blue1;
+                        color: #fff;
+                    }
+                }
+            }
+            .minus {
+                border-right: none;
+                border-radius: 5px 0 0 5px;
+                height: 40px;
+            }
+            .plus {
+                border-left: none;
+                border-radius: 0 5px 5px 0;
+                height: 40px;
+            }
+            .inputQuantity {
+                text-align: center;
+                border: 1px solid @grey3;
+                box-shadow: unset;
+                background: #fff;
+                padding: 0px;
+            }
+        }
+    }
+    .checkout {
+        flex: 1;
+        max-width: 300px;
+    }
+    .vouchers {
+        width: 100%;
+        margin: 20px 0;
+        border-top: 1px solid #ccc;
+        .v-title {
+            text-align: center;
+            margin: 25px 5px;
+        }
+    }
+}

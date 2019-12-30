@@ -1,0 +1,11 @@
+<ng-container *ngIf="show">
+  <div class="cnt">
+    <lib-components-thumbnail-service *ngFor="let service of hyperServices" [itemObject]="service" class="item"></lib-components-thumbnail-service>
+  </div>
+</ng-container>
+<div class="center" *ngIf="!show">
+  Não há serviços cadastrados
+</div>
+<p-confirmDialog header="Atenção" icon="fas fa-exclamation-triangle" width="425" acceptButtonStyleClass="deleteDialog"
+  rejectButtonStyleClass="cancelDialog" acceptIcon="fas fa-trash-alt"></p-confirmDialog>
+<p-paginator [rows]="15" [totalRecords]="totalServices" [alwaysShow]="false" (onPageChange)="paginate($event)"></p-paginator>

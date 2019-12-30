@@ -1,0 +1,17 @@
+<div class="content-all">
+  <app-hyper-store-filter-guide ></app-hyper-store-filter-guide>
+  <div class="cats" *ngIf="!filtered" [ngStyle]="{'column-count': columnCount}">
+    <div class=" box-cat" *ngFor="let item of cat">
+      <div class="cat-title">
+        <span class="icon">
+          <i class="fas {{item.icon}}"></i>
+        </span> {{item.title}}
+      </div>
+      <div class="cat-name" *ngFor="let subCat of item.subCat">
+        <span (click)="filter(subCat.id)"> {{subCat.text}}</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>

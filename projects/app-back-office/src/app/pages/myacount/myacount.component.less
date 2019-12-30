@@ -1,0 +1,170 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.perfil {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+  .contemcards {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+    .cardphoto {
+      .content {
+        margin: 5px;
+        background-color: #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .photo {
+          padding: 15px;
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: @grey6 2px solid;
+          }
+        }
+        .contemtext {
+          padding: 15px;
+          .name {
+            font-size: 18px;
+            font-weight: 500;
+            color: @grey6;
+          }
+          .text {
+            color: @grey4;
+            font-size: 14px;
+          }
+          .green{
+            color: @green1;
+          }
+        }        
+      }
+      .contentUploadProfile{
+        display: flex;
+        justify-content: center;
+      }
+      .contembutton {
+        text-align: center;
+        padding: 15px;
+      }
+    }
+    .cardplano {
+      margin: 20px;
+      .content {
+        text-align: center;
+        padding: 15px;
+        .title {
+          color: @grey7;
+          font-size: 20px;
+          font-weight: 500;
+          .menor {
+            font-size: 12px;
+          }
+          .circle {
+            font-size: 14px;
+            color: @green1;
+            margin: 10px;
+          }
+        }
+        .valor {
+          padding: 5px;
+          color: @green1;
+          font-size: 20px;
+          .menor {
+            font-size: 12px;
+          }
+        }
+        .description {
+          padding: 5px;
+          color: @grey4;
+          font-size: 14px;
+        }
+      }
+    }
+    .link {
+      cursor: pointer;
+      color: @blue2;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      &:hover {
+        color: @grey7;
+        text-decoration: underline;
+      }
+    }
+    .text {
+      font-size: 14px;
+      color: @grey4;
+      text-align: center;
+    }
+  }
+
+  .cntInputFileCpf {
+    .text {
+      color: @grey4;
+      margin-left: 20px;
+    }
+  }  
+
+  .viewdocument{
+    color: @grey4;
+    cursor: pointer;
+  }
+
+  .cardperfil {
+    flex: 2;
+    margin: 10px;
+    .content {
+      margin: 25px;
+      .inputform {
+        display: block;
+        width: 100%;
+        .readonly {
+          color: @grey6;
+        }
+      }
+      .inputformflex {
+        // display: inline-flex;
+        .checktrue {
+          position: absolute;
+          color: @green1;
+          top: 10px;
+          right: 10px;
+        }
+        .checkfalse {
+          position: absolute;
+          color: @red2;
+          top: 10px;
+          right: 10px;
+        }
+        .checkload {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+      }
+    }
+  }
+}
+
+.labelgender {
+  color: @grey6;
+  margin-right: 20px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.mat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenButton {
+  display: block;
+  margin: 15px;
+}
+
+.ui-card-body {
+  padding: 0px !important;
+}

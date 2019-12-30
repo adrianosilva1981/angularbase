@@ -1,0 +1,14 @@
+<div class="social">
+  <div class="title">Redes Sociais</div>
+  <div class="desc first">Preencha os campos abaixo com os dados das Redes Sociais da sua empresa para deixa-las disponíveis na loja virtual</div>
+  <div class="desc">Informe abaixo a URL da sua fanpage. Não confunda a URL da sua página de usuário.</div>
+  <div class="desc">Para criar uma fanpage, clique aqui</div>
+  <div class="desc">Fanpage com conteúdo adulto não serão permitidas devido a política do facebook.</div>
+  <div class="url" *ngFor="let item of urls">
+    <div class="disabled-label {{item.name}}">{{item.prefix}}</div>
+    <div class="subdomain form-group">
+      <input class="form-control" type="text" [(ngModel)]="item.url">
+    </div>
+  </div>
+  <div class="btn blue right" (click)="send()">Alterar redes sociais</div>
+</div>

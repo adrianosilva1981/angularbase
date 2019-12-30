@@ -1,0 +1,61 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.cntModal {
+    padding: 40px;
+    .title {
+        text-align: center;
+        font-size: 25px;
+        font-weight: 700;
+        color: @blue1;
+    }
+    .subTitle {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .cntListShipping {
+        padding: 15px 0px;
+        .LineShipping {
+            .cntRadio {
+                display: flex;
+                align-items: center;
+                padding: 2px 0px;                
+                .txt {
+                    flex: 1.7;
+                    cursor: pointer;
+                    i {
+                        font-size: 18px;
+                        color: @orange1;
+                        display: inline-block;
+                    }
+                    span {
+                        margin-left: 10px;
+                        color: @grey6;
+                    }
+                }
+                .val {
+                    flex: 1;
+                    display: flex;
+                    justify-content: flex-end;
+                    span {
+                        color: @green1;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+    .cntBtn {
+        display: flex;
+        justify-content: flex-end;
+        padding: 30px;
+        .btn {
+            background: @orange1;
+            padding: 8px 5px;
+            color: #fff;
+            width: 100%;
+            .radius(20px);
+            font-size: 18px;
+            outline: none;
+        }
+    }
+}

@@ -1,0 +1,392 @@
+<div class="nav" [ngClass]="{'animate-nav': nav}">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <img src="assets/home/logo.png" alt="">
+      </div>
+      <div class="links">
+        <div class="link" (click)="scroll(who)">Quem somos</div>
+        <div class="link" (click)="scroll(concept)">NOSSOS VALORES</div>
+        <div class="link" (click)="scroll(how)">Como conectar</div>
+        <div class="link" (click)="scroll(part)">Parceiros</div>
+        <div class="link" (click)="scroll(app)">APP</div>
+      </div>
+      <div class="btn-mobile">
+        <i class="fas fa-bars" (click)="display = true"></i>
+      </div>
+      <div class="login">
+        <div class="sign-in" (click)="goLogin()">
+          login
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-top" [ngStyle]="{'background':backgrounds[pos]}" inViewport [inViewportOptions]="{ threshold: [0] }"
+  (inViewportAction)="onIntersectionNav($event)">
+  <div class="container">
+
+    <div class="content">
+      <div class="top"></div>
+      <div class="mid">
+        <div class="left">
+          <div class="text">
+            {{texts[pos][0]}}
+          </div>
+        </div>
+        <div class="right">
+          <div class="text">
+            {{texts[pos][1]}}
+          </div>
+        </div>
+      </div>
+      <div class="bot">
+        <div class="nr-social">
+          <div class="counter">
+            <div [ngClass]="{'active': pos === 0}" (click)="pos = 0">01</div>
+            <div [ngClass]="{'active': pos === 1}" (click)="pos = 1">02</div>
+            <div [ngClass]="{'active': pos === 2}" (click)="pos = 2">03</div>
+            <!-- <div>03</div> -->
+          </div>
+          <div class="social">
+            <span (click)="goToSocial('facebook')"><i class="fab fa-facebook-f"></i></span>
+            <span (click)="goToSocial('instagram')"><i class="fab fa-instagram"></i></span>
+            <span (click)="goToSocial('youtube')"><i class="fab fa-youtube"></i></span>
+          </div>
+        </div>
+        <div class="mouse">
+          <img src="assets/home/mouse.png" alt="">
+          <i class="fas fa-angle-down"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="what-is">
+  <div class="container">
+    <div class="inovation">
+      <img src="assets/home/bulb.png" alt="">
+      <div>Inovação</div>
+    </div>
+
+    <div class="what">
+      <div class="orange">O QUE É A YOUHUB</div>
+      <div class="title">Somos uma plataforma inovadora de vendas de produtos e serviços</div>
+      <div class="desc">
+        Reduzimos a zero a distância entre a indústria e o consumidor final, por meio da Venda Direta, e conectamos
+        empreendedores
+        para prestarem serviços entre si, oferecendo a todos capacitação para que possam aprimorar as suas habilidades
+        e
+        desenvolver a sua paixão
+      </div>
+    </div>
+    <div #who></div>
+    <div class="row-what">
+      <div class="img"> <img class="img-responsive" src="assets/home/img1.png" alt="">
+      </div>
+      <div class="icon">
+        <div class="v-line"></div>
+        <img src="assets/home/icon1.png" alt="">
+      </div>
+      <div class="text">
+        <div class="title">NOSSO PROPÓSITO </div>
+        <div class="desc">Conectar você à sua liberdade</div>
+        <div class="icon">
+          <i class="fas fa-arrow-circle-right"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row-what reverse">
+      <div class="text t-right">
+        <div class="title">NOSSA MISSÃO </div>
+        <div class="desc">Permitir a você desenvolver a sua paixão</div>
+        <div class="icon">
+          <i class="fas fa-arrow-circle-right"></i>
+        </div>
+      </div>
+      <div class="icon">
+        <div class="v-line bot"></div>
+        <img src="assets/home/icon2.png" alt="">
+      </div>
+      <div class="img"><img class="img-responsive" src="assets/home/img2.png" alt=""></div>
+    </div>
+  </div>
+
+</div>
+<div class="row-img " #concept inViewport [inViewportOptions]="{ threshold: [0] }" (inViewportAction)="onIntersection($event)">
+  <div class="container">
+    <div class="img"></div>
+    <div class="icon"><img class="img-responsive" src="assets/home/icon3.png" alt=""></div>
+    <div class="text">
+      <div class="title">
+        NOSSOS VALORES
+      </div>
+      <div class="item"><span>■</span> Somos originais</div>
+      <div class="item"><span>■</span> Estamos em processo contínuo de Evolução </div>
+      <div class="item"><span>■</span> Respeitamos as pessoas prezando pela Ética </div>
+      <div class="item"><span>■</span> Não negociamos nossos princípios</div>
+      <div class="item"><span>■</span> Prezamos pela Lealdade</div>
+      <div class="item"><span>■</span> Somos Inclusivos</div>
+    </div>
+  </div>
+</div>
+<div class="row-background" #how inViewport [inViewportOptions]="{ threshold: [0] }" (inViewportAction)="onIntersection($event)">
+  <div class="container">
+    <div class="text">
+      <div class="t-cont">
+        <div class="title">COMO SE CONECTAR À NOSSA COMUNIDADE</div>
+        <div class="desc">Para se conectar à YouHub você precisa ser convidado por alguém que já faz parte da
+          comunidade.
+        </div>
+        <div class="desc">A partir daí, você terá acesso a todos os benefícios oferecidos pela plataforma
+        </div>
+      </div>
+    </div>
+    <div class="img-card">
+      <img class="img-responsive" src="assets/home/img3.png" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="our-vision" inViewport [inViewportOptions]="{ threshold: [0] }" (inViewportAction)="onIntersection($event)">
+  <div class="container">
+    <div class="title">NOSSA VISÃO</div>
+    <div class="desc">Ser a maior plataforma global de negócios conectando a indústria direto ao consumidor
+    </div>
+    <div class="img"><img class="img-responsive" src="assets/home/img4.png" alt=""></div>
+  </div>
+</div>
+
+
+<div class="advantages" inViewport [inViewportOptions]="{ threshold: [0] }" (inViewportAction)="onIntersection($event)">
+  <div class="container">
+    <div class="title">VANTAGENS DE SE TORNAR UM ASSOCIADO YOUHUB</div>
+    <div class="content">
+      <div class="col">
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Comprar produtos diretamente da indústria;
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Adquirir serviços com condições diferenciadas;
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Gerar lucro através da revenda de produtos e serviços;
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Oferecer seus produtos e serviços para toda a comunidade através da sua loja online;
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Ter a liberdade de se manter ativo, comprando o que realmente precisa;
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <img class="img-responsive" src="assets/home/img6.png" alt="">
+      </div>
+      <div class="col">
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Participar das rodadas semanais de negócios (B2B);
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Participar do sistema de treinamentos presencial e online;
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Compartilhar a oportunidade com seus amigos, construindo uma rede de negócios capaz de gerar uma renda
+            residual e crescente;
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Tornar-se um Concessionário Executivo do sistema de treinamento e desenvolvimento pessoal e profissional;
+          </div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">
+            Ter a liberdade de construir o negócio YouHub sem exclusividade.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="trust" #part inViewport [inViewportOptions]="{ threshold: [0] }" (inViewportAction)="onIntersection($event)">
+  <div class="container">
+    <div class="title">Empresas já aprovadas na YouHub</div>
+    <!-- <div class="desc">Estas empresas confiam, usam e aprovam a YouHub </div> -->
+    <div class="logo">
+      <!-- <img class="img-responsive" src="assets/home/img7.png" alt="">
+      <img class="img-responsive" src="assets/home/img8.png" alt="">
+      <img class="img-responsive" src="assets/home/img9.png" alt=""> -->
+
+      <img class="img-responsive" src="assets/home/Maxima.png" alt="">
+      <img class="img-responsive" src="assets/home/Lunix.png" alt="">
+      <img class="img-responsive" src="assets/home/bioevidence.png" alt="">
+      <img class="img-responsive" src="assets/home/jpk.jpg" alt="">
+      <!-- <img class="img-responsive" src="assets/home/Hub-Bank.png" alt=""> -->
+      <img class="img-responsive" src="assets/home/grupoPDV.png" alt="">
+      <img class="img-responsive" src="assets/home/Chinesa.png" alt="">
+      <img class="img-responsive" src="assets/home/viver.png" alt="">
+      <img class="img-responsive" src="assets/home/img10.png" alt="">
+      <img class="img-responsive" src="assets/home/img-cria.jpg" alt="">
+      <!-- <img class="img-responsive" src="assets/home/18k.jpg" alt=""> -->
+    </div>
+  </div>
+
+</div>
+
+<div class="app" #app inViewport [inViewportOptions]="{ threshold: [0] }" (inViewportAction)="onIntersection($event)">
+  <div class="container">
+    <div class="content">
+      <div class="text">Aplicativo feito para você</div>
+      <div class="img"> <img class="img-responsive" src="assets/home/img11.png" alt=""></div>
+      <div class="itens">
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">Excelente para curtas ou longas sessões de atendimento online em áudio e vídeo</div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">Simplifique a forma de cobrança do seu cliente</div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">Receba automaticamente direto na sua conta bancária o valor da sua consulta em tempo real</div>
+        </div>
+        <div class="item">
+          <div class="icon">
+            <i class="far fa-check-circle"></i>
+          </div>
+          <div class="txt">Facilite a vida de seu cliente oferecendo o aplicativo personalizado para download nos
+            sistemas
+            Android ou iOS</div>
+        </div>
+        <div class="item">
+          <a href="https://play.google.com/store/apps/details?id=jobs.hyper.hyperjobs" target="_blank"><img class="img-responsive"
+              src="assets/home/android.png" alt=""></a>
+          <a href="https://itunes.apple.com/us/app/youhub/id1261075344" target="_blank"><img class="img-responsive" src="assets/home/ios.png"
+              alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="footer">
+  <div class="container">
+    <div class="f-row">
+      <div class="f-col">
+        <div class="logo">
+          <img src="assets/home/logo-white.png" alt="">
+
+        </div>
+        <div class="email"><i class="fas fa-envelope"></i> contato@youhub.com.br</div>
+        <div class="address">
+          Av Copacabana, 190, Alphaville - SP
+        </div>
+      </div>
+      <div class="f-col">
+        <div class="functions">
+          <div class="link" (click)="scroll(who)">Quem somos</div>
+          <div class="link" (click)="scroll(concept)">Nossos Valores</div>
+          <div class="link" (click)="scroll(how)">Como conectar</div>
+          <div class="link" (click)="scroll(part)">Parceiros</div>
+          <div class="link" (click)="scroll(app)">APP</div>
+        </div>
+      </div>
+      <div class="f-col social">
+        <div class="social">
+          <span (click)="goToSocial('facebook')"><i class="fab fa-facebook-f"></i></span>
+          <span (click)="goToSocial('instagram')"><i class="fab fa-instagram"></i></span>
+          <span (click)="goToSocial('youtube')"><i class="fab fa-youtube"></i></span>
+        </div>
+      </div>
+    </div>
+    <div class="f-row bot">
+      <div class="copy">
+        © 2018, YouHub - Todos os direitos reservados
+      </div>
+      <div class="terms">
+        <a href="assets/pdf/Termos.pdf" target="_blank">Termos</a>
+        e
+        <a href="assets/pdf/Privacidade.pdf" target="_blank">Políticas</a>
+
+      </div>
+      <div class="faq">
+        Perguntas frequentes
+      </div>
+    </div>
+  </div>
+</div>
+<p-sidebar [(visible)]="display" styleClass="menu-mobile" position="right">
+  <div class="links mobile">
+    <div class="login">
+      <div class="sign-in" (click)="goLogin()">
+        login
+      </div>
+    </div>
+    <div class="link" (click)="scroll(who)"><i class="fas fa-fw fa-users"></i>Quem somos</div>
+    <div class="link" (click)="scroll(concept)"><i class="fas fa-fw fa-brain"></i>Nossos Valores</div>
+    <div class="link" (click)="scroll(how)"><i class="fas fa-fw fa-file-contract"></i>Como conectar</div>
+    <div class="link" (click)="scroll(part)"><i class="fas fa-fw fa-handshake"></i>Parceiros</div>
+    <div class="link" (click)="scroll(app)"><i class="fas fa-fw fa-mobile-alt"></i>APP</div>
+
+  </div>
+</p-sidebar>

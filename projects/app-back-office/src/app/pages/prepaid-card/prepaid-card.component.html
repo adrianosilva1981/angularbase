@@ -1,0 +1,57 @@
+<div class="prepaid">
+
+  <div class="content">
+
+    <h3>Adquira seu cartão hoje mesmo!</h3>
+    <div class="contemcards">
+      <div class="card">
+        <div class="content">
+
+          <div class="text">Com o cartão pré-pago Mastercard você poderá realizar saques e compras em toda a rede de atendimento bancário.
+            <br> Ao *confirmar a solicitação você receberá seu cartão em até 7 dias úteis no **endereço cadastrado conosco.</div>
+          <div class="contentcardimg">
+            <img src="assets/img/prepaid-card.png" width="250">
+          </div>
+
+          <div class="contentbutton">
+            <button class="btn orange" [disabled]="cardPrepaidok" [ngClass]="{'disabled':cardPrepaidok}" (click)="postPrepaid()">Confirmar Solicitação</button>
+          </div>
+
+          <hr>
+          <div class="obs">
+            *A emissão do cartão tem um custo de R$ 20,00, incluindo frete, e uma taxa de carregamento de 2,90% sobre os valores creditados
+            no cartão.<br>
+            **Mantenha seu endereço atualizado no seu perfil.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="contemcards" *ngIf="cardPrepaidok">
+      <div class="card">
+        <div class="content">
+          <p>Solicitações de Cartões</p>
+          <p-table #dt styleClass="classetable" [value]="cardPrepaid" [responsive]="true" [paginator]="true"
+            [rows]="10" [rowsPerPageOptions]="rowsperpage">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:5em">Código</th>
+                <th>Data</th>
+                <th style="width:20em">Status</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-line>
+              <tr>
+                <td>{{line.id}}</td>
+                <td>{{line.request_date}}</td>
+                <td>{{status[line.status_request]}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

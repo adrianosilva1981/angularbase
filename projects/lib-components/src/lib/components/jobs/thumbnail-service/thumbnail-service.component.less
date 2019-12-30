@@ -1,0 +1,167 @@
+@import 'global/css/global-variables.less';
+@import 'global/css/global-functions.less';
+.thumb {
+    .grid {
+        @media screen and (max-width: 768px) {
+            height: auto;
+            max-width: 300px;
+        }
+        .box {
+            background: white;
+            max-width: 235px;
+            margin: 12px;
+            transition: all 0.3s ease-in-out;
+            @media screen and (max-width: 768px) {
+                max-width: initial;
+                box-shadow: 0 0 10px 0 #dedede;
+                display: flex;
+                align-items: center;
+            }
+            .img {
+                transition: all 0.3s ease-in-out;
+                border-bottom: 1px solid #ccc;
+                cursor: pointer;
+                @media screen and (max-width: 768px) {
+                    max-width: 100px;
+                }
+                img {
+                    padding: 25px;
+                    max-width: 100%;
+                    @media screen and (max-width: 768px) {
+                        min-width: 75px;
+                        padding: 0;
+                    }
+                }
+            }
+            .cnt {
+                padding: 10px 25px;
+                position: relative;
+                @media screen and (max-width: 768px) {
+                    padding: 10px;
+                }
+                .btn-add {
+                    position: absolute;
+                    top: -20px;
+                    right: 20px;
+                    width: 35px;
+                    height: 35px;
+                    border: solid 1px @grey3;
+                    border-radius: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: white;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+                    @media screen and (max-width: 768px) {
+                        display: none;
+                    }
+                    i {
+                        transition: all 0.1s ease-in-out;
+                        color: @grey3;
+                        font-size: 16px;
+                        &:active {
+                            color: #ccc !important;
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+                .price {
+                    font-size: 24px;
+                    .installments {
+                        font-size: 11px;
+                        color: #ccc;
+                    }
+                    .othersValue {
+                        .cntOtherValue {
+                            padding: 1px;
+                            margin-top: 5px;
+                            font-size: 12px;
+                            padding: 2px 15px;
+                            display: flex;
+                            .radius(2px);
+                            .val {
+                                color: #fff
+                            }
+                            .type {
+                                font-style: italic;
+                                margin-left: auto;
+                            }
+                            &.prime {
+                                background: @blue1;
+                                .type {
+                                    color: @orange1;
+                                    font-weight: bold;
+                                }
+                            }
+                            &.associate {
+                                background: @orange1;
+                                .type {
+                                    color: @blue1;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }
+                }
+                .desc {
+                    transition: all 0.3s ease-in-out;
+                    height: 75px;
+                    overflow: hidden;
+                    line-height: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    @media screen and (max-width: 768px) {
+                        opacity: 1;
+                        height: auto;
+                    }
+                    .title {
+                        margin: 5px;
+                        text-align: center;
+                        color: @grey6;
+                        font-size: 10px;
+                    }
+                    .bt {
+                        transition: all 0.3s ease-in-out;
+                        opacity: 0;
+                        margin-top: 10px;
+                        background: @blue1;
+                        color: white;
+                        width: 120px;
+                        height: 28px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 40px;
+                        margin: 10px auto;
+                        cursor: pointer;
+                        @media screen and (max-width: 768px) {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            @media screen and (min-width: 768px) {
+                &:hover {
+                    transform: scale(1.02);
+                    box-shadow: 0 0 10px 0 @grey2;
+                    .img {
+                        border-bottom: 1px solid @blue2;
+                    }
+                    .cnt {
+                        .bt {
+                            opacity: 1 !important;
+                        }
+                        .btn-add {
+                            border: solid 1px @blue2;
+                            i {
+                                color: @blue1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,170 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentItem {
+    .boxShadow(0px 0px 10px 0px @grey3);
+    margin-bottom: 20px;
+    padding: 20px;
+    .contentLine {
+        display: block;
+        width: 100%;
+        clear: both;
+        .border {
+            border: 1px solid @grey3;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            .service {
+                width: 100%;
+                text-align: center;
+            }
+            .contentStatus {
+                display: flex;
+                .itemShop {
+                    flex: 1;
+                    .graph {
+                        display: flex;
+                        align-items: center;
+                        .trace {
+                            flex: 1;
+                            width: 100%;
+                            height: 5px;
+                            background: @grey3;
+                            &.active {
+                                background: @blue1;
+                            }
+                        }
+                        .space {
+                            width: 0px;
+                            height: 40px;
+                            display: flex;
+                        }
+                        .circle {
+                            width: 40px;
+                            height: 40px;
+                            .radius(50%);
+                            background: @grey3;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            .fa {
+                                color: #fff;
+                                font-size: 18px;
+                            }
+                            &.active {
+                                background: @blue1;
+                            }
+                        }
+                    }
+                    .text {
+                        width: 100%;
+                        // text-align: center;
+                        font-size: 12px;
+                        color: @grey5;
+                        margin-top: 5px;
+                        font-weight: 700;
+                    }
+                    &:first-of-type {
+                        .trace {
+                            &:first-of-type {
+                                opacity: 0;
+                            }
+                        }
+                    }
+                    &:last-of-type {
+                        .trace {
+                            &:last-of-type {
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .giftCard {
+            font-size: 20px;
+            text-align: center;
+            .qrCode {
+                width: 150px;
+                margin: 0 auto;
+                margin-top: 20px;
+            }
+        }
+    }
+    .contentInfo {
+        display: flex;
+        margin-top: 30px;
+        .tlt {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid @blue1;
+            font-weight: 700px;
+            font-size: 18px;
+            color: @grey4;
+        }
+        .cnt {
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .name {
+            flex: 2.5;
+            .tlt {
+                text-align: left;
+                justify-content: flex-start;
+            }
+            .cnt {
+                text-align: left;
+                img {
+                    width: 100px;
+                }
+                .txt {
+                    flex: 1;
+                    margin-left: 20px;
+                    color: @grey4;
+                    font-size: 16px;
+                    small{
+                        font-size: 12px;
+                        margin: -3px 0;
+                        display: block;
+                    }
+                }
+            }
+        }
+        .price {
+            flex: 1;
+            .cnt {
+                font-size: 20px;
+                color: @green1;
+            }
+        }
+        .qty {
+            flex: 1;
+            .cnt {
+                font-size: 18px;
+                color: @grey4;
+            }
+        }
+        .amount {
+            flex: 1;
+            .cnt {
+                font-size: 20px;
+                color: @green1;
+            }
+        }
+    }
+}
+
+.contentButton {
+    .buttonDetails {
+        .radius(20px);
+        display: inline-block;
+        background: @blue1;
+        color: #fff;
+        font-size: 18px;
+        padding: 5px 20px;
+    }
+}

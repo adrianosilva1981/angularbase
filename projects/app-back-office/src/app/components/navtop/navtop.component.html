@@ -1,0 +1,38 @@
+<div class="bartop">
+  <div class="lefttop">
+    <div class="logo"></div>
+    <div class="menuMobili" (click)="onShowSidebarMenu()"></div>
+  </div>
+  <div class="centertop">
+    <div class="logo"></div>
+  </div>
+  <div class="righttop">
+    <div class="drop">
+
+      <!-- <div class="banner" *ngIf="images.length" >
+        <i class="fas fa-caret-left" (click)="carousel.onPrevNav();carousel.stopAutoplay();carousel.startAutoplay()" *ngIf="images.length > 1"  ></i>
+        <p-carousel #carousel [value]="images" circular="circular" autoplayInterval="4000" numVisible="1">
+          <ng-template let-image pTemplate="item">
+            <img class="img-fluid" [src]="image?.url_desktop" (click)="redirect(image?.link)" />
+          </ng-template>
+        </p-carousel>
+        <i class="fas fa-caret-right" (click)="carousel.onNextNav();carousel.stopAutoplay();carousel.startAutoplay()" *ngIf="images.length > 1"  ></i>
+      </div> -->
+
+      <span class="down" (click)="drop=!drop">
+        <span class="text">{{userObj.recognition_name === '' || userObj.recognition_name === null ?
+          userObj.name : userObj.recognition_name}}</span>
+        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      </span>
+      <div class="arrow-div" [ngClass]="{'visible': drop ,'invisible': !drop}" (click)="drop=!drop">
+        <ul>
+          <li routerLink="myAcount" class="link" *ngIf="userObj.recognition_name!=='' && userObj.recognition_name!==null">Perfil</li>
+          <li (click)="logout()" class="link">Sair</li>
+        </ul>
+      </div>
+      <div class="photo" (click)="drop=!drop">
+        <img [src]="userObj.photo_profile? userObj.photo_profile : 'assets/img/user-photo-default.png'" />
+      </div>
+    </div>
+  </div>
+</div>

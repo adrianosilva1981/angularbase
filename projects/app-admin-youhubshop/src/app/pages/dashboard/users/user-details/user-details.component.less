@@ -1,0 +1,31 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.jumbotron{
+    background: transparent;
+}
+.detail-item{
+    padding: 10px 20px 10px 20px;
+    background:@grey1;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+.item {
+    cursor: default;
+    min-width: 202px !important;
+    .container {
+        .radius(25px);
+        background: @blue1;
+        color: @grey1;
+        cursor: pointer;
+        .boxShadow(1px 3px 3px 0px @grey6);
+        &:hover {
+            .boxShadow(1px 3px 3px 0px @orange1);
+        }
+        &:active {
+            .boxShadow(none);
+        }
+        .w-100 {
+            border-bottom: 1px solid @grey1;
+        }
+    }
+}

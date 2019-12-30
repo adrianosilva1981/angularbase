@@ -1,0 +1,116 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.contentStepLogin {
+    padding: 20px;
+    &.box-log-step-logged {
+        .boxShadow(0px 0px 25px 0px @grey3);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0px;
+        .radius(5px);
+        margin-top: 40px;
+    }
+    .userNotLogged {
+        width: 100%;
+        .userExists {
+            text-align: center;
+            .btnLogin {
+                background: @green1;
+                padding: 8px 5px;
+                width: 100%;
+                color: #fff;
+            }
+        }
+        .userNotExists {
+            margin-top: 10px;
+            text-align: center;
+            .contentForm {
+                margin-top: 25px;
+                text-align: left;
+                border-top: 1px solid @grey2;
+                padding-top: 25px;
+                .tlt {
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: @grey5;
+                    text-align: center;
+                }
+                .subTlt {
+                    font-size: 14px;
+                    color: @grey5;
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+                .contentBtnRegister {
+                    margin: 0px;
+                    .btnRegister {
+                        background: @blue1;
+                        color: #fff;
+                        padding: 8px 5px;
+                        width: 100%;
+                        &:disabled {
+                            background: @grey3;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .userLogged {
+        width: 100%;
+        .info {
+            text-align: center;
+            color: @grey8;
+            padding: 10px;
+            position: relative;
+            .photo {
+                text-align: center;
+                position: relative;
+                top: -40px;
+                img {
+                    width: 100px;
+                    height: 100px;
+                    .radius(50%);
+                    .boxShadow(0px 0px 25px 0px @grey3);
+                }
+            }
+            .welcome {
+                text-align: center;
+                margin-bottom: 15px;
+                .text {
+                    text-transform: uppercase;
+                    font-size: 22px;
+                    font-weight: lighter;
+                }
+                .name {
+                    font-weight: 600;
+                    font-size: 18px;
+                }
+            }
+            .cntBtnNext {
+                display: flex;
+                justify-content: flex-end;
+                padding: 30px;
+                .btnNext {
+                    background: @orange1;
+                    padding: 8px 5px;
+                    color: #fff;
+                    width: 100%;
+                    .radius(20px);
+                    font-size: 18px;
+                }
+            }
+            .logout {
+                margin-top: 10px;
+                .btnLogout {
+                    cursor: pointer;
+                    color: @newblue3; 
+                    text-decoration: underline;           
+                }
+            }
+        }
+    }
+}

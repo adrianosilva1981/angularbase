@@ -1,0 +1,40 @@
+@import 'css/global-variables.less';
+.content-all {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+    .banner {}
+
+    .cats {
+        text-align: center;
+        .box-cat {
+            background: white;
+            box-shadow: 0 0 10px 0 #ccc;
+            width: 250px;
+            margin: 10px;
+            padding: 10px;
+            color: #999;
+            display: inline-block;
+            text-align: left;
+            .cat-title {
+                font-size: 20px;
+                font-weight: bold;
+                color: @blue1;
+                .icon {
+                    font-size: 18px;
+                    color: @blue2;
+                }
+            }
+            .cat-name {
+                cursor: pointer;
+                border-bottom: 1px solid #f2f2f2;
+                &:last-child {
+                    border: none;
+                }
+                &:hover {
+                    color: @blue3;
+                }
+            }
+        }
+    }
+}

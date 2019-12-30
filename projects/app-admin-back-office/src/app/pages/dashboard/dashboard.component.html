@@ -1,0 +1,132 @@
+<div class="dashboard">
+            
+        <div class="title">Relação dos associados nos 3 últimos meses</div>
+         
+        <div *ngFor="let total of totalByMonth; let i = index">
+            <div class="subtitle">
+                Período: {{ total?.dateFrom | date:'dd/MM/yyyy' }} até {{ total?.dateTo | date:'dd/MM/yyyy' }}
+            </div>
+            <div class="content_disp">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="titles">Total Cadastrados (Ativos)</div>
+                        <div class="line"></div>
+                        <div class="info">
+                                {{ total?.active }} Associados
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div class="titles">Cartão de Crédito</div>
+                        <div class="line"></div>
+                        <div class="info">
+                                {{ total?.credit_card }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div class="titles">Bitcoin</div>
+                        <div class="line"></div>
+                        <div class="info">
+                                {{ total?.bitcoin }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div class="titles">TED</div>
+                        <div class="line"></div>
+                        <div class="info">
+                                {{ total?.transfer_bank }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="content">
+                        <div class="titles">Crédito da Plataforma</div>
+                        <div class="line"></div>
+                        <div class="info">
+                                {{ total?.platform_credit }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-100" [ngStyle]="{'height': '30px'}"></div>
+            </div>
+        </div>
+        <div class="caixa col-12 text-left">
+            <div class="w-100" [ngStyle]="{'height': '30px'}"></div>
+            <div class="row">
+                <div class="col-11 offset-1 col-sm-2">
+                    Analíticos
+                </div>
+                <div class="offset-1" [ngStyle]="{'min-width': '15px'}"></div>
+                <p-calendar [(ngModel)]="dates" placeholder="Período" showIcon="true" selectionMode="range" (onSelect)="setDates()"
+                    (onInput)="setDates()" dateFormat="dd/mm/yy"></p-calendar>
+            </div>
+            <!-- <p-chart class="text-left" [type]="type" [data]="data" #chart></p-chart> -->
+            <div class="col-12 col-md-12 col-xl-12" *ngFor="let total of byMonth; let i = index">
+                <div>
+                    <h5>Período: {{ total?.dateFrom | date:'dd/MM/yyyy' }} até {{ total?.dateTo | date:'dd/MM/yyyy' }}</h5>
+                </div>
+                <div class="content_disp">
+                    <div class="disp">
+                        <div class="text-left">
+                            <div class="title-total">
+                                Total Cadastrados (Ativos)
+                            </div>
+                            <div class="total-value">
+                                {{ total?.active }} Associados
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disp">
+                        <div class=" text-left">
+                            <div class="title-total">
+                                Cartão de Crédito
+                            </div>
+                            <div class="total-value">
+                                {{ total?.credit_card }} Pagamentos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disp">
+                        <div class=" text-left">
+                            <div class="title-total">
+                                Bitcoin
+                            </div>
+                            <div class="total-value">
+                                {{ total?.bitcoin }} Pagamentos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disp">
+                        <div class=" text-left">
+                            <div class="title-total">
+                                TED
+                            </div>
+                            <div class="total-value">
+                                {{ total?.transfer_bank }} Pagamentos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disp">
+                        <div class=" text-left">
+                            <div class="title-total">
+                                Crédito da Plataforma
+                            </div>
+                            <div class="total-value">
+                                {{ total?.platform_credit }} Pagamentos
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-100" [ngStyle]="{'height': '30px'}"></div>
+                </div>
+            </div>
+            <div class="w-100" [ngStyle]="{'height': '30px'}"></div>
+        </div>
+    
+</div>

@@ -1,0 +1,68 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.form {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    .btnRegister {
+        padding: 7px 30px;
+        background: @orange1;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        cursor: pointer;
+        .radius(15px);
+        &:hover {
+            background: @blue2;
+        }
+        &:disabled {
+            background: @grey3;
+            cursor: not-allowed;
+        }
+    }
+
+    .content-form {
+        flex: 4;
+    }
+
+    .uploadImage {
+        flex: 1;
+        .cntButtonAdd {
+            font-size: 18px;
+            color: #000;
+            line-height: 2;
+            text-align: center;
+            width: 120px;
+            .iconUpload {
+                width: 100px;
+                height: 100px;
+                background: #BFBFC6;
+                border-radius: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 105px;
+                overflow: hidden;
+                margin: 0 auto;
+                i {
+                    margin-top: 75px;
+                    color: #CECED3;
+                }
+            }
+        }
+        .image {
+            width: 120px;
+            background-color: #fff;
+            height: 120px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            border: 1px solid @blue1;
+            border-radius: 10px;
+            overflow: hidden;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

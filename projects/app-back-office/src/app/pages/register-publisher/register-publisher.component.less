@@ -1,0 +1,50 @@
+@import 'css/global-variables.less';
+@import 'css/global-functions.less';
+.content {
+    max-width: 800px;
+    margin: 0 30px;
+    padding: 30px 15px;
+    background-color: #fff;
+    margin-top: 50px;
+    .contentForm {
+        margin: 0 auto;
+        max-width: 600px;
+    }
+    .mat-container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 25px;
+    }
+    .box-social {
+        display: flex;
+        .social, .social-qtd {
+            flex: 1;
+        }
+    }
+    .brn-add {
+        display: flex;
+        align-items: center;
+        a {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            margin-top: 10px;
+            border-radius: 100%;
+            color: #fff;
+            background-color: #6FB309;
+            &:hover {
+                background-color: rgb(132, 207, 18);
+            }
+        }
+    }
+    .table-social {
+        padding-top: 40px;
+        .removeSocial {
+            color: #ff0d00;
+            cursor: pointer;
+        }
+    }
+}

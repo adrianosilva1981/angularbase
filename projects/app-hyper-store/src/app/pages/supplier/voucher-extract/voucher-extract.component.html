@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="row title">
+    <div class="div-12 titleBox">
+      Extrato
+    </div>
+  </div>
+  <div class="row justify-content-center my-3 mx-0">
+    <div class="col-12 p-3">
+      <div class="cntResume">
+        <div class="resume PP">
+          <span class="txt"><i class="fa fa-usd"></i>A Receber</span>
+          <span class="val" [innerHtml]="resume.PP | conversion : 'BRL'"></span>
+        </div>
+        <div class="resume PE">
+          <span class="txt"><i class="fa fa-undo"></i>Estornado</span>
+          <span class="val" [innerHtml]="resume.PE | conversion : 'BRL'"></span>
+        </div>
+        <div class="resume PC">
+          <span class="txt"><i class="fa fa-cart-plus"></i>Recebido</span>
+          <span class="val" [innerHtml]="resume.PC | conversion : 'BRL'"></span>
+        </div>
+        <div class="resume PD" routerLink="withdraw">
+          <span class="txt"><i class="fas fa-money-check-alt"></i>Solicitar resgate</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 p-3">
+      <p-table #dt [columns]="cols" [value]="extract" dataKey="id" [paginator]="true" [rows]="20" [responsive]="true"
+        [alwaysShowPaginator]="false">
+
+        <ng-template pTemplate="caption">
+          <div style="text-align: right">
+            <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText placeholder="Pesquisar..."
+              (input)="dt.filterGlobal($event.target.value, 'contains')"
+              style="min-width:220px;max-width:375px;width:auto">
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+              </p-sortIcon>
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pRowToggler]="rowData" style="cursor:pointer">
+            <td *ngFor="let col of columns">
+              <span class="ui-column-title">{{col.header}}</span>
+              {{
+              col.field.includes('date')?(rowData[col.field]|date:'dd/MM/yyyy')
+              :col.field.includes('value')?(rowData[col.field]|conversion:rowData.main_coin:false)
+              :rowData[col.field]
+              }}
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+          <tr>
+            <td [attr.colspan]="columns.length">
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 m-3">
+                  <div class="container p-3 detail">
+                    <img [src]="rowData?.url" class="img-fluid" style="width:300px">
+                    <Strong>Comprador:</Strong>{{rowData?.buyer?.name}} <br>
+                    <Strong>Email:</Strong>{{rowData?.buyer?.email}} <br>
+                    <Strong>Telefone:</Strong>{{rowData?.buyer?.phone}} <br>
+                    <Strong>Valor unitário:</Strong>{{rowData?.main_value|conversion:rowData.main_coin:false}} <br>
+                    <Strong>Valor a receber:</Strong>{{rowData?.supply_value|conversion:rowData.main_coin:false}} <br>
+                    <Strong>Quantidade:</Strong>{{rowData?.quantity}} <br>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+</div>

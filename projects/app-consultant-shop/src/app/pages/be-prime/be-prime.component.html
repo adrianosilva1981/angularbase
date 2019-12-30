@@ -1,0 +1,29 @@
+<div class="contentCheckout container">
+  <div class="cntCheckout">
+    <div class="contentSteps">
+
+      <div class="step">
+        <div class="cmp login">
+          <app-consultant-shop-box-login-register [prime]='true'></app-consultant-shop-box-login-register>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="cmp plan">
+          <div class="cnt">
+            <div class="txt">Plano</div>
+            <div class="prime">Prime</div>
+            <div class="price" [innerHTML]="49.90 | conversion : 'BRL'"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="cmp checkout">
+          <lib-components-checkout [checkout_parameter]="checkout_parameter" (onCheckoutSuccess)="onCheckoutSuccess($event)"></lib-components-checkout>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

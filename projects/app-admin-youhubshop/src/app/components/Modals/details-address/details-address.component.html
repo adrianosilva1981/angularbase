@@ -1,0 +1,17 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Address</h5>
+      <button type="button" class="close" [matDialogClose] aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <p *ngFor="let col of cols">
+        <strong>{{ col.header }}</strong>
+        {{ data[col.field] }}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" [matDialogClose]>Close</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="contentNav" *ngIf="objConsultant.subDomain">
+  <div class="cntData" [style.background-color]="objConsultant?.skin?.nav?.colorBar">
+    <div class="container">
+      <div class="rtl">
+        <div class="menu" (click)="openLeftSideNav()">
+          <i class="fa fa-bars" [style.color]="objConsultant?.skin?.nav?.colorBar"></i>
+        </div>
+        <div class="social">
+          <a [href]="item?.url" target="_blank" class="lnkSocial" *ngFor="let item of objConsultant?.social_media">
+            <i class="fa" [ngClass]="item?.icon" [style.color]="objConsultant?.skin?.nav?.colorBar"></i>
+          </a>
+        </div>
+        <div class="cntSearch">
+          <lib-components-select-input-search *ngIf="objOptonsSearch" [objOptions]="objOptonsSearch">
+          </lib-components-select-input-search>
+        </div>
+        <div class="opts">
+          <span class="itm phone" [style.color]="objConsultant?.skin?.nav?.colorText"
+            *ngIf="objConsultant?.data_shop?.phoneWhats !== '(__) _____-____'">
+            Fone: {{objConsultant?.data_shop?.phoneWhats}}
+          </span>
+          <span class="itm fav" [style.color]="objConsultant?.skin?.nav?.colorText" routerLink="favorites">
+            <i class="fa fa-heart" [style.color]="objConsultant?.skin?.nav?.colorFav"></i>
+            <span>Favoritos</span>
+          </span>
+          <span class="itm cart" routerLink="shop-cart">
+            <i class="fa fa-shopping-cart" [style.color]="objConsultant?.skin?.nav?.colorCart"></i>
+            <span class="qnt"
+              [style.color]="objConsultant?.skin?.nav?.colorTextCart">{{shopCartNumOfProducts > 0 ? shopCartNumOfProducts: ''}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cntNav">
+    <div class="container">
+      <div class="lft">
+        <div class="cntLogo">
+          <img *ngIf="screenSize >= 768 || objConsultant?.skin?.nav?.logoMobile == null" [src]="objConsultant?.skin?.nav?.logo" routerLink="home">
+          <img *ngIf="screenSize < 768 && objConsultant?.skin?.nav?.logoMobile != null" [src]="objConsultant?.skin?.nav?.logoMobile" routerLink="home">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

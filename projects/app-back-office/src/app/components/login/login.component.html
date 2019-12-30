@@ -1,0 +1,33 @@
+<div class="login">
+  <form class="formlogin" [formGroup]="loginFormControl">
+    <div class="contentlogin">
+      <div class="ui-float-label inputform">
+        <input id="email" [(ngModel)]="email" type="email" formControlName="emailFormControl" size="30" pInputText
+          autocomplete="off">
+        <label for="email">E-mail</label>
+        <span class="error" *ngIf="loginFormControl.get('emailFormControl').hasError('pattern')">E-mail inválido</span>
+        <span class="error" *ngIf="loginFormControl.get('emailFormControl').hasError('required')">Obrigatório</span>
+      </div>
+      <div class="my-5"></div>
+      <div class="ui-float-label inputform">
+        <input id="senha" [(ngModel)]="password" type="password" formControlName="passwordFormControl" size="30" pInputText
+          autocomplete="off" maxlength="20">
+        <label for="senha">Senha</label>
+        <span class="error" *ngIf="loginFormControl.get('passwordFormControl').hasError('required')">Obrigatório</span>
+      </div>
+      <div class="contentlink">
+        <a class="link" href="javascript:void(0);" (click)="register()">Cadastre-se</a>
+        <a class="link2" href="javascript:void(0);" (click)="forgot()">Esqueci minha senha</a>
+      </div>
+
+      <div class="my-3"></div>
+
+      <div style="display: flex; justify-content: center;" *ngIf="siteKey">
+        <p-captcha [siteKey]="siteKey" (onResponse)="showResponse($event)" type="image"></p-captcha>
+      </div>
+
+      <button [disabled]="!loginFormControl.valid  || !enableSend" class="btn orange max" (click)="login()" [ngClass]="{'disabled':!loginFormControl.valid  || !enableSend}">Acessar</button>
+
+    </div>
+  </form>
+</div>

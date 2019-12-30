@@ -1,0 +1,43 @@
+<div class="thumb">
+  <div class="grid">
+    <div class="box">
+      <div class="img">
+        <div *ngIf="itemObject?.url">
+          <img [src]="itemObject?.url" onError="src='global/img/image_default.png'">
+        </div>
+        <div *ngIf="!itemObject?.url">
+          <img [src]="'global/img/image_default.png'">
+        </div>
+      </div>
+      <div class="cnt">
+        <!-- <div class="btn-add" (click)="removeThis()">
+          <i class="fas fa-ban"></i>
+        </div> -->
+        <div class="price">
+          <div class="value">
+            <div *ngIf="itemObject?.value_cash_sale" [innerHtml]="itemObject?.value_cash_sale | conversion : 'BRL'">
+            </div>
+            <div *ngIf="!itemObject?.value_cash_sale">{{ itemObject?.discount_resale }}<b>%</b></div>
+          </div>
+        </div>
+        <div class="desc">
+          <div class="title">
+            {{ itemObject?.title | words : 10 : '...' }}
+          </div>
+
+        </div>
+        <div class="desc">
+          <div class="totals">
+            Quantidade: {{itemObject?.available_quantity}}
+          </div>
+          <div class="totals">
+            Vendidos: {{itemObject?.sold_quantity || 0 }}
+          </div>
+          <div class="totals">
+            Total Valor: {{itemObject?.sold_value|conversion:'BRL':false}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

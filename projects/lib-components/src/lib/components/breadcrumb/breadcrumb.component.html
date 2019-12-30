@@ -1,0 +1,11 @@
+<div class="breadCrumb" *ngIf="objBreadCrumb && objBreadCrumb?.length > 0">
+  <div class="icon">
+    <i class="fas fa-home"></i>
+  </div>
+  <div class="map">
+    <span class="loop" *ngFor="let item of objBreadCrumb">
+      <span class="txt" (click)="gotoRouter(item?.router)">{{item?.text}}</span>
+      <i class="fas fa-chevron-right"></i>
+    </span>
+  </div>
+</div>

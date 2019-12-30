@@ -1,0 +1,42 @@
+<mat-dialog-actions style="justify-content: flex-end; margin: 0;">
+    <button mat-button mat-dialog-close> <i class="fa fa-times" aria-hidden="true"></i> Fechar</button>
+</mat-dialog-actions>
+<mat-dialog-content>
+    <div class="info_debits">
+        <div class="title"> <b>DÉBITOS</b>
+            <p>Estes débitos serão realizados em seu back office</p>
+            <p-table [value]="_data">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    <tr>
+                        <td>{{item?.description}}</td>
+                        <td><span [innerHtml]="item?.value | conversion : 'BRL'"></span></td>
+                        <td>{{item?.realease_date}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+<!-- 
+            <table>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Data</th>
+                </tr>
+                <div *ngFor="let item of _data">
+                    <tr>
+                        <td>{{item?.description}}</td>
+                        <td><span [innerHtml]="item?.value | conversion : 'BRL'"></span></td>
+                        <td>{{item?.realease_date}}</td>
+                    </tr>
+                </div>
+            </table> -->
+        </div>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,63 @@
+<div class="purchase">
+
+  <div class="content">
+
+    <div class="contentline">
+      <div class="title">Selecione o Período</div>
+      <div class="form-group" style="display: flex;">
+        <div style="width: 150px; padding: 20px 10px 0 10px;">
+          <p-dropdown [options]="year" styleClass="extract" dropdownIcon="fas fa-caret-down" [(ngModel)]="ano" (onChange)="trocaAno($event.value)"></p-dropdown>
+        </div>
+        <div style="width: 200px; padding: 20px 10px 0 10px;">
+          <p-dropdown [options]="month" styleClass="extract" dropdownIcon="fas fa-caret-down" [(ngModel)]="mes" [disabled]="disable"></p-dropdown>
+        </div>
+        <div class="btn orange" (click)="filter()">Pesquisar</div>
+      </div>
+    </div>
+
+    <div class="contentTable">
+
+      <div *ngIf="!findersok">
+        {{msg}}
+      </div>
+
+      <div class="card" *ngIf="findersok">
+        <div class="content">
+          <h3>Rendimentos Finders Fee</h3>
+     
+
+          <div class="contentSaldo">
+              <div class="text-card">Valor Já Recebido</div>
+              <div Class="text" [ngClass]="{'green' : value_received > 0}" [innerHTML]="value_received | conversion : 'BRL'"></div>
+            </div>
+
+
+          <p-table #dt styleClass="classetable" [value]="finders" [responsive]="true" [paginator]="true" [rows]="15"
+            [rowsPerPageOptions]="rowsperpage">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Nome</th>
+                <th style="width:10em">Valor</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-data>
+              <tr>
+                <td>{{data?.name}}</td>
+                <td><span [innerHtml]="data?.value | conversion : 'BRL'"></span></td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="footer" let-data>
+              <tr>
+                <td style="text-align: right;">Total:</td>
+                <td><span [innerHtml]="total | conversion : 'BRL'"></span></td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

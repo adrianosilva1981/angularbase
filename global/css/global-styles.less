@@ -1,0 +1,318 @@
+@import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('node_modules/@angular/material/prebuilt-themes/indigo-pink.css');
+@import url('node_modules/primeng/resources/themes/omega/theme.css');
+@import url('node_modules/primeng/resources/primeng.min.css');
+@import url('node_modules/primeicons/primeicons.css');
+@import url('node_modules/sweetalert2/dist/sweetalert2.min.css');
+@import url('global/css/global-variables.less');
+@import url('global/css/global-functions.less');
+* {
+    box-sizing: border-box;
+    outline: none !important;
+}
+
+body {
+    background: @grey1;
+    color: @grey7;
+    position: relative;
+    font-size: 14px;
+    //font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 1170px !important;
+}
+
+html {
+    font-size: unset !important;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    .radius(5px);
+}
+
+// CONFIGURAÇÕES DO CARROCEL****
+.ngucarousel-items {
+    text-align: center;
+}
+
+.ngucarouselPoint {
+    list-style-type: none;
+    text-align: center;
+    padding: 12px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    left: 0;
+    box-sizing: border-box;
+    li {
+        display: inline-block;
+        border-radius: 50%;
+        background: transparent !important;
+        border: 1px solid #00B0DB;
+        padding: 5px;
+        margin: 0 3px;
+        transition: .4s ease all;
+        &.active {
+            background: #fff !important;
+            border: 1px solid #00B0DB;
+            width: 10px;
+        }
+    }
+}
+
+.ngucarousel-items .item .tile {
+    box-shadow: none !important;
+}
+
+//*******************************
+//Padrão de Modal da HyperJobs***
+.cdk-overlay-dark-backdrop {
+    opacity: .5 !important;
+    background: #522075 !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+}
+
+.globalModalHJ {
+    max-width: 95vw !important;
+    .mat-dialog-container {
+        padding: 0px !important;
+        max-height: 75vw !important;
+    }
+}
+
+//*******************************
+//FORMULARIOS********************
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    &.invalid_meta_info {
+        .ui-state-default {
+            background: @inputWarn !important;
+        }
+    }
+    .form-control {
+        padding: .375rem .75rem !important;
+        font-size: 1rem !important;
+        color: #495057 !important;
+        &:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 1px rgba(0, 175, 219, .25);
+        }
+        &.ng-invalid:not(.ng-untouched) 
+        {
+            background: @inputWarn;
+        }
+    }
+    input {
+        &:read-only {
+            background: #e9ecef !important;
+            border-color: #ced4da !important;
+            outline: 0;
+            box-shadow: none !important;
+        }
+    }
+    .errorFormField {
+        position: absolute;
+        color: @red1;
+        font-size: 10px
+    }
+}
+
+//*******************************
+// FORMATAÇÃO DO SCROLL**********
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    .radius(5px);
+    background: rgba(153, 153, 153, 0.5);
+    &:window-inactive {
+        background: #bbb;
+    }
+}
+
+//*******************************
+// FORMATAÇÃO DAS MOEDAS*********
+.formatMoney {
+    .moneySymbol {
+        font-weight: lighter;
+        font-size: 80%;
+    }
+    .moneyValue {
+        font-weight: bold;
+        font-size: 100%;
+    }
+    .moneyDecimal {
+        font-weight: lighter;
+        font-size: 80%;
+    }
+}
+
+//*******************************
+// FORMATAÇÃO DO DROPDOWN DA BIBLIOTECA COMPONENTES DE BUSCAS*********
+.dropDownSelectInputSearch {
+    background: transparent;
+    border: none;
+    width: auto !important;
+    &.ui-state-focus {
+        box-shadow: none !important;
+    }
+    &:hover {
+        background: transparent !important;
+    }
+    label {
+        background: transparent;
+        border: none;
+        color: #fff;
+    }
+    .ui-dropdown-trigger {
+        background: transparent;
+        color: #fff;
+        border: none;
+    }
+    .ui-widget-content {
+        background: @blue1;
+        border: none;
+        margin-top: 5px;
+        .ui-dropdown-item {
+            padding: 10px 5px;
+            background: none !important;
+            color: #fff;
+            &:hover {
+                color: @yellow1 !important;
+                background: none;
+            }
+        }
+    }
+}
+
+//*******************************
+// FORMATAÇÃO DE PADROES DO EXTRATO*********
+.ui-datascroller .ui-datascroller-content {
+    padding: 0 !important;
+    background: none !important;
+    border: 0 !important;
+    li {
+        &:first-of-type {
+            mgl-timeline {
+                padding-top: 50px;
+            }
+        }
+    }
+}
+
+.withdrawDrop {
+    max-width: 280px;
+    margin: 10px;
+    .ui-inputtext {
+        margin: 0;
+    }
+}
+
+.withdrawTab.ui-tabview-top>.ui-tabview-nav {
+    border-bottom: 1px solid #ccc;
+}
+
+.withdrawTab {
+    padding: 15px;
+}
+
+.extract, .withdrawDrop {
+    &.ui-state-default {
+        width: 100% !important;
+        border: 1px solid #d6d6d6;
+        background: #ffffff;
+        color: #555555;
+    }
+    label.ui-dropdown-label {
+        justify-content: unset !important;
+        padding: 9px;
+    }
+    &:not(.ui-state-disabled):hover {
+        border-color: #ccc;
+        background: #eeeeee;
+        color: #212121;
+    }
+    .ui-dropdown-panel .ui-dropdown-item:not(.ui-state-highlight):hover {
+        border-color: #ccc;
+        background: inherit;
+        color: #212121;
+    }
+    .ui-dropdown-trigger {
+        border: none !important;
+        border-radius: 4px;
+    }
+    .ui-dropdown-item.ui-state-highlight {
+        display: none;
+    }
+}
+
+//*******************************************
+.comissionTable {
+    .ui-table-caption {
+        text-align: right;
+    }
+}
+
+// botao de confirmar exclusao do produto no consultant adm
+.deleteDialog {
+    background: @red2 !important;
+    border: 1px solid @red2 !important;
+}
+
+// botao de duplicação do produto no consultant adm
+.duplicateDialog {
+    background: @green2 !important;
+    border: 1px solid @green2 !important;
+}
+
+.cancelDialog {
+    background: @blue2 !important;
+    border: 1px solid @blue2 !important;
+}
+
+// Truncate no dropDown de bancos - registro do supplier - lib-components
+.dropdown-bank {
+    label.ui-dropdown-label {
+        justify-content: unset !important;
+    }
+    .ui-helper-clearfix {
+        div {
+            width: 258px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+// input do voucher menor
+.input-voucher {
+    width: 150px;
+    text-align: center;
+    font-size: 18px;
+}
+
+// scroll categorias
+.ui-sidebar-right {
+    overflow: auto;
+}

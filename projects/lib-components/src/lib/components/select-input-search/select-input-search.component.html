@@ -1,0 +1,13 @@
+<div class="contentSearch">
+  <div class="sSelect" [style.background]="objSelected?.background" *ngIf="objOptions?.config?.length > 1">
+    <p-dropdown [options]="objOptions?.config" [(ngModel)]="objSelected" styleClass="dropDownSelectInputSearch" [(ngModel)]="objSelected"></p-dropdown>
+  </div>
+  <div class="sContent">
+    <div class="cntSearch">
+      <input type="search" class="sInput" [(ngModel)]="searchValue" (keyup.enter)="search()" [placeholder]="objSelected?.placeholder">
+      <span class="sIcon" (click)="search()">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+  </div>
+</div>
