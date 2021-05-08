@@ -100,7 +100,7 @@
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "markdown-live": "^1.0.8",
-    "ng-packagr": "^3.0.3",
+    "ng-packagr": "^10.1.1",
     "protractor": "^5.4.0",
     "ts-node": "~5.0.1",
     "tsickle": ">=0.25.5",
